@@ -96,11 +96,15 @@ namespace ExorAIO.Champions.Ashe
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.R.IsReady() &&
+                args.Sender.IsMelee &&
                 args.Sender.IsValidTarget(Vars.R.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                args.SkillType == GapcloserType.Targeted &&
                 Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.R.Cast(args.End);
+                if (args.Target.IsMe)
+                {
+                    Vars.R.Cast(args.Sender.ServerPosition);
+                }
             }
         }
 
