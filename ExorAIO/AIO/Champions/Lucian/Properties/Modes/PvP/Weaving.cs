@@ -37,18 +37,14 @@ namespace ExorAIO.Champions.Lucian
                     switch (Vars.Menu["spells"]["e"]["mode"].GetValue<MenuList>().Index)
                     {
                         case 0:
-                            if (GameObjects.Player.Distance(Game.CursorPos) < Vars.AARange ||
-                                (args.Target as Obj_AI_Hero).CountEnemyHeroesInRange(700f) >= 2)
-                            {
-                                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
-                                return;
-                            }
-
-                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange));
+                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos,
+                                GameObjects.Player.Distance(Game.CursorPos) < Vars.AARange
+                                    ? GameObjects.Player.BoundingRadius
+                                    : 475f));
                             break;
 
                         case 1:
-                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange));
+                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f));
                             break;
 
                         default:
