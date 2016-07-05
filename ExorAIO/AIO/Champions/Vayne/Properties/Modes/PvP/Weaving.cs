@@ -30,19 +30,16 @@ namespace ExorAIO.Champions.Vayne
             if (Vars.Q.IsReady() &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Vars.Menu["miscellaneous"]["wstacks"].GetValue<MenuBool>().Value)
+                if (Vars.Menu["miscellaneous"]["wstacks"].GetValue<MenuBool>().Value &&
+                    (args.Target as Obj_AI_Hero).GetBuffCount("vaynesilvereddebuff") != 1)
                 {
-                    if ((args.Target as Obj_AI_Hero).GetBuffCount("vaynesilvereddebuff") != 1)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 if (!Vars.Menu["miscellaneous"]["alwaysq"].GetValue<MenuBool>().Value)
                 {
                     if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
-                        (args.Target as Obj_AI_Hero).Distance(
-                            GameObjects.Player.Position.Extend(Game.CursorPos, Vars.Q.Range - Vars.AARange)) < Vars.AARange)
+                        (args.Target as Obj_AI_Hero).CountEnemyHeroesInRange(700f) < 3)
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }
