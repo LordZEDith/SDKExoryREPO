@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Quinn
 {
@@ -155,10 +157,12 @@ namespace ExorAIO.Champions.Quinn
                             return;
                         }
 
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.FirstOrDefault(
+                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("quinnw"));
+                                t.HasBuff("quinnw")).OrderByDescending(
+                                    o =>
+                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                     }
                     break;
 

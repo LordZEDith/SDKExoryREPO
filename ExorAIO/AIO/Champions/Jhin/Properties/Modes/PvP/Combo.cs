@@ -44,18 +44,16 @@ namespace ExorAIO.Champions.Jhin
                                     !Vars.Cone.IsOutside((Vector2)t.ServerPosition) &&
                                     t.IsValidTarget(Vars.R.Range)).OrderBy(
                                         o =>
-                                            o.Distance(Game.CursorPos)).FirstOrDefault()).UnitPosition);
+                                            o.Distance(Game.CursorPos)).First()).UnitPosition);
+                            return;
                         }
-                        else
-                        {
-                            Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                        }
+
+                        Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                        return;
                     }
                 }
-                else
-                {
-                    Vars.R.Cast(Game.CursorPos);
-                }
+
+                Vars.R.Cast(Game.CursorPos);
             }
 
             if (Bools.HasSheenBuff() ||

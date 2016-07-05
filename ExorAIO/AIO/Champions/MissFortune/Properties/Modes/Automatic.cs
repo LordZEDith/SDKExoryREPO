@@ -24,9 +24,6 @@ namespace ExorAIO.Champions.MissFortune
                 return;
             }
 
-            Variables.Orbwalker.SetAttackState(!GameObjects.Player.HasBuff("missfortunebulletsound"));
-            Variables.Orbwalker.SetMovementState(!GameObjects.Player.HasBuff("missfortunebulletsound"));
-
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>

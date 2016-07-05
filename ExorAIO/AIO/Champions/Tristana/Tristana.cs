@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Tristana
 {
@@ -150,10 +152,12 @@ namespace ExorAIO.Champions.Tristana
                             return;
                         }
 
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.FirstOrDefault(
+                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("TristanaECharge"));
+                                t.HasBuff("TristanaECharge")).OrderByDescending(
+                                    o =>
+                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                     }
                     break;
 

@@ -170,28 +170,17 @@ namespace ExorAIO.Champions.MissFortune
         /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
         public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
+            /// <summary>
+            ///     Stop attack commands while channeling R.
+            /// </summary>
+            if (GameObjects.Player.HasBuff("missfortunebulletsound"))
+            {
+                args.Process = false;
+            }
+
             switch (args.Type)
             {
-                case OrbwalkingType.Movement:
-
-                    /// <summary>
-                    ///     Stop movement commands while channeling R.
-                    /// </summary>
-                    if (GameObjects.Player.HasBuff("missfortunebulletsound"))
-                    {
-                        args.Process = false;
-                    }
-                    break;
-
                 case OrbwalkingType.BeforeAttack:
-
-                    /// <summary>
-                    ///     Stop attack commands while channeling R.
-                    /// </summary>
-                    if (GameObjects.Player.HasBuff("missfortunebulletsound"))
-                    {
-                        args.Process = false;
-                    }
 
                     /// <summary>
                     ///     The Target Switching Logic (Passive Stacks).
@@ -212,11 +201,12 @@ namespace ExorAIO.Champions.MissFortune
                                 return;
                             }
 
-                            args.Process = false;
                             Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                                 t =>
                                     t.IsValidTarget(Vars.AARange) &&
-                                    t.NetworkId != Vars.PassiveTarget.NetworkId).OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                                    t.NetworkId != Vars.PassiveTarget.NetworkId).OrderByDescending(
+                                        o =>
+                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                         }
                     }
                     break;

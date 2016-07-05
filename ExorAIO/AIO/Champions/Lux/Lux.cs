@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Lux
 {
@@ -203,11 +205,12 @@ namespace ExorAIO.Champions.Lux
                             return;
                         }
 
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.FirstOrDefault(
+                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("luxilluminatingfraulein"));
-                        return;
+                                t.HasBuff("luxilluminatingfraulein")).OrderByDescending(
+                                    o =>
+                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                     }
                     
                     switch (Variables.Orbwalker.ActiveMode)

@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.Utils;
 using LeagueSharp.Data.Enumerations;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Kalista
 {
@@ -119,10 +121,12 @@ namespace ExorAIO.Champions.Kalista
                             return;
                         }
 
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.FirstOrDefault(
+                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("kalistacoopstrikemarkally"));
+                                t.HasBuff("kalistacoopstrikemarkally")).OrderByDescending(
+                                    o =>
+                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                         return;
                     }
                     break;

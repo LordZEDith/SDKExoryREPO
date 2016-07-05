@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using SharpDX;
 
 namespace ExorAIO.Champions.Vayne
@@ -235,10 +237,12 @@ namespace ExorAIO.Champions.Vayne
                             return;
                         }
 
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.FirstOrDefault(
+                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
-                                t.GetBuffCount("vaynesilvereddebuff") == 2);
+                                t.GetBuffCount("vaynesilvereddebuff") == 2).OrderByDescending(
+                                    o =>
+                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                     }
                     break;
 
