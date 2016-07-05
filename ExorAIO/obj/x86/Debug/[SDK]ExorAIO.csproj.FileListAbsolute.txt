@@ -3,7 +3,6 @@ C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\[SDK]ExorAIO.exe
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\[SDK]ExorAIO.pdb
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\clipper_library.dll
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\LeagueSharp.Data.dll
-C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\LeagueSharp.dll
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\LeagueSharp.SDKEx.dll
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\mscorlib.dll
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\SharpDX.Direct3D9.dll
@@ -22,3 +21,4 @@ C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.csp
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.exe
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.pdb
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\LeagueSharp.Sandbox.pdb
+C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\ExorAIO\bin\Debug\LeagueSharp.dll

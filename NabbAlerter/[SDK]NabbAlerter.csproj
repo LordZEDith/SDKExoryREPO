@@ -36,19 +36,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LeagueSharp">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp\System\LeagueSharp.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.Data">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp\System\LeagueSharp.Data.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\LeagueSharp.Data.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.SDKEx">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp\System\LeagueSharp.SDKEx.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\LeagueSharp.SDKEx.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp\System\SharpDX.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp\System\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

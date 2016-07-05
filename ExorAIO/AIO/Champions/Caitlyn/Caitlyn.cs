@@ -111,8 +111,8 @@ namespace ExorAIO.Champions.Caitlyn
                                     Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                                 {
                                     Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(
-                                        args.EndPosition,
-                                        GameObjects.Player.Distance(args.EndPosition) + Vars.W.Width));
+                                        args.End,
+                                        GameObjects.Player.Distance(args.End) + Vars.W.Width));
                                 }
                                 break;
 
