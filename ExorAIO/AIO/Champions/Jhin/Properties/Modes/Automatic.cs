@@ -6,6 +6,7 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Utils;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using SharpDX;
 
 namespace ExorAIO.Champions.Jhin
 {
@@ -20,8 +21,51 @@ namespace ExorAIO.Champions.Jhin
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
-            if (GameObjects.Player.IsRecalling() ||
-                Vars.R.Instance.Name.Equals("JhinRShot"))
+            if (GameObjects.Player.IsRecalling())
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     The R Automatic Logic.
+            /// </summary>
+            if (Vars.R.IsReady() &&
+                Vars.R.Instance.Name.Equals("JhinRShot") &&
+                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
+            {
+                if (GameObjects.EnemyHeroes.Any(
+                    t =>
+                        t.IsValidTarget(Vars.R.Range) &&
+                        !Vars.Cone.IsOutside((Vector2)t.ServerPosition)))
+                {
+                    foreach (var target in GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.R.Range) &&
+                            !Vars.Cone.IsOutside((Vector2)t.ServerPosition)))
+                    {
+                        if (Vars.Menu["spells"]["r"]["nearmouse"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.R.Cast(Vars.R.GetPrediction(GameObjects.EnemyHeroes.Where(
+                                t =>
+                                    t.IsValidTarget(Vars.R.Range) &&
+                                    !Vars.Cone.IsOutside((Vector2)t.ServerPosition)).OrderBy(
+                                        o =>
+                                            o.Distance(Game.CursorPos)).First()).UnitPosition);
+                            return;
+                        }
+
+                        Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                        return;
+                    }
+                }
+
+                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.Combo)
+                {
+                    Vars.R.Cast(Game.CursorPos);
+                }
+            }
+
+            if (Vars.R.Instance.Name.Equals("JhinRShot"))
             {
                 return;
             }
@@ -65,8 +109,20 @@ namespace ExorAIO.Champions.Jhin
                     {
                         if (Bools.IsImmobile(target))
                         {
+                            if (Vars.E.IsReady() &&
+                                target.IsValidTarget(Vars.E.Range))
+                            {
+                                Vars.E.Cast(target.ServerPosition);
+                            }
+
                             Vars.W.Cast(target.ServerPosition);
                             return;
+                        }
+
+                        if (Vars.E.IsReady() &&
+                            target.IsValidTarget(Vars.E.Range))
+                        {
+                            Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                         }
 
                         Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
