@@ -99,13 +99,12 @@ namespace ExorAIO.Champions.Tristana
         {
             if (sender.IsMe &&
                 Vars.W.IsReady() &&
-                args.Buff.Caster as Obj_AI_Hero != null &&
                 Vars.Menu["spells"]["w"]["antigrab"].GetValue<MenuBool>().Value)
             {
                 if (args.Buff.Name.Equals("ThreshQ") ||
                     args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend((args.Buff.Caster as Obj_AI_Hero).ServerPosition, -Vars.W.Range));
+                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.W.Range));
                 }
             }
         }

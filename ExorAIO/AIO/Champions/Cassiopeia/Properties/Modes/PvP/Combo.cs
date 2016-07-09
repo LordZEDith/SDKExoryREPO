@@ -19,8 +19,7 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget())
+            if (Bools.HasSheenBuff())
             {
                 return;
             }
@@ -29,19 +28,24 @@ namespace ExorAIO.Champions.Cassiopeia
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Targets.Target.HasBuffOfType(BuffType.Poison) &&
-                !Invulnerable.Check(Targets.Target, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                DelayAction.Add(
-                    Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
+                foreach (var target in GameObjects.EnemyHeroes.Where(
+                    t =>
+                        t.IsValidTarget(Vars.E.Range) &&
+                        t.HasBuffOfType(BuffType.Poison) &&
+                        !Invulnerable.Check(t, DamageType.Magical)))
                 {
-                    Vars.E.CastOnUnit(Targets.Target);
-                });
+                    DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
+                        () =>
+                        {
+                            Vars.E.CastOnUnit(Targets.Target);
+                        });
+                }
             }
 
-            if (Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -73,17 +77,20 @@ namespace ExorAIO.Champions.Cassiopeia
                 return;
             }
 
-            /// <summary>
-            ///     The W Combo Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                !Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
-                !Targets.Target.IsValidTarget(Vars.AARange - GameObjects.Player.BoundingRadius) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
-            }
+            DelayAction.Add(1000,
+                () =>
+                {
+                    /// <summary>
+                    ///     The W Combo Logic.
+                    /// </summary>
+                    if (Vars.W.IsReady() &&
+                        Targets.Target.IsValidTarget(Vars.W.Range) &&
+                        !Targets.Target.IsValidTarget(Vars.AARange) &&
+                        Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
+                    }
+                });
         }
     }
 }

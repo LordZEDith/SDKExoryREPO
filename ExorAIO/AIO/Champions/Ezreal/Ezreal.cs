@@ -130,13 +130,12 @@ namespace ExorAIO.Champions.Ezreal
         {
             if (sender.IsMe &&
                 Vars.E.IsReady() &&
-                args.Buff.Caster as Obj_AI_Hero != null &&
                 Vars.Menu["spells"]["e"]["antigrab"].GetValue<MenuBool>().Value)
             {
                 if (args.Buff.Name.Equals("ThreshQ") ||
                     args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend((args.Buff.Caster as Obj_AI_Hero).ServerPosition, -Vars.E.Range));
+                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Range));
                 }
             }
         }
@@ -155,6 +154,23 @@ namespace ExorAIO.Champions.Ezreal
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -Vars.E.Range));
+            }
+        }
+
+        /// <summary>
+        ///     Called while processing Spelaneclearlearast operations.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            /// <summary>
+            ///     The Automatic E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            {
+                Logics.AutoE(sender, args);
             }
         }
     }

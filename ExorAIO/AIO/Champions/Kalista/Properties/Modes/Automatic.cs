@@ -26,7 +26,12 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.SoulBound == null)
             {
-                Vars.SoulBound = GameObjects.AllyHeroes.Find(t => t.HasBuff("kalistacoopstrikeally"));
+                Vars.SoulBound = GameObjects.AllyHeroes.Find(
+                    a =>
+                        a.Buffs.Any(
+                            b =>
+                                b.Caster.IsMe &&
+                                b.Name.Contains("kalistacoopstrikeally")));
             }
             else
             {
@@ -34,9 +39,9 @@ namespace ExorAIO.Champions.Kalista
                 ///     The Automatic R Logic.
                 /// </summary>
                 if (Vars.R.IsReady() &&
+                    Vars.SoulBound.HealthPercent < 10 &&
                     Vars.SoulBound.CountEnemyHeroesInRange(800f) > 0 &&
                     Vars.SoulBound.IsValidTarget(Vars.R.Range, false) &&
-                    Health.GetPrediction(Vars.SoulBound, (int)(1000 + Game.Ping/2f)) <= 0 &&
                     Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value)
                 {
                     Vars.R.Cast();
