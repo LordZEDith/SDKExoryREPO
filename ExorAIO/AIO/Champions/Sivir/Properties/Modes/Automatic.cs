@@ -67,8 +67,8 @@ namespace ExorAIO.Champions.Sivir
                 return;
             }
 
-            if (args.Target == null ||
-                !sender.IsValidTarget())
+            if (sender == null ||
+                args.Target == null)
             {
                 return;
             }
@@ -169,7 +169,7 @@ namespace ExorAIO.Champions.Sivir
 
                             case "Caitlyn":
                             case "Nocturne":
-                                DelayAction.Add(750, ()=> { Vars.E.Cast(); });
+                                DelayAction.Add(1050, ()=> { Vars.E.Cast(); });
                                 break;
 
                             default:

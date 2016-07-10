@@ -2,20 +2,19 @@ using System;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
-namespace ExorAIO.Champions.Ezreal
+namespace ExorAIO.Champions.Diana
 {
     /// <summary>
     ///     The champion class.
     /// </summary>
-    internal class Ezreal
+    internal class Diana
     {
         /// <summary>
-        ///     Loads Ezreal.
+        ///     Loads Diana.
         /// </summary>
         public void OnLoad()
         {
@@ -79,10 +78,6 @@ namespace ExorAIO.Champions.Ezreal
                     Logics.Harass(args);
                     break;
 
-                case OrbwalkingMode.LastHit:
-                    Logics.LastHit(args);
-                    break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -99,8 +94,7 @@ namespace ExorAIO.Champions.Ezreal
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe)
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -108,34 +102,37 @@ namespace ExorAIO.Champions.Ezreal
                 switch (Variables.Orbwalker.ActiveMode)
                 {
                     case OrbwalkingMode.Combo:
-                        Logics.Weaving(sender, args);
-                        break;
+                        if (AutoAttack.IsAutoAttack(args.SData.Name))
+                        {
+                            Logics.Weaving(sender, args);
+                            break;
+                        }
+                        else
+                        {
+                            switch (args.SData.Name)
+                            {
+                                case "DianaRDash": //
+                                    if (Vars.Q.IsReady() &&
+                                        (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
+                                        !(args.Target as Obj_AI_Hero).IsValidTarget(Vars.AARange) &&
+                                        Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                                    {
+                                        Vars.Q.Cast(Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).CastPosition);
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                            break;
+                        }
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         break;
-                        
+
                     default:
                         break;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Fired when a buff is added.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="Obj_AI_BaseBuffAddEventArgs" /> instance containing the event data.</param>
-        public static void OnBuffAdd(Obj_AI_Base sender, Obj_AI_BaseBuffAddEventArgs args)
-        {
-            if (sender.IsMe &&
-                Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["antigrab"].GetValue<MenuBool>().Value)
-            {
-                if (args.Buff.Name.Equals("ThreshQ") ||
-                    args.Buff.Name.Equals("rocketgrab2"))
-                {
-                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Range));
                 }
             }
         }
@@ -148,12 +145,27 @@ namespace ExorAIO.Champions.Ezreal
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() &&
-                args.Sender.IsMelee &&
-                args.IsDirectedToPlayer &&
                 args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.True, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -Vars.E.Range));
+                Vars.E.Cast();
+            }
+        }
+
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.True, false) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast();
             }
         }
     }

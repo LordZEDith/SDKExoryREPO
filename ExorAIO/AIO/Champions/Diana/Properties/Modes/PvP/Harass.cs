@@ -4,7 +4,7 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
-namespace ExorAIO.Champions.Akali
+namespace ExorAIO.Champions.Diana
 {
     /// <summary>
     ///     The logics class.
@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Akali
                     ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.Q.CastOnUnit(Targets.Target);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
             }
         }
     }

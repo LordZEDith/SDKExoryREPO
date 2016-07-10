@@ -17,7 +17,6 @@ namespace ExorAIO.Champions.Ezreal
             Obj_AI_Base.OnDoCast += Ezreal.OnDoCast;
             Events.OnGapCloser += Ezreal.OnGapCloser;
             Obj_AI_Base.OnBuffAdd += Ezreal.OnBuffAdd;
-            Obj_AI_Base.OnProcessSpellCast += Ezreal.OnProcessSpellCast;
         }
     }
 }
