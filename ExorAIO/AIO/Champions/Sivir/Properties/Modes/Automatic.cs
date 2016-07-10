@@ -60,8 +60,9 @@ namespace ExorAIO.Champions.Sivir
             /// </summary>
             if (ObjectManager.Get<Obj_AI_Minion>().Any(
                 m =>
-                    m.Distance(GameObjects.Player) < 175 &&
-                    m.CharData.BaseSkinName.Equals("caitlyntrap")))
+                    m.Distance(GameObjects.Player) < 150 &&
+                    m.CharData.BaseSkinName.Equals("caitlyntrap")) &&
+                Vars.Menu["spells"]["e"]["traps"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
                 return;
@@ -77,7 +78,8 @@ namespace ExorAIO.Champions.Sivir
             ///     Block Dragon's AutoAttacks.
             /// </summary>
             if (args.Target.IsMe &&
-                sender is Obj_AI_Minion)
+                sender is Obj_AI_Minion &&
+                Vars.Menu["spells"]["e"]["minions"].GetValue<MenuBool>().Value)
             {
                 if (sender.CharData.BaseSkinName.Equals("SRU_Baron") ||
                     sender.CharData.BaseSkinName.Contains("SRU_Dragon") ||
