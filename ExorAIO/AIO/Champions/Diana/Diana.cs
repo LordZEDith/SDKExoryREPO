@@ -89,7 +89,8 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe)
+            if (sender.IsMe &&
+                AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -97,14 +98,7 @@ namespace ExorAIO.Champions.Diana
                 switch (Variables.Orbwalker.ActiveMode)
                 {
                     case OrbwalkingMode.Combo:
-                        if (AutoAttack.IsAutoAttack(args.SData.Name))
-                        {
-                            Logics.Weaving(sender, args);
-                        }
-                        break;
-
-                    case OrbwalkingMode.LaneClear:
-                        Logics.JungleClear(sender, args);
+                        Logics.Weaving(sender, args);
                         break;
 
                     default:
@@ -114,14 +108,14 @@ namespace ExorAIO.Champions.Diana
         }
 
         /// <summary>
-        ///     Called on spell-cast.
+        ///     Called while processing Spelaneclearlearast operations.
         /// </summary>
-        /// <param name="spellbook">The spellbook.</param>
+        /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
-        public static void OnCastSpell(Spellbook spellbook, SpellbookCastSpellEventArgs args)
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (spellbook.Owner.IsMe &&
-                args.Slot == SpellSlot.R)
+            if (sender.IsMe &&
+                args.SData.Name.Equals("DianaTeleport"))
             {
                 if (Vars.Q.IsReady() &&
                     (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
@@ -142,7 +136,7 @@ namespace ExorAIO.Champions.Diana
         {
             if (Vars.E.IsReady() &&
                 args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.True, false) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
@@ -158,7 +152,7 @@ namespace ExorAIO.Champions.Diana
         {
             if (Vars.E.IsReady() &&
                 args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.True, false) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
