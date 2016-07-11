@@ -50,11 +50,13 @@ namespace ExorAIO.Champions.Diana
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
                 {
+                    /*
                     if (!target.HasBuff("dianamoonlight") &&
                         Vars.Menu["miscellaneous"]["rcheck"].GetValue<MenuBool>().Value)
                     {
                         return;
                     }
+                    */
 
                     Vars.R.CastOnUnit(target);
                 }

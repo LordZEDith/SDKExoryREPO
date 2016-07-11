@@ -139,6 +139,11 @@ namespace ExorAIO.Utilities
         public static Spell R { internal get; set; }
 
         /// <summary>
+        ///     Gets or sets the R2 Spell.
+        /// </summary>
+        public static Spell R2 { internal get; set; }
+
+        /// <summary>
         ///     Gets or sets the assembly menu.
         /// </summary>
         public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}", $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);

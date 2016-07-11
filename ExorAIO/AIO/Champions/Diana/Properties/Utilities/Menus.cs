@@ -97,7 +97,7 @@ namespace ExorAIO.Champions.Diana
             {
                 Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",                             true));
                 Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions",                  true));
-                Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked",       true));
+                //Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked",       true));
                 Vars.MiscMenu.Add(new MenuBool("rcombo",   "Use second R in combo even if target not marked"));
             }
             Vars.Menu.Add(Vars.MiscMenu);
@@ -111,6 +111,7 @@ namespace ExorAIO.Champions.Diana
                 Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("r", "R Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("r2", "Misaya Initiator Range"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }

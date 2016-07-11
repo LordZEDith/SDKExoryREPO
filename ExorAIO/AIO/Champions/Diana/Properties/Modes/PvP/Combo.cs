@@ -57,25 +57,40 @@ namespace ExorAIO.Champions.Diana
             if (Vars.R.IsReady())
             {
                 /// <summary>
-                ///     The R Combo Logic.
+                ///     The R Combo Logics.
                 /// </summary>
                 if (Targets.Target.IsValidTarget(Vars.R.Range) &&
-                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
-                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
                 {
-                    if (!Targets.Target.IsUnderEnemyTurret() ||
-                        !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
+                    /// <summary>
+                    ///     The R Normal Combo Logic.
+                    /// </summary>
+                    if (Targets.Target.HasBuff("dianamoonlight") &&
+                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                     {
-                        if (Targets.Target.HasBuff("dianamoonlight") ||
-                            (!Vars.Q.IsReady() &&
-                            !Targets.Target.HasBuff("dianamoonlight") &&
-                            Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value))
+                        if (!Targets.Target.IsUnderEnemyTurret() ||
+                            !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                         {
                             Vars.R.CastOnUnit(Targets.Target);
+                            return;
                         }
                     }
-                }
 
+                    if (!Vars.Q.IsReady() &&
+                        !Targets.Target.HasBuff("dianamoonlight") &&
+                        Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value)
+                    {
+                        DelayAction.Add(1000, () =>
+                        {
+                            if (!Vars.Q.IsReady() &&
+                                !Targets.Target.HasBuff("dianamoonlight") &&
+                                Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value)
+                            {
+                                Vars.R.CastOnUnit(Targets.Target);
+                            }
+                        });
+                    }
+                }
                 /// <summary>
                 ///     The R Gapclose Logic.
                 /// </summary>

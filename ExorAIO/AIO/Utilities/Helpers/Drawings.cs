@@ -67,11 +67,19 @@ namespace ExorAIO.Utilities
                 ///     Loads the R drawing.
                 /// </summary>
                 if (Vars.R != null &&
-                    Vars.R.IsReady() &&
-                    Vars.Menu["drawings"]["r"] != null &&
-                    Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
+                    Vars.R.IsReady())
                 {
-                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 2);
+                    if (Vars.Menu["drawings"]["r"] != null &&
+                        Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
+                    {
+                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 2);
+                    }
+
+                    if (Vars.Menu["drawings"]["r2"] != null &&
+                        Vars.Menu["drawings"]["r2"].GetValue<MenuBool>().Value)
+                    {
+                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R2.Range, Color.Blue, 2);
+                    }
                 }
             };
         }
