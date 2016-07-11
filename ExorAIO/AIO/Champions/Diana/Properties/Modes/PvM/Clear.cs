@@ -24,69 +24,60 @@ namespace ExorAIO.Champions.Diana
             }
 
             /// <summary>
-            ///     The Q LaneClear Logic.
+            ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Minions.Any() &&
-                GameObjects.Player.ManaPercent > 
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
-                Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
-                Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 4)
+            if (Vars.Q.IsReady())
             {
-                Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
-            }
-
-            /// <summary>
-            ///     The W LaneClear Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Minions.Any() &&
-                GameObjects.Player.ManaPercent > 
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
-                Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
-            {
-                if (Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3)
+                /// <summary>
+                ///     The LaneClear Q Logic.
+                /// </summary>
+                if (Targets.Minions.Any() &&
+                    GameObjects.Player.ManaPercent >
+                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                    Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
+                    Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
                 {
-                    Vars.W.Cast();
+                    Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
+                }
+
+                /// <summary>
+                ///     The JungleClear Q Logic.
+                /// </summary>
+                else if (Targets.JungleMinions.Any() &&
+                    GameObjects.Player.ManaPercent >
+                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                    Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                {
+                    Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
                 }
             }
 
-        }
-
-        /// <summary>
-        ///     Called on do-cast.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
-        public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            if (!(args.Target is Obj_AI_Minion) ||
-                !Targets.JungleMinions.Contains(args.Target as Obj_AI_Minion))
-            {
-                return;
-            }
-
             /// <summary>
-            ///     The Q JungleClear Logic.
+            ///     The Clear W Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent > 
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.W.IsReady())
             {
-                Vars.Q.Cast((args.Target as Obj_AI_Minion).ServerPosition);
-                return;
-            }
+                /// <summary>
+                ///     The LaneClear W Logic.
+                /// </summary>
+                if (Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3 &&
+                    GameObjects.Player.ManaPercent >
+                        ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
+                    Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                {
+                    Vars.W.Cast();
+                }
 
-            /// <summary>
-            ///     The W JungleClear Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent > 
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
-                Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
-            {
-                Vars.W.Cast();
+                /// <summary>
+                ///     The JungleClear W Logic.
+                /// </summary>
+                else if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.W.Range)) &&
+                    GameObjects.Player.ManaPercent >
+                        ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
+                    Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                {
+                    Vars.W.Cast();
+                }
             }
         }
     }
