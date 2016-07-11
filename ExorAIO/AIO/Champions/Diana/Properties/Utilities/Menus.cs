@@ -95,10 +95,10 @@ namespace ExorAIO.Champions.Diana
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",                       true));
-                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions",            true));
-                Vars.MiscMenu.Add(new MenuBool("wcheck",   "Don't W in Combo if Minions in W Range",    true));
-                Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked", true));
+                Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",                             true));
+                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions",                  true));
+                Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked",       true));
+                Vars.MiscMenu.Add(new MenuBool("rcombo",   "Use second R in combo even if target not marked"));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

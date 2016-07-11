@@ -32,12 +32,6 @@ namespace ExorAIO.Champions.Diana
                 GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.W.Range)) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Targets.Minions.Any(t => t.IsValidTarget(Vars.W.Range)) &&
-                    Vars.Menu["miscellaneous"]["wcheck"].GetValue<MenuBool>().Value)
-                {
-                    return;
-                }
-
                 Vars.W.Cast();
             }
 
@@ -65,15 +59,20 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The R Combo Logic.
                 /// </summary>
-                if (Targets.Target.HasBuff("dianamoonlight") &&
-                    Targets.Target.IsValidTarget(Vars.R.Range) &&
+                if (Targets.Target.IsValidTarget(Vars.R.Range) &&
                     Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
                     if (!Targets.Target.IsUnderEnemyTurret() ||
                         !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                     {
-                        Vars.R.CastOnUnit(Targets.Target);
+                        if (Targets.Target.HasBuff("dianamoonlight") ||
+                            (!Vars.Q.IsReady() &&
+                            !Targets.Target.HasBuff("dianamoonlight") &&
+                            Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value))
+                        {
+                            Vars.R.CastOnUnit(Targets.Target);
+                        }
                     }
                 }
 
@@ -87,6 +86,7 @@ namespace ExorAIO.Champions.Diana
                         m =>
                             m.IsValidTarget(Vars.R.Range) &&
                             m.Distance(Targets.Target) < Vars.Q.Range &&
+                            m.Distance(Targets.Target) > Vars.Q.Range/2 &&
                             Vars.GetRealHealth(m) >
                                 (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {

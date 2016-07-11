@@ -34,6 +34,33 @@ namespace ExorAIO.Champions.Diana
                 Vars.E.Cast();
             }
 
+            /// <summary>
+            ///     The Misaya Combo Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() &&
+                Vars.E.IsReady() &&
+                Vars.R.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.R.Range) &&
+                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+                Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active &&
+                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+            {
+                Vars.R.CastOnUnit(Targets.Target);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+
+                if (Vars.W.IsReady())
+                {
+                    Vars.W.Cast();
+                }
+
+                Vars.E.Cast();
+
+                if (Vars.R.IsReady())
+                {
+                    Vars.R.CastOnUnit(Targets.Target);
+                }
+            }
+
             if (Vars.Q.IsReady() &&
                 Vars.R.IsReady())
             {

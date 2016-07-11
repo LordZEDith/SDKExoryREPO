@@ -31,13 +31,13 @@ namespace ExorAIO.Utilities
                     if (Vars.Menu["drawings"]["q"] != null &&
                         Vars.Menu["drawings"]["q"].GetValue<MenuBool>().Value)
                     {
-                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Q.Range, Color.Green, 1);
+                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Q.Range, Color.LightGreen, 2);
                     }
 
                     if (Vars.Menu["drawings"]["qe"] != null &&
                         Vars.Menu["drawings"]["qe"].GetValue<MenuBool>().Value)
                     {
-                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Q2.Range, Color.LightGreen, 1);
+                        Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Q2.Range, Color.Yellow, 2);
                     }
                 }
 
@@ -49,7 +49,7 @@ namespace ExorAIO.Utilities
                     Vars.Menu["drawings"]["w"] != null &&
                     Vars.Menu["drawings"]["w"].GetValue<MenuBool>().Value)
                 {
-                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.W.Range, Color.Purple, 1);
+                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.W.Range, Color.Purple, 2);
                 }
 
                 /// <summary>
@@ -60,7 +60,7 @@ namespace ExorAIO.Utilities
                     Vars.Menu["drawings"]["e"] != null &&
                     Vars.Menu["drawings"]["e"].GetValue<MenuBool>().Value)
                 {
-                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.E.Range, Color.Cyan, 1);
+                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.E.Range, Color.Cyan, 2);
                 }
 
                 /// <summary>
@@ -71,7 +71,7 @@ namespace ExorAIO.Utilities
                     Vars.Menu["drawings"]["r"] != null &&
                     Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
                 {
-                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 1);
+                    Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 2);
                 }
             };
         }
