@@ -29,10 +29,15 @@ namespace ExorAIO.Champions.Diana
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                !Targets.Minions.Any(t => t.IsValidTarget(Vars.W.Range)) &&
                 GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.W.Range)) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
+                if (Targets.Minions.Any(t => t.IsValidTarget(Vars.W.Range)) &&
+                    Vars.Menu["miscellaneous"]["wcheck"].GetValue<MenuBool>().Value)
+                {
+                    return;
+                }
+
                 Vars.W.Cast();
             }
 
@@ -47,7 +52,6 @@ namespace ExorAIO.Champions.Diana
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
-                !Vars.R.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range))
             {
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
@@ -61,18 +65,15 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The R Combo Logic.
                 /// </summary>
-                if (Targets.Target.IsValidTarget(Vars.R.Range) &&
+                if (Targets.Target.HasBuff("dianamoonlight") &&
+                    Targets.Target.IsValidTarget(Vars.R.Range) &&
                     Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
                     if (!Targets.Target.IsUnderEnemyTurret() ||
                         !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                     {
-                        if (Vars.Q.IsReady() ||
-                            Targets.Target.HasBuff("dianamoonlight"))
-                        {
-                            Vars.R.CastOnUnit(Targets.Target);
-                        }
+                        Vars.R.CastOnUnit(Targets.Target);
                     }
                 }
 
@@ -85,10 +86,12 @@ namespace ExorAIO.Champions.Diana
                     foreach (var minion in Targets.Minions.Where(
                         m =>
                             m.IsValidTarget(Vars.R.Range) &&
-                            m.Distance(Targets.Target) < Vars.Q.Range))
+                            m.Distance(Targets.Target) < Vars.Q.Range &&
+                            Vars.GetRealHealth(m) >
+                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.Cast(minion.ServerPosition);
-                        Vars.R.CastOnUnit(minion);
+                        DelayAction.Add(250, () => { Vars.R.CastOnUnit(minion); });
                     }
                 }
             }

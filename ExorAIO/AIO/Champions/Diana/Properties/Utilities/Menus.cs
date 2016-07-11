@@ -1,6 +1,9 @@
+using System.Windows.Forms;
 using ExorAIO.Utilities;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using Menu = LeagueSharp.SDK.UI.Menu;
 
 namespace ExorAIO.Champions.Diana
 {
@@ -50,7 +53,8 @@ namespace ExorAIO.Champions.Diana
                 {
                     Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuSliderButton("logical", "If enemies in range >= x", 3, 1, 5, true));
+                    Vars.EMenu.Add(new MenuBool("logical",     "Target Out AA Range",      true));
+                    Vars.EMenu.Add(new MenuSliderButton("aoe", "If enemies in range >= x", 3, 1, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 
@@ -61,6 +65,9 @@ namespace ExorAIO.Champions.Diana
                 {
                     Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.RMenu.Add(new MenuBool("bool", "Enable Misaya Key", true));
+                    Vars.RMenu.Add(
+                        new MenuKeyBind("key", "Misaya Key:", Keys.T, KeyBindType.Press));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
@@ -88,8 +95,10 @@ namespace ExorAIO.Champions.Diana
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",            true));
-                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions", true));
+                Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",                       true));
+                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions",            true));
+                Vars.MiscMenu.Add(new MenuBool("wcheck",   "Don't W in Combo if Minions in W Range",    true));
+                Vars.MiscMenu.Add(new MenuBool("wcheck",   "Don't R to KillSteal if Target not marked", true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

@@ -17,7 +17,7 @@ namespace ExorAIO.Champions.Diana
         public static void Initialize()
         {
             Vars.Q = new Spell(SpellSlot.Q, 830f + GameObjects.Player.BoundingRadius);
-            Vars.W = new Spell(SpellSlot.W, Vars.AARange);
+            Vars.W = new Spell(SpellSlot.W, 200f + GameObjects.Player.BoundingRadius);
             Vars.E = new Spell(SpellSlot.E, 350f + GameObjects.Player.BoundingRadius);
             Vars.R = new Spell(SpellSlot.R, 825f);
 
