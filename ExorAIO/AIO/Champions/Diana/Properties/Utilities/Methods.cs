@@ -17,6 +17,7 @@ namespace ExorAIO.Champions.Diana
             Obj_AI_Base.OnDoCast += Diana.OnDoCast;
             Events.OnGapCloser += Diana.OnGapCloser;
             Events.OnInterruptableTarget += Diana.OnInterruptableTarget;
+            Spellbook.OnCastSpell += Diana.OnCastSpell;
         }
     }
 }

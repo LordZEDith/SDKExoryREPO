@@ -19,6 +19,7 @@ namespace ExorAIO.Utilities
             =>
                 GameObjects.Player.HasBuff("sheen") ||
                 GameObjects.Player.HasBuff("LichBane") ||
+                GameObjects.Player.HasBuff("dianaarcready") ||
                 GameObjects.Player.HasBuff("ItemFrozenFist");
 
         /// <summary>

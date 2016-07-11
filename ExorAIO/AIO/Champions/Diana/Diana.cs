@@ -105,27 +105,8 @@ namespace ExorAIO.Champions.Diana
                         if (AutoAttack.IsAutoAttack(args.SData.Name))
                         {
                             Logics.Weaving(sender, args);
-                            break;
                         }
-                        else
-                        {
-                            switch (args.SData.Name)
-                            {
-                                case "DianaRDash": //
-                                    if (Vars.Q.IsReady() &&
-                                        (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
-                                        !(args.Target as Obj_AI_Hero).IsValidTarget(Vars.AARange) &&
-                                        Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-                                    {
-                                        Vars.Q.Cast(Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).CastPosition);
-                                    }
-                                    break;
-
-                                default:
-                                    break;
-                            }
-                            break;
-                        }
+                        break;
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
@@ -133,6 +114,26 @@ namespace ExorAIO.Champions.Diana
 
                     default:
                         break;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called on spell-cast.
+        /// </summary>
+        /// <param name="spellbook">The spellbook.</param>
+        /// <param name="args">The args.</param>
+        public static void OnCastSpell(Spellbook spellbook, SpellbookCastSpellEventArgs args)
+        {
+            if (spellbook.Owner.IsMe &&
+                args.Slot == SpellSlot.R)
+            {
+                if (Vars.Q.IsReady() &&
+                    (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
+                    !(args.Target as Obj_AI_Hero).IsValidTarget(Vars.AARange) &&
+                    Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).CastPosition);
                 }
             }
         }

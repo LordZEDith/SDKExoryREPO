@@ -45,8 +45,8 @@ namespace ExorAIO.Champions.Diana
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
+                        t.HasBuff("dianamoonlight") &&
                         t.IsValidTarget(Vars.R.Range) &&
-                        t.HasBuff("QMARK") && //
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))

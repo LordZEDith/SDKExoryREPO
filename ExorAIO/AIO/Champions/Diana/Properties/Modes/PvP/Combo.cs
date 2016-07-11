@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Diana
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                !Targets.Minions.Any(t => t.IsValidTarget(Vars.R.Range)) &&
+                !Targets.Minions.Any(t => t.IsValidTarget(Vars.W.Range)) &&
                 GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.W.Range)) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
@@ -50,7 +50,8 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The R Combo Logic.
                 /// </summary>
-                if (Targets.Target.IsValidTarget(Vars.R.Range) &&
+                if (Vars.Q.IsReady() &&
+                    Targets.Target.IsValidTarget(Vars.R.Range) &&
                     Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {

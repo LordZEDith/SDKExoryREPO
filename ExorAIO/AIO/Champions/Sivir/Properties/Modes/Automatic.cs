@@ -103,11 +103,11 @@ namespace ExorAIO.Champions.Sivir
                     }
 
                     /// <summary>
-                    ///     Check for Special AutoAttacks & Melee AutoAttack Resets.
+                    ///     Check for Melee AutoAttack Resets.
                     /// </summary>
                     if (AutoAttack.IsAutoAttack(args.SData.Name))
                     {
-                        if ((!sender.IsMelee && args.SData.Name.Contains("Card")) ||
+                        if (sender.IsMelee &&
                             sender.Buffs.Any(b => AutoAttack.IsAutoAttackReset(args.SData.Name)))
                         {
                             Vars.E.Cast();

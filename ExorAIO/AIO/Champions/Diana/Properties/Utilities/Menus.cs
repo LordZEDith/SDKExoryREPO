@@ -38,8 +38,8 @@ namespace ExorAIO.Champions.Diana
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   25, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   25, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
