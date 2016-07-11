@@ -19,7 +19,8 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff())
+            if (Bools.HasSheenBuff() &&
+                Targets.Target.IsValidTarget(Vars.AARange))
             {
                 return;
             }
@@ -50,15 +51,18 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The R Combo Logic.
                 /// </summary>
-                if (Vars.Q.IsReady() &&
-                    Targets.Target.IsValidTarget(Vars.R.Range) &&
+                if (Targets.Target.IsValidTarget(Vars.R.Range) &&
                     Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
                     if (!Targets.Target.IsUnderEnemyTurret() ||
                         !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                     {
-                        Vars.R.CastOnUnit(Targets.Target);
+                        if (Vars.Q.IsReady() ||
+                            Targets.Target.HasBuff("dianamoonlight"))
+                        {
+                            Vars.R.CastOnUnit(Targets.Target);
+                        }
                     }
                 }
 
@@ -73,6 +77,7 @@ namespace ExorAIO.Champions.Diana
                             m.IsValidTarget(Vars.R.Range) &&
                             m.Distance(Targets.Target) < Vars.Q.Range))
                     {
+                        Vars.Q.Cast(minion.ServerPosition);
                         Vars.R.CastOnUnit(minion);
                     }
                 }

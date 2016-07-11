@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Diana
                         t.IsValidTarget(Vars.R.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
                 {
                     Vars.R.CastOnUnit(target);
                 }

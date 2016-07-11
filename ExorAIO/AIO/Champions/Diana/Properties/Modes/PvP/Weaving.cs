@@ -39,6 +39,7 @@ namespace ExorAIO.Champions.Diana
             ///     The R Combo Weaving Logic.
             /// </summary>
             if (Vars.R.IsReady() &&
+                (args.Target as Obj_AI_Hero).HasBuff("dianamoonlight") &&
                 (args.Target as Obj_AI_Hero).IsValidTarget(Vars.R.Range) &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {

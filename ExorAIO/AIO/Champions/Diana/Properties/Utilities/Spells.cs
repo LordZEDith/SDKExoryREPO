@@ -17,11 +17,11 @@ namespace ExorAIO.Champions.Diana
         public static void Initialize()
         {
             Vars.Q = new Spell(SpellSlot.Q, 830f + GameObjects.Player.BoundingRadius);
-            Vars.W = new Spell(SpellSlot.W, GameObjects.Player.GetRealAutoAttackRange());
+            Vars.W = new Spell(SpellSlot.W, Vars.AARange);
             Vars.E = new Spell(SpellSlot.E, 350f + GameObjects.Player.BoundingRadius);
             Vars.R = new Spell(SpellSlot.R, 825f);
 
-            Vars.Q.SetSkillshot(0.25f, 195f, 1400f, false, SkillshotType.SkillshotCircle);
+            Vars.Q.SetSkillshot(0.75f, 195f, 1400f, false, SkillshotType.SkillshotCircle);
         }
     }
 }
