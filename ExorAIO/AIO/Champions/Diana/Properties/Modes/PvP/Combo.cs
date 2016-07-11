@@ -37,7 +37,7 @@ namespace ExorAIO.Champions.Diana
 
             if (!Targets.Target.IsValidTarget() ||
                 Targets.Target.IsValidTarget(Vars.AARange) ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+                Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }
@@ -109,6 +109,23 @@ namespace ExorAIO.Champions.Diana
                         DelayAction.Add(250, () => { Vars.R.CastOnUnit(minion); });
                     }
                 }
+            }
+
+            if (Vars.Q.IsReady() &&
+                Vars.R.IsReady())
+            {
+                return;
+            }
+            
+            /// <summary>
+            ///     The Automatic E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
+                !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast();
             }
         }
     }

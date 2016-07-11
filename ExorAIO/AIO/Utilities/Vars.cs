@@ -84,6 +84,11 @@ namespace ExorAIO.Utilities
         public static AttackableUnit PassiveTarget = null;
 
         /// <summary>
+        ///     The last tick.
+        /// </summary>
+        public static int Tick = 0;
+
+        /// <summary>
         ///     The args End.
         /// </summary>
         public static Vector3 End { get; set; } = Vector3.Zero;
