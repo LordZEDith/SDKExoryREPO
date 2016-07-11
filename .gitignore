@@ -213,3 +213,4 @@ ModelManifest.xml
 *.pdb
 ExorAIO/Program.cs
 *.pdb
+NabbActivatorT/NabbActivator.cs

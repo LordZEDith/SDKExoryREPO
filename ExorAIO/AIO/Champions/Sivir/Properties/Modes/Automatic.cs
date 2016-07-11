@@ -65,41 +65,40 @@ namespace ExorAIO.Champions.Sivir
                     }
 
                     /// <summary>
-                    ///     Check for Special AoE Spells.
+                    ///     Block Gangplank's Barrels 1st Part.
                     /// </summary>
-                    if (!args.Target.IsMe)
+                    if ((sender as Obj_AI_Hero).ChampionName.Equals("Gangplank"))
                     {
-                        /// <summary>
-                        ///     Block Gangplank's Barrels 1st Part.
-                        /// </summary>
-                        if ((sender as Obj_AI_Hero).ChampionName.Equals("Gangplank"))
+                        if (AutoAttack.IsAutoAttack(args.SData.Name) ||
+                            args.SData.Name.Equals("GangplankQProceed"))
                         {
-                            if (AutoAttack.IsAutoAttack(args.SData.Name) ||
-                                args.SData.Name.Equals("GangplankQProceed"))
+                            if ((args.Target as Obj_AI_Minion).Health == 1 &&
+                                (args.Target as Obj_AI_Minion).CharData.BaseSkinName.Equals("gangplankbarrel"))
                             {
-                                if ((args.Target as Obj_AI_Minion).Health == 1 &&
-                                    (args.Target as Obj_AI_Minion).CharData.BaseSkinName.Equals("gangplankbarrel"))
+                                if (GameObjects.Player.Distance(args.Target) < 450)
                                 {
-                                    if (GameObjects.Player.Distance(args.Target) < 450)
-                                    {
-                                        Vars.E.Cast();
-                                        return;
-                                    }
+                                    Vars.E.Cast();
+                                    return;
                                 }
                             }
                         }
+                    }
 
-                        /// <summary>
-                        ///     Block Gangplank's Barrels 2nd Part.
-                        /// </summary>
-                        if (args.SData.Name.Equals("GangplankEBarrelFuseMissile"))
+                    /// <summary>
+                    ///     Block Gangplank's Barrels 2nd Part.
+                    /// </summary>
+                    if (args.SData.Name.Equals("GangplankEBarrelFuseMissile"))
+                    {
+                        if (GameObjects.Player.Distance(args.End) < 450)
                         {
-                            if (GameObjects.Player.Distance(args.End) < 450)
-                            {
-                                Vars.E.Cast();
-                                return;
-                            }
+                            Vars.E.Cast();
+                            return;
                         }
+                    }
+
+                    if (!args.Target.IsMe)
+                    {
+                        return;
                     }
 
                     /// <summary>
@@ -164,7 +163,6 @@ namespace ExorAIO.Champions.Sivir
                                 break;
                         }
                     }
-                    
                     break;
 
                 case GameObjectType.obj_AI_Minion:

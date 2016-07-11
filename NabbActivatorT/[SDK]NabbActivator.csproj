@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LeagueSharp">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\LeagueSharp.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\Cartelle varie\PlaySharp\References\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.SDKEx">
-      <HintPath>C:\Users\utente\Desktop\PlaySharp_0.4.0.90\System\LeagueSharp.SDKEx.dll</HintPath>
+      <HintPath>C:\Users\utente\Desktop\Cartelle varie\PlaySharp\References\LeagueSharp.SDKEx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
