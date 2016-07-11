@@ -44,6 +44,16 @@ namespace ExorAIO.Champions.Diana
             }
 
             /// <summary>
+            ///     The Q Combo Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() &&
+                !Vars.R.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.Q.Range))
+            {
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+            }
+
+            /// <summary>
             ///     The R Logics.
             /// </summary>
             if (Vars.R.IsReady())
