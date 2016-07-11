@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Diana
             =>
                 GameObjects.Jungle.Where(
                     m =>
-                        m.IsValidTarget(Vars.Q.Range) &&
+                        m.IsValidTarget(Vars.R.Range) &&
                         !GameObjects.JungleSmall.Contains(m)).ToList();
     }
 }

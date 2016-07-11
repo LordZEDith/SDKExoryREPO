@@ -76,6 +76,9 @@ namespace ExorAIO.Champions.Diana
                         }
                     }
 
+                    /// <summary>
+                    ///     The Second R Combo Logic.
+                    /// </summary>
                     if (!Vars.Q.IsReady() &&
                         !Targets.Target.HasBuff("dianamoonlight") &&
                         Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value)

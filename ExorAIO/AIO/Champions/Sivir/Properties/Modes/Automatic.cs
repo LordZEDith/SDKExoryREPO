@@ -180,7 +180,6 @@ namespace ExorAIO.Champions.Sivir
                             sender.CharData.BaseSkinName.Equals("SRU_RiftHerald"))
                         {
                             Vars.E.Cast();
-                            return;
                         }
                     }
                     break;

@@ -113,6 +113,27 @@ namespace ExorAIO.Champions.Diana
         }
 
         /// <summary>
+        ///     Called while processing Spellcasting operations.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (!Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value ||
+                !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            {
+                return;
+            }
+
+            if (sender.IsMe &&
+                args.SData.Name.Equals("DianaTeleport") &&
+                (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range))
+            {
+                Vars.Q.Cast(Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).CastPosition);
+            }
+        }
+
+        /// <summary>
         ///     Fired on an incoming gapcloser.
         /// </summary>
         /// <param name="sender">The object.</param>

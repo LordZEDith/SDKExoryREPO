@@ -29,7 +29,6 @@ namespace ExorAIO.Champions.Diana
             if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                Vars.Tick = 0;
                 DelayAction.Add((int)(100 + Game.Ping / 2f), () =>
                 {
                     GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
@@ -42,27 +41,15 @@ namespace ExorAIO.Champions.Diana
             if (Vars.Q.IsReady() &&
                 Vars.E.IsReady() &&
                 Vars.R.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.R2.Range) &&
                 Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active &&
                 Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                if (Targets.Target.IsValidTarget(Vars.R2.Range))
-                {
-                    if (Vars.Tick == 0)
-                    {
-                        Vars.Tick = Environment.TickCount;
-                        Vars.R.CastOnUnit(Targets.Target);
-                    }
-                }
-
-                if (Vars.Tick != 0 &&
-                    Targets.Target.IsValidTarget())
-                {
-                    Vars.W.Cast();
-                    Vars.E.Cast();
-                    Vars.Q.Cast(Targets.Target.ServerPosition);
-                    Vars.R.CastOnUnit(Targets.Target);
-                }
+                Vars.R.CastOnUnit(Targets.Target);
+                Vars.W.Cast();
+                Vars.E.Cast();
+                Vars.R.CastOnUnit(Targets.Target);
             }
 
             if (GameObjects.Player.IsDashing())

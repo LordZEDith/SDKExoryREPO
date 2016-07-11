@@ -22,7 +22,7 @@ namespace ExorAIO.Champions.Diana
             Vars.R = new Spell(SpellSlot.R, 825f);
             Vars.R2 = new Spell(SpellSlot.R, 775f);
 
-            Vars.Q.SetSkillshot(0.75f, 195f, 1400f, false, SkillshotType.SkillshotCircle);
+            Vars.Q.SetSkillshot(0.80f, 195f, 1400f, false, SkillshotType.SkillshotCircle);
         }
     }
 }

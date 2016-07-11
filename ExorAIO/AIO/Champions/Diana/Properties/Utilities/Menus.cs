@@ -63,11 +63,12 @@ namespace ExorAIO.Champions.Diana
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("bool", "Enable Misaya Key", true));
                     Vars.RMenu.Add(
                         new MenuKeyBind("key", "Misaya Key:", Keys.T, KeyBindType.Press));
+                    Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.RMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.

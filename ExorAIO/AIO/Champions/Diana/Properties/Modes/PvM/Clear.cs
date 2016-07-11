@@ -79,6 +79,18 @@ namespace ExorAIO.Champions.Diana
                     Vars.W.Cast();
                 }
             }
+
+            /// <summary>
+            ///     The JungleClear R Logic.
+            /// </summary>
+            if (Vars.R.IsReady() &&
+                Targets.JungleMinions.Any(m => m.HasBuff("dianamoonlight")) &&
+                GameObjects.Player.ManaPercent >
+                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["jungleclear"]) &&
+                Vars.Menu["spells"]["r"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+            {
+                Vars.R.CastOnUnit(Targets.JungleMinions.FirstOrDefault(m => m.HasBuff("dianamoonlight")));
+            }
         }
     }
 }
