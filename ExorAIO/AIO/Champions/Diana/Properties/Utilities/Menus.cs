@@ -50,6 +50,7 @@ namespace ExorAIO.Champions.Diana
                 {
                     Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
+                    Vars.EMenu.Add(new MenuSliderButton("logical", "If enemies in range >= x", 3, 1, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

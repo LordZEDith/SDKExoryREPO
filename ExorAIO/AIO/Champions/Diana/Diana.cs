@@ -51,6 +51,11 @@ namespace ExorAIO.Champions.Diana
             }
 
             /// <summary>
+            ///     Initializes the Automatic actions.
+            /// </summary>
+            Logics.Automatic(args);
+
+            /// <summary>
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
