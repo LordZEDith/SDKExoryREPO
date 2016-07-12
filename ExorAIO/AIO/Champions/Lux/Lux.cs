@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Lux
         /// <summary>
         ///     Defines the missile object for the E.
         /// </summary>
-        public static GameObject EMissile;
+        public static GameObject EMissile = null;
 
         /// <summary>
         ///     Loads Lux.

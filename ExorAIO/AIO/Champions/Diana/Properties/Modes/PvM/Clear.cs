@@ -60,7 +60,8 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The LaneClear W Logic.
                 /// </summary>
-                if (Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3 &&
+                if (Targets.Minions.Any() &&
+                    Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3 &&
                     GameObjects.Player.ManaPercent >
                         ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
                     Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
