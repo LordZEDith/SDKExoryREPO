@@ -14,14 +14,14 @@ namespace ExorAIO.Champions.Taliyah
     internal class Taliyah
     {
         /// <summary>
-        ///     Defines the missile object for the Terrain.
+        ///     Defines the Terrain object.
         /// </summary>
-        public static GameObject TerrainObject = null;
+        public static bool IsOnTerrain;
 
         /// <summary>
-        ///     Defines the check for missile object for the Terrain.
+        ///     Defines the check for the Terrain object.
         /// </summary>
-        public static bool Active = false;
+        public static int TerrainLastCheckTick;
 
         /// <summary>
         ///     Loads Taliyah.
@@ -47,42 +47,6 @@ namespace ExorAIO.Champions.Taliyah
             ///     Initializes the drawings.
             /// </summary>
             Drawings.Initialize();
-        }
-
-		/// <summary>
-        ///     Called when an object gets created by the game.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void OnCreate(GameObject obj, EventArgs args)
-        {
-            if (obj.IsValid &&
-                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
-            {
-                Active = true;
-                TerrainObject = obj;
-            }
-        }
-
-        /// <summary>
-        ///     Called when an object gets deleted by the game.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void OnDelete(GameObject obj, EventArgs args)
-        {
-            if (obj.IsValid &&
-                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
-            {
-                Active = false;
-                DelayAction.Add(1000, ()=>
-                    {
-                        if (Active = false)
-                        {
-                            TerrainObject = null;
-                        }
-                    });
-            }
         }
 
         /// <summary>
@@ -156,7 +120,7 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.W.Cast(args.Sender.ServerPosition);
                 Vars.W.Cast(args.Sender.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? args.Sender.ServerPosition.Extend(GameObjects.Player.ServerPosition, -args.Sender.Distance(GameObjects.Player)/2)
+                        ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
             }
         }
@@ -169,7 +133,9 @@ namespace ExorAIO.Champions.Taliyah
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
             if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+                args.Sender.IsValidTarget(Vars.W.IsReady()
+                    ? Vars.W.Range
+                    : Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
@@ -184,7 +150,7 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.W.Cast(args.Sender.ServerPosition);
                 Vars.W.Cast(args.Sender.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? args.Sender.ServerPosition.Extend(GameObjects.Player.ServerPosition, -args.Sender.Distance(GameObjects.Player))
+                        ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
             }
         }

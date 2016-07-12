@@ -31,7 +31,9 @@ namespace ExorAIO.Champions.Taliyah
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range-50) &&
+                Targets.Target.IsValidTarget(Vars.W.IsReady()
+                    ? Vars.W.Range
+                    : Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);

@@ -63,7 +63,9 @@ namespace ExorAIO.Champions.Taliyah
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.E.Range) &&
+                        t.IsValidTarget(Vars.W.IsReady()
+                            ? Vars.W.Range
+                            : Vars.E.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.E.Cast(target.ServerPosition);
