@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Taliyah
                         ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                     Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if (Taliyah.TerrainObject != null &&
+                    if (Taliyah.IsOnTerrain &&
                         Vars.Menu["spells"]["q"]["q2"]["laneclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;
@@ -60,7 +60,7 @@ namespace ExorAIO.Champions.Taliyah
                         ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                     Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if (Taliyah.TerrainObject != null &&
+                    if (Taliyah.IsOnTerrain &&
                         Vars.Menu["spells"]["q"]["q2"]["jungleclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;

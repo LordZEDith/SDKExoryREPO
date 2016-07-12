@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Taliyah
                     ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Taliyah.TerrainObject != null &&
+                if (Taliyah.IsOnTerrain &&
                     Vars.Menu["spells"]["q"]["q2"]["harassfull"].GetValue<MenuBool>().Value)
                 {
                     return;

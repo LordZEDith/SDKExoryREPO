@@ -24,6 +24,27 @@ namespace ExorAIO.Champions.Taliyah
                 return;
             }
 
+            
+            if (ObjectManager.Get<GameObject>().Any(
+                o =>
+                    o.IsAlly &&
+                    o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
+            {
+                if (!Taliyah.IsOnTerrain)
+                {
+                    Taliyah.IsOnTerrain = true;
+                    Taliyah.TerrainLastCheckTick = Environment.TickCount;
+                }
+            }
+            else
+            {
+                if (Taliyah.IsOnTerrain &&
+                    Environment.TickCount - Taliyah.TerrainLastCheckTick > 500)
+                {
+                    Taliyah.IsOnTerrain = false;
+                }
+            }
+
             /// <summary>
             ///     The AoE E Logic.
             /// </summary>
@@ -64,7 +85,7 @@ namespace ExorAIO.Champions.Taliyah
                     Vars.W.Cast(target.ServerPosition);
                     Vars.W.Cast(target.IsFacing(GameObjects.Player) &&
                         GameObjects.Player.Distance(target) < Vars.AARange/2
-                            ? target.ServerPosition.Extend(GameObjects.Player.ServerPosition, -target.Distance(GameObjects.Player))
+                            ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition, GameObjects.Player.Distance(target)*2)
                             : GameObjects.Player.ServerPosition);
                 }
             }
