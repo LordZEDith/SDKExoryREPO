@@ -20,8 +20,8 @@ namespace ExorAIO.Champions.Taliyah
             Vars.E = new Spell(SpellSlot.E, 800f - GameObjects.Player.BoundingRadius*2);
 
             Vars.Q.SetSkillshot(0.275f, 100f, 3600f, false, SkillshotType.SkillshotLine);
-            Vars.W.SetSkillshot(0.80f, 200f, float.MaxValue, false, SkillshotType.SkillshotCircle);
-            Vars.E.SetSkillshot(0.35f, 450f, float.MaxValue, false, SkillshotType.SkillshotCone);
+            Vars.W.SetSkillshot(0.85f, 200f, float.MaxValue, false, SkillshotType.SkillshotCircle);
+            Vars.E.SetSkillshot(0.30f, 450f, float.MaxValue, false, SkillshotType.SkillshotCone);
         }
     }
 }

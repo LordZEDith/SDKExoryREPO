@@ -42,13 +42,10 @@ namespace ExorAIO.Champions.Taliyah
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.E.Range)))
+                        t.IsValidTarget(Vars.E.Range) &&
+                        !Invulnerable.Check(t, DamageType.Magical)))
                 {
-                    Vars.E.Cast(target.IsFacing(GameObjects.Player) &&
-                        GameObjects.Player.Distance(target) < Vars.AARange/2
-                            ? target.ServerPosition
-                            : target.ServerPosition.Extend(GameObjects.Player.ServerPosition, -target.Distance(GameObjects.Player)/2));
+                    Vars.E.Cast(target.ServerPosition);
                 }
             }
 
@@ -61,8 +58,8 @@ namespace ExorAIO.Champions.Taliyah
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.E.Range)))
+                        t.IsValidTarget(Vars.W.Range) &&
+                        !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                     Vars.W.Cast(target.IsFacing(GameObjects.Player) &&

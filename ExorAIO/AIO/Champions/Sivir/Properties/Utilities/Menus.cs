@@ -1,5 +1,9 @@
+using System.Linq;
 using ExorAIO.Utilities;
+using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
+using LeagueSharp.SDK.Utils;
+using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Sivir
 {
@@ -50,33 +54,51 @@ namespace ExorAIO.Champions.Sivir
 					Vars.EMenu.Add(new MenuSeparator("separator", "It has to be used in conjunction with Evade, else it will not shield Skillshots"));
 					Vars.EMenu.Add(new MenuSeparator("separator2", "It is meant to shield what Evade doesn't support, like targetted spells."));
                     Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
-                    Vars.EMenu.Add(new MenuBool("minions", "Shield Dragon/Baron AAs", true));
 					Vars.EMenu.Add(new MenuSlider("delay", "E Delay (ms)", 0, 0, 250));
-					/*
 					{
                         /// <summary>
                         ///     Sets the menu for the E Whitelist.
                         /// </summary>
                         Vars.WhiteListMenu = new Menu("whitelist", "Shield: Whitelist Menu", true);
                         {
-                            foreach (var target in GameObjects.EnemyHeroes)
+                            Vars.WhiteListMenu.Add(new MenuBool("minions", "Shield: Dragon/Baron Attacks", true));
+                            foreach (var enemy in GameObjects.EnemyHeroes)
                             {
-								Vars.ListMenu = new Menu(target.ChampionName.ToLower(), $"{target.ChampionName}'s Spells", true);
-								{
-									foreach (var spell in target.Spells)
-									{
-										Vars.ListMenu.Add(
-											new MenuBool(
-												spell.Name.ToLower(),
-												$"Shield: {spell.Name}",
-												true));
-									}
-								}
+                                if (enemy.ChampionName.Equals("Alistar"))
+                                {
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.pulverize", $"Shield: {enemy.ChampionName}'s Q", true));
+                                }
+
+                                if (enemy.ChampionName.Equals("Braum"))
+                                {
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride", $"Shield: {enemy.ChampionName}'s Passive Stun", true));
+                                }
+
+                                if (enemy.ChampionName.Equals("Udyr"))
+                                {
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack", $"Shield: {enemy.ChampionName}'s E Stun", true));
+                                }
+
+                                foreach (var spell in SpellDatabase.Get().Where(
+                                    s =>
+                                        !s.SpellName.Equals("KatarinaE") &&
+                                        !s.SpellName.Equals("TalonCutthroat") &&
+                                        s.ChampionName.Equals(enemy.ChampionName) &&
+                                        (s.CastType.Contains(CastType.EnemyChampions) ||
+                                        ((s.CastType.Contains(CastType.Activate) &&
+                                        AutoAttack.IsAutoAttackReset(s.SpellName))))))
+                                {
+                                    if (spell.SpellType.HasFlag(SpellType.Targeted) ||
+                                        spell.SpellType.HasFlag(SpellType.Activated) ||
+                                        spell.SpellType.HasFlag(SpellType.TargetedMissile))
+                                    {
+                                        Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}", $"Shield: {enemy.ChampionName}'s {spell.Slot}", true));
+                                    }
+                                }
                             }
                         }
                         Vars.EMenu.Add(Vars.WhiteListMenu);
                     }
-					*/
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
             }

@@ -19,6 +19,11 @@ namespace ExorAIO.Champions.Taliyah
         public static GameObject TerrainObject = null;
 
         /// <summary>
+        ///     Defines the check for missile object for the Terrain.
+        /// </summary>
+        public static bool Active = false;
+
+        /// <summary>
         ///     Loads Taliyah.
         /// </summary>
         public void OnLoad()
@@ -54,6 +59,7 @@ namespace ExorAIO.Champions.Taliyah
             if (obj.IsValid &&
                 obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
+                Active = true;
                 TerrainObject = obj;
             }
         }
@@ -68,7 +74,14 @@ namespace ExorAIO.Champions.Taliyah
             if (obj.IsValid &&
                 obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
-                TerrainObject = null;
+                Active = false;
+                DelayAction.Add(1000, ()=>
+                    {
+                        if (Active = false)
+                        {
+                            TerrainObject = null;
+                        }
+                    });
             }
         }
 
@@ -128,18 +141,15 @@ namespace ExorAIO.Champions.Taliyah
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+                GameObjects.Player.Distance(args.End) < Vars.E.Range &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(args.Sender.IsFacing(GameObjects.Player) &&
-                    GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? args.Sender.ServerPosition
-                        : args.Sender.ServerPosition.Extend(GameObjects.Player.ServerPosition, -args.Sender.Distance(GameObjects.Player)/2));
+                Vars.E.Cast(args.End);
             }
 
             if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+                args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -163,14 +173,11 @@ namespace ExorAIO.Champions.Taliyah
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(args.Sender.IsFacing(GameObjects.Player) &&
-                    GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? args.Sender.ServerPosition.Extend(GameObjects.Player.ServerPosition, -args.Sender.Distance(GameObjects.Player))
-                        : GameObjects.Player.ServerPosition);
+                Vars.E.Cast(args.Sender.ServerPosition);
             }
 
             if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+                args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {

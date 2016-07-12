@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.MissFortune
                 GameObjects.EnemyMinions.Where(
                     m =>
                         m.IsMinion() &&
-                        m.IsValidTarget(Vars.E.Range)).ToList();
+                        m.IsValidTarget(Vars.Q2.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
