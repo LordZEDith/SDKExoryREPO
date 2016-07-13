@@ -62,6 +62,8 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
+                !Vars.W.IsReady() &&
+                !Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
@@ -71,7 +73,10 @@ namespace ExorAIO.Champions.Taliyah
                     return;
                 }
 
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                }
             }
         }
     }
