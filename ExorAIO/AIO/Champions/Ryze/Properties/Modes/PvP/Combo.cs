@@ -36,11 +36,12 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     Dynamic Combo Logic.
             /// </summary>
-            switch (Vars.RyzeStacks())
+            switch (Vars.RyzeStacks)
             {
                 case 0:
                 case 1:
-                    if ((GameObjects.Player.HealthPercent >
+                    if (Vars.RyzeStacks == 0 ||
+                        (GameObjects.Player.HealthPercent >
                             Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
                         !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
@@ -48,7 +49,7 @@ namespace ExorAIO.Champions.Ryze
                         ///     The Q Combo Logic.
                         /// </summary>
                         if (Vars.Q.IsReady() &&
-                            Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                            Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
                             Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                         {
                             if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
@@ -91,7 +92,7 @@ namespace ExorAIO.Champions.Ryze
                     ///     The Q Combo Logic.
                     /// </summary>
                     if (Vars.Q.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                        Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
                         Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                     { 
                         Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);

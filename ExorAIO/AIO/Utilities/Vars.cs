@@ -109,20 +109,14 @@ namespace ExorAIO.Utilities
                 Vars.R.Range);
 
         /// <summary>
-        ///     The Current Q Stacks.
+        ///     The Q Stacks.
         /// </summary>
-        public static int RyzeStacks()
-        {
-            if (GameObjects.Player.HasBuff("ryzeqiconhalfcharge"))
-            {
-                return 1;
-            }
-            else if (GameObjects.Player.HasBuff("ryzeqiconfullcharge"))
-            {
-                return 2;
-            }
-            return 0;
-        }
+        public static int RyzeStacks =>
+            GameObjects.Player.HasBuff("ryzeqiconnocharge")
+                ? 0
+                : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
+                    ? 1
+                    : 2;
 
         /// <summary>
         ///     Gets or sets the Q Spell.
