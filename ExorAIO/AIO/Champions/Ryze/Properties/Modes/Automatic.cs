@@ -25,37 +25,18 @@ namespace ExorAIO.Champions.Ryze
             }
 
             /// <summary>
-            ///     The Stacking Logics.
+            ///     The Tear Stacking Logic.
             /// </summary>
-            if (Vars.Q.IsReady())
+            if (Vars.Q.IsReady() &&
+                !Targets.Minions.Any() &&
+                Bools.HasTear(GameObjects.Player) &&
+                GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
+                Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
+                GameObjects.Player.ManaPercent >
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
+                Vars.Menu["miscellaneous"]["tear"].GetValue<MenuSliderButton>().BValue)
             {
-                /// <summary>
-                ///     The Tear Stacking Logic.
-                /// </summary>
-                if (!Targets.Minions.Any() &&
-                    Bools.HasTear(GameObjects.Player) &&
-                    GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
-                    Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
-                    Vars.Menu["miscellaneous"]["tear"].GetValue<MenuSliderButton>().BValue)
-                {
-                    Vars.Q.Cast(Game.CursorPos);
-                }
-
-                /// <summary>
-                ///     The Passive Stacking Logic.
-                /// </summary>
-                if (!GameObjects.Player.HasBuff("RyzePassiveCharged") &&
-                    Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
-                    Vars.Menu["miscellaneous"]["stacks"].GetValue<MenuSliderButton>().BValue &&
-                    Vars.Menu["miscellaneous"]["stacks"].GetValue<MenuSliderButton>().SValue >
-                        GameObjects.Player.GetBuffCount("RyzePassiveStack") &&
-                    GameObjects.Player.ManaPercent >
-                        Vars.Menu["miscellaneous"]["stacksmana"].GetValue<MenuSlider>().Value)
-                {
-                    Vars.Q.Cast(Game.CursorPos);
-                }
+                Vars.Q.Cast(Game.CursorPos);
             }
         }
     }

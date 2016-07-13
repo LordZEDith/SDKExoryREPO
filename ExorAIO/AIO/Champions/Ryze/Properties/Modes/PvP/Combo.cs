@@ -53,7 +53,6 @@ namespace ExorAIO.Champions.Ryze
                         { 
                             Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                         }
-                        return;
                     }
 
                     /// <summary>

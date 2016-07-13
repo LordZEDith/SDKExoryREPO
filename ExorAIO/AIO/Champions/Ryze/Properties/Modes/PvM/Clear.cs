@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using ExorAIO.Utilities;
+using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
@@ -27,7 +28,11 @@ namespace ExorAIO.Champions.Ryze
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Targets.Minions.Any(m => !m.HasBuff("RyzeE")))
+                if (Targets.Minions.Any(m => !m.HasBuff("RyzeE")) &&
+                    Targets.Minions.Any(
+                        m =>
+                            m.HasBuff("RyzeE") &&
+                            m.Distance(Targets.Minions.FirstOrDefault(m2 => !m2.HasBuff("RyzeE"))) < 200))
                 {
                     if (Vars.E.IsReady() &&
                         minion.IsValidTarget(Vars.E.Range) &&
@@ -35,7 +40,10 @@ namespace ExorAIO.Champions.Ryze
                             ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                         Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                     {
-                        Vars.E.CastOnUnit(minion);
+                        Vars.E.CastOnUnit(Targets.Minions.FirstOrDefault(
+                            m =>
+                                m.HasBuff("RyzeE") &&
+                                m.Distance(Targets.Minions.FirstOrDefault(m2 => !m2.HasBuff("RyzeE"))) < 200));
                     }
                 }
                 else

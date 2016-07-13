@@ -32,9 +32,6 @@ namespace ExorAIO.Champions.MissFortune
         /// </summary>
         public static List<Obj_AI_Minion> JungleMinions
             =>
-                GameObjects.Jungle.Where(
-                    m =>
-                        m.IsValidTarget(Vars.E.Range) &&
-                        !GameObjects.JungleSmall.Contains(m)).ToList();
+                GameObjects.Jungle.Where(m => m.IsValidTarget(Vars.Q.Range)).ToList();
     }
 }
