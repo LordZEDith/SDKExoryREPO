@@ -49,22 +49,6 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             /// <summary>
-            ///     The Q Combo Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-            {
-                if (Taliyah.IsOnTerrain &&
-                    Vars.Menu["spells"]["q"]["q2"]["combofull"].GetValue<MenuBool>().Value)
-                {
-                    return;
-                }
-
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-            }
-
-            /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
@@ -72,6 +56,22 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Targets.Target.ServerPosition);
+            }
+
+            /// <summary>
+            ///     The Q Combo Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            {
+                if (Taliyah.TerrainObject != null &&
+                    Vars.Menu["spells"]["q"]["q2"]["combofull"].GetValue<MenuBool>().Value)
+                {
+                    return;
+                }
+
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
             }
         }
     }

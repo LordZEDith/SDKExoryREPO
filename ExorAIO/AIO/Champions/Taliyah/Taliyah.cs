@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
@@ -16,12 +17,7 @@ namespace ExorAIO.Champions.Taliyah
         /// <summary>
         ///     Defines the Terrain object.
         /// </summary>
-        public static bool IsOnTerrain;
-
-        /// <summary>
-        ///     Defines the check for the Terrain object.
-        /// </summary>
-        public static int TerrainLastCheckTick;
+        public static GameObject TerrainObject;
 
         /// <summary>
         ///     Loads Taliyah.
@@ -47,6 +43,44 @@ namespace ExorAIO.Champions.Taliyah
             ///     Initializes the drawings.
             /// </summary>
             Drawings.Initialize();
+        }
+
+		/// <summary>
+        ///     Called when an object gets created by the game.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
+        public static void OnCreate(GameObject obj, EventArgs args)
+        {
+            if (obj.IsValid &&
+                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
+            {
+                TerrainObject = obj;
+            }
+        }
+
+        /// <summary>
+        ///     Called when an object gets deleted by the game.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
+        public static void OnDelete(GameObject obj, EventArgs args)
+        {
+            if (obj.IsValid &&
+                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
+            {
+                DelayAction.Add(500, ()=>
+                    {
+                        if (!ObjectManager.Get<GameObject>().Any(
+                            o =>
+                                o.IsAlly &&
+                                o.Distance(GameObjects.Player) < 412.5f &&
+                                o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
+                        {
+                            TerrainObject = null;
+                        }
+                    });
+            }
         }
 
         /// <summary>

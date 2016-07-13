@@ -30,9 +30,9 @@ namespace ExorAIO.Champions.Taliyah
                         t.IsValidTarget(Vars.Q.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*(Taliyah.IsOnTerrain
-                                        ? 1
-                                        : 3)))
+                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*(Taliyah.TerrainObject != null
+                                ? 1
+                                : 3)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                 }

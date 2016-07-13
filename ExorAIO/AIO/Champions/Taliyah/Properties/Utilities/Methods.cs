@@ -14,6 +14,8 @@ namespace ExorAIO.Champions.Taliyah
         public static void Initialize()
         {
             Game.OnUpdate += Taliyah.OnUpdate;
+            GameObject.OnCreate += Taliyah.OnCreate;
+            GameObject.OnDelete += Taliyah.OnDelete;
             Events.OnGapCloser += Taliyah.OnGapCloser;
             Events.OnInterruptableTarget += Taliyah.OnInterruptableTarget;
         }
