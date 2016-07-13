@@ -29,6 +29,35 @@ namespace ExorAIO.Utilities
     /// </summary>
     public static class Geometry
     {
+        public static void DrawCircleOnMinimap(
+            Vector3 center,
+            float radius,
+            Color color,
+            int thickness = 1,
+            int quality = 254)
+        {
+            var pointList = new List<Vector3>();
+            for (var i = 0; i < quality; i++)
+            {
+                var angle = i * Math.PI * 2 / quality;
+                pointList.Add(
+                    new Vector3(
+                        center.X + radius * (float) Math.Cos(angle), center.Y + radius * (float) Math.Sin(angle),
+                        center.Z));
+            }
+
+            for (var i = 0; i < pointList.Count; i++)
+            {
+                var a = pointList[i];
+                var b = pointList[i == pointList.Count - 1 ? 0 : i + 1];
+
+                var aonScreen = Drawing.WorldToMinimap(a);
+                var bonScreen = Drawing.WorldToMinimap(b);
+
+                Drawing.DrawLine(aonScreen.X, aonScreen.Y, bonScreen.X, bonScreen.Y, thickness, color);
+            }
+        }
+
         /// <summary>
         /// Converts a Vector3 to Vector2
         /// </summary>

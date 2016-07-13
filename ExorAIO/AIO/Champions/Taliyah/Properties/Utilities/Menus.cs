@@ -82,6 +82,7 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.DrawingsMenu.Add(new MenuBool("q", "Q Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("r", "R Range"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }

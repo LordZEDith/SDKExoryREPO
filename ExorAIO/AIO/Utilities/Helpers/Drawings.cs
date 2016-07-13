@@ -1,5 +1,8 @@
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Drawing;
+using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
@@ -19,6 +22,19 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static void Initialize()
         {
+            Drawing.OnEndScene += delegate
+            {
+                /// <summary>
+                ///     Loads the R Minimap drawing.
+                /// </summary>
+                if (Vars.R != null &&
+                    Vars.R.IsReady() &&
+                    Vars.R.Range >= 1500)
+                {
+                    Geometry.DrawCircleOnMinimap(GameObjects.Player.Position, Vars.R.Range, Color.White);
+                }
+            };
+
             Drawing.OnDraw += delegate
             {
                 /// <summary>
@@ -73,6 +89,7 @@ namespace ExorAIO.Utilities
                         Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 2);
+                        
                     }
 
                     if (Vars.Menu["drawings"]["r2"] != null &&

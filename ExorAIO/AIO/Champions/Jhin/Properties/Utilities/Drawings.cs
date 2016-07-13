@@ -25,23 +25,23 @@ namespace ExorAIO.Champions.Jhin
             }
 
             Drawing.OnDraw += delegate
-            {
-                /// <summary>
-                ///     Loads the R Cone drawing.
-                /// </summary>
-                if (Vars.End != Vector3.Zero &&
-                    Vars.R.Instance.Name.Equals("JhinRShot") &&
-                    Vars.Menu["drawings"]["rc"].GetValue<MenuBool>().Value)
                 {
-                    Vars.Cone.Draw(
-                        GameObjects.EnemyHeroes.Any(
-                            t =>
-                                !Vars.Cone.IsOutside((Vector2)t.ServerPosition))
-                                    ? Color.Green 
-                                    : Color.Red,
-                        1);
-                }
-            };
+                    /// <summary>
+                    ///     Loads the R Cone drawing.
+                    /// </summary>
+                    if (Vars.End != Vector3.Zero &&
+                        Vars.R.Instance.Name.Equals("JhinRShot") &&
+                        Vars.Menu["drawings"]["rc"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.Cone.Draw(
+                            GameObjects.EnemyHeroes.Any(
+                                t =>
+                                    !Vars.Cone.IsOutside((Vector2)t.ServerPosition))
+                                        ? Color.Green 
+                                        : Color.Red,
+                            1);
+                    }
+                };
         }
     }
 }
