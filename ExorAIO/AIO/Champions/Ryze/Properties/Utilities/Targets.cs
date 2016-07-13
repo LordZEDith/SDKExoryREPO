@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.Ryze
                 GameObjects.EnemyMinions.Where(
                     m =>
                         m.IsMinion() &&
-                        m.IsValidTarget(Vars.Q.Range)).ToList();
+                        m.IsValidTarget(Vars.Q.Range*2)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.

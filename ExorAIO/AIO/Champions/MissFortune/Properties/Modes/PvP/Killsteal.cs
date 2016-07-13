@@ -5,6 +5,7 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
+using LeagueSharp.Data.Enumerations;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
@@ -27,7 +28,7 @@ namespace ExorAIO.Champions.MissFortune
             if (Vars.Q.IsReady())
             {
                 /// <summary>
-                ///     Normal Q KilLSteal Logic.
+                ///     Normal Q KillSteal Logic.
                 /// </summary>
                 if (Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
                 {
@@ -64,6 +65,12 @@ namespace ExorAIO.Champions.MissFortune
                             t =>
                                 !Invulnerable.Check(t) &&
                                 t.IsValidTarget(Vars.Q2.Range-50f) &&
+                                Vars.GetRealHealth(t) <
+                                    (Vars.GetRealHealth(minion) <
+                                        (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)
+                                            ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
+                                            : 0) +
+                                    (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm) &&
                                 ((Vars.PassiveTarget.IsValidTarget() &&
                                     t.NetworkId == Vars.PassiveTarget.NetworkId) ||
                                     !Targets.Minions.Any(m => !polygon.IsOutside((Vector2)m.ServerPosition))))
@@ -99,6 +106,12 @@ namespace ExorAIO.Champions.MissFortune
                             t =>
                                 !Invulnerable.Check(t) &&
                                 t.IsValidTarget(Vars.Q2.Range-50f) &&
+                                Vars.GetRealHealth(t) <
+                                    (Vars.GetRealHealth(target) <
+                                        (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.Q)
+                                            ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
+                                            : 0) +
+                                    (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm) &&
                                 ((Vars.PassiveTarget.IsValidTarget() &&
                                     t.NetworkId == Vars.PassiveTarget.NetworkId) ||
                                     !Targets.Minions.Any(m => !polygon.IsOutside((Vector2)m.ServerPosition))))

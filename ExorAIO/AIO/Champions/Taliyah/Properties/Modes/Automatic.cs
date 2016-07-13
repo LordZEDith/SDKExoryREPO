@@ -55,25 +55,7 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             /// <summary>
-            ///     The Automatic E Logic.
-            /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.W.IsReady()
-                            ? Vars.W.Range
-                            : Vars.E.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical)))
-                {
-                    Vars.E.Cast(target.ServerPosition);
-                }
-            }
-
-            /// <summary>
-            ///     The Automatic W Logic.
+            ///     The Automatic E->W Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
@@ -84,11 +66,35 @@ namespace ExorAIO.Champions.Taliyah
                         t.IsValidTarget(Vars.W.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
-                    Vars.W.Cast(target.ServerPosition);
-                    Vars.W.Cast(target.IsFacing(GameObjects.Player) &&
+                    Vars.W.Cast(
+                        target.ServerPosition,
+                        target.IsFacing(GameObjects.Player) &&
                         GameObjects.Player.Distance(target) < Vars.AARange/2
                             ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition, GameObjects.Player.Distance(target)*2)
                             : GameObjects.Player.ServerPosition);
+
+                    if (Vars.E.IsReady() &&
+                        Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.Cast(target.ServerPosition);
+                    }
+                    return;
+                }
+            }
+
+            /// <summary>
+            ///     The Automatic E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            {
+                foreach (var target in GameObjects.EnemyHeroes.Where(
+                    t =>
+                        Bools.IsImmobile(t) &&
+                        t.IsValidTarget(Vars.E.Range) &&
+                        !Invulnerable.Check(t, DamageType.Magical)))
+                {
+                    Vars.E.Cast(target.ServerPosition);
                 }
             }
         }

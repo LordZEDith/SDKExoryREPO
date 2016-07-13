@@ -104,24 +104,32 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.Distance(args.End) < Vars.E.Range &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(args.End);
-            }
-
             if (Vars.W.IsReady() &&
                 args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(args.Sender.ServerPosition);
-                Vars.W.Cast(args.Sender.IsFacing(GameObjects.Player) &&
+                Vars.W.Cast(
+                    args.Sender.ServerPosition,
+                    args.Sender.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
                         ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
+
+                if (Vars.E.IsReady() &&
+                    Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+                {
+                    Vars.E.Cast(args.Sender.ServerPosition);
+                }
+                return;
+            }
+
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(args.Sender.ServerPosition);
             }
         }
 
@@ -132,26 +140,32 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.IsReady()
-                    ? Vars.W.Range
-                    : Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(args.Sender.ServerPosition);
-            }
-
             if (Vars.W.IsReady() &&
                 args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(args.Sender.ServerPosition);
-                Vars.W.Cast(args.Sender.IsFacing(GameObjects.Player) &&
+                Vars.W.Cast(
+                    args.Sender.ServerPosition,
+                    args.Sender.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
                         ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
+
+                if (Vars.E.IsReady() &&
+                    Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+                {
+                    Vars.E.Cast(args.Sender.ServerPosition);
+                }
+                return;
+            }
+
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(args.Sender.ServerPosition);
             }
         }
     }

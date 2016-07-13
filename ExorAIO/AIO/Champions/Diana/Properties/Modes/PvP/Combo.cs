@@ -69,6 +69,9 @@ namespace ExorAIO.Champions.Diana
                         Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                     {
                         if (!Targets.Target.IsUnderEnemyTurret() ||
+                            Vars.GetRealHealth(Targets.Target) <
+                                (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.Q)*2 +
+                                (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.R)*2 ||
                             !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                         {
                             Vars.R.CastOnUnit(Targets.Target);
@@ -81,13 +84,13 @@ namespace ExorAIO.Champions.Diana
                     /// </summary>
                     if (!Vars.Q.IsReady() &&
                         !Targets.Target.HasBuff("dianamoonlight") &&
-                        Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value)
+                        Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value &&
+                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                     {
                         DelayAction.Add(1000, () =>
                         {
                             if (!Vars.Q.IsReady() &&
-                                !Targets.Target.HasBuff("dianamoonlight") &&
-                                Vars.Menu["miscellaneous"]["rcombo"].GetValue<MenuBool>().Value)
+                                !Targets.Target.HasBuff("dianamoonlight"))
                             {
                                 Vars.R.CastOnUnit(Targets.Target);
                             }
@@ -97,19 +100,40 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The R Gapclose Logic.
                 /// </summary>
-                else if (Targets.Target.IsValidTarget(Vars.R.Range*2) &&
+                else if (Targets.Target.IsValidTarget(Vars.Q.Range*2) &&
+                    !Targets.Target.IsValidTarget(Vars.Q.Range+200) &&
                     Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuBool>().Value)
                 {
-                    foreach (var minion in Targets.Minions.Where(
-                        m =>
-                            m.IsValidTarget(Vars.R.Range) &&
+                    if (Targets.Minions.Any(
+                        m => 
+                            m.IsValidTarget(Vars.Q.Range) &&
                             m.Distance(Targets.Target) < Vars.Q.Range &&
-                            m.Distance(Targets.Target) > Vars.Q.Range/2 &&
                             Vars.GetRealHealth(m) >
                                 (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
-                        Vars.Q.Cast(minion.ServerPosition);
-                        DelayAction.Add(250, () => { Vars.R.CastOnUnit(minion); });
+                        Vars.Q.Cast(Targets.Minions.Where(
+                            m => 
+                                m.IsValidTarget(Vars.Q.Range) &&
+                                m.Distance(Targets.Target) < Vars.Q.Range &&
+                                Vars.GetRealHealth(m) >
+                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).OrderBy(
+                            o =>
+                                o.DistanceToPlayer()).Last());
+                    }
+
+                    if (Targets.Minions.Any(
+                        m =>
+                            m.HasBuff("dianamoonlight") &&   
+                            m.IsValidTarget(Vars.R.Range) &&
+                            m.Distance(Targets.Target) < Vars.Q.Range))
+                    {
+                        Vars.R.CastOnUnit(Targets.Minions.Where(
+                            m =>
+                                m.HasBuff("dianamoonlight") &&   
+                                m.IsValidTarget(Vars.R.Range) &&
+                                m.Distance(Targets.Target) < Vars.Q.Range).OrderBy(
+                            o =>
+                                o.DistanceToPlayer()).Last());
                     }
                 }
             }
@@ -124,8 +148,8 @@ namespace ExorAIO.Champions.Diana
             ///     The Automatic E Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
                 !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Targets.Target.IsValidTarget(Vars.E.Range-25) &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();

@@ -28,29 +28,24 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             /// <summary>
-            ///     The E Combo Logic.
-            /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.IsReady()
-                    ? Vars.W.Range
-                    : Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
-            }
-
-            /// <summary>
-            ///     The W Combo Logic.
+            ///     The E->W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Targets.Target.ServerPosition);
-                Vars.W.Cast(Targets.Target.IsFacing(GameObjects.Player) &&
+                Vars.W.Cast(
+                    Vars.W.GetPrediction(Targets.Target).CastPosition,
+                    Targets.Target.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2
                         ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition, GameObjects.Player.Distance(Targets.Target)*2)
                         : GameObjects.Player.ServerPosition);
+
+                if (Vars.E.IsReady() &&
+                    Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                {
+                    Vars.E.Cast(Targets.Target.ServerPosition);
+                }
             }
 
             /// <summary>
@@ -67,6 +62,16 @@ namespace ExorAIO.Champions.Taliyah
                 }
 
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+            }
+
+            /// <summary>
+            ///     The E Combo Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(Targets.Target.ServerPosition);
             }
         }
     }

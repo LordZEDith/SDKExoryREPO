@@ -23,10 +23,15 @@ namespace ExorAIO.Champions.Ryze
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
+                    Vars.QMenu.Add(new MenuSeparator("separator", "The Shield Logic allows you to manage when to use the shield with a simple health slider or just with an ON/OFF button."));
+                    Vars.QMenu.Add(new MenuSeparator("separator1", "0 or OFF = Never use shield, 100 = Always use shield."));
+                    Vars.QMenu.Add(new MenuSliderButton("shield", "Shield / If Health <= x%", 25, 0, 100, true));
+                    Vars.QMenu.Add(new MenuSeparator("separator2", " "));
                     Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%",  25, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   25, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -38,7 +43,6 @@ namespace ExorAIO.Champions.Ryze
                     Vars.WMenu.Add(new MenuBool("combo",     "Combo",          true));
                     Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal",      true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.WMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
@@ -49,20 +53,11 @@ namespace ExorAIO.Champions.Ryze
                 {
                     Vars.EMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.EMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%",  25, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   25, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
-
-                /// <summary>
-                ///     Sets the menu for the R.
-                /// </summary>
-                Vars.RMenu = new Menu("r", "Use R to:");
-                {
-                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.RMenu.Add(new MenuBool("clear", "Clear", true));
-                }
-                Vars.SpellsMenu.Add(Vars.RMenu);
             }
             Vars.Menu.Add(Vars.SpellsMenu);
 
@@ -73,8 +68,6 @@ namespace ExorAIO.Champions.Ryze
             {
                 Vars.MiscMenu.Add(new MenuBool("noaacombo", "Don't AA in Combo", true));
                 Vars.MiscMenu.Add(new MenuSliderButton("tear",   "Stack Tear / if Mana >= x%", 75, 1, 95, true));
-                Vars.MiscMenu.Add(new MenuSliderButton("stacks", "Keep Passive Stacks:",        1, 1,  4, true));
-                Vars.MiscMenu.Add(new MenuSlider("stacksmana", "Keep Passive Stacks If Mana >= x%", 50, 1, 99));
                 Vars.MiscMenu.Add(new MenuSeparator("separator", "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support",   "Support Mode"));
             }
@@ -88,6 +81,7 @@ namespace ExorAIO.Champions.Ryze
                 Vars.DrawingsMenu.Add(new MenuBool("q", "Q Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("r", "R Range"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }

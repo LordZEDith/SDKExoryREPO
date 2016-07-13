@@ -28,9 +28,9 @@ namespace ExorAIO.Champions.MissFortune
                 !Bools.HasSheenBuff() &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Variables.Orbwalker.GetTarget() as Obj_AI_Hero != null ||
-                    GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.R.Range)) &&
-                    Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value)
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value
+                        ? Vars.R.Range
+                        : Vars.AARange)))
                 {
                     Vars.W.Cast();
                 }

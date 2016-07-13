@@ -124,9 +124,10 @@ namespace ExorAIO.Champions.MissFortune
                 else if (Targets.Minions.Any() &&
                     GameObjects.Player.ManaPercent >
                         ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
-                    Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                    Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
+                    Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 4)
                 {
-                    Vars.E.Cast(Targets.Minions[0]);
+                    Vars.E.Cast(Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).Position);
                 }
             }
         }

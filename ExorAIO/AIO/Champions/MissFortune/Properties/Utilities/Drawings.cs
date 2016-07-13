@@ -61,15 +61,18 @@ namespace ExorAIO.Champions.MissFortune
                                     t.NetworkId == Vars.PassiveTarget.NetworkId) ||
                                     !Targets.Minions.Any(m => !polygon.IsOutside((Vector2)m.ServerPosition))));
 
-                        polygon.Draw(
-                            !polygon.IsOutside((Vector2)target.ServerPosition) &&
-                            !polygon.IsOutside(
-                                (Vector2)Movement.GetPrediction(
-                                    target,
-                                    GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)
+                        if (target != null)
+                        {
+                            polygon.Draw(
+                                !polygon.IsOutside((Vector2)target.ServerPosition) &&
+                                !polygon.IsOutside(
+                                    (Vector2)Movement.GetPrediction(
+                                        target,
+                                        GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)
 
-                            ? Color.Green
-                            : Color.Red);
+                                ? Color.Green
+                                : Color.Red);
+                        }
                     }
                 }
             };

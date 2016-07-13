@@ -25,11 +25,6 @@ namespace ExorAIO.Champions.Ryze
             Menus.Initialize();
 
             /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
             ///     Initializes the methods.
             /// </summary>
             Methods.Initialize();
@@ -51,6 +46,11 @@ namespace ExorAIO.Champions.Ryze
                 return;
             }
 
+            /// <summary>
+            ///     Updates the spells.
+            /// </summary>
+            Spells.Initialize();
+            
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>

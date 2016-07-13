@@ -1,5 +1,6 @@
 using System;
 using ExorAIO.Utilities;
+using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
@@ -18,7 +19,7 @@ namespace ExorAIO.Champions.Ryze
         public static void Combo(EventArgs args)
         {
             if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+                Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -32,77 +33,63 @@ namespace ExorAIO.Champions.Ryze
             }
 
             /// <summary>
-            ///     The R Combo Logic.
+            ///     Dynamic Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                GameObjects.Player.ManaPercent > 20 &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            switch (Vars.RyzeStacks())
             {
-                if (!GameObjects.Player.HasBuff("RyzePassiveCharged") &&
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") == 0)
-                {
-                    return;
-                }
+                case 0:
+                case 1:
+                    if (Vars.RyzeStacks() == 0 ||
+                        (GameObjects.Player.HealthPercent >
+                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
+                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+                    {
+                        /// <summary>
+                        ///     The Q Combo Logic.
+                        /// </summary>
+                        if (Vars.Q.IsReady() &&
+                            Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                            Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                        { 
+                            Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        }
+                        return;
+                    }
 
-                if (!Vars.Q.IsReady() &&
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") == 3)
-                {
-                    Vars.R.Cast();
-                }
-                else if (GameObjects.Player.GetBuffCount("RyzePassiveStack") < 3)
-                {
-                    Vars.R.Cast();
-                }
-            }
+                    /// <summary>
+                    ///     The W Combo Logic.
+                    /// </summary>
+                    if (Vars.W.IsReady() &&
+                        Targets.Target.IsValidTarget(Vars.W.Range) &&
+                        Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.W.CastOnUnit(Targets.Target);
+                        return;
+                    }
 
-            /// <summary>
-            ///     The W Combo Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
-            {
-                if (!Vars.Q.IsReady() &&
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") == 1)
-                {
-                    return;
-                }
+                    /// <summary>
+                    ///     The E Combo Logic.
+                    /// </summary>
+                    if (Vars.E.IsReady() &&
+                        Targets.Target.IsValidTarget(Vars.E.Range) &&
+                        Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.CastOnUnit(Targets.Target);
+                    }
+                    break;
 
-                if (GameObjects.Player.HasBuff("RyzePassiveCharged") ||
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") != 0)
-                {
-                    Vars.W.CastOnUnit(Targets.Target);
-                }
-            }
-
-            /// <summary>
-            ///     The Q Combo Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-            { 
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-            }
-
-            /// <summary>
-            ///     The E Combo Logic.
-            /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-            {
-                if (!Vars.Q.IsReady() &&
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") == 1)
-                {
-                    return;
-                }
-
-                if (GameObjects.Player.HasBuff("RyzePassiveCharged") ||
-                    GameObjects.Player.GetBuffCount("RyzePassiveStack") != 0)
-                {
-                    Vars.E.CastOnUnit(Targets.Target);
-                }
+                default:
+                    /// <summary>
+                    ///     The Q Combo Logic.
+                    /// </summary>
+                    if (Vars.Q.IsReady() &&
+                        Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                        Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                    { 
+                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        return;
+                    }
+                    break;
             }
         }
     }

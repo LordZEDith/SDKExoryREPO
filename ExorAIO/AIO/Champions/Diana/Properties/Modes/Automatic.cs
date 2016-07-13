@@ -38,18 +38,18 @@ namespace ExorAIO.Champions.Diana
             /// <summary>
             ///     The Misaya Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.E.IsReady() &&
-                Vars.R.IsReady() &&
+            if (Vars.R.IsReady() &&
+                Vars.Q.IsReady() &&
+				GameObjects.Player.Mana >
+                    Vars.R.Instance.ManaCost +
+                    Vars.Q.Instance.ManaCost &&
                 Targets.Target.IsValidTarget(Vars.R2.Range) &&
                 Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active &&
                 Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
                 Vars.R.CastOnUnit(Targets.Target);
-                Vars.W.Cast();
-                Vars.E.Cast();
-                Vars.R.CastOnUnit(Targets.Target);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target as Obj_AI_Hero).CastPosition);
             }
 
             if (GameObjects.Player.IsDashing())
