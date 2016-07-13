@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
@@ -39,8 +40,7 @@ namespace ExorAIO.Champions.Ryze
             {
                 case 0:
                 case 1:
-                    if (Vars.RyzeStacks() == 0 ||
-                        (GameObjects.Player.HealthPercent >
+                    if ((GameObjects.Player.HealthPercent >
                             Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
                         !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
@@ -50,20 +50,29 @@ namespace ExorAIO.Champions.Ryze
                         if (Vars.Q.IsReady() &&
                             Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
                             Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-                        { 
-                            Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        {
+                            if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                            {
+                                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                            }
                         }
                     }
 
                     /// <summary>
                     ///     The W Combo Logic.
                     /// </summary>
-                    if (Vars.W.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.W.Range) &&
-                        Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                    if (Targets.Target.HasBuff("RyzeE") ||
+                        (GameObjects.Player.HealthPercent >
+                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
+                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
-                        Vars.W.CastOnUnit(Targets.Target);
-                        return;
+                        if (Vars.W.IsReady() &&
+                            Targets.Target.IsValidTarget(Vars.W.Range) &&
+                            Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.W.CastOnUnit(Targets.Target);
+                            return;
+                        }
                     }
 
                     /// <summary>

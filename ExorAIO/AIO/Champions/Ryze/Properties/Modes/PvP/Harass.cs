@@ -45,11 +45,12 @@ namespace ExorAIO.Champions.Ryze
                             m =>
                                 !m.HasBuff("RyzeE") &&
                                 m.IsValidTarget(Vars.E.Range) &&
+                                (m.Distance(Targets.Target) < 200 ||
                                 Targets.Minions.Any(
                                     m2 =>
                                         m2.HasBuff("RyzeE") &&
                                         m2.Distance(m) < 200 &&
-                                        m2.Distance(Targets.Target) < 200)))
+                                        m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.E.CastOnUnit(minion);
                         }
@@ -76,12 +77,13 @@ namespace ExorAIO.Champions.Ryze
                         foreach (var minion in Targets.Minions.Where(
                             m =>
                                 m.HasBuff("RyzeE") &&
-                                m.IsValidTarget(Vars.E.Range) &&
+                                m.IsValidTarget(Vars.Q.Range) &&
+                                (m.Distance(Targets.Target) < 200 ||
                                 Targets.Minions.Any(
                                     m2 =>
                                         m2.HasBuff("RyzeE") &&
                                         m2.Distance(m) < 200 &&
-                                        m2.Distance(Targets.Target) < 200)))
+                                        m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.Q.Cast(minion.ServerPosition);
                         }

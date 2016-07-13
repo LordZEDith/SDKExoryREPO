@@ -23,42 +23,38 @@ namespace ExorAIO.Champions.Ryze
                 return;
             }
 
-            foreach (var minion in Targets.Minions)
+            /// <summary>
+            ///     The LaneClear Q Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                /// <summary>
-                ///     The LaneClear E Logic.
-                /// </summary>
-                if (Targets.Minions.Any(m => !m.HasBuff("RyzeE")) &&
-                    Targets.Minions.Any(
-                        m =>
-                            m.HasBuff("RyzeE") &&
-                            m.Distance(Targets.Minions.FirstOrDefault(m2 => !m2.HasBuff("RyzeE"))) < 200))
+                foreach (var minion in Targets.Minions.Where(
+                    m =>
+                        m.HasBuff("RyzeE") &&
+                        m.IsValidTarget(Vars.Q.Range) &&
+                        Vars.GetRealHealth(m) <
+                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
-                    if (Vars.E.IsReady() &&
-                        minion.IsValidTarget(Vars.E.Range) &&
-                        GameObjects.Player.ManaPercent >
-                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
-                        Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
-                    {
-                        Vars.E.CastOnUnit(Targets.Minions.FirstOrDefault(
-                            m =>
-                                m.HasBuff("RyzeE") &&
-                                m.Distance(Targets.Minions.FirstOrDefault(m2 => !m2.HasBuff("RyzeE"))) < 200));
-                    }
+                    Vars.Q.Cast(minion);
                 }
-                else
+            }
+
+            /// <summary>
+            ///     The LaneClear E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
+                Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+            {
+                foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.E.Range)))
                 {
-                    /// <summary>
-                    ///     The LaneClear Q Logic.
-                    /// </summary>
-                    if (Vars.Q.IsReady() &&
-                        minion.IsValidTarget(Vars.Q.Range) &&
-                        GameObjects.Player.ManaPercent >
-                            ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
-                        Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
-                    {
-                        Vars.Q.Cast(minion.ServerPosition);
-                    }
+                    Vars.E.CastOnUnit(minion.HasBuff("RyzeE")
+                        ? minion
+                        : Targets.Minions[0]);
                 }
             }
 
@@ -71,6 +67,7 @@ namespace ExorAIO.Champions.Ryze
                 {
                     if (Vars.E.IsReady() &&
                         minion.IsValidTarget(Vars.E.Range) &&
+                        !GameObjects.JungleSmall.Contains(minion) &&
                         GameObjects.Player.ManaPercent >
                             ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                         Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
