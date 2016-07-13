@@ -26,11 +26,17 @@ namespace ExorAIO.Champions.Tryndamere
             ///     The Automatic Q Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >= 75 &&
-                Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping/2f)) <= GameObjects.Player.MaxHealth/2 &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                Vars.Q.Cast();
+                if ((GameObjects.Player.HealthPercent <=
+                        Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().SValue ||
+                    !Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().BValue) &&
+                    (GameObjects.Player.ManaPercent >=
+                        Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().SValue ||
+                    !Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().BValue))
+                {
+                    Vars.Q.Cast();
+                }
             }
 
             /// <summary>

@@ -23,7 +23,8 @@ namespace ExorAIO.Champions.Tryndamere
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.QMenu.Add(new MenuSliderButton("health", "Use if Health <= x%..", 50, 1, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("fury", "..and only if Fury >= x%", 75, 5, 100, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
