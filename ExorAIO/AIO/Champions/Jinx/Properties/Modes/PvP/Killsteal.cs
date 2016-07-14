@@ -23,6 +23,7 @@ namespace ExorAIO.Champions.Jinx
             ///     The KillSteal W Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
+                GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 &&
                 Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
@@ -54,8 +55,8 @@ namespace ExorAIO.Champions.Jinx
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
-                    if (!Vars.W.IsReady() ||
-                        !target.IsValidTarget(Vars.W.Range))
+                    if (!Vars.W.IsReady() &&
+                        !target.IsValidTarget(Vars.Q.Range))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }

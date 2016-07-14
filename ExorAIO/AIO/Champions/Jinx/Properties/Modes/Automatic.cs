@@ -107,9 +107,9 @@ namespace ExorAIO.Champions.Jinx
                             }
 
                             /// <summary>
-                            ///     LaneClear Logics.
+                            ///     The LaneClear Logics.
                             /// </summary>
-                            if (Targets.Minions.Any())
+                            if (Targets.Minions.Any(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
                                 /*
                                 /// <summary>
@@ -125,10 +125,17 @@ namespace ExorAIO.Champions.Jinx
                                 */
                                 
                                 /// <summary>
-                                ///     Enable if:
-                                ///     More or equal than 2 minions in explosion range from the target minion. (Lane AoE Logic).
+                                ///     Disable if:
+                                ///     The player has Runaan's Hurricane and there are more than 1 hittable Minions..
+                                ///     And there more than 2 killable minions in Q explosion range (Lane AoE Logic).
                                 /// </summary>
-                                if (Targets.Minions.Count(m2 => m2.Distance(Targets.Minions[0]) < 250f) >= 3)
+                                if ((Items.HasItem(3085) && Targets.Minions.Count() > 1) ||
+                                    Targets.Minions.Where(
+                                    m =>
+                                        Vars.GetRealHealth(m) <
+                                            GameObjects.Player.GetAutoAttackDamage(m) * 1.1).Count(
+                                                m2 =>
+                                                    m2.Distance(Targets.Minions.First(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)) < 250f) >= 3)
                                 {
                                     Vars.Q.Cast();
                                     Console.WriteLine("ExorAIO: Jinx - LaneClear - Enabled for AoE Check.");
@@ -137,7 +144,7 @@ namespace ExorAIO.Champions.Jinx
                             }
 
                             /// <summary>
-                            ///     JungleClear Logics.
+                            ///     The JungleClear Logics.
                             /// </summary>
                             else if (Targets.JungleMinions.Any())
                             {
@@ -297,11 +304,12 @@ namespace ExorAIO.Champions.Jinx
 
                             /// <summary>
                             ///     Disable if:
-                            ///     There is at least 1 minion in PowPow Range.. (Lane Range Logic).
-                            ///     .. And less than 2 minions in explosion range from the minion target (Lane AoE Logic).
+                            ///     The player has no Runaan's Hurricane or there is only 1 hittable Minion..
+                            ///     And there are no killable minions in Q explosion range or the number of killable minions is less than 3 (Lane AoE Logic).
                             /// </summary>
-                            if (Targets.Minions.Any(m => m.IsValidTarget(Vars.PowPow.Range)) &&
-                                Targets.Minions.Count(m2 => m2.Distance(Targets.Minions[0]) < 250f) < 3)
+                            if ((!Items.HasItem(3085) || Targets.Minions.Count() < 2) &&
+                                (!Targets.Minions.Any(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1) ||
+                                Targets.Minions.Count(m2 => m2.Distance(Targets.Minions.First(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)) < 250f) < 3))
                             {
                                 Vars.Q.Cast();
                                 Console.WriteLine("ExorAIO: Jinx - LaneClear - Disabled.");
@@ -381,6 +389,7 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             if (Vars.W.IsReady() &&
                 !GameObjects.Player.IsUnderEnemyTurret() &&
+                GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
@@ -432,23 +441,14 @@ namespace ExorAIO.Champions.Jinx
                     return;
                 }
 
-                switch (Variables.Orbwalker.ActiveMode)
+                /// <summary>
+                ///     Block if:
+                ///     It doesn't respect the ManaManager Check, (Mana check),
+                /// </summary>
+                if (GameObjects.Player.ManaPercent <
+                        ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
                 {
-                    /// <summary>
-                    ///     The Q Clear Enable Logics.
-                    /// </summary>
-                    case OrbwalkingMode.LaneClear:
-
-                        /// <summary>
-                        ///     Block if:
-                        ///     It doesn't respect the ManaManager Check, (Mana check),
-                        /// </summary>
-                        if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
-                        {
-                            args.Process = false;
-                        }
-                        break;
+                    args.Process = false;
                 }
             }
         }

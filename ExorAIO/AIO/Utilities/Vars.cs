@@ -226,12 +226,7 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     Gets the Player's real AutoAttack-Range.
         /// </summary>
-        public static float AARange
-            =>
-                GameObjects.Player.GetRealAutoAttackRange() +
-                (GameObjects.Player.GetBuffCount("itemstatikshankcharge") == 100
-                    ? GameObjects.Player.GetRealAutoAttackRange() / 100 * 30
-                    : 0f);
+        public static float AARange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
         ///     The jungle HP bar offset.

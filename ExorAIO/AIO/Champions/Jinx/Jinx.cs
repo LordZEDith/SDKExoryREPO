@@ -95,7 +95,9 @@ namespace ExorAIO.Champions.Jinx
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(args.End);
+                Vars.E.Cast(args.IsDirectedToPlayer
+                    ? GameObjects.Player.ServerPosition
+                    : args.End);
             }
         }
 

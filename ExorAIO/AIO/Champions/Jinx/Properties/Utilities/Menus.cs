@@ -47,9 +47,9 @@ namespace ExorAIO.Champions.Jinx
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",     "Combo",          true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuBool("logical",   "Logical",        true));
+                    Vars.EMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 2, 1, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 
@@ -58,7 +58,7 @@ namespace ExorAIO.Champions.Jinx
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 2, 6, true));
+                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 2, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
@@ -70,7 +70,7 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous", true);
             {
-                Vars.MiscMenu.Add(new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting in LaneClear", true));
+                Vars.MiscMenu.Add(new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana", true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 
