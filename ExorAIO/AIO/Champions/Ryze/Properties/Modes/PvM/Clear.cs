@@ -36,7 +36,9 @@ namespace ExorAIO.Champions.Ryze
                         m.HasBuff("RyzeE") &&
                         m.IsValidTarget(Vars.Q.Range) &&
                         Vars.GetRealHealth(m) <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q) &&
+                        Vars.GetRealHealth(m) >
+                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     Vars.Q.Cast(minion);
                 }
@@ -52,9 +54,12 @@ namespace ExorAIO.Champions.Ryze
             {
                 foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.E.Range)))
                 {
-                    Vars.E.CastOnUnit(minion.HasBuff("RyzeE")
+                    Vars.E.CastOnUnit(
+                        minion.HasBuff("RyzeE") ||
+                        Vars.GetRealHealth(minion) <
+                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.E)
                         ? minion
-                        : Targets.Minions[0]);
+                        : Targets.Minions.First(m => m.IsValidTarget(Vars.E.Range)));
                 }
             }
 
@@ -82,6 +87,8 @@ namespace ExorAIO.Champions.Ryze
                     /// </summary>
                     if (Vars.Q.IsReady() &&
                         minion.IsValidTarget(Vars.Q.Range) &&
+                        Vars.GetRealHealth(minion) >
+                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
                         GameObjects.Player.ManaPercent >
                             ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                         Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)

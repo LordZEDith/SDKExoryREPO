@@ -40,19 +40,13 @@ namespace ExorAIO.Champions.Taliyah
                     GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2
                         ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition, GameObjects.Player.Distance(Targets.Target)*2)
                         : GameObjects.Player.ServerPosition);
-
-                if (Vars.E.IsReady() &&
-                    Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-                {
-                    Vars.E.Cast(Targets.Target.ServerPosition);
-                }
             }
 
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+                Targets.Target.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Targets.Target.ServerPosition);

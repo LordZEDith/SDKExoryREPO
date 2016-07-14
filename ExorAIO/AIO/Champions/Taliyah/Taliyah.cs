@@ -144,13 +144,6 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2));
-
-                if (Vars.E.IsReady() &&
-                    Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-                {
-                    Vars.E.Cast(args.Sender.ServerPosition);
-                }
-                return;
             }
 
             if (Vars.E.IsReady() &&
@@ -180,13 +173,6 @@ namespace ExorAIO.Champions.Taliyah
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
                         ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
-
-                if (Vars.E.IsReady() &&
-                    Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-                {
-                    Vars.E.Cast(args.Sender.ServerPosition);
-                }
-                return;
             }
 
             if (Vars.E.IsReady() &&

@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             /// <summary>
-            ///     The Automatic E->W Logic.
+            ///     The Automatic W Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
@@ -51,13 +51,6 @@ namespace ExorAIO.Champions.Taliyah
                         GameObjects.Player.Distance(target) < Vars.AARange/2
                             ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition, GameObjects.Player.Distance(target)*2)
                             : GameObjects.Player.ServerPosition);
-
-                    if (Vars.E.IsReady() &&
-                        Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
-                    {
-                        Vars.E.Cast(target.ServerPosition);
-                    }
-                    return;
                 }
             }
 
@@ -70,7 +63,7 @@ namespace ExorAIO.Champions.Taliyah
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.E.Range) &&
+                        t.IsValidTarget(Vars.W.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.E.Cast(target.ServerPosition);
