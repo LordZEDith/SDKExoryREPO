@@ -18,6 +18,12 @@ namespace NabbTracker
         {
             Drawing.OnDraw += delegate
             {
+                if (Vars.DisplayTextFont.IsDisposed ||
+                    Drawing.Direct3DDevice.IsDisposed)
+                {
+                    return;
+                }
+
                 foreach (var unit in GameObjects.Heroes.Where(
                     e =>
                         e.IsHPBarRendered &&

@@ -68,7 +68,7 @@ namespace NabbTracker
         /// <summary>
         ///     The Text fcnt.
         /// </summary>
-        public static Font DisplayTextFont { internal get; set; } = new Font(Drawing.Direct3DDevice, new System.Drawing.Font("Tahoma", 8));
+        public static Font DisplayTextFont { get; set; } = new Font(Drawing.Direct3DDevice, new System.Drawing.Font("Tahoma", 8));
 
         /// <summary>
         ///     The Spells Healthbars X coordinate.
