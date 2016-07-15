@@ -30,7 +30,9 @@ namespace ExorAIO.Champions.Ryze
                         t.IsValidTarget(Vars.Q.Range - 50f) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * (1 + (t.HasBuff("RyzeE")
+                                ? new double[] { 40, 55, 70, 85, 100, 100 }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level] / 100
+                                : 0))))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {

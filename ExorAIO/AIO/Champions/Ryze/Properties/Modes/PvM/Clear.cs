@@ -36,7 +36,9 @@ namespace ExorAIO.Champions.Ryze
                         m.HasBuff("RyzeE") &&
                         m.IsValidTarget(Vars.Q.Range) &&
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q) &&
+                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q) * (1 + (m.HasBuff("RyzeE")
+                                ? new double[] { 40, 55, 70, 85, 100, 100 }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level] / 100
+                                : 0)) &&
                         Vars.GetRealHealth(m) >
                             (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {

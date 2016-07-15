@@ -385,6 +385,22 @@ namespace ExorAIO.Champions.Jinx
             }
 
             /// <summary>
+            ///     The Automatic E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            {
+                foreach (var target in GameObjects.EnemyHeroes.Where(
+                    t =>
+                        Bools.IsImmobile(t) &&
+                        t.IsValidTarget(Vars.E.Range) &&
+                        !Invulnerable.Check(t, DamageType.Magical, false)))
+                {
+                    Vars.E.Cast(target.ServerPosition);
+                }
+            }
+
+            /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
@@ -398,27 +414,10 @@ namespace ExorAIO.Champions.Jinx
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.W.Range)))
                 {
-                    if (!Vars.W.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                    if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {
                         Vars.W.Cast(target.ServerPosition);
-                        return;
                     }
-                }
-            }
-
-            /// <summary>
-            ///     The Automatic E Logic.
-            /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.E.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical, false)))
-                {
-                    Vars.E.Cast(target.ServerPosition);
                 }
             }
         }

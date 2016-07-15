@@ -72,7 +72,14 @@ namespace ExorAIO.Champions.Ryze
                             Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                         {
                             Vars.W.CastOnUnit(Targets.Target);
-                            return;
+                            
+                            if (Vars.RyzeStacks == 1 &&
+                                (GameObjects.Player.HealthPercent >
+                                    Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
+                                !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+                            {
+                                return;
+                            }
                         }
                     }
 
@@ -96,7 +103,6 @@ namespace ExorAIO.Champions.Ryze
                         Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                     { 
                         Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                        return;
                     }
                     break;
             }
