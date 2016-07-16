@@ -35,24 +35,24 @@ namespace ExorAIO.Champions.Lux
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
-                        !GameObjects.JungleSmall.Contains(m)).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) ||
+                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The minions hit by the E missile.
         /// </summary>
         public static List<Obj_AI_Minion> EMinions
             =>
-                GameObjects.EnemyMinions.Concat(GameObjects.Jungle)
-                    .Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width)
-                    .ToList();
+                GameObjects.EnemyMinions.Concat(GameObjects.Jungle).Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
 
         /// <summary>
         ///     The lowest ally in range.
         /// </summary>
         public static Obj_AI_Hero LowestAlly
             =>
-                GameObjects.AllyHeroes.Where(a => !a.IsMe && a.IsValidTarget(Vars.W.Range, false))
-                    .OrderBy(o => o.Health)
-                    .LastOrDefault();
+                GameObjects.AllyHeroes.Where(
+                    a =>
+                        !a.IsMe &&
+                        a.IsValidTarget(Vars.W.Range, false)).OrderBy(o => o.Health).LastOrDefault();
     }
 }

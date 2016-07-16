@@ -48,6 +48,7 @@ namespace ExorAIO.Champions.Jhin
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
-                        !GameObjects.JungleSmall.Contains(m)).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) ||
+                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

@@ -71,17 +71,22 @@ namespace ExorAIO.Champions.Sivir
 
                                 if (enemy.ChampionName.Equals("Braum"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride", $"Shield: {enemy.ChampionName}'s Passive Stun", true));
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride", $"Shield: {enemy.ChampionName}'s Passive", true));
                                 }
 
                                 if (enemy.ChampionName.Equals("Jax"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.jaxcounterstrike", $"Shield: {enemy.ChampionName}'s E Stun", true));
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.jaxcounterstrike", $"Shield: {enemy.ChampionName}'s E", true));
+                                }
+
+                                if (enemy.ChampionName.Equals("KogMaw"))
+                                {
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.kogmawicathiansurprise", $"Shield: {enemy.ChampionName}'s Passive", true));
                                 }
 
                                 if (enemy.ChampionName.Equals("Udyr"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack", $"Shield: {enemy.ChampionName}'s E Stun", true));
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack", $"Shield: {enemy.ChampionName}'s E", true));
                                 }
 
                                 foreach (var spell in SpellDatabase.Get().Where(

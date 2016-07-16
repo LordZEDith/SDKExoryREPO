@@ -208,7 +208,7 @@ namespace ExorAIO.Champions.Vayne
                         /// </summary>
                         if (GameObjects.Player.GetBuff("vaynetumblefade").EndTime - Game.Time >
                             GameObjects.Player.GetBuff("vaynetumblefade").EndTime - GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
-                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000)
+                            (Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value - Game.Ping)/1000)
                         {
                             args.Process = false;
                         }

@@ -35,15 +35,17 @@ namespace ExorAIO.Champions.Karma
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
-                        !GameObjects.JungleSmall.Contains(m)).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) ||
+                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The lowest ally in range.
         /// </summary>
         public static Obj_AI_Hero LowestAlly
             =>
-                GameObjects.AllyHeroes.Where(a => !a.IsMe && a.IsValidTarget(Vars.W.Range, false))
-                    .OrderBy(o => o.Health)
-                    .LastOrDefault();
+                GameObjects.AllyHeroes.Where(
+                    a =>
+                        !a.IsMe &&
+                        a.IsValidTarget(Vars.W.Range, false)).OrderBy(o => o.Health).LastOrDefault();
     }
 }

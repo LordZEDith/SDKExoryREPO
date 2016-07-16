@@ -61,11 +61,10 @@ namespace ExorAIO.Champions.Evelynn
             /// </summary>
             if (Vars.R.IsReady() &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue <=
-                    Targets.RTargets.Count())
+                GameObjects.EnemyHeroes.Count(t => t.IsValidTarget(Vars.R.Range)) >=
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue)
             {
-                Vars.R.CastIfWillHit(
-                    Targets.RTargets[0], Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
+                Vars.R.CastIfWillHit(Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
             }
         }
     }

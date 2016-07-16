@@ -35,11 +35,7 @@ namespace ExorAIO.Champions.Evelynn
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
-                        !GameObjects.JungleSmall.Contains(m)).ToList();
-
-        /// <summary>
-        ///     The targets in R Range.
-        /// </summary>
-        public static List<Obj_AI_Hero> RTargets => GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.R.Range)).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) ||
+                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

@@ -42,16 +42,36 @@ namespace ExorAIO.Champions.Sivir
             }
 
             /// <summary>
-            ///     Block Jax's E.
+            ///     Block Special AoE.
             /// </summary>
-            foreach (var target in GameObjects.EnemyHeroes.Where(t => t.ChampionName.Equals("Jax")))
+            foreach (var target in GameObjects.EnemyHeroes)
             {
-                if (target.HasBuff("jaxcounterstrike") &&
-                    target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
-                    target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
-                    target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - (1000 - Game.Ping)/1000)
+                switch (target.ChampionName)
                 {
-                    Vars.E.Cast();
+                    case "Jax":
+                        if (target.HasBuff("jaxcounterstrike") &&
+                            target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
+                            target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
+                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - (1000 - Game.Ping)/1000 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.E.Cast();
+                        }
+                        break;
+
+                    case "KogMaw":
+                        if (target.HasBuff("kogmawicathiansurprise") &&
+                            target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
+                            target.GetBuff("kogmawicathiansurprise").EndTime - Game.Time >
+                            target.GetBuff("kogmawicathiansurprise").EndTime - target.GetBuff("kogmawicathiansurprise").StartTime - (4000 - Game.Ping)/1000 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.E.Cast();
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }
