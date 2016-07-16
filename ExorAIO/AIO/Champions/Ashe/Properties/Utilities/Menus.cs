@@ -51,8 +51,8 @@ namespace ExorAIO.Champions.Ashe
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
+                    Vars.EMenu.Add(new MenuBool("vision",  "Vision",  true));
                     Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
-                    Vars.EMenu.Add(new MenuSliderButton("vision", "Vision / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

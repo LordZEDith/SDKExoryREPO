@@ -50,9 +50,7 @@ namespace ExorAIO.Champions.Ashe
             if (Vars.E.IsReady() &&
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.CountEnemyHeroesInRange(1000f) == 0 &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["vision"]) &&
-                Vars.Menu["spells"]["e"]["vision"].GetValue<MenuSliderButton>().BValue)
+                Vars.Menu["spells"]["e"]["vision"].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.EnemyHeroes.Any(
                     x =>

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
@@ -28,13 +29,17 @@ namespace ExorAIO.Champions.Draven
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                !Targets.Target.IsValidTarget(Vars.AARange) &&
                 !GameObjects.Player.HasBuff("dravenfurybuff") &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["combo"]) &&
+                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"]) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.W.Cast();
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
+                    !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
+                    Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value)
+                {
+                    Vars.W.Cast();
+                }
             }
 
             /// <summary>
@@ -52,9 +57,10 @@ namespace ExorAIO.Champions.Draven
             /// </summary>
             if (Vars.R.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.R.Range) &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
+                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                Vars.R.CastIfWillHit(Targets.Target, 2);
+                Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
             }
         }
     }

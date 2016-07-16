@@ -19,22 +19,21 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget())
-            {
-                return;
-            }
-
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                !Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Targets.Target.IsValidTarget(Vars.W.Range+200f) &&
-                !Invulnerable.Check(Targets.Target, DamageType.Magical, false) &&
+                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
+                !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
                 Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(GameObjects.Player);
+            }
+
+            if (Bools.HasSheenBuff() ||
+                !Targets.Target.IsValidTarget())
+            {
+                return;
             }
 
             /// <summary>
