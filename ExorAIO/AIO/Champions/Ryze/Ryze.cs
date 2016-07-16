@@ -134,6 +134,7 @@ namespace ExorAIO.Champions.Ryze
                             }
                             break;
 
+                        case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
 

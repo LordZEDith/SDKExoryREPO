@@ -68,16 +68,18 @@ namespace ExorAIO.Champions.Caitlyn
                 if (!GameObjects.EnemyHeroes.Any(
                     t =>
                         !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.R.Range)))
+                        t.IsValidTarget(Vars.R.Range) &&
+                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     return;
                 }
 
                 Vars.R.CastOnUnit(
-                    GameObjects.EnemyHeroes.OrderBy(o => o.Health).FirstOrDefault(
+                    GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range)));
+                            t.IsValidTarget(Vars.R.Range) &&
+                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
             }
         }
     }

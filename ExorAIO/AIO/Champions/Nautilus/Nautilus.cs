@@ -125,6 +125,7 @@ namespace ExorAIO.Champions.Nautilus
                 case OrbwalkingType.BeforeAttack:
                     switch (Variables.Orbwalker.ActiveMode)
                     {
+                        case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
 

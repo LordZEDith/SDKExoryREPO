@@ -79,11 +79,15 @@ namespace ExorAIO.Champions.Ezreal
                     Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.RMenu.Add(new MenuBool("logical",   "Logical",   true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.RMenu.Add(new MenuSeparator("separator", "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
+                    Vars.RMenu.Add(
+                        new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
                         /// </summary>
-                        Vars.WhiteList2Menu = new Menu("whitelist2", "Ultimate: Whitelist Menu");
+                        Vars.WhiteList2Menu = new Menu("whitelist", "Ultimate: Whitelist Menu");
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {

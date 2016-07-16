@@ -149,6 +149,7 @@ namespace ExorAIO.Champions.Veigar
                             }
                             break;
 
+                        case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
 

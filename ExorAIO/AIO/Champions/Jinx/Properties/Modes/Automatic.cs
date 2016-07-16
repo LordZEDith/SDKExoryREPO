@@ -420,10 +420,34 @@ namespace ExorAIO.Champions.Jinx
                     }
                 }
             }
+
+            /// <summary>
+            ///     The Semi-Automatic R Management.
+            /// </summary>
+            if (Vars.R.IsReady() &&
+                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+                Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            {
+                if (!GameObjects.EnemyHeroes.Any(
+                    t =>
+                        !Invulnerable.Check(t) &&
+                        t.IsValidTarget(Vars.R.Range) &&
+                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                {
+                    return;
+                }
+
+                Vars.R.CastOnUnit(
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) &&
+                            t.IsValidTarget(Vars.R.Range) &&
+                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
+            }
         }
 
         /// <summary>
-        ///     Called upon calling a spelaneclearlearast.
+        ///     Called before casting a spell.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>

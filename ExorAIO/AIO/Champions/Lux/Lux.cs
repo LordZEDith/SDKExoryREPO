@@ -215,6 +215,7 @@ namespace ExorAIO.Champions.Lux
                     
                     switch (Variables.Orbwalker.ActiveMode)
                     {
+                        case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
 
