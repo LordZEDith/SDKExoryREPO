@@ -40,11 +40,24 @@ namespace ExorAIO.Champions.Sivir
                     Vars.Q.Cast(target.ServerPosition);
                 }
             }
+
+            /// <summary>
+            ///     Block Jax's E.
+            /// </summary>
+            foreach (var target in GameObjects.EnemyHeroes.Where(t => t.ChampionName.Equals("Jax")))
+            {
+                if (target.HasBuff("jaxcounterstrike") &&
+                    target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
+                    target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
+                    target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - 1)
+                {
+                    Vars.E.Cast();
+                }
+            }
         }
 
         /// <summary>
         ///     Called while processing Spellcasting operations.
-        ///     Port this berbb :^)
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
@@ -107,32 +120,36 @@ namespace ExorAIO.Champions.Sivir
                             return;
                         }
 
-                        /// <summary>
-                        ///     Whitelist Block.
-                        /// </summary>
-                        if (Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"] == null)
-                        {
-                            if (Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>().Value)
-                            {
-                                return;
-                            }
-                        }
-                        
                         switch (args.SData.Name)
                         {
+                            case "UdyrBearAttack":
                             case "BraumBasicAttackPassiveOverride":
+                                /// <summary>
+                                ///     Whitelist Block.
+                                /// </summary>
+                                if (Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
+                                    !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>().Value)
+                                {
+                                    return;
+                                }
+
+                                if (GameObjects.Player.HasBuff("udyrbearstuncheck") &&
+                                    (sender as Obj_AI_Hero).ChampionName.Equals("Udyr"))
+                                {
+                                    return;
+                                }
+
                                 Vars.E.Cast();
                                 break;
 
-                            case "UdyrBearAttack":
-                                if (!GameObjects.Player.HasBuff("udyrbearstuncheck"))
-                                {
-                                    Vars.E.Cast();
-                                }
-                                break;
-
                             default:
+                                if (!(sender as Obj_AI_Hero).Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)) ||
+                                    Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"] == null ||
+                                    !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"].GetValue<MenuBool>().Value)
+                                {
+                                    return;
+                                }
+
                                 Vars.E.Cast();
                                 break;
                         }
@@ -194,8 +211,7 @@ namespace ExorAIO.Champions.Sivir
                                 switch ((sender as Obj_AI_Hero).ChampionName)
                                 {
                                     case "Alistar":
-                                        if ((sender as Obj_AI_Hero).DistanceToPlayer() <
-                                                355 + GameObjects.Player.BoundingRadius)
+                                        if ((sender as Obj_AI_Hero).DistanceToPlayer() < 355 + GameObjects.Player.BoundingRadius)
                                         {
                                             Vars.E.Cast();
                                         }

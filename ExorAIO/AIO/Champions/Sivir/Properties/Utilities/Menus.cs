@@ -74,6 +74,11 @@ namespace ExorAIO.Champions.Sivir
                                     Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride", $"Shield: {enemy.ChampionName}'s Passive Stun", true));
                                 }
 
+                                if (enemy.ChampionName.Equals("Jax"))
+                                {
+                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.jaxcounterstrike", $"Shield: {enemy.ChampionName}'s E Stun", true));
+                                }
+
                                 if (enemy.ChampionName.Equals("Udyr"))
                                 {
                                     Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack", $"Shield: {enemy.ChampionName}'s E Stun", true));
@@ -84,9 +89,9 @@ namespace ExorAIO.Champions.Sivir
                                         !s.SpellName.Equals("KatarinaE") &&
                                         !s.SpellName.Equals("TalonCutthroat") &&
                                         s.ChampionName.Equals(enemy.ChampionName) &&
-                                        (s.CastType.Contains(CastType.EnemyChampions) ||
                                         ((s.CastType.Contains(CastType.Activate) &&
-                                        AutoAttack.IsAutoAttackReset(s.SpellName))))))
+                                        AutoAttack.IsAutoAttackReset(s.SpellName)) ||
+                                        s.CastType.Contains(CastType.EnemyChampions))))
                                 {
                                     if (spell.SpellType.HasFlag(SpellType.Targeted) ||
                                         spell.SpellType.HasFlag(SpellType.Activated) ||

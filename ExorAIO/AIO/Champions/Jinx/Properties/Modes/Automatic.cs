@@ -437,12 +437,12 @@ namespace ExorAIO.Champions.Jinx
                     return;
                 }
 
-                Vars.R.CastOnUnit(
+                Vars.R.Cast(Vars.R.GetPrediction(
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) &&
                             t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
+                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
 
