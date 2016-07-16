@@ -36,6 +36,7 @@ namespace ExorAIO.Champions.Draven
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
+                    Vars.WMenu.Add(new MenuBool("engager", "Engager", true));
                     Vars.WMenu.Add(new MenuSliderButton("combo", "Combo / If Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -58,9 +59,9 @@ namespace ExorAIO.Champions.Draven
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuSeparator("separator", "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
-                    Vars.RMenu.Add(new MenuBool("bool",        "Semi-Automatic R",         true));
+                    Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(
                         new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -90,7 +91,6 @@ namespace ExorAIO.Champions.Draven
             /// </summary>
             Vars.DrawingsMenu = new Menu("drawings", "Drawings");
             {
-                Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
