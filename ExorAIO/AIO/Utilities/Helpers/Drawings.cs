@@ -30,8 +30,8 @@ namespace ExorAIO.Utilities
                 if (Vars.R != null &&
                     Vars.R.IsReady())
                 {
-                    if (GameObjects.Plater.ChampionName.Equals("Ryze") ||
-                        GameObjects.Plater.ChampionName.Equals("Taliyah"))
+                    if (GameObjects.Player.ChampionName.Equals("Ryze") ||
+                        GameObjects.Player.ChampionName.Equals("Taliyah"))
                     {
                         Geometry.DrawCircleOnMinimap(GameObjects.Player.Position, Vars.R.Range, Color.White);
                     }
