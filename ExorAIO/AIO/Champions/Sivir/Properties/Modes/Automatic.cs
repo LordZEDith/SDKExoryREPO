@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Sivir
                 if (target.HasBuff("jaxcounterstrike") &&
                     target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                     target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
-                    target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - 1)
+                    target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - (1000 - Game.Ping)/1000)
                 {
                     Vars.E.Cast();
                 }
