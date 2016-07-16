@@ -30,11 +30,6 @@ namespace ExorAIO.Champions.Taliyah
             Menus.Initialize();
 
             /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
             ///     Initializes the methods.
             /// </summary>
             Methods.Initialize();
@@ -93,6 +88,11 @@ namespace ExorAIO.Champions.Taliyah
             {
                 return;
             }
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
 
             /// <summary>
             ///     Initializes the Automatic actions.
