@@ -60,9 +60,7 @@ namespace ExorAIO.Champions.Evelynn
             ///     The R Combo Logic.
             /// </summary>
             if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
-                GameObjects.EnemyHeroes.Count(t => t.IsValidTarget(Vars.R.Range)) >=
-                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue)
+                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.CastIfWillHit(Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
             }

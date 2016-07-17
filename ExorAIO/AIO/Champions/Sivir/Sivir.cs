@@ -114,7 +114,7 @@ namespace ExorAIO.Champions.Sivir
         }
 
         /// <summary>
-        ///     Called while processing Spelaneclearlearast operations.
+        ///     Called while processing spellcast operations.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>

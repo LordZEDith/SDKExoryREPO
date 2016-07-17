@@ -17,6 +17,7 @@ namespace ExorAIO.Champions.Taliyah
             GameObject.OnCreate += Taliyah.OnCreate;
             GameObject.OnDelete += Taliyah.OnDelete;
             Events.OnGapCloser += Taliyah.OnGapCloser;
+            Obj_AI_Base.OnProcessSpellCast += Taliyah.OnProcessSpellCast;
             Events.OnInterruptableTarget += Taliyah.OnInterruptableTarget;
         }
     }

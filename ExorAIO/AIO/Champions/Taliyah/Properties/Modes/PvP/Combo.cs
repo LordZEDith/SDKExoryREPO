@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             /// <summary>
-            ///     The E->W Combo Logic.
+            ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.W.Range) &&
@@ -36,17 +36,23 @@ namespace ExorAIO.Champions.Taliyah
             {
                 Vars.W.Cast(
                     Vars.W.GetPrediction(Targets.Target).CastPosition,
+                    (GameObjects.Player.HealthPercent < 10 ||
                     Targets.Target.IsFacing(GameObjects.Player) &&
-                    GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2
+                    GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2)
                         ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition, GameObjects.Player.Distance(Targets.Target)*2)
                         : GameObjects.Player.ServerPosition);
+            }
+
+            if (Vars.W.IsReady())
+            {
+                return;
             }
 
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Targets.Target.ServerPosition);
@@ -56,8 +62,6 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
-                !Vars.W.IsReady() &&
-                !Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
@@ -67,7 +71,9 @@ namespace ExorAIO.Champions.Taliyah
                     return;
                 }
 
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if ((!Vars.E.IsReady() ||
+                    !Targets.Target.IsValidTarget(Vars.E.Range)) &&
+                    !Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

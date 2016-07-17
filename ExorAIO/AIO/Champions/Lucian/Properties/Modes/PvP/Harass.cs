@@ -24,7 +24,8 @@ namespace ExorAIO.Champions.Lucian
                 t =>
                     !Invulnerable.Check(t) &&
                     !t.IsValidTarget(Vars.Q.Range) &&
-                    t.IsValidTarget(Vars.Q2.Range-50f)))
+                    t.IsValidTarget(Vars.Q2.Range-50f) &&
+                    Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
             {
                 return;
             }

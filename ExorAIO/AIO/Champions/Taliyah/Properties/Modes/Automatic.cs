@@ -58,12 +58,13 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Automatic E Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
+                !Vars.W.IsReady() &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.W.Range) &&
+                        t.IsValidTarget(Vars.E.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.E.Cast(target.ServerPosition);

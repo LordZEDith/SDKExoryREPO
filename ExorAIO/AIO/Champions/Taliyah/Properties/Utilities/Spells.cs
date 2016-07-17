@@ -17,7 +17,7 @@ namespace ExorAIO.Champions.Taliyah
         {
             Vars.Q = new Spell(SpellSlot.Q, 1000f);
             Vars.W = new Spell(SpellSlot.W, 900f);
-            Vars.E = new Spell(SpellSlot.E, 800f);
+            Vars.E = new Spell(SpellSlot.E, 500f);
             Vars.R = new Spell(SpellSlot.R, 1500 + 1500 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).Level);
 
             Vars.Q.SetSkillshot(0.275f, 100f, 3600f, true, SkillshotType.SkillshotLine);

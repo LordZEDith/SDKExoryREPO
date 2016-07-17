@@ -27,28 +27,23 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static bool IsImmobile(Obj_AI_Base target)
         {
-            if (target is Obj_AI_Minion ||
-                target is Obj_AI_Turret)
-            {
-                return target.HasBuff("teleport_target");
-            }
-            else if (target is Obj_AI_Hero)
-            {
-                return
-                    target.HasBuff("rebirth") ||
-                    target.HasBuff("zhonyasringshield") ||
-                    target.MoveSpeed < 150 ||
-                    (target as Obj_AI_Hero).IsCastingInterruptableSpell() ||
-                    IsValidStun(target as Obj_AI_Hero) ||
-                    IsValidSnare(target as Obj_AI_Hero) ||
-                    target.HasBuffOfType(BuffType.Flee) ||
-                    target.HasBuffOfType(BuffType.Taunt) ||
-                    target.HasBuffOfType(BuffType.Charm) ||
-                    target.HasBuffOfType(BuffType.Knockup) ||
-                    target.HasBuffOfType(BuffType.Suppression);
-            }
-            
-            return false;
+            return
+                target.MoveSpeed < 150 ||
+                target.HasBuff("rebirth") ||
+                target.HasBuff("chronorevive") ||
+                target.HasBuff("lissandrarself") ||
+                target.HasBuff("teleport_target") ||
+                target.HasBuff("woogletswitchcap") ||
+                target.HasBuff("zhonyasringshield") ||
+                target.HasBuff("aatroxpassivedeath") ||
+                IsValidStun(target as Obj_AI_Hero) ||
+                IsValidSnare(target as Obj_AI_Hero) ||
+                target.HasBuffOfType(BuffType.Flee) ||
+                target.HasBuffOfType(BuffType.Taunt) ||
+                target.HasBuffOfType(BuffType.Charm) ||
+                target.HasBuffOfType(BuffType.Knockup) ||
+                target.HasBuffOfType(BuffType.Suppression) ||
+                (target as Obj_AI_Hero).IsCastingInterruptableSpell();
         }
 
         /// <summary>

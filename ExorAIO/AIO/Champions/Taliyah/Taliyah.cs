@@ -132,6 +132,52 @@ namespace ExorAIO.Champions.Taliyah
         }
 
         /// <summary>
+        ///     Called while processing spellcast operations.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            /// <summary>
+            ///     The Automatic E Logics.
+            /// </summary>
+            if (sender.IsMe &&
+                args.Slot == SpellSlot.W)
+            {
+                switch (Variables.Orbwalker.ActiveMode)
+                {
+                    case OrbwalkingMode.Combo:
+                        /// <summary>
+                        ///     The E Combo Logic.
+                        /// </summary>
+                        if (Vars.E.IsReady() &&
+                            Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.E.Cast((GameObjects.EnemyHeroes.OrderBy(o => o.DistanceToPlayer()).First()).ServerPosition);
+                        }
+                        break;
+
+                    default:
+                        /// <summary>
+                        ///     The Automatic E Logic.
+                        /// </summary>
+                        if (Vars.E.IsReady() &&
+                            Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                        {
+                            foreach (var target in GameObjects.EnemyHeroes.Where(
+                                t =>
+                                    Bools.IsImmobile(t) &&
+                                    !Invulnerable.Check(t, DamageType.Magical)))
+                            {
+                                Vars.E.Cast(target.ServerPosition);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         ///     Fired on an incoming gapcloser.
         /// </summary>
         /// <param name="sender">The object.</param>
@@ -147,6 +193,7 @@ namespace ExorAIO.Champions.Taliyah
             }
 
             if (Vars.E.IsReady() &&
+                !Vars.W.IsReady() &&
                 args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
@@ -169,13 +216,15 @@ namespace ExorAIO.Champions.Taliyah
             {
                 Vars.W.Cast(
                     args.Sender.ServerPosition,
+                    (GameObjects.Player.HealthPercent < 10 ||
                     args.Sender.IsFacing(GameObjects.Player) &&
-                    GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
+                    GameObjects.Player.Distance(args.Sender) < Vars.AARange/2)
                         ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
             }
 
             if (Vars.E.IsReady() &&
+                !Vars.W.IsReady() &&
                 args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
