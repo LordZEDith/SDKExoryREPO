@@ -23,9 +23,9 @@ namespace ExorAIO.Champions.Amumu
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",       "Combo",       true));
-                    Vars.QMenu.Add(new MenuBool("killsteal",   "KillSteal",   true));
-                    Vars.QMenu.Add(new MenuBool("junglegrab",  "JungleGrab",  true));
+                    Vars.QMenu.Add(new MenuBool("combo",      "Combo",      true));
+                    Vars.QMenu.Add(new MenuBool("killsteal",  "KillSteal",  true));
+                    Vars.QMenu.Add(new MenuSliderButton("junglegrab", "JungleGrab / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -54,8 +54,8 @@ namespace ExorAIO.Champions.Amumu
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / if Enemies in Range >=", 1, 1, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal"));
+                    Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / if Enemies in Range >=", 2, 1, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }

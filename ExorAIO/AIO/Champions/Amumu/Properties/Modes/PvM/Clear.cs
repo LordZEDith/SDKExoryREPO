@@ -30,7 +30,8 @@ namespace ExorAIO.Champions.Amumu
                     ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
                 Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)))
+                if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
+                    !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.Q.Cast(Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range)).ServerPosition);
                 }
@@ -42,12 +43,12 @@ namespace ExorAIO.Champions.Amumu
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
                     ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The E LaneClear Logic.
                 /// </summary>
-                if (Targets.Minions.Count() >= 3)
+                if (Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3)
                 {
                     Vars.E.Cast();
                 }
@@ -55,7 +56,7 @@ namespace ExorAIO.Champions.Amumu
                 /// <summary>
                 ///     The E JungleClear Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any())
+                else if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast();
                 }
