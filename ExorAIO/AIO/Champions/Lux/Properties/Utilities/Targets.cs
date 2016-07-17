@@ -43,7 +43,14 @@ namespace ExorAIO.Champions.Lux
         /// </summary>
         public static List<Obj_AI_Minion> EMinions
             =>
-                GameObjects.EnemyMinions.Concat(GameObjects.Jungle).Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
+                Targets.Minions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
+
+        /// <summary>
+        ///     The jungle minions hit by the E missile.
+        /// </summary>
+        public static List<Obj_AI_Minion> EJungleMinions
+            =>
+                Targets.JungleMinions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
 
         /// <summary>
         ///     The lowest ally in range.

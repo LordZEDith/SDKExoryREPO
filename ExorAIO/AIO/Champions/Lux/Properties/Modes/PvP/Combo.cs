@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             if (Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.E.Range) &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
+                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1 &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).CastPosition);

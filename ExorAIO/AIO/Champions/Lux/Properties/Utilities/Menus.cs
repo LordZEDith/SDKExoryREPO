@@ -65,7 +65,8 @@ namespace ExorAIO.Champions.Lux
                 {
                     Vars.EMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.EMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%",  50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

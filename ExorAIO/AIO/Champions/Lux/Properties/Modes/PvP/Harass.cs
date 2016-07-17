@@ -31,12 +31,12 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             if (Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.E.Range) &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
+                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1 &&
                 GameObjects.Player.ManaPercent >
                     ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
                 Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).CastPosition);
             }
         }
     }

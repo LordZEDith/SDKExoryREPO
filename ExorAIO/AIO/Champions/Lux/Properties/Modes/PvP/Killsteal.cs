@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.Lux
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                         return;
@@ -72,8 +72,8 @@ namespace ExorAIO.Champions.Lux
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
-                    if (Bools.IsImmobile(Targets.Target) ||
-                        !Targets.Target.IsValidTarget(Vars.AARange))
+                    if (Bools.IsImmobile(target) ||
+                        !target.IsValidTarget(Vars.AARange))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }

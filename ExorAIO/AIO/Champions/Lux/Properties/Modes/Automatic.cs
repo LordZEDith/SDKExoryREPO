@@ -39,14 +39,13 @@ namespace ExorAIO.Champions.Lux
                     /// </summary>
                     case OrbwalkingMode.Combo:
 
-                        foreach (var target in GameObjects.EnemyHeroes.Where(
+                        if (GameObjects.EnemyHeroes.Any(
                             t =>
                                 !Bools.IsImmobile(t) &&
                                 !t.HasBuff("luxilluminatingfraulein") &&
                                 t.Distance(Lux.EMissile.Position) < Vars.E.Width-10f))
                         {
                             Vars.E.Cast();
-                            break;
                         }
                         break;
 
@@ -57,6 +56,10 @@ namespace ExorAIO.Champions.Lux
 
                         if (Targets.EMinions.Any() &&
                             Targets.EMinions.Count() >= 3)
+                        {
+                            Vars.E.Cast();
+                        }
+                        else if (Targets.EJungleMinions.Any())
                         {
                             Vars.E.Cast();
                         }
@@ -76,8 +79,8 @@ namespace ExorAIO.Champions.Lux
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range)))
+                        t.IsValidTarget(Vars.Q.Range) &&
+                        !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
