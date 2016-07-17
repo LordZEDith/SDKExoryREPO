@@ -91,46 +91,6 @@ namespace ExorAIO.Champions.Jhin
             }
 
             /// <summary>
-            ///     The Automatic W Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.HasBuff("jhinespotteddebuff") &&
-                        t.IsValidTarget(Vars.W.Range-150f) &&
-                        !t.IsValidTarget(Vars.AARange+50f) &&
-                        Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
-                {
-                    if (!Vars.W.GetPrediction(target).CollisionObjects.Any(c => !c.HasBuff("jhinespotteddebuff")))
-                    {
-                        if (Bools.IsImmobile(target))
-                        {
-                            if (Vars.E.IsReady() &&
-                                target.IsValidTarget(Vars.E.Range))
-                            {
-                                Vars.E.Cast(target.ServerPosition);
-                            }
-
-                            Vars.W.Cast(target.ServerPosition);
-                            return;
-                        }
-
-                        if (Vars.E.IsReady() &&
-                            target.IsValidTarget(Vars.E.Range))
-                        {
-                            Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
-                        }
-
-                        Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
-                    }
-                }
-            }
-
-            /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
@@ -145,6 +105,25 @@ namespace ExorAIO.Champions.Jhin
                     Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(
                         target.ServerPosition,
                         GameObjects.Player.Distance(target) + target.BoundingRadius*2));
+                }
+            }
+
+            /// <summary>
+            ///     The Automatic W Logic.
+            /// </summary>
+            if (Vars.W.IsReady() &&
+                !GameObjects.Player.IsUnderEnemyTurret() &&
+                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            {
+                foreach (var target in GameObjects.EnemyHeroes.Where(
+                    t =>
+                        !Invulnerable.Check(t) &&
+                        Bools.IsImmobile(target) &&
+                        t.HasBuff("jhinespotteddebuff") &&
+                        t.IsValidTarget(Vars.W.Range-150f) &&
+                        Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                {
+                    Vars.W.Cast(target.ServerPosition);
                 }
             }
         }

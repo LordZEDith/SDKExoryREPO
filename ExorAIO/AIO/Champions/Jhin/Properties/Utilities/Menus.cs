@@ -37,6 +37,7 @@ namespace ExorAIO.Champions.Jhin
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
+                    Vars.WMenu.Add(new MenuBool("combo",     "Combo",     true));
                     Vars.WMenu.Add(new MenuBool("logical",   "Logical",   true));
                     Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.WMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));

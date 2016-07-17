@@ -93,14 +93,16 @@ namespace ExorAIO.Champions.Sivir
                                     s =>
                                         !s.SpellName.Equals("KatarinaE") &&
                                         !s.SpellName.Equals("TalonCutthroat") &&
-                                        s.ChampionName.Equals(enemy.ChampionName) &&
-                                        ((s.CastType.Contains(CastType.Activate) &&
-                                        AutoAttack.IsAutoAttackReset(s.SpellName)) ||
-                                        s.CastType.Contains(CastType.EnemyChampions))))
+                                        s.ChampionName.Equals(enemy.ChampionName)))
                                 {
-                                    if (spell.SpellType.HasFlag(SpellType.Targeted) ||
-                                        spell.SpellType.HasFlag(SpellType.Activated) ||
-                                        spell.SpellType.HasFlag(SpellType.TargetedMissile))
+                                    if ((enemy.IsMelee &&
+                                        spell.CastType.Contains(CastType.Activate) &&
+                                        spell.SpellType.HasFlag(SpellType.Activated) &&
+                                        AutoAttack.IsAutoAttackReset(spell.SpellName)) ||
+
+                                        ((spell.SpellType.HasFlag(SpellType.Targeted) ||
+                                        spell.SpellType.HasFlag(SpellType.TargetedMissile)) &&
+                                        spell.CastType.Contains(CastType.EnemyChampions)))
                                     {
                                         Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}", $"Shield: {enemy.ChampionName}'s {spell.Slot}", true));
                                     }

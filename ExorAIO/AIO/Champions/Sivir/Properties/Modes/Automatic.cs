@@ -205,16 +205,16 @@ namespace ExorAIO.Champions.Sivir
 
                                 switch ((sender as Obj_AI_Hero).ChampionName)
                                 {
-                                    case "Zed":
-                                        DelayAction.Add(200, ()=> { Vars.E.Cast(); });
-                                        break;
-
                                     case "Caitlyn":
                                         DelayAction.Add(1050, ()=> { Vars.E.Cast(); });
                                         break;
 
                                     case "Nocturne":
                                         DelayAction.Add(350, ()=> { Vars.E.Cast(); });
+                                        break;
+
+                                    case "Zed":
+                                        DelayAction.Add(200, ()=> { Vars.E.Cast(); });
                                         break;
 
                                     default:
