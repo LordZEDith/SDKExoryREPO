@@ -21,28 +21,25 @@ namespace ExorAIO.Champions.Quinn
             ///     The Automatic W Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.EnemyHeroes.Any(
+                foreach (var enemy in GameObjects.EnemyHeroes.Where(
                     x =>
                         !x.IsDead &&
                         !x.IsVisible &&
                         Vars.W.Range >
                             x.Distance(GameObjects.Player.ServerPosition)))
                 {
-                    foreach (var enemy in GameObjects.EnemyHeroes.Where(
-                        x =>
-                            !x.IsDead &&
-                            !x.IsVisible &&
-                            Vars.W.Range >
-                                x.Distance(GameObjects.Player.ServerPosition)))
-                    {
-                        Vars.W.Cast();
-                    }
+                    Vars.W.Cast();
                 }
-                else if (Vars.Locations.Any(h => Vars.W.Range > GameObjects.Player.Distance(h)))
+
+                if (!GameObjects.EnemyHeroes.Any(
+                    x =>
+                        !x.IsDead &&
+                        !x.IsVisible &&
+                        Vars.W.Range >
+                            x.Distance(GameObjects.Player.ServerPosition)) &&
+                    Vars.Locations.Any(h => Vars.W.Range > GameObjects.Player.Distance(h)))
                 {
                     Vars.W.Cast();
                 }

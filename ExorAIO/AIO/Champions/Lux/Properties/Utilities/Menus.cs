@@ -24,10 +24,10 @@ namespace ExorAIO.Champions.Lux
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
-                    Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("gapcloser", "Gapcloser", true));
+                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",          true));
+                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",        true));
+                    Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal",      true));
+                    Vars.QMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);

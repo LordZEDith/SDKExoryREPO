@@ -14,6 +14,7 @@ namespace ExorAIO.Champions.Quinn
         public static void Initialize()
         {
             Game.OnUpdate += Quinn.OnUpdate;
+            Obj_AI_Base.OnDoCast += Quinn.OnDoCast;
             Events.OnGapCloser += Quinn.OnGapCloser;
             Events.OnInterruptableTarget += Quinn.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Quinn.OnAction;

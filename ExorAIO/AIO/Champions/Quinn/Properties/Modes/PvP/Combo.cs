@@ -19,9 +19,9 @@ namespace ExorAIO.Champions.Quinn
         public static void Combo(EventArgs args)
         {
             if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
                 Targets.Target.HasBuff("quinnw") ||
-                Invulnerable.Check(Targets.Target))
+                Invulnerable.Check(Targets.Target) ||
+                Targets.Target.IsValidTarget(Vars.AARange))
             {
                 return;
             }
@@ -45,15 +45,10 @@ namespace ExorAIO.Champions.Quinn
             ///     The Combo E Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsMelee &&
-                        t.IsValidTarget(200f)))
-                {
-                    Vars.E.CastOnUnit(target);
-                }
+                Vars.E.CastOnUnit(Targets.Target);
             }
         }
     }
