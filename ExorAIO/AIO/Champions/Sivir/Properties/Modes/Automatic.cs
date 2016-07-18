@@ -52,7 +52,7 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("jaxcounterstrike") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
-                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - (1000 - Game.Ping)/1000 &&
+                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - 1 &&
                             Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"].GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();
@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("kogmawicathiansurprise") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("kogmawicathiansurprise").EndTime - Game.Time >
-                            target.GetBuff("kogmawicathiansurprise").EndTime - target.GetBuff("kogmawicathiansurprise").StartTime - (4000 - Game.Ping)/1000 &&
+                            target.GetBuff("kogmawicathiansurprise").EndTime - target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
                             Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();

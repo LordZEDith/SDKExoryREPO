@@ -194,34 +194,36 @@ namespace ExorAIO.Champions.Lux
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero)
+                    if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
+                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
-                        if (!GameObjects.EnemyHeroes.Any(
+                        if (GameObjects.EnemyHeroes.Any(
                             t =>
                                 t.IsValidTarget(Vars.AARange) &&
                                 t.HasBuff("luxilluminatingfraulein")))
                         {
-                            Variables.Orbwalker.ForceTarget = null;
+                            args.Process = false;
+                            Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
+                                t =>
+                                    t.IsValidTarget(Vars.AARange) &&
+                                    t.HasBuff("luxilluminatingfraulein")).OrderByDescending(
+                                        o =>
+                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                             return;
                         }
-
-                        Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("luxilluminatingfraulein")).OrderByDescending(
-                                    o =>
-                                        Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+ 
+                        Variables.Orbwalker.ForceTarget = null;
                     }
-                    
+
+                    /// <summary>
+                    ///     The 'Support Mode' Logic.
+                    /// </summary>
                     switch (Variables.Orbwalker.ActiveMode)
                     {
                         case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
 
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
                             if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
                             {
                                 if (args.Target is Obj_AI_Minion &&

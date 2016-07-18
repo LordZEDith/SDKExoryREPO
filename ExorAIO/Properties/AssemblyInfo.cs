@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("[SDK]ExorAIO")]
-[assembly: AssemblyDescription("~The goal comes closer.~ List of Supported Champions: Akali, Amumu, Anivia, Ashe, Caitlyn, Cassiopeia, Corki, Darius, Draven, Dr. Mundo, Evelynn, Ezreal, Graves, Jax, Jhin, Jinx, Kalista, Karma, Kog'Maw, Lucian, Lux, Nautilus, Nunu, Olaf, Pantheon, Quinn, Renekton, Ryze, Sivir, Tristana, Tryndamere, Twitch, Udyr, Vayne, Veigar, Warwick.")]
+[assembly: AssemblyDescription("~The goal comes closer.~ List of Supported Champions: Akali, Amumu, Anivia, Ashe, Caitlyn, Cassiopeia, Corki, Darius, Diana, Draven, Dr. Mundo, Evelynn, Ezreal, Graves, Jax, Jhin, Jinx, Kalista, Karma, Kog'Maw, Lucian, Lux, Nautilus, Nunu, Olaf, Pantheon, Quinn, Renekton, Ryze, Sivir, Taliyah, Tristana, Tryndamere, Twitch, Udyr, Vayne, Veigar, Warwick.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LeagueSharp")]
 [assembly: AssemblyProduct("[SDK]ExorAIO")]
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("6.14.0.20")]
-[assembly: AssemblyFileVersion("6.14.0.20")]
+[assembly: AssemblyVersion("6.14.0.21")]
+[assembly: AssemblyFileVersion("6.14.0.21")]

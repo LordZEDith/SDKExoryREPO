@@ -48,7 +48,6 @@ namespace ExorAIO.Champions.Draven
                     t =>
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
-                        !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
