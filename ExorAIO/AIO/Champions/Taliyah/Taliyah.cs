@@ -104,11 +104,6 @@ namespace ExorAIO.Champions.Taliyah
             /// </summary>
             Logics.Killsteal(args);
 
-            if (GameObjects.Player.IsWindingUp)
-            {
-                return;
-            }
-
             /// <summary>
             ///     Initializes the orbwalkingmodes.
             /// </summary>
