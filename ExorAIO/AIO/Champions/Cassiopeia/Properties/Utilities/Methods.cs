@@ -16,6 +16,7 @@ namespace ExorAIO.Champions.Cassiopeia
             Game.OnUpdate += Cassiopeia.OnUpdate;
             Events.OnGapCloser += Cassiopeia.OnGapCloser;
             Events.OnInterruptableTarget += Cassiopeia.OnInterruptableTarget;
+            Variables.Orbwalker.OnAction += Cassiopeia.OnAction;
         }
     }
 }

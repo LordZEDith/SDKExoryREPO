@@ -26,18 +26,6 @@ namespace ExorAIO.Champions.Cassiopeia
             }
 
             /// <summary>
-            ///     The No AA while in Combo option.
-            /// </summary>
-            if (Vars.Menu["miscellaneous"]["noaa"].GetValue<MenuBool>().Value)
-            {
-                Variables.Orbwalker.SetAttackState(
-                    Bools.HasSheenBuff() ||
-                    GameObjects.Player.ManaPercent < 10 ||
-                    Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo ||
-                    (!Vars.Q.IsReady() && !Vars.W.IsReady() && !Vars.E.IsReady()));
-            }
-
-            /// <summary>
             ///     The Tear Stacking Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&

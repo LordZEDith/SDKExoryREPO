@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Cassiopeia
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuBool("noaa", "Don't AA in Combo"));
+                Vars.MiscMenu.Add(new MenuBool("noaacombo", "Don't AA in Combo"));
                 Vars.MiscMenu.Add(new MenuSliderButton("tear", "Stack Tear / if Mana >= x%", 80, 0, 95, true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
