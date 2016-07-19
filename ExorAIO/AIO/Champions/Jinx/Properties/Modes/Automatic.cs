@@ -52,7 +52,7 @@ namespace ExorAIO.Champions.Jinx
                             {
                                 if (!Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                                 {
-                                    Console.WriteLine("ExorAIO: Jinx - Combo - Option Block.");
+                                    //Console.WriteLine("ExorAIO: Jinx - Combo - Option Block.");
                                     return;
                                 }
                             }
@@ -68,7 +68,7 @@ namespace ExorAIO.Champions.Jinx
                                         ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["harass"]) ||
                                     !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
                                 {
-                                    Console.WriteLine("ExorAIO: Jinx - Hybrid - ManaManager or Option Block.");
+                                    //Console.WriteLine("ExorAIO: Jinx - Hybrid - ManaManager or Option Block.");
                                     return;
                                 }
                             }
@@ -102,7 +102,7 @@ namespace ExorAIO.Champions.Jinx
                                     ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]) ||
                                 !Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
                             {
-                                Console.WriteLine("ExorAIO: Jinx - Clear - ManaManager or Option Block.");
+                                //Console.WriteLine("ExorAIO: Jinx - Clear - ManaManager or Option Block.");
                                 return;
                             }
 
@@ -111,19 +111,6 @@ namespace ExorAIO.Champions.Jinx
                             /// </summary>
                             if (Targets.Minions.Any(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
-                                /*
-                                /// <summary>
-                                ///     Enable if:
-                                ///     No minion in PowPow Range and at least 1 minion in Fishbones Range. (Lane Range Logic).
-                                /// </summary>
-                                if (!Targets.Minions.Any(m => m.IsValidTarget(Vars.PowPow.Range)))
-                                {
-                                    Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - LaneClear - Enabled for Range Check.");
-                                    return;
-                                }
-                                */
-                                
                                 /// <summary>
                                 ///     Disable if:
                                 ///     The player has Runaan's Hurricane and there are more than 1 hittable Minions..
@@ -138,7 +125,7 @@ namespace ExorAIO.Champions.Jinx
                                                     m2.Distance(Targets.Minions.First(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)) < 250f) >= 3)
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - LaneClear - Enabled for AoE Check.");
+                                    //Console.WriteLine("ExorAIO: Jinx - LaneClear - Enabled for AoE Check.");
                                     return;
                                 }
                             }
@@ -155,7 +142,7 @@ namespace ExorAIO.Champions.Jinx
                                 if (!Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.PowPow.Range)))
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - JungleClear - Enabled for Range Check.");
+                                    //Console.WriteLine("ExorAIO: Jinx - JungleClear - Enabled for Range Check.");
                                     return;
                                 }
 
@@ -166,7 +153,7 @@ namespace ExorAIO.Champions.Jinx
                                 else if (Targets.JungleMinions.Count(m2 => m2.Distance(Targets.JungleMinions[0]) < 250f) >= 2)
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - JungleClear - Enabled for AoE Check.");
+                                    //Console.WriteLine("ExorAIO: Jinx - JungleClear - Enabled for AoE Check.");
                                     return;
                                 }
                             }
@@ -186,7 +173,7 @@ namespace ExorAIO.Champions.Jinx
                                     ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]) ||
                                 !Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
                             {
-                                Console.WriteLine("ExorAIO: Jinx - LastHit - ManaManager or Option Block.");
+                                //Console.WriteLine("ExorAIO: Jinx - LastHit - ManaManager or Option Block.");
                                 return;
                             }
                             
@@ -205,7 +192,7 @@ namespace ExorAIO.Champions.Jinx
                                         m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - LastHit - Enabled.");
+                                    //Console.WriteLine("ExorAIO: Jinx - LastHit - Enabled.");
                                     return;
                                 }
                             }
@@ -239,7 +226,7 @@ namespace ExorAIO.Champions.Jinx
                                 if (!Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - Combo - Option Disable.");
+                                    //Console.WriteLine("ExorAIO: Jinx - Combo - Option Disable.");
                                     return;
                                 }
                             }
@@ -256,7 +243,7 @@ namespace ExorAIO.Champions.Jinx
                                     !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - Mixed - ManaManager or Option Disable.");
+                                    //Console.WriteLine("ExorAIO: Jinx - Mixed - ManaManager or Option Disable.");
                                     return;
                                 }
                             }
@@ -277,7 +264,7 @@ namespace ExorAIO.Champions.Jinx
                                     (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).CountEnemyHeroesInRange(200f) < 2)
                                 {
                                     Vars.Q.Cast();
-                                    Console.WriteLine("ExorAIO: Jinx - Combo/Hybrid - Disabled.");
+                                    //Console.WriteLine("ExorAIO: Jinx - Combo/Hybrid - Disabled.");
                                     return;
                                 }
                             }
@@ -294,11 +281,15 @@ namespace ExorAIO.Champions.Jinx
                             ///     The Clear Option is disabled. (Option check).
                             /// </summary>
                             if (GameObjects.Player.ManaPercent <
-                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]) ||
-                                !Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - Clear - ManaManager or Option Disable.");
+                                //Console.WriteLine("ExorAIO: Jinx - Clear - ManaManager or Option Disable.");
+                                return;
+                            }
+
+                            if (!Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+                            {
                                 return;
                             }
 
@@ -312,7 +303,7 @@ namespace ExorAIO.Champions.Jinx
                                 Targets.Minions.Count(m2 => m2.Distance(Targets.Minions.First(m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)) < 250f) < 3))
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - LaneClear - Disabled.");
+                                //Console.WriteLine("ExorAIO: Jinx - LaneClear - Disabled.");
                                 return;
                             }
 
@@ -325,7 +316,7 @@ namespace ExorAIO.Champions.Jinx
                                 Targets.JungleMinions.Count(m2 => m2.Distance(Targets.JungleMinions[0]) < 250f) < 2)
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - JungleClear - Disabled.");
+                                //Console.WriteLine("ExorAIO: Jinx - JungleClear - Disabled.");
                                 return;
                             }
                             break;
@@ -341,14 +332,18 @@ namespace ExorAIO.Champions.Jinx
                             ///     The LastHit Option is disabled. (Option check).
                             /// </summary>
                             if (GameObjects.Player.ManaPercent <
-                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]) ||
-                                !Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]))
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - LastHit - ManaManager or Option Disable.");
+                                //Console.WriteLine("ExorAIO: Jinx - LastHit - ManaManager or Option Disable.");
                                 return;
                             }
-                            
+
+                            if (!Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+                            {
+                                return;
+                            }
+
                             /// <summary>
                             ///     Disable if:
                             ///     No killable minion in FishBones Range. (LastHit Range Logic).
@@ -359,7 +354,7 @@ namespace ExorAIO.Champions.Jinx
                                     m.Health < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - LastHit - Range Killable Disable.");
+                                //Console.WriteLine("ExorAIO: Jinx - LastHit - Range Killable Disable.");
                                 return;
                             }
                             else if (Targets.Minions.Any(
@@ -368,7 +363,7 @@ namespace ExorAIO.Champions.Jinx
                                     m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                             {
                                 Vars.Q.Cast();
-                                Console.WriteLine("ExorAIO: Jinx - LastHit - Normally Killable Disable.");
+                                //Console.WriteLine("ExorAIO: Jinx - LastHit - Normally Killable Disable.");
                                 return;
                             }
                             break;
@@ -378,7 +373,7 @@ namespace ExorAIO.Champions.Jinx
                         /// </summary>
                         default:
                             Vars.Q.Cast();
-                            Console.WriteLine("ExorAIO: Jinx - General - Disabled.");
+                            //Console.WriteLine("ExorAIO: Jinx - General - Disabled.");
                             break;
                     }
                 }
