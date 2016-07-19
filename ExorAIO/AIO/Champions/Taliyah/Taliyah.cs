@@ -142,6 +142,7 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Automatic E Logics.
             /// </summary>
             if (sender.IsMe &&
+                Vars.E.IsReady() &&
                 args.Slot == SpellSlot.W)
             {
                 switch (Variables.Orbwalker.ActiveMode)
@@ -150,8 +151,7 @@ namespace ExorAIO.Champions.Taliyah
                         /// <summary>
                         ///     The E Combo Logic.
                         /// </summary>
-                        if (Vars.E.IsReady() &&
-                            Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                        if (Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast((GameObjects.EnemyHeroes.OrderBy(o => o.DistanceToPlayer()).First()).ServerPosition);
                         }
@@ -161,16 +161,9 @@ namespace ExorAIO.Champions.Taliyah
                         /// <summary>
                         ///     The Automatic E Logic.
                         /// </summary>
-                        if (Vars.E.IsReady() &&
-                            Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                        if (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
                         {
-                            foreach (var target in GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    Bools.IsImmobile(t) &&
-                                    !Invulnerable.Check(t, DamageType.Magical)))
-                            {
-                                Vars.E.Cast(target.ServerPosition);
-                            }
+                            Vars.E.Cast((GameObjects.EnemyHeroes.OrderBy(o => o.DistanceToPlayer()).First()).ServerPosition);
                         }
                         break;
                 }

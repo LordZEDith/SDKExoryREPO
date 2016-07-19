@@ -110,7 +110,8 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
+                    if (args.Target is Obj_AI_Hero &&
+                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
                             GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
