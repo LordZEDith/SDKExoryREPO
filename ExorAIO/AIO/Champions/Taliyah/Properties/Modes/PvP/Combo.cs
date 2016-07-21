@@ -42,7 +42,7 @@ namespace ExorAIO.Champions.Taliyah
                         : GameObjects.Player.ServerPosition);
             }
 
-            if (!Vars.W.IsReady())
+            if (Vars.W.IsReady())
             {
                 return;
             }
