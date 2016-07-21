@@ -86,7 +86,7 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     The last tick.
         /// </summary>
-        public static int Tick = 0;
+        public static int LastTick = 0;
 
         /// <summary>
         ///     The args End.
@@ -111,7 +111,8 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     The Q Stacks.
         /// </summary>
-        public static int RyzeStacks =>
+        public static int RyzeStacks
+        =>
             GameObjects.Player.HasBuff("ryzeqiconnocharge")
                 ? 0
                 : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")

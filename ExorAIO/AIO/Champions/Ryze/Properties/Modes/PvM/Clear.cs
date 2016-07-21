@@ -31,18 +31,18 @@ namespace ExorAIO.Champions.Ryze
                     ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                 Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in Targets.Minions.Where(
-                    m =>
-                        m.HasBuff("RyzeE") &&
-                        m.IsValidTarget(Vars.Q.Range) &&
-                        Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q) * (1 + (m.HasBuff("RyzeE")
-                                ? new double[] { 40, 55, 70, 85, 100, 100 }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level] / 100
-                                : 0)) &&
-                        Vars.GetRealHealth(m) >
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range)))
                 {
-                    Vars.Q.Cast(minion);
+                    if (minion.HasBuff("RyzeE") &&
+                        Vars.GetRealHealth(minion) >
+                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
+                        Vars.GetRealHealth(minion) <
+                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q) * (1 + (minion.HasBuff("RyzeE")
+                                ? new double[] { 40, 55, 70, 85, 100 }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1] / 100
+                                : 0)))
+                    {
+                        Vars.Q.Cast(minion);
+                    }
                 }
             }
 
@@ -56,12 +56,17 @@ namespace ExorAIO.Champions.Ryze
             {
                 foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.E.Range)))
                 {
-                    Vars.E.CastOnUnit(
-                        minion.HasBuff("RyzeE") ||
-                        Vars.GetRealHealth(minion) <
-                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.E)
-                        ? minion
-                        : Targets.Minions.First(m => m.IsValidTarget(Vars.E.Range)));
+                    if (minion.HasBuff("RyzeE") ||
+                        (Vars.GetRealHealth(minion) <
+                            (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
+                        Vars.GetRealHealth(minion) >
+                            (float)GameObjects.Player.GetAutoAttackDamage(minion)))
+                    {
+                        Vars.E.CastOnUnit(minion);
+                        return;
+                    }
+
+                    Vars.E.CastOnUnit(Targets.Minions.First(m => m.IsValidTarget(Vars.E.Range)));
                 }
             }
 

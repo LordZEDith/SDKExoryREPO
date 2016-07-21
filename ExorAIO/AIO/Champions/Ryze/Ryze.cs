@@ -95,6 +95,13 @@ namespace ExorAIO.Champions.Ryze
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (GameObjects.Player.HealthPercent <=
+                    Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
+                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+            {
+                return;
+            }
+
             if (Vars.W.IsReady() &&
                 args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&

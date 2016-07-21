@@ -25,12 +25,10 @@ namespace ExorAIO.Champions.Ryze
                 return;
             }
             
-            if (Bools.HasSheenBuff())
+            if (Bools.HasSheenBuff() &&
+                Targets.Target.IsValidTarget(Vars.AARange))
             {
-                if (Targets.Target.IsValidTarget(Vars.AARange))
-                {
-                    return;
-                }
+                return;
             }
 
             /// <summary>
@@ -40,47 +38,31 @@ namespace ExorAIO.Champions.Ryze
             {
                 case 0:
                 case 1:
-                    if (Vars.RyzeStacks == 0 ||
+                    /// <summary>
+                    ///     The Q Combo Logic.
+                    /// </summary>
+                    if (Vars.RyzeStacks != 1 ||
                         (GameObjects.Player.HealthPercent >
-                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
-                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
+                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue))
                     {
-                        /// <summary>
-                        ///     The Q Combo Logic.
-                        /// </summary>
                         if (Vars.Q.IsReady() &&
+                            Environment.TickCount - Vars.LastTick > 250 &&
                             Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
                             Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                         {
-                            if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
-                            {
-                                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                            }
+                            Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                         }
                     }
 
                     /// <summary>
                     ///     The W Combo Logic.
                     /// </summary>
-                    if (Targets.Target.HasBuff("RyzeE") ||
-                        (GameObjects.Player.HealthPercent >
-                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
-                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+                    if (Vars.W.IsReady() &&
+                        Targets.Target.IsValidTarget(Vars.W.Range) &&
+                        Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                     {
-                        if (Vars.W.IsReady() &&
-                            Targets.Target.IsValidTarget(Vars.W.Range) &&
-                            Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
-                        {
-                            Vars.W.CastOnUnit(Targets.Target);
-                            
-                            if (Vars.RyzeStacks == 1 &&
-                                (GameObjects.Player.HealthPercent >
-                                    Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue) ||
-                                !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
-                            {
-                                return;
-                            }
-                        }
+                        Vars.W.CastOnUnit(Targets.Target);
                     }
 
                     /// <summary>
@@ -91,6 +73,8 @@ namespace ExorAIO.Champions.Ryze
                         Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
                     {
                         Vars.E.CastOnUnit(Targets.Target);
+                        Vars.LastTick = Environment.TickCount;
+                        return;
                     }
                     break;
 

@@ -42,6 +42,11 @@ namespace ExorAIO.Champions.Taliyah
                         : GameObjects.Player.ServerPosition);
             }
 
+            if (!Vars.W.IsReady())
+            {
+                return;
+            }
+
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
@@ -56,7 +61,6 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
-                !Vars.W.IsReady() &&
                 !Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
