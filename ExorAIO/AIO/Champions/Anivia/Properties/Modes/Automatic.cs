@@ -81,7 +81,7 @@ namespace ExorAIO.Champions.Anivia
                 switch (Variables.Orbwalker.ActiveMode)
                 {
                     /// <summary>
-                    ///     The Q Clear Logic.
+                    ///     The Clear Q Explosion Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
 
@@ -102,7 +102,7 @@ namespace ExorAIO.Champions.Anivia
                         break;
 
                     /// <summary>
-                    ///     The Default Q Logic.
+                    ///     The Combo Q Explosion Logic.
                     /// </summary>
                     default:
 
@@ -115,7 +115,6 @@ namespace ExorAIO.Champions.Anivia
                         {
                             Vars.Q.Cast();
                         }
-                        
                         break;
                 }
             }
@@ -131,7 +130,7 @@ namespace ExorAIO.Champions.Anivia
                 switch (Variables.Orbwalker.ActiveMode)
                 {
                     /// <summary>
-                    ///     The R Clear Logic.
+                    ///     The Clear R Disable Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
 
@@ -149,9 +148,9 @@ namespace ExorAIO.Champions.Anivia
                         break;
 
                     /// <summary>
-                    ///     The Default R Logic.
+                    ///     The Combo R Disable Logic.
                     /// </summary>
-                    default:
+                    case OrbwalkingMode.Combo:
 
                         if (!Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
                         {
@@ -162,6 +161,9 @@ namespace ExorAIO.Champions.Anivia
                         {
                             Vars.R.Cast();
                         }
+                        break;
+
+                    default:
                         break;
                 }
             }

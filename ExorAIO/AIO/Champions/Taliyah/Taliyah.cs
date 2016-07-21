@@ -138,7 +138,7 @@ namespace ExorAIO.Champions.Taliyah
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2));
+                Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End)*2));
             }
 
             if (Vars.E.IsReady() &&
@@ -146,7 +146,7 @@ namespace ExorAIO.Champions.Taliyah
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(args.Sender.ServerPosition);
+                Vars.E.Cast(args.End);
             }
         }
 
