@@ -149,7 +149,6 @@ namespace ExorAIO.Champions.Tristana
                                 t.IsValidTarget(Vars.AARange) &&
                                 t.HasBuff("TristanaECharge")))
                         {
-                            args.Process = false;
                             Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
                                 t =>
                                     t.IsValidTarget(Vars.AARange) &&
