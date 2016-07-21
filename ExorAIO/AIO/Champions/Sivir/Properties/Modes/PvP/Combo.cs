@@ -33,13 +33,9 @@ namespace ExorAIO.Champions.Sivir
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (!Targets.Target.IsValidTarget(Vars.AARange) &&
-                    Vars.Q.GetPrediction(Targets.Target).Hitchance >= HitChance.High)
-                {
-                    Vars.Q.Cast(
-                        Vars.Q.GetPrediction(Targets.Target)
-                            .UnitPosition.Extend((Vector2)GameObjects.Player.ServerPosition, -140));
-                }
+                Vars.Q.Cast(Targets.Target.IsValidTarget(300f)
+                    ? Targets.Target.ServerPosition
+                    : Vars.Q.GetPrediction(Targets.Target).CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
             }
         }
     }

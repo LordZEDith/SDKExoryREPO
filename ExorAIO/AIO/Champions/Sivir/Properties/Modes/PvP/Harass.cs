@@ -34,13 +34,9 @@ namespace ExorAIO.Champions.Sivir
                     ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.Player.Distance(Targets.Target) > 650 &&
-                    Vars.Q.GetPrediction(Targets.Target).Hitchance >= HitChance.Medium)
-                {
-                    Vars.Q.Cast(
-                        Vars.Q.GetPrediction(Targets.Target)
-                            .UnitPosition.Extend((Vector2)GameObjects.Player.ServerPosition, -140));
-                }
+                Vars.Q.Cast(Targets.Target.IsValidTarget(300f)
+                    ? Targets.Target.ServerPosition
+                    : Vars.Q.GetPrediction(Targets.Target).CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
             }
         }
     }
