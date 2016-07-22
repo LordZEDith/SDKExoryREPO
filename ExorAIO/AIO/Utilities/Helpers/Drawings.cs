@@ -28,12 +28,15 @@ namespace ExorAIO.Utilities
                 ///     Loads the R Minimap drawing.
                 /// </summary>
                 if (Vars.R != null &&
-                    Vars.R.IsReady())
+                    Vars.R.IsReady() &&
+                    Vars.Menu["drawings"]["r"] != null &&
+                    Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
                 {
                     if (GameObjects.Player.ChampionName.Equals("Lux") ||
                         GameObjects.Player.ChampionName.Equals("Jhin") ||
                         GameObjects.Player.ChampionName.Equals("Ryze") ||
-                        GameObjects.Player.ChampionName.Equals("Taliyah"))
+                        GameObjects.Player.ChampionName.Equals("Taliyah") ||
+                        GameObjects.Player.ChampionName.Equals("Caitlyn"))
                     {
                         Geometry.DrawCircleOnMinimap(GameObjects.Player.Position, Vars.R.Range, Color.White);
                     }

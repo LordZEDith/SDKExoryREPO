@@ -19,11 +19,6 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Killsteal(EventArgs args)
         {
-            if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)))
-            {
-                return;
-            }
-
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
@@ -33,6 +28,7 @@ namespace ExorAIO.Champions.Caitlyn
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
                         !Invulnerable.Check(t) &&
+                        !t.IsValidTarget(Vars.AARange) &&
                         t.IsValidTarget(Vars.Q.Range-200f)))
                 {
 					if (Vars.GetRealHealth(target) <
@@ -47,11 +43,6 @@ namespace ExorAIO.Champions.Caitlyn
                 }
             }
 
-            if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.W.Range)))
-            {
-                return;
-            }
-
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
@@ -62,6 +53,7 @@ namespace ExorAIO.Champions.Caitlyn
                     t =>
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
+                        !t.IsValidTarget(Vars.AARange+200) &&
                         Vars.GetRealHealth(t) <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
