@@ -90,6 +90,15 @@ namespace ExorAIO.Champions.Caitlyn
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>
+            ///     Sets the miscellaneous menu.
+            /// </summary>
+            Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
+            {
+                Vars.MiscMenu.Add(new MenuBool("reversede", "Reverse E if manually casted (Dash to CursorPos)"));
+            }
+            Vars.Menu.Add(Vars.MiscMenu);
+
+            /// <summary>
             ///     Sets the menu for the drawings.
             /// </summary>
             Vars.DrawingsMenu = new Menu("drawings", "Drawings");

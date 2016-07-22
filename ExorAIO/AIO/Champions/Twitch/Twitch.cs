@@ -120,11 +120,11 @@ namespace ExorAIO.Champions.Twitch
         /// <summary>
         ///     Called on spell cast.
         /// </summary>
-        /// <param name="sender">The sender.</param>
+        /// <param name="spellbook">The spellbook.</param>
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
-        public static void OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
+        public static void OnCastSpell(Spellbook spellbook, SpellbookCastSpellEventArgs args)
         {
-            if (sender.Owner.IsMe &&
+            if (spellbook.Owner.IsMe &&
                 GameObjects.Player.Spellbook.GetSpell(args.Slot).Name.Equals("recall") &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {

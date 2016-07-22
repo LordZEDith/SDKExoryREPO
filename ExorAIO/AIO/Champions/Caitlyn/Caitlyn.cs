@@ -130,22 +130,67 @@ namespace ExorAIO.Champions.Caitlyn
         /// <summary>
         ///     Fired on spell cast.
         /// </summary>
-        /// <param name="sender">The object.</param>
+        /// <param name="spellbook">The spellbook.</param>
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
-        public static void OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
+        public static void OnCastSpell(Spellbook spellbook, SpellbookCastSpellEventArgs args)
+        {
+            if (spellbook.Owner.IsMe)
+            {
+                switch (args.Slot)
+                {
+                    case SpellSlot.W:
+                        /// <summary>
+                        ///     Blocks trap cast if there is another trap nearby.
+                        /// </summary>
+                        if (ObjectManager.Get<Obj_AI_Minion>().Any(
+                            m =>
+                                m.Distance(args.EndPosition) < 200 &&
+                                m.CharData.BaseSkinName.Equals("caitlyntrap")))
+                        {
+                            args.Process = false;
+                        }
+                        break;
+
+                    case SpellSlot.E:
+                        if (Environment.TickCount - Vars.LastTick < 1000)
+                        {
+                            return;
+                        }
+
+                        /// <summary>
+                        ///     The Dash to CursorPos Option.
+                        /// </summary>
+                        if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
+                            Vars.Menu["miscellaneous"]["reversede"].GetValue<MenuBool>().Value)
+                        {
+                            Vars.LastTick = Environment.TickCount;
+                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, -Vars.E.Range));
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called on spellcast process.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             /// <summary>
-            ///     Blocks trap cast if there is another trap nearby.
+            ///     The Trap AA-Reset.
             /// </summary>
-            if (args.Slot == SpellSlot.W)
+            if (sender.IsMe &&
+                (args.Target as Obj_AI_Hero).IsValidTarget() &&
+                args.SData.Name.Equals("CaitlynHeadshotMissile") &&
+                GameObjects.Player.HasBuff("caitlynheadshotrangecheck") &&
+                (args.Target as Obj_AI_Hero).HasBuff("caitlynyordletrapdebuff"))
             {
-                if (ObjectManager.Get<Obj_AI_Minion>().Any(
-                    m =>
-                        m.Distance(args.EndPosition) < 200 &&
-                        m.CharData.BaseSkinName.Equals("caitlyntrap")))
-                {
-                    args.Process = false;
-                }
+                Variables.Orbwalker.ResetSwingTimer();
             }
         }
 
@@ -206,25 +251,6 @@ namespace ExorAIO.Champions.Caitlyn
                 Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(args.Sender).CastPosition);
-            }
-        }
-
-        /// <summary>
-        ///     Called on spellcast process.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
-        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            if (sender.IsMe &&
-                (args.Target as Obj_AI_Hero).IsValidTarget())
-            {
-                if (args.SData.Name.Equals("CaitlynHeadshotMissile") &&
-                    GameObjects.Player.HasBuff("caitlynheadshotrangecheck") &&
-                    (args.Target as Obj_AI_Hero).HasBuff("caitlynyordletrapdebuff"))
-                {
-                    Variables.Orbwalker.ResetSwingTimer();
-                }
             }
         }
     }
