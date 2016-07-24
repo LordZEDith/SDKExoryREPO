@@ -148,22 +148,21 @@ namespace ExorAIO.Champions.Vayne
                 /// <summary>
                 ///     The Dash-Condemn Prediction Logic.
                 /// </summary>
-                else
+                if (!GameObjects.Player.IsDashing() &&
+                    GameObjects.Player.Distance(args.End) >
+                        GameObjects.Player.BoundingRadius &&
+                    Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>().Value &&
+                    Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
-                    if (!GameObjects.Player.IsDashing() &&
-                        GameObjects.Player.Distance(args.End) >
-                            GameObjects.Player.BoundingRadius &&
-                        Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>().Value &&
-                        Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                    for (var i = 1; i < 10; i++)
                     {
-                        for (var i = 1; i < 10; i++)
+                        var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
+
+                        if ((args.End + vector * (float)(i * 42.5)).IsWall() &&
+                            (args.End + vector * (float)(i * 44.5)).IsWall())
                         {
-                            if ((args.End + Vector3.Normalize(args.End - GameObjects.Player.ServerPosition) * (float)(i * 42.5)).IsWall() &&
-                                (args.End + Vector3.Normalize(args.End - GameObjects.Player.ServerPosition) * i * 44).IsWall())
-                            {
-                                Console.WriteLine("DASHPREDICTION CONDEMN!!1!11");
-                                Vars.E.CastOnUnit(args.Sender);
-                            }
+                            Console.WriteLine("DASHPREDICTION CONDEMN!!1!11");
+                            Vars.E.CastOnUnit(args.Sender);
                         }
                     }
                 }
