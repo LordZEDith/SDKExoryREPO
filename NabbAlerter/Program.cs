@@ -1,4 +1,5 @@
-﻿using LeagueSharp.SDK;
+﻿using LeagueSharp;
+using LeagueSharp.SDK;
 
 namespace NabbAlerter
 {
@@ -21,9 +22,14 @@ namespace NabbAlerter
             Events.OnLoad += (sender, eventArgs) =>
             {
                 /// <summary>
-                ///     Loads the Update checker.
+                ///     Loads the assembly.
                 /// </summary>
-                Updater.Check();
+                Alerter.OnLoad();
+
+                /// <summary>
+                ///     Tells the player the assembly has been loaded.
+                /// </summary>
+                Game.PrintChat("[SDK]<b><font color='#663096'>Nabb</font></b>Alerter: <font color='#663096'>Ultima</font> - Loaded!");
             };
         }
     }

@@ -1,4 +1,5 @@
-﻿using LeagueSharp.SDK;
+﻿using LeagueSharp;
+using LeagueSharp.SDK;
 
 namespace AsunaCondemn
 {
@@ -20,10 +21,22 @@ namespace AsunaCondemn
 
             Events.OnLoad += (sender, eventArgs) =>
             {
+                if (!GameObjects.Player.ChampionName.Equals("Vayne"))
+                {
+                    Game.PrintChat(
+                        $"[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
+                    return;
+                }
+
                 /// <summary>
-                ///     Loads the Update checker.
+                ///     Loads the assembly.
                 /// </summary>
-                Updater.Check();
+                Condem.OnLoad();
+
+                /// <summary>
+                ///     Tells the player the assembly has been loaded.
+                /// </summary>
+                Game.PrintChat("[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
             };
         }
     }

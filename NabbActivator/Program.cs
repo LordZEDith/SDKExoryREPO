@@ -1,4 +1,5 @@
-﻿using LeagueSharp.SDK;
+﻿using LeagueSharp;
+using LeagueSharp.SDK;
 
 namespace NabbActivator
 {
@@ -21,9 +22,14 @@ namespace NabbActivator
             Events.OnLoad += (sender, eventArgs) =>
             {
                 /// <summary>
-                ///     Loads the Update checker.
+                ///     Loads the activator index.
                 /// </summary>
-                Updater.Check();
+                Index.OnLoad();
+
+                /// <summary>
+                ///     Tells the player the assembly has been loaded.
+                /// </summary>
+                Game.PrintChat("[SDK]<b><font color='#FF0000'>Nabb</font></b>Activator: <font color='#FF0000'>Ultima</font> - Loaded!");
             };
         }
     }

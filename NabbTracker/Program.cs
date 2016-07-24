@@ -21,9 +21,14 @@ namespace NabbTracker
             Events.OnLoad += (sender, eventArgs) =>
             {
                 /// <summary>
-                ///     Loads the Update checker.
+                ///     Loads the assembly.
                 /// </summary>
-                Updater.Check();
+                Tracker.OnLoad();
+
+                /// <summary>
+                ///     Tells the player the assembly has been loaded.
+                /// </summary>
+                Game.PrintChat("[SDK]<b><font color='#228B22'>Nabb</font></b>Tracker: <font color='#228B22'>Ultima</font> - Loaded!");
             };
         }
     }

@@ -1,5 +1,5 @@
-﻿using System;
-using ExorAIO.Core;
+﻿using ExorAIO.Core;
+using LeagueSharp;
 using LeagueSharp.SDK;
 
 namespace ExorAIO

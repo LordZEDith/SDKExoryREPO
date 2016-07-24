@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="NabbActivator.cs" />
-    <Compile Include="Updater.cs" />
     <Compile Include="Activator\Utilities\Helpers\Managers.cs" />
     <Compile Include="Activator\Utilities\Helpers\Spellslots.cs" />
     <Compile Include="Activator\Utilities\Helpers\Healthbars.cs" />

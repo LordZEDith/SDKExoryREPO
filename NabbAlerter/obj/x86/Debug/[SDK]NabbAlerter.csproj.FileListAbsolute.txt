@@ -21,3 +21,24 @@ C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAle
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAlerter.exe
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAlerter.pdb
 C:\Users\utente\Desktop\XD\[SDK]ExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.Sandbox.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAlerter.csprojResolveAssemblyReference.cache
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAlerter.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\[SDK]NabbAlerter.exe.config
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\[SDK]NabbAlerter.exe
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\[SDK]NabbAlerter.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.Data.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.SDKEx.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\mscorlib.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\SharpDX.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.Data.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\LeagueSharp.SDKEx.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\it\mscorlib.resources.dll
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\normidna.nlp
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\normnfc.nlp
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\normnfd.nlp
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\normnfkc.nlp
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\bin\Debug\normnfkd.nlp
+C:\Users\Enrico\Desktop\Cartelle varie\PlaySharp\SDKExoryREPO\NabbAlerter\obj\x86\Debug\[SDK]NabbAlerter.exe
