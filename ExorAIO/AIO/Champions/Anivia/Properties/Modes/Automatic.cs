@@ -85,7 +85,7 @@ namespace ExorAIO.Champions.Anivia
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
 
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2-5f) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
                         {
                             Vars.Q.Cast();
                         }
@@ -111,7 +111,7 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2-5f) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
                         {
                             Vars.Q.Cast();
                         }

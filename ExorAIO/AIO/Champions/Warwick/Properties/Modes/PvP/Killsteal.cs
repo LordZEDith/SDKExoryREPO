@@ -47,6 +47,8 @@ namespace ExorAIO.Champions.Warwick
                     t =>
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
+                        t.Health >
+                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2 &&
                         t.Health <
                             (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {

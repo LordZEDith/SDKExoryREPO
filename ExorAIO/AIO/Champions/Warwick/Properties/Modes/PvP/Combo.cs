@@ -19,8 +19,8 @@ namespace ExorAIO.Champions.Warwick
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
+            if ((Bools.HasSheenBuff() &&
+                Targets.Target.IsValidTarget(Vars.AARange)) ||
                 Invulnerable.Check(Targets.Target))
             {
                 return;
@@ -45,14 +45,10 @@ namespace ExorAIO.Champions.Warwick
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.MaxHealth >
-                        GameObjects.Player.Health +
-                        (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.Q) * 0.8)
-                {
-                    Vars.Q.CastOnUnit(Targets.Target);
-                }
+                Vars.Q.CastOnUnit(Targets.Target);
             }
 
             /// <summary>
