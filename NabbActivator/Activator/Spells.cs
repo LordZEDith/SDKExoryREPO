@@ -91,7 +91,8 @@ namespace NabbActivator
             /// </summary>
             if (GameObjects.Player.ChampionName.Equals("Gangplank"))
             {
-                if (Vars.W.IsReady() &&
+                if (Vars.W != null &&
+					Vars.W.IsReady() &&
                     Bools.ShouldCleanse(GameObjects.Player))
                 {
                     DelayAction.Add(

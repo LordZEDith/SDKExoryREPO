@@ -28,6 +28,7 @@ namespace NabbActivator
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnUpdate(EventArgs args)
         {
+			/*
             foreach (var target in GameObjects.EnemyHeroes)
             {
                 foreach (var buff in target.Buffs.Where(b => b.Caster != null && b.Caster.IsMe))
@@ -63,6 +64,7 @@ namespace NabbActivator
                     Console.WriteLine($"Enemy Champion: {target.ChampionName}, Buff: {buff.Name}");
                 }
             }
+			*/
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace NabbActivator
         /// <param name="args">The args.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe)
+            if (!AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 Console.WriteLine($"OnProcessSpellCast: Name:{args.SData.Name}, Sender:{sender.CharData.BaseSkinName}");
             }
