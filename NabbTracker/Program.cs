@@ -1,4 +1,5 @@
-﻿using LeagueSharp.SDK;
+﻿using LeagueSharp;
+using LeagueSharp.SDK;
 
 namespace NabbTracker
 {
