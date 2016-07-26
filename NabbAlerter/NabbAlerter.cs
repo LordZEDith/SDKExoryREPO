@@ -45,6 +45,12 @@ namespace NabbAlerter
                 return;
             }
 
+            if (!(sender as Obj_AI_Hero).ServerPosition.IsOnScreen() &&
+                Vars.Menu["onscreen"].GetValue<MenuBool>().Value)
+            {
+                return;
+            }
+
             if (GameObjects.Player.Distance(sender as Obj_AI_Hero) > 
                 Vars.Menu["enable"].GetValue<MenuSliderButton>().SValue)
             {

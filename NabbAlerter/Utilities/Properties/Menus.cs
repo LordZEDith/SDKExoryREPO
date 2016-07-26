@@ -22,9 +22,9 @@ namespace NabbAlerter
             /// </summary>
             Vars.Menu = new Menu("nabbalerter", "NabbAlerter", true);
             {
-                Vars.Menu.Add(
-                    new MenuKeyBind("combokey", "Combo:", Keys.Space, KeyBindType.Press));
                 Vars.Menu.Add(new MenuBool("nocombo", "Don't Alert while in Combo Mode", true));
+                Vars.Menu.Add(new MenuBool("onscreen", "Don't Alert if sender isn't on screen", true));
+                Vars.Menu.Add(new MenuKeyBind("combokey", "Combo:", Keys.Space, KeyBindType.Press));
                 Vars.Menu.Add(new MenuSliderButton("enable",  "Enable / Only if Range < x", 10000, 2000, 20000, true));
 
                 /// <summary>
@@ -53,7 +53,6 @@ namespace NabbAlerter
                             }
 
                             Vars.HeroMenu.Add(new MenuBool("sum1", $"Alert {target.Spellbook.Spells[4].Name}", true));
-
                             Vars.HeroMenu.Add(new MenuBool("sum2", $"Alert {target.Spellbook.Spells[5].Name}", true));
                         }
                         Vars.Menu.Add(Vars.HeroMenu);
