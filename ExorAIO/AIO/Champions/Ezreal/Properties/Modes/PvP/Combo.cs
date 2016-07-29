@@ -32,8 +32,8 @@ namespace ExorAIO.Champions.Ezreal
                 {
                     foreach (var target in GameObjects.EnemyHeroes.Where(
                         t =>
-                            !Invulnerable.Check(t) &&
                             t.IsValidTarget(2000f) &&
+                            !Invulnerable.Check(t) &&
                             Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);

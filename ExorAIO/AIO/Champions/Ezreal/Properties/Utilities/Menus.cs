@@ -90,7 +90,7 @@ namespace ExorAIO.Champions.Ezreal
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
                         /// </summary>
-                        Vars.WhiteList2Menu = new Menu("whitelist", "Ultimate: Whitelist Menu");
+                        Vars.WhiteList2Menu = new Menu("whitelist2", "Ultimate: Whitelist Menu");
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {

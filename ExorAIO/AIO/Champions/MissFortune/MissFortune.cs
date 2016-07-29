@@ -173,10 +173,7 @@ namespace ExorAIO.Champions.MissFortune
             /// <summary>
             ///     Stop attack commands while channeling R.
             /// </summary>
-            if (GameObjects.Player.HasBuff("missfortunebulletsound"))
-            {
-                args.Process = false;
-            }
+            args.Process = !GameObjects.Player.HasBuff("missfortunebulletsound");
 
             switch (args.Type)
             {
@@ -190,7 +187,7 @@ namespace ExorAIO.Champions.MissFortune
                         Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
                         if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                                GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                                GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                         {
                             if (GameObjects.EnemyHeroes.Any(
                                 t =>

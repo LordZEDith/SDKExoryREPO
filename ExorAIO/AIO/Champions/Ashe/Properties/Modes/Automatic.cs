@@ -55,6 +55,7 @@ namespace ExorAIO.Champions.Ashe
             {
                 if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                     GameObjects.Player.CountEnemyHeroesInRange(1000f) == 0 &&
+                    GameObjects.EnemyHeroes.Any() &&
                     GameObjects.EnemyHeroes.Count(
                         x =>
                             !x.IsDead &&
@@ -66,12 +67,13 @@ namespace ExorAIO.Champions.Ashe
                         .FirstOrDefault());
                 }
 
-                foreach (var target in GameObjects.EnemyHeroes)
+                else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
                 {
-                    if (target.Distance(target.GetWaypoints().Last()) < 1500 &&
-                        !NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1) &&
-                        NavMesh.IsWallOfGrass((Vector3)target.GetWaypoints().Last(), 1) &&
-                        GameObjects.Player.Distance(target.GetWaypoints().Last()) > 1000)
+                    foreach (var target in GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.Distance(t.GetWaypoints().Last()) < 1500 &&
+                            NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1) &&
+                            GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
                     {
                         Vars.E.Cast(target.GetWaypoints().Last());
                     }

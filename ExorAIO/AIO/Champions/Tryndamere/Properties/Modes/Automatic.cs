@@ -25,8 +25,7 @@ namespace ExorAIO.Champions.Tryndamere
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady())
             {
                 if ((GameObjects.Player.HealthPercent <=
                         Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().SValue ||

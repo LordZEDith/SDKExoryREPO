@@ -89,6 +89,15 @@ namespace ExorAIO.Champions.Sivir
                                     Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack", $"Shield: {enemy.ChampionName}'s E", true));
                                 }
 
+                                if (SpellDatabase.Get().Where(
+                                    s =>
+                                        !s.SpellName.Equals("KatarinaE") &&
+                                        !s.SpellName.Equals("TalonCutthroat") &&
+                                        s.ChampionName.Equals(enemy.ChampionName)) == null)
+                                {
+                                    return;
+                                }
+
                                 foreach (var spell in SpellDatabase.Get().Where(
                                     s =>
                                         !s.SpellName.Equals("KatarinaE") &&
