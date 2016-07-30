@@ -1,8 +1,7 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 namespace NabbActivator
 {
@@ -14,37 +13,80 @@ namespace NabbActivator
         /// <summary>
         ///     A list of the names of the champions who cast Invalid Snares.
         /// </summary>
-        public static readonly List<string> InvalidSnareCasters = new List<string> {"Leona", "Zyra", "Lissandra", "Cassiopeia"};
+        public static readonly List<string> InvalidSnareCasters = new List<string>
+        {
+            "Leona",
+            "Zyra",
+            "Lissandra",
+            "Cassiopeia"
+        };
 
         /// <summary>
         ///     A list of the names of the champions who cast Invalid Stuns.
         /// </summary>
-        public static readonly List<string> InvalidStunCasters = new List<string> {"Amumu", "LeeSin", "Alistar", "Hecarim", "Blitzcrank"};
-
-        /// <summary>
-        ///     The jungle HP bar offset.
-        /// </summary>
-        internal class JungleHpBarOffset
+        public static readonly List<string> InvalidStunCasters = new List<string>
         {
-            internal string BaseSkinName;
-            internal int Height;
-            internal int Width;
-            internal int XOffset;
-            internal int YOffset;
-        }
+            "Amumu",
+            "LeeSin",
+            "Alistar",
+            "Hecarim",
+            "Blitzcrank"
+        };
 
         /// <summary>
         ///     The jungle HP bar offset list.
         /// </summary>
         internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
         {
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Air", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Fire", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Water", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Earth", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Elder", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Air",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Fire",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Water",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Earth",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Elder",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
             new JungleHpBarOffset { BaseSkinName = "SRU_Baron", Width = 190, Height = 10, XOffset = 16, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_RiftHerald", Width = 139, Height = 6, XOffset = 12, YOffset = 22 },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_RiftHerald",
+                Width = 139,
+                Height = 6,
+                XOffset = 12,
+                YOffset = 22
+            },
             new JungleHpBarOffset { BaseSkinName = "SRU_Red", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
             new JungleHpBarOffset { BaseSkinName = "SRU_Blue", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
             new JungleHpBarOffset { BaseSkinName = "SRU_Gromp", Width = 86, Height = 2, XOffset = 1, YOffset = 7 },
@@ -66,7 +108,10 @@ namespace NabbActivator
         /// <summary>
         ///     Gets the normal smite's damage.
         /// </summary>
-        public static int GetSmiteDamage => GameObjects.Player.GetBuffCount(GameObjects.Player.Buffs.Where(s => s.Name.ToLower().Contains("smitedamagetracker")).First().Name);
+        public static int GetSmiteDamage
+            =>
+                GameObjects.Player.GetBuffCount(
+                    GameObjects.Player.Buffs.Where(s => s.Name.ToLower().Contains("smitedamagetracker")).First().Name);
 
         /// <summary>
         ///     Gets the chilling smite's damage.
@@ -122,5 +167,17 @@ namespace NabbActivator
         ///     Gets or sets the smite menu.
         /// </summary>
         public static Menu SmiteMenu { internal get; set; }
+
+        /// <summary>
+        ///     The jungle HP bar offset.
+        /// </summary>
+        internal class JungleHpBarOffset
+        {
+            internal string BaseSkinName;
+            internal int Height;
+            internal int Width;
+            internal int XOffset;
+            internal int YOffset;
+        }
     }
 }

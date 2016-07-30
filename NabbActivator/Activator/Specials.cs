@@ -1,4 +1,3 @@
-using System.Linq;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
@@ -22,18 +21,14 @@ namespace NabbActivator
                 return;
             }
 
-            if (sender != null &&
-                args.Target != null)
+            if (sender != null && args.Target != null)
             {
                 /// <summary>
                 ///     The Ohmwrecker logic.
                 /// </summary>
-                if (Items.CanUseItem(3056) &&
-                    sender.IsValidTarget(750f))
+                if (Items.CanUseItem(3056) && sender.IsValidTarget(750f))
                 {
-                    if (args.Target.IsAlly &&
-                        sender is Obj_AI_Turret &&
-                        args.Target is Obj_AI_Hero)
+                    if (args.Target.IsAlly && sender is Obj_AI_Turret && args.Target is Obj_AI_Hero)
                     {
                         Items.UseItem(3056, sender);
                     }

@@ -15,8 +15,7 @@ namespace NabbActivator
         /// </summary>
         public static bool IsHealthPotRunning()
         {
-            return GameObjects.Player.HasBuff("ItemCrystalFlask") ||
-                   GameObjects.Player.HasBuff("RegenerationPotion") ||
+            return GameObjects.Player.HasBuff("ItemCrystalFlask") || GameObjects.Player.HasBuff("RegenerationPotion") ||
                    GameObjects.Player.HasBuff("ItemMiniRegenPotion") ||
                    GameObjects.Player.HasBuff("ItemDarkCrystalFlask") ||
                    GameObjects.Player.HasBuff("ItemCrystalFlaskJungle");
@@ -39,10 +38,11 @@ namespace NabbActivator
         /// </summary>
         public static bool IsValidSnare()
         {
-            return GameObjects.Player.Buffs.Any(
-                b =>
-                    b.Type == BuffType.Snare &&
-                    !Vars.InvalidSnareCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
+            return
+                GameObjects.Player.Buffs.Any(
+                    b =>
+                        b.Type == BuffType.Snare &&
+                        !Vars.InvalidSnareCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
         }
 
         /// <summary>
@@ -50,10 +50,11 @@ namespace NabbActivator
         /// </summary>
         public static bool IsValidStun()
         {
-            return GameObjects.Player.Buffs.Any(
-                b =>
-                    b.Type == BuffType.Stun &&
-                    !Vars.InvalidStunCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
+            return
+                GameObjects.Player.Buffs.Any(
+                    b =>
+                        b.Type == BuffType.Stun &&
+                        !Vars.InvalidStunCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
         }
 
         /// <summary>
@@ -61,18 +62,11 @@ namespace NabbActivator
         /// </summary>
         public static bool ShouldCleanse(Obj_AI_Hero target)
         {
-            return !Invulnerable.Check(target) &&
-                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f)) &&
-                (
-                   IsValidStun() ||
-                   IsValidSnare() ||
-                   target.HasBuffOfType(BuffType.Flee) ||
-                   target.HasBuffOfType(BuffType.Charm) ||
-                   target.HasBuffOfType(BuffType.Taunt) ||
-                   target.HasBuffOfType(BuffType.Polymorph) ||
-                   GameObjects.Player.HasBuff("ThreshQ") ||
-                   GameObjects.Player.HasBuff("SummonerDot")
-                );
+            return !Invulnerable.Check(target) && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f)) &&
+                   (IsValidStun() || IsValidSnare() || target.HasBuffOfType(BuffType.Flee) ||
+                    target.HasBuffOfType(BuffType.Charm) || target.HasBuffOfType(BuffType.Taunt) ||
+                    target.HasBuffOfType(BuffType.Polymorph) || GameObjects.Player.HasBuff("ThreshQ") ||
+                    GameObjects.Player.HasBuff("SummonerDot"));
         }
 
         /// <summary>
@@ -80,18 +74,15 @@ namespace NabbActivator
         /// </summary>
         public static bool ShouldUseCleanser()
         {
-            return !Invulnerable.Check(GameObjects.Player) &&
-                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f)) &&
-                (
-                   GameObjects.Player.HasBuffOfType(BuffType.Suppression) ||
-                   GameObjects.Player.HasBuff("ThreshQ") /* ||
+            return !Invulnerable.Check(GameObjects.Player) && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f)) &&
+                   (GameObjects.Player.HasBuffOfType(BuffType.Suppression) || GameObjects.Player.HasBuff("ThreshQ")
+                       /* ||
                    GameObjects.Player.HasBuff("zedrdeathmark") ||
                    GameObjects.Player.HasBuff("summonerexhaust") ||
                    GameObjects.Player.HasBuff("fizzmarinerdoombomb") ||
                    GameObjects.Player.HasBuff("vladimirhemoplague") ||
                    GameObjects.Player.HasBuff("mordekaiserchildrenofthegrave")
-                   */
-                );
+                   */);
         }
     }
 }

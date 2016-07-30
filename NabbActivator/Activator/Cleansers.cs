@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
@@ -28,22 +27,16 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3222))
             {
-                foreach (var ally in GameObjects.AllyHeroes.Where(
-                    a =>
-                        Bools.ShouldCleanse(a) &&
-                        a.IsValidTarget(750f, false)))
+                foreach (
+                    var ally in
+                        GameObjects.AllyHeroes.Where(a => Bools.ShouldCleanse(a) && a.IsValidTarget(750f, false)))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3222, ally);
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3222, ally); });
                 }
             }
 
-            if (Bools.ShouldUseCleanser() ||
-                (!SpellSlots.Cleanse.IsReady() &&
-                    Bools.ShouldCleanse(GameObjects.Player)))
+            if (Bools.ShouldUseCleanser() || (!SpellSlots.Cleanse.IsReady() && Bools.ShouldCleanse(GameObjects.Player)))
             {
                 /// <summary>
                 ///     The Quicksilver Sash Logic.
@@ -51,11 +44,7 @@ namespace NabbActivator
                 if (Items.CanUseItem(3140))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3140);
-                        return;
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3140); });
                 }
 
                 /// <summary>
@@ -64,11 +53,7 @@ namespace NabbActivator
                 if (Items.CanUseItem(3137))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3137);
-                        return;
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3137); });
                 }
 
                 /// <summary>
@@ -77,10 +62,7 @@ namespace NabbActivator
                 if (Items.CanUseItem(3139))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3139);
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3139); });
                 }
             }
 
@@ -92,11 +74,7 @@ namespace NabbActivator
                 if (Items.CanUseItem(3137))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3137);
-                        return;
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3137); });
                 }
 
                 /// <summary>
@@ -105,10 +83,7 @@ namespace NabbActivator
                 if (Items.CanUseItem(3139))
                 {
                     DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Items.UseItem(3139);
-                    });
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3139); });
                 }
             }
         }
