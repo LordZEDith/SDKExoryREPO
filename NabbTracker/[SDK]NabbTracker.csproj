@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43669FC4-FA02-4A2A-8849-5FCAEE42EDCB}</ProjectGuid>
+    <ProjectGuid>{F290C2D6-57B6-4948-A1BF-86AE281F3DE5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>[SDK]NabbTracker</RootNamespace>
