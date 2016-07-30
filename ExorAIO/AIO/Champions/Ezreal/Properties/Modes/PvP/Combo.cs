@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using ExorAIO.Utilities;
-using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
@@ -37,7 +36,6 @@ namespace ExorAIO.Champions.Ezreal
                             Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                        return;
                     }
                 }
 
@@ -54,7 +52,6 @@ namespace ExorAIO.Champions.Ezreal
                             Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                        return;
                     }
                 }
             }
@@ -75,7 +72,6 @@ namespace ExorAIO.Champions.Ezreal
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                    return;
                 }
             }
 

@@ -1,7 +1,6 @@
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.Utils;
 using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Diana

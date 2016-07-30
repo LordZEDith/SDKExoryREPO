@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Drawing;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;

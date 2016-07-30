@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Utils;
-using SharpDX;
 
 namespace ExorAIO.Utilities
 {

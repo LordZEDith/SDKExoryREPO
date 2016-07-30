@@ -1,5 +1,4 @@
 using ExorAIO.Utilities;
-using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
 namespace ExorAIO.Champions.Taliyah

@@ -1,13 +1,7 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Drawing;
-using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using SharpDX;
 using Color = System.Drawing.Color;
 
 namespace ExorAIO.Utilities

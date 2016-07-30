@@ -5,7 +5,6 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Karma
 {

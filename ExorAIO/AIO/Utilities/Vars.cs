@@ -4,7 +4,6 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.SDK.Polygons;
 using SharpDX;
 
 namespace ExorAIO.Utilities

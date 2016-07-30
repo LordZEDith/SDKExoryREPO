@@ -1,6 +1,4 @@
-﻿using ExorAIO.Core;
-using LeagueSharp;
-using LeagueSharp.SDK;
+﻿using LeagueSharp.SDK;
 
 namespace ExorAIO
 {

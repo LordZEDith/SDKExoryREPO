@@ -4,8 +4,6 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using SharpDX;
-using Geometry = ExorAIO.Utilities.Geometry;
 
 namespace ExorAIO.Champions.Lux
 {

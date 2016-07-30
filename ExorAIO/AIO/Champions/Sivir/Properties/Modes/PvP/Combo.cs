@@ -1,10 +1,8 @@
 using System;
 using ExorAIO.Utilities;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using SharpDX;
 
 namespace ExorAIO.Champions.Sivir
 {

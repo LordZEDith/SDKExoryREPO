@@ -1,4 +1,3 @@
-using ExorAIO.Utilities;
 using LeagueSharp;
 
 namespace ExorAIO.Champions.Corki

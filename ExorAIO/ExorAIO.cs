@@ -1,5 +1,4 @@
-﻿using ExorAIO.Core;
-using ExorAIO.Utilities;
+﻿using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
 

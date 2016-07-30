@@ -3,7 +3,6 @@ using System.Linq;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 using LeagueSharp.SDK.Enumerations;
 using ExorAIO.Utilities;
 

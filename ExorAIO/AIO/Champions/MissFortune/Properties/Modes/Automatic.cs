@@ -1,10 +1,8 @@
 using System;
-using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.MissFortune
 {

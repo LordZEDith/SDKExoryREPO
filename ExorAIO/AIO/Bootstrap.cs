@@ -38,7 +38,6 @@ using ExorAIO.Champions.Vayne;
 using ExorAIO.Champions.Veigar;
 using ExorAIO.Champions.Warwick;
 using ExorAIO.Utilities;
-using LeagueSharp;
 using LeagueSharp.SDK;
 
 namespace ExorAIO.Core

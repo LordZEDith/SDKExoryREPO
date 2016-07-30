@@ -5,7 +5,6 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using SharpDX;
 
 namespace ExorAIO.Champions.Taliyah
 {
