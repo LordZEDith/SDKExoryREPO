@@ -17,7 +17,7 @@ namespace ExorAIO
             /// <summary>
             ///     Tries to load the current Champion.
             /// </summary>
-            ExorAIO.Core.Bootstrap.LoadChampion();
+            Core.Bootstrap.LoadChampion();
 
             if (Vars.IsLoaded)
             {
