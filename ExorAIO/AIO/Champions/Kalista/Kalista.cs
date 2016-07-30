@@ -8,6 +8,7 @@ using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+// ReSharper disable once CheckNamespace
 namespace ExorAIO.Champions.Kalista
 {
     /// <summary>
@@ -88,9 +89,6 @@ namespace ExorAIO.Champions.Kalista
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -110,13 +108,11 @@ namespace ExorAIO.Champions.Kalista
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage((Obj_AI_Hero) args.Target) * 3)
                     {
-                        if (
-                            GameObjects.EnemyHeroes.Any(
+                        if (GameObjects.EnemyHeroes.Any(
                                 t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally")))
                         {
-                            args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
                                     t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
@@ -144,9 +140,6 @@ namespace ExorAIO.Champions.Kalista
                     {
                         Vars.E.Cast();
                     }
-                    break;
-
-                default:
                     break;
             }
         }
