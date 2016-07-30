@@ -23,10 +23,10 @@ namespace ExorAIO.Champions.Taliyah
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   75, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 75, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     {
                         /// <summary>
@@ -34,9 +34,9 @@ namespace ExorAIO.Champions.Taliyah
                         /// </summary>
                         Vars.Q2Menu = new Menu("q2", "Threaded Volley Options:");
                         {
-                            Vars.Q2Menu.Add(new MenuBool("combofull",       "Combo: Only with full Q.",       true));
-                            Vars.Q2Menu.Add(new MenuBool("harassfull",      "Harass: Only with full Q."));
-                            Vars.Q2Menu.Add(new MenuBool("laneclearfull",   "LaneClear: Only with full Q.",   true));
+                            Vars.Q2Menu.Add(new MenuBool("combofull", "Combo: Only with full Q.", true));
+                            Vars.Q2Menu.Add(new MenuBool("harassfull", "Harass: Only with full Q."));
+                            Vars.Q2Menu.Add(new MenuBool("laneclearfull", "LaneClear: Only with full Q.", true));
                             Vars.Q2Menu.Add(new MenuBool("jungleclearfull", "JungleClear: Only with full Q.", true));
                         }
                         Vars.QMenu.Add(Vars.Q2Menu);
@@ -49,9 +49,9 @@ namespace ExorAIO.Champions.Taliyah
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.WMenu.Add(new MenuBool("logical",     "Logical",                  true));
-                    Vars.WMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.WMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -61,12 +61,12 @@ namespace ExorAIO.Champions.Taliyah
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.EMenu.Add(new MenuBool("logical",     "Logical",                  true));
-                    Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuSliderButton("aoe",         "AoE / if enemies >= x",       3,  1,  5, true));
-                    Vars.EMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("aoe", "AoE / if enemies >= x", 3, 1, 5, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

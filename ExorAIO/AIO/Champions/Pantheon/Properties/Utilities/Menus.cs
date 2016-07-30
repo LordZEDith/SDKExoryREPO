@@ -23,9 +23,9 @@ namespace ExorAIO.Champions.Pantheon
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",       "Combo",       true));
-                    Vars.QMenu.Add(new MenuBool("killsteal",   "KillSteal",   true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 10, 99, true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 10, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 10, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
@@ -35,8 +35,8 @@ namespace ExorAIO.Champions.Pantheon
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.WMenu.Add(new MenuBool("killsteal",   "KillSteal",                true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.WMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);

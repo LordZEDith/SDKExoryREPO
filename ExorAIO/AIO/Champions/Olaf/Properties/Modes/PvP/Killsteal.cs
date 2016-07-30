@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Olaf
                         t.IsValidTarget(Vars.Q.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
                         .UnitPosition.Extend(GameObjects.Player.ServerPosition, -100f));

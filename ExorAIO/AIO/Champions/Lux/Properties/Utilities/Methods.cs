@@ -14,7 +14,7 @@ namespace ExorAIO.Champions.Lux
         public static void Initialize()
         {
             Game.OnUpdate += Lux.OnUpdate;
-		    GameObject.OnCreate += Lux.OnCreate;
+            GameObject.OnCreate += Lux.OnCreate;
             GameObject.OnDelete += Lux.OnDelete;
             Events.OnGapCloser += Lux.OnGapCloser;
             Obj_AI_Base.OnProcessSpellCast += Lux.OnProcessSpellCast;

@@ -37,7 +37,8 @@ namespace ExorAIO.Champions.Taliyah
                     Vars.W.GetPrediction(Targets.Target).CastPosition,
                     Targets.Target.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2
-                        ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition, GameObjects.Player.Distance(Targets.Target)*2)
+                        ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition,
+                            GameObjects.Player.Distance(Targets.Target)*2)
                         : GameObjects.Player.ServerPosition);
             }
 
@@ -61,7 +62,7 @@ namespace ExorAIO.Champions.Taliyah
             /// </summary>
             if (Vars.Q.IsReady() &&
                 !Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range-50f) &&
+                Targets.Target.IsValidTarget(Vars.Q.Range - 50f) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (Taliyah.TerrainObject != null &&

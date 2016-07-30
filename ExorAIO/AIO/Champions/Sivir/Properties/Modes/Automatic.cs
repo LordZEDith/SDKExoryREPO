@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Sivir
 {
@@ -52,8 +52,10 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("jaxcounterstrike") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
-                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime - 1 &&
-                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"].GetValue<MenuBool>().Value)
+                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime -
+                            1 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"]
+                                .GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();
                         }
@@ -63,8 +65,10 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("kogmawicathiansurprise") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("kogmawicathiansurprise").EndTime - Game.Time >
-                            target.GetBuff("kogmawicathiansurprise").EndTime - target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
-                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
+                            target.GetBuff("kogmawicathiansurprise").EndTime -
+                            target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][
+                                $"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();
                         }
@@ -138,8 +142,13 @@ namespace ExorAIO.Champions.Sivir
                                 /// <summary>
                                 ///     Whitelist Block.
                                 /// </summary>
-                                if (Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                    !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>().Value)
+                                if (
+                                    Vars.Menu["spells"]["e"]["whitelist"][
+                                        $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] ==
+                                    null ||
+                                    !Vars.Menu["spells"]["e"]["whitelist"][
+                                        $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
+                                        .GetValue<MenuBool>().Value)
                                 {
                                     return;
                                 }
@@ -155,8 +164,12 @@ namespace ExorAIO.Champions.Sivir
 
                             default:
                                 if (!(sender as Obj_AI_Hero).Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)) ||
-                                    Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"] == null ||
-                                    !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"].GetValue<MenuBool>().Value)
+                                    Vars.Menu["spells"]["e"]["whitelist"][
+                                        $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
+                                        ] == null ||
+                                    !Vars.Menu["spells"]["e"]["whitelist"][
+                                        $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{(sender as Obj_AI_Hero).Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
+                                        ].GetValue<MenuBool>().Value)
                                 {
                                     return;
                                 }
@@ -174,8 +187,12 @@ namespace ExorAIO.Champions.Sivir
                         /// <summary>
                         ///     Whitelist Block.
                         /// </summary>
-                        if (Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                            !Vars.Menu["spells"]["e"]["whitelist"][$"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>().Value)
+                        if (
+                            Vars.Menu["spells"]["e"]["whitelist"][
+                                $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
+                            !Vars.Menu["spells"]["e"]["whitelist"][
+                                $"{(sender as Obj_AI_Hero).ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
+                                .GetValue<MenuBool>().Value)
                         {
                             return;
                         }
@@ -197,19 +214,20 @@ namespace ExorAIO.Champions.Sivir
                                 switch ((sender as Obj_AI_Hero).ChampionName)
                                 {
                                     case "Caitlyn":
-                                        DelayAction.Add(1050, ()=> { Vars.E.Cast(); });
+                                        DelayAction.Add(1050, () => { Vars.E.Cast(); });
                                         break;
 
                                     case "Nocturne":
-                                        DelayAction.Add(350, ()=> { Vars.E.Cast(); });
+                                        DelayAction.Add(350, () => { Vars.E.Cast(); });
                                         break;
 
                                     case "Zed":
-                                        DelayAction.Add(200, ()=> { Vars.E.Cast(); });
+                                        DelayAction.Add(200, () => { Vars.E.Cast(); });
                                         break;
 
                                     default:
-                                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, ()=> { Vars.E.Cast(); });
+                                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
+                                            () => { Vars.E.Cast(); });
                                         break;
                                 }
                                 break;
@@ -222,7 +240,8 @@ namespace ExorAIO.Champions.Sivir
                                 switch ((sender as Obj_AI_Hero).ChampionName)
                                 {
                                     case "Alistar":
-                                        if ((sender as Obj_AI_Hero).DistanceToPlayer() < 355 + GameObjects.Player.BoundingRadius)
+                                        if ((sender as Obj_AI_Hero).DistanceToPlayer() <
+                                            355 + GameObjects.Player.BoundingRadius)
                                         {
                                             Vars.E.Cast();
                                         }
@@ -236,7 +255,6 @@ namespace ExorAIO.Champions.Sivir
                             default:
                                 break;
                         }
-                        break;
                     }
                     break;
 
@@ -247,7 +265,7 @@ namespace ExorAIO.Champions.Sivir
                     {
                         return;
                     }
- 
+
                     /// <summary>
                     ///     Block Dragon/Baron/RiftHerald's AutoAttacks.
                     /// </summary>

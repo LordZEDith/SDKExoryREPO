@@ -2,9 +2,9 @@ using System;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.Utils;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Jinx
 {

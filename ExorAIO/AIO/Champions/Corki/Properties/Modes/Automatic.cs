@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 using LeagueSharp.Data.Enumerations;
+using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
+using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Corki
@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Corki
             if (Vars.R.IsReady() &&
                 Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
+                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in GameObjects.EnemyMinions.Where(
@@ -56,9 +56,12 @@ namespace ExorAIO.Champions.Corki
                         m.IsValidTarget(Vars.R.Range) &&
                         !m.IsValidTarget(Vars.AARange)))
                 {
-                    if (Vars.GetRealHealth(minion) < (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.R, (ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
-                        ? DamageStage.Empowered
-                        : DamageStage.Default)))
+                    if (Vars.GetRealHealth(minion) <
+                        (float)
+                            GameObjects.Player.GetSpellDamage(minion, SpellSlot.R,
+                                ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
+                                    ? DamageStage.Empowered
+                                    : DamageStage.Default))
                     {
                         if (!Vars.R.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                         {

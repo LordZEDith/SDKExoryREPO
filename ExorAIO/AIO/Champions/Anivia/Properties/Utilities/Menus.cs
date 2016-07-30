@@ -24,8 +24,8 @@ namespace ExorAIO.Champions.Anivia
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
@@ -36,10 +36,10 @@ namespace ExorAIO.Champions.Anivia
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.WMenu.Add(new MenuBool("logical",     "Logical",                  true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.WMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.WMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     {
                         /// <summary>
                         ///     Sets the menu for the W Whitelist.
@@ -65,7 +65,7 @@ namespace ExorAIO.Champions.Anivia
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

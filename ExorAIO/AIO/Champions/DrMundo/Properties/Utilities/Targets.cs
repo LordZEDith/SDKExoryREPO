@@ -36,6 +36,6 @@ namespace ExorAIO.Champions.DrMundo
                     m =>
                         m.IsValidTarget(Vars.W.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

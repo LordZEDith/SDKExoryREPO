@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.Darius
                 {
                     Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / If Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",  "Clear / If Mana >= x%",  50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / If Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Darius
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.WMenu.Add(new MenuSliderButton("buildings",   "Buildings / If Mana >= x%",   50, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("buildings", "Buildings / If Mana >= x%", 50, 0, 99, true));
                     Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / If Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -45,8 +45,8 @@ namespace ExorAIO.Champions.Darius
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

@@ -24,11 +24,11 @@ namespace ExorAIO.Champions.Jhin
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("lasthit", "LastHit / if Mana >= x%",  0, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass",  "Harass / if Mana >= x%",  50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",   "Clear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("lasthit", "LastHit / if Mana >= x%", 0, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -37,8 +37,8 @@ namespace ExorAIO.Champions.Jhin
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.WMenu.Add(new MenuBool("logical",   "Logical",   true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.WMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     {
@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Jhin
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("logical",   "Logical",        true));
+                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
@@ -76,7 +76,7 @@ namespace ExorAIO.Champions.Jhin
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("logical",   "Automatic", true));
+                    Vars.RMenu.Add(new MenuBool("logical", "Automatic", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("nearmouse", "Focus the enemy nearest to your cursor"));
                     Vars.RMenu.Add(

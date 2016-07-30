@@ -49,7 +49,8 @@ namespace ExorAIO.Champions.Taliyah
                         target.ServerPosition,
                         target.IsFacing(GameObjects.Player) &&
                         GameObjects.Player.Distance(target) < Vars.AARange/2
-                            ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition, GameObjects.Player.Distance(target)*2)
+                            ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition,
+                                GameObjects.Player.Distance(target)*2)
                             : GameObjects.Player.ServerPosition);
                 }
             }

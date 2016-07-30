@@ -29,13 +29,13 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
                 Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.EnemyHeroes.Any(
                     t =>
                         !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.W.Range-100f)))
+                        t.IsValidTarget(Vars.W.Range - 100f)))
                 {
                     return;
                 }
@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -64,8 +64,8 @@ namespace ExorAIO.Champions.Jhin
                         m =>
                             m.IsValidTarget(Vars.Q.Range)).Sum(
                                 s =>
-                                    (int)(Vars.GetRealHealth(s) /
-                                        (float)GameObjects.Player.GetSpellDamage(s, SpellSlot.Q))) >= 3)
+                                    (int) (Vars.GetRealHealth(s)/
+                                           (float) GameObjects.Player.GetSpellDamage(s, SpellSlot.Q))) >= 3)
                     {
                         Vars.Q.CastOnUnit(Targets.Minions.OrderBy(m => Vars.GetRealHealth(m)).First());
                     }
@@ -78,7 +78,6 @@ namespace ExorAIO.Champions.Jhin
                 {
                     Vars.Q.CastOnUnit(Targets.JungleMinions[0]);
                 }
-                return;
             }
         }
     }

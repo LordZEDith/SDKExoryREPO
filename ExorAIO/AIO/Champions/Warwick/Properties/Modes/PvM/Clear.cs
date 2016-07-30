@@ -29,12 +29,12 @@ namespace ExorAIO.Champions.Warwick
             if (Vars.W.IsReady() &&
                 GameObjects.Player.IsWindingUp &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();
             }
-            
+
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -45,12 +45,14 @@ namespace ExorAIO.Champions.Warwick
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.MaxHealth >
-                        GameObjects.Player.Health +
-                        (float)GameObjects.Player.GetSpellDamage(Variables.Orbwalker.GetTarget() as Obj_AI_Minion, SpellSlot.Q) * 0.8)
+                    GameObjects.Player.Health +
+                    (float)
+                        GameObjects.Player.GetSpellDamage(Variables.Orbwalker.GetTarget() as Obj_AI_Minion, SpellSlot.Q)*
+                    0.8)
                 {
                     Vars.Q.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Minion);
                 }

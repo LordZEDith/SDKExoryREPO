@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Karma
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -65,13 +65,13 @@ namespace ExorAIO.Champions.Karma
             if (Vars.W.IsReady() &&
                 Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Vars.R.IsReady() &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue >
-                        GameObjects.Player.HealthPercent)
+                    GameObjects.Player.HealthPercent)
                 {
                     Vars.R.Cast();
                 }

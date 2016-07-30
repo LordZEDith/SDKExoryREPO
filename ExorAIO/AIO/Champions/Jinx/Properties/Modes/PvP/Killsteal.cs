@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Jinx
                         t.IsValidTarget(Vars.W.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -53,14 +53,14 @@ namespace ExorAIO.Champions.Jinx
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     if (!Vars.W.IsReady() &&
                         !target.IsValidTarget(Vars.Q.Range))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }
-               }
+                }
             }
         }
     }

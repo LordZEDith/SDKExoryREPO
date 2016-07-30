@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Quinn
             if (Vars.Q.IsReady() &&
                 Targets.Minions.Any() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                 Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Minions.Count(m => m.Distance(Targets.Minions[0]) < 200f) >= 3)
@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast((Variables.Orbwalker.GetTarget() as Obj_AI_Minion).ServerPosition);
@@ -69,7 +69,7 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                 Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Minion);

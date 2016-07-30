@@ -23,7 +23,7 @@ namespace ExorAIO.Champions.Cassiopeia
 
             Vars.Q.SetSkillshot(0.3f, 50f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.W.SetSkillshot(0.5f, 125f, 2500f, false, SkillshotType.SkillshotCircle);
-            Vars.R.SetSkillshot(0.8f, (float)(80 * Math.PI / 180), float.MaxValue, false, SkillshotType.SkillshotCone);
+            Vars.R.SetSkillshot(0.8f, (float) (80*Math.PI/180), float.MaxValue, false, SkillshotType.SkillshotCone);
         }
     }
 }

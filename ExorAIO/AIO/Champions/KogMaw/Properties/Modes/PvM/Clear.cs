@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.KogMaw
             if (Vars.Q.IsReady() &&
                 Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
@@ -40,7 +40,7 @@ namespace ExorAIO.Champions.KogMaw
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Items.HasItem(3085))
@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.KogMaw
                     Vars.W.Cast();
                 }
                 else if (!Targets.Minions.Any() &&
-                    Targets.JungleMinions.Any())
+                         Targets.JungleMinions.Any())
                 {
                     Vars.W.Cast();
                 }
@@ -59,7 +59,7 @@ namespace ExorAIO.Champions.KogMaw
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -69,7 +69,7 @@ namespace ExorAIO.Champions.KogMaw
                 {
                     Vars.E.Cast(Targets.JungleMinions[0].ServerPosition);
                 }
-                
+
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>

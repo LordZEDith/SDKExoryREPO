@@ -23,11 +23,11 @@ namespace ExorAIO.Champions.Quinn
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
@@ -46,10 +46,10 @@ namespace ExorAIO.Champions.Quinn
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.EMenu.Add(new MenuBool("killsteal",   "KillSteal",                true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

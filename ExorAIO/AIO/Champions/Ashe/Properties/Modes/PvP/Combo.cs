@@ -45,7 +45,7 @@ namespace ExorAIO.Champions.Ashe
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-				!Invulnerable.Check(Targets.Target) &&
+                !Invulnerable.Check(Targets.Target) &&
                 Targets.Target.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {

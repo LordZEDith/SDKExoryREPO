@@ -29,8 +29,8 @@ namespace ExorAIO.Champions.MissFortune
                 Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value)
             {
                 if (Targets.Target.IsValidTarget(Vars.E.IsReady()
-                        ? Vars.E.Range
-                        : Vars.R.Range) &&
+                    ? Vars.E.Range
+                    : Vars.R.Range) &&
                     !GameObjects.Player.HasBuff("missfortunebulletsound") &&
                     Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
                 {
@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.MissFortune
                     Vars.R.Cast(Targets.Target.ServerPosition);
                 }
                 else if (GameObjects.Player.HasBuff("missfortunebulletsound") &&
-                    !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                         !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
                 {
                     Variables.Orbwalker.Move(Game.CursorPos);
                 }

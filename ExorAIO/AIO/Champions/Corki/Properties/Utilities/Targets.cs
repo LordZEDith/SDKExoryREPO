@@ -36,6 +36,6 @@ namespace ExorAIO.Champions.Corki
                     m =>
                         m.IsValidTarget(Vars.R.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

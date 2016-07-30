@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.MissFortune
 {
@@ -128,7 +128,7 @@ namespace ExorAIO.Champions.MissFortune
                         default:
                             break;
                     }
-                    
+
                     Vars.PassiveTarget = args.Target as AttackableUnit;
                 }
                 else
@@ -136,7 +136,7 @@ namespace ExorAIO.Champions.MissFortune
                     switch (args.SData.Name)
                     {
                         case "MissFortuneRicochetShot":
-                        //case "MissFortuneRicochetShotMissile":
+                            //case "MissFortuneRicochetShotMissile":
                             Vars.PassiveTarget = args.Target as AttackableUnit;
                             break;
 
@@ -187,7 +187,7 @@ namespace ExorAIO.Champions.MissFortune
                         Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
                         if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                                GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                         {
                             if (GameObjects.EnemyHeroes.Any(
                                 t =>

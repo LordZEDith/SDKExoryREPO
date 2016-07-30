@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Twitch
             if (Vars.W.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.W.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                 Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Target.GetBuffCount("twitchdeadlyvenom") <= 4)

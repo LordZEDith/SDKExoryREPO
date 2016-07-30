@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Akali
             if (Vars.Q.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.CastOnUnit(Targets.Target);

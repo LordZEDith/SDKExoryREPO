@@ -27,10 +27,10 @@ namespace ExorAIO.Champions.Veigar
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
-                        t.IsValidTarget(Vars.Q.Range-100f) &&
+                        t.IsValidTarget(Vars.Q.Range - 100f) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -40,7 +40,8 @@ namespace ExorAIO.Champions.Veigar
                         c =>
                             Targets.Minions.Contains(c) &&
                             c.Health <
-                                (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) == Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                            (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                             Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
@@ -55,10 +56,10 @@ namespace ExorAIO.Champions.Veigar
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>
-                        t.IsValidTarget(Vars.W.Range-150f) &&
+                        t.IsValidTarget(Vars.W.Range - 150f) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).CastPosition);
                 }
@@ -75,9 +76,9 @@ namespace ExorAIO.Champions.Veigar
                         t.IsValidTarget(Vars.R.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) >
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

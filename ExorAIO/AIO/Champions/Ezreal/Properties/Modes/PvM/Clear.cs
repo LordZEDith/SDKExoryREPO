@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Ezreal
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -44,12 +44,12 @@ namespace ExorAIO.Champions.Ezreal
                     else if (Targets.Minions.Any(
                         m =>
                             Vars.GetRealHealth(m) <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.Cast(Targets.Minions.FirstOrDefault(
                             m =>
                                 Vars.GetRealHealth(m) <
-                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
                     }
                 }
 
@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Ezreal
                 ///     The JungleClear Q Logic.
                 /// </summary>
                 else if (Targets.JungleMinions.Any() &&
-                    !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.AARange)))
+                         !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.AARange)))
                 {
                     Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
                 }
@@ -82,7 +82,7 @@ namespace ExorAIO.Champions.Ezreal
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast((Variables.Orbwalker.GetTarget() as Obj_AI_Minion).ServerPosition);

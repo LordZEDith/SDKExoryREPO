@@ -27,10 +27,10 @@ namespace ExorAIO.Champions.Diana
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",       "Combo",       true));
-                    Vars.QMenu.Add(new MenuBool("killsteal",   "KillSteal",   true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Diana
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.WMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   25, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 25, 0, 99, true));
                     Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -51,9 +51,9 @@ namespace ExorAIO.Champions.Diana
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser",           true));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuBool("logical",     "Target Out AA Range",      true));
+                    Vars.EMenu.Add(new MenuBool("logical", "Target Out AA Range", true));
                     Vars.EMenu.Add(new MenuSliderButton("aoe", "If enemies in range >= x", 3, 1, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Diana
                     Vars.RMenu.Add(new MenuBool("bool", "Enable Misaya Key", true));
                     Vars.RMenu.Add(
                         new MenuKeyBind("key", "Misaya Key:", Keys.T, KeyBindType.Press));
-                    Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 25, 0, 99, true));
                     {
@@ -96,10 +96,10 @@ namespace ExorAIO.Champions.Diana
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuBool("safe",     "Don't R into Turret",                             true));
-                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions",                  true));
+                Vars.MiscMenu.Add(new MenuBool("safe", "Don't R into Turret", true));
+                Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions", true));
                 //Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked",       true));
-                Vars.MiscMenu.Add(new MenuBool("rcombo",   "Use second R in combo even if target not marked"));
+                Vars.MiscMenu.Add(new MenuBool("rcombo", "Use second R in combo even if target not marked"));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Caitlyn
 {
@@ -20,9 +20,9 @@ namespace ExorAIO.Champions.Caitlyn
         public static void Combo(EventArgs args)
         {
             if (Bools.HasSheenBuff() ||
-				GameObjects.Player.Mana <
-                    Vars.E.Instance.ManaCost +
-                    Vars.Q.Instance.ManaCost)
+                GameObjects.Player.Mana <
+                Vars.E.Instance.ManaCost +
+                Vars.Q.Instance.ManaCost)
             {
                 return;
             }
@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Caitlyn
                             !t.HasBuff("caitlynyordletrapinternal")))
                 {
                     if (!Vars.E.GetPrediction(target).CollisionObjects.Any() &&
-						Vars.E.GetPrediction(target).Hitchance >= HitChance.Medium)
+                        Vars.E.GetPrediction(target).Hitchance >= HitChance.Medium)
                     {
                         Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                     }

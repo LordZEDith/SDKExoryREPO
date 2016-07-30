@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Kalista
             if (Vars.Q.IsReady() &&
                 !Invulnerable.Check(Targets.Target) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
@@ -42,7 +42,8 @@ namespace ExorAIO.Champions.Kalista
                     c =>
                         Targets.Minions.Contains(c) &&
                         c.Health <
-                            (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) == Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                        (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                         Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

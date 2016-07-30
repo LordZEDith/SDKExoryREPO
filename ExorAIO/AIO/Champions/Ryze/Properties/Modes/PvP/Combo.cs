@@ -23,7 +23,7 @@ namespace ExorAIO.Champions.Ryze
             {
                 return;
             }
-            
+
             if (Bools.HasSheenBuff() &&
                 Targets.Target.IsValidTarget(Vars.AARange))
             {
@@ -40,14 +40,13 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
-                    if (Vars.RyzeStacks != 1 ||
-                        (GameObjects.Player.HealthPercent >
-                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
-                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue))
+                    if (Vars.RyzeStacks != 1 || GameObjects.Player.HealthPercent >
+                        Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
+                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
                         if (Vars.Q.IsReady() &&
                             Environment.TickCount - Vars.LastTick > 250 &&
-                            Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
+                            Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
                             Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                         {
                             Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
@@ -73,7 +72,6 @@ namespace ExorAIO.Champions.Ryze
                     {
                         Vars.E.CastOnUnit(Targets.Target);
                         Vars.LastTick = Environment.TickCount;
-                        return;
                     }
                     break;
 
@@ -82,9 +80,9 @@ namespace ExorAIO.Champions.Ryze
                     ///     The Q Combo Logic.
                     /// </summary>
                     if (Vars.Q.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
+                        Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
                         Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-                    { 
+                    {
                         Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                     }
                     break;

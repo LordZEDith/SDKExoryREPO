@@ -11,6 +11,8 @@ namespace ExorAIO.Champions.Jinx
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void Clear(EventArgs args) {}
+        public static void Clear(EventArgs args)
+        {
+        }
     }
 }

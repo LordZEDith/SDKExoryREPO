@@ -47,7 +47,8 @@ namespace ExorAIO.Champions.Graves
                     GameObjects.Player.ServerPosition
                         .Extend(Game.CursorPos, Vars.E.Range - Vars.AARange).CountEnemyHeroesInRange(1000f) < 3 &&
                     Targets.Target
-                        .Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)) < Vars.AARange)
+                        .Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)) <
+                    Vars.AARange)
                 {
                     Vars.E.Cast(Game.CursorPos);
                 }

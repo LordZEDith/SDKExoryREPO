@@ -1,8 +1,8 @@
+using System.Drawing;
 using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using Color = System.Drawing.Color;
 
 namespace ExorAIO.Utilities
 {
@@ -91,7 +91,6 @@ namespace ExorAIO.Utilities
                         Vars.Menu["drawings"]["r"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.R.Range, Color.Red, 2);
-                        
                     }
 
                     if (Vars.Menu["drawings"]["r2"] != null &&

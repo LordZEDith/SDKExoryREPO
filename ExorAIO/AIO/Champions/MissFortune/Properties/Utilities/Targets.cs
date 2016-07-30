@@ -36,6 +36,6 @@ namespace ExorAIO.Champions.MissFortune
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

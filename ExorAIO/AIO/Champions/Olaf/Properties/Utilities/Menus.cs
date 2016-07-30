@@ -23,10 +23,10 @@ namespace ExorAIO.Champions.Olaf
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Olaf
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.WMenu.Add(new MenuSliderButton("clear",     "Clear / if Mana >= x%",     50, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                     Vars.WMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -46,7 +46,7 @@ namespace ExorAIO.Champions.Olaf
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:", true);
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",   "Combo",   true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("lasthit", "LastHit", true));
                     Vars.EMenu.Add(new MenuSliderButton("clear", "Clear / if Health >= x%", 25, 0, 99, true));
                 }

@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Tristana
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                !Invulnerable.Check((Variables.Orbwalker.GetTarget() as Obj_AI_Hero)) &&
+                !Invulnerable.Check(Variables.Orbwalker.GetTarget() as Obj_AI_Hero) &&
                 (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["e"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)

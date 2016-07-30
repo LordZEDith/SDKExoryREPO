@@ -3,9 +3,9 @@ using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Olaf
 {
@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Olaf
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     if (minion.GetMinionType() == MinionTypes.Siege ||
                         minion.GetMinionType() == MinionTypes.Super)

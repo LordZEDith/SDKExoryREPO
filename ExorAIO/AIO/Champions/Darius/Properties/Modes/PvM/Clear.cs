@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Darius
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Minions.Count() >= 3 ||
@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Darius
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();
@@ -83,7 +83,7 @@ namespace ExorAIO.Champions.Darius
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
                 Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();

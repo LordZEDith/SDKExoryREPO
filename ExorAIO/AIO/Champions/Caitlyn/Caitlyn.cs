@@ -219,7 +219,7 @@ namespace ExorAIO.Champions.Caitlyn
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-				Vars.W.Cast(args.End);
+                Vars.W.Cast(args.End);
             }
         }
 

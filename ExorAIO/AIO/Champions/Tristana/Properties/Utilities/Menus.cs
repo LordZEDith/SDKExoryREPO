@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.Tristana
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
                     Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
-                    Vars.QMenu.Add(new MenuBool("clear",   "Clear",   true));
+                    Vars.QMenu.Add(new MenuBool("clear", "Clear", true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -44,10 +44,10 @@ namespace ExorAIO.Champions.Tristana
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.EMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("buildings",   "Buildings / if Mana >= x%",   50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     {
                         Vars.WhiteListMenu = new Menu("whitelist", "E: Whitelist Menu", true);

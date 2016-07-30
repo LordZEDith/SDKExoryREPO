@@ -36,6 +36,6 @@ namespace ExorAIO.Champions.Tristana
                     m =>
                         m.IsValidTarget(Vars.AARange) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

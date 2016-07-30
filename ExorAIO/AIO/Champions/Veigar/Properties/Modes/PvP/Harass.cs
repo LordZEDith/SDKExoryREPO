@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Veigar
             if (Vars.Q.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
@@ -39,8 +39,10 @@ namespace ExorAIO.Champions.Veigar
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
                 else if (Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count() == 1 &&
-                    Vars.Q.GetPrediction(Targets.Target).CollisionObjects[0].Health <
-                        (float)GameObjects.Player.GetSpellDamage(Vars.Q.GetPrediction(Targets.Target).CollisionObjects[0], SpellSlot.Q))
+                         Vars.Q.GetPrediction(Targets.Target).CollisionObjects[0].Health <
+                         (float)
+                             GameObjects.Player.GetSpellDamage(
+                                 Vars.Q.GetPrediction(Targets.Target).CollisionObjects[0], SpellSlot.Q))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
@@ -52,7 +54,7 @@ namespace ExorAIO.Champions.Veigar
             if (Vars.W.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.E.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                 Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);

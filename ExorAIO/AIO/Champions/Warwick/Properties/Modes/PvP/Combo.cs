@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Warwick
         public static void Combo(EventArgs args)
         {
             if ((Bools.HasSheenBuff() &&
-                Targets.Target.IsValidTarget(Vars.AARange)) ||
+                 Targets.Target.IsValidTarget(Vars.AARange)) ||
                 Invulnerable.Check(Targets.Target))
             {
                 return;

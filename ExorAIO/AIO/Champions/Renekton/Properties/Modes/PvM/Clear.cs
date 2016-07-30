@@ -61,7 +61,8 @@ namespace ExorAIO.Champions.Renekton
             ///     The W JungleClear Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["manamanager"]) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["manamanager"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuBool>().Value &&
                 Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
@@ -87,7 +88,8 @@ namespace ExorAIO.Champions.Renekton
             ///     The W BuildingClear Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["manamanager"]) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["manamanager"]) &&
                 Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();

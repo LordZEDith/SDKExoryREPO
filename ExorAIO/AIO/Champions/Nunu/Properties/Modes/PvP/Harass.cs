@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.ManaPercent <
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;

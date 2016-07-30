@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Lux
                     Vars.R.Cast(target.ServerPosition);
                 }
             }
-            
+
             if (Bools.HasSheenBuff() ||
                 !Targets.Target.IsValidTarget())
             {

@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Draven
                         t.IsValidTarget(Vars.E.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                     return;
@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Draven
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }

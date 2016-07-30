@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Ashe
                 Items.HasItem(3085) &&
                 GameObjects.Player.HasBuff("AsheQCastReady") &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();
@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Ashe
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -84,7 +84,7 @@ namespace ExorAIO.Champions.Ashe
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.HasBuff("AsheQCastReady") &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
                 Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();

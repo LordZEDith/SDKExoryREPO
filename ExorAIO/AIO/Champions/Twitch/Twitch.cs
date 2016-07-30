@@ -146,7 +146,8 @@ namespace ExorAIO.Champions.Twitch
                         GameObjects.Player.HasBuff("TwitchHideInShadows"))
                     {
                         if (GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime - Game.Time >
-                            GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime - GameObjects.Player.GetBuff("TwitchHideInShadows").StartTime -
+                            GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime -
+                            GameObjects.Player.GetBuff("TwitchHideInShadows").StartTime -
                             Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000)
                         {
                             args.Process = false;

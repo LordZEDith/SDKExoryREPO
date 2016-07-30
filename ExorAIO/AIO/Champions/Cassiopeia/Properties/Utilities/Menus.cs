@@ -23,10 +23,10 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",   "Combo",   true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%",  50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -35,11 +35,11 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",     "Combo",          true));
-                    Vars.WMenu.Add(new MenuBool("logical",   "Logical",        true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.WMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.WMenu.Add(new MenuSliderButton("clear",  "Clear / if Mana >= x%",  50, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
@@ -48,9 +48,9 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.EMenu.Add(new MenuSliderButton("clear",   "Clear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("lasthit", "LastHit only / if Mana < x%", 50, 1, 100, true));
                     Vars.EMenu.Add(new MenuSlider("delay", "E Delay (ms)", 0, 0, 250));
                 }
@@ -62,9 +62,9 @@ namespace ExorAIO.Champions.Cassiopeia
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
                     Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / if facing Enemies >=", 1, 1, 5, true));
-                    Vars.RMenu.Add(new MenuBool("killsteal",   "KillSteal",      true));
-                    Vars.RMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser", true));
-                    Vars.RMenu.Add(new MenuBool("interrupter", "Interrupter",    true));
+                    Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
+                    Vars.RMenu.Add(new MenuBool("interrupter", "Interrupter", true));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }

@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.CastOnUnit(Targets.Target);

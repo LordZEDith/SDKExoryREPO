@@ -23,10 +23,10 @@ namespace ExorAIO.Champions.Renekton
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
-                    Vars.QMenu.Add(new MenuBool("clear",     "Clear",     true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.QMenu.Add(new MenuBool("clear", "Clear", true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -35,9 +35,9 @@ namespace ExorAIO.Champions.Renekton
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",       "Combo",       true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.WMenu.Add(new MenuBool("jungleclear", "JungleClear", true));
-                    Vars.WMenu.Add(new MenuBool("buildings",   "Buildings",   true));
+                    Vars.WMenu.Add(new MenuBool("buildings", "Buildings", true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
@@ -46,7 +46,7 @@ namespace ExorAIO.Champions.Renekton
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",  "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(
                         new MenuSeparator("e", "Will only use the first E"));
                 }
@@ -57,8 +57,8 @@ namespace ExorAIO.Champions.Renekton
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("lifesaver", "Lifesaver",              true));
-                    Vars.RMenu.Add(new MenuBool("aoe",       "If 2+ Enemies in Range", true));
+                    Vars.RMenu.Add(new MenuBool("lifesaver", "Lifesaver", true));
+                    Vars.RMenu.Add(new MenuBool("aoe", "If 2+ Enemies in Range", true));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }

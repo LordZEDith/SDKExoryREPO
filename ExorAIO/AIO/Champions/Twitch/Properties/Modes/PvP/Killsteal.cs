@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Twitch
 {
@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Twitch
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.E.Range) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
                 {
                     Vars.E.Cast();
                 }

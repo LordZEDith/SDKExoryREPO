@@ -21,12 +21,20 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     A list of the names of the champions who cast Invalid Stuns.
         /// </summary>
-        public static readonly List<string> InvalidStunCasters = new List<string> {"Amumu", "LeeSin", "Alistar", "Hecarim", "Blitzcrank"};
+        public static readonly List<string> InvalidStunCasters = new List<string>
+        {
+            "Amumu",
+            "LeeSin",
+            "Alistar",
+            "Hecarim",
+            "Blitzcrank"
+        };
 
         /// <summary>
         ///     The default enemy HP bar offset.
         /// </summary>
         public static int XOffset = 10;
+
         public static int YOffset = 20;
         public static int Width = 103;
         public static int Height = 8;
@@ -49,20 +57,48 @@ namespace ExorAIO.Utilities
         /// </summary>
         internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
         {
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Air", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Fire", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Water", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Earth", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Dragon_Elder", Width = 140, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Baron", Width = 190, Height = 10, XOffset = 16, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_RiftHerald", Width = 139, Height = 6, XOffset = 12, YOffset = 22 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Red", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Blue", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Gromp", Width = 86, Height = 2, XOffset = 1, YOffset = 7 },
-            new JungleHpBarOffset { BaseSkinName = "Sru_Crab", Width = 61, Height = 2, XOffset = 1, YOffset = 5 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Krug", Width = 79, Height = 2, XOffset = 1, YOffset = 7 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Razorbeak", Width = 74, Height = 2, XOffset = 1, YOffset = 7 },
-            new JungleHpBarOffset { BaseSkinName = "SRU_Murkwolf", Width = 74, Height = 2, XOffset = 1, YOffset = 7 }
+            new JungleHpBarOffset {BaseSkinName = "SRU_Dragon_Air", Width = 140, Height = 4, XOffset = 12, YOffset = 24},
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Fire",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Water",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Earth",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Elder",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
+            new JungleHpBarOffset {BaseSkinName = "SRU_Baron", Width = 190, Height = 10, XOffset = 16, YOffset = 24},
+            new JungleHpBarOffset {BaseSkinName = "SRU_RiftHerald", Width = 139, Height = 6, XOffset = 12, YOffset = 22},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Red", Width = 139, Height = 4, XOffset = 12, YOffset = 24},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Blue", Width = 139, Height = 4, XOffset = 12, YOffset = 24},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Gromp", Width = 86, Height = 2, XOffset = 1, YOffset = 7},
+            new JungleHpBarOffset {BaseSkinName = "Sru_Crab", Width = 61, Height = 2, XOffset = 1, YOffset = 5},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Krug", Width = 79, Height = 2, XOffset = 1, YOffset = 7},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Razorbeak", Width = 74, Height = 2, XOffset = 1, YOffset = 7},
+            new JungleHpBarOffset {BaseSkinName = "SRU_Murkwolf", Width = 74, Height = 2, XOffset = 1, YOffset = 7}
         };
 
         /// <summary>
@@ -102,21 +138,21 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static Geometry.Sector Cone =>
             new Geometry.Sector(
-                GameObjects.Player.ServerPosition.Extend(Vars.End, -GameObjects.Player.BoundingRadius*3),
-                Vars.End,
-                55f * (float)Math.PI / 180f,
-                Vars.R.Range);
+                GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius*3),
+                End,
+                55f*(float) Math.PI/180f,
+                R.Range);
 
         /// <summary>
         ///     The Q Stacks.
         /// </summary>
         public static int RyzeStacks
-        =>
-            GameObjects.Player.HasBuff("ryzeqiconnocharge")
-                ? 0
-                : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
-                    ? 1
-                    : 2;
+            =>
+                GameObjects.Player.HasBuff("ryzeqiconnocharge")
+                    ? 0
+                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
+                        ? 1
+                        : 2;
 
         /// <summary>
         ///     Gets or sets the Q Spell.
@@ -161,7 +197,8 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     Gets or sets the assembly menu.
         /// </summary>
-        public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}", $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);
+        public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}",
+            $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);
 
         /// <summary>
         ///     Gets or sets the settings menu.
@@ -229,18 +266,6 @@ namespace ExorAIO.Utilities
         public static float AARange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
-        ///     The jungle HP bar offset.
-        /// </summary>
-        internal class JungleHpBarOffset
-        {
-            internal string BaseSkinName;
-            internal int Height;
-            internal int Width;
-            internal int XOffset;
-            internal int YOffset;
-        }
-
-        /// <summary>
         ///     Gets the health with Blitzcrank's Shield support.
         /// </summary>
         /// <param name="target">
@@ -261,14 +286,26 @@ namespace ExorAIO.Utilities
                 if ((target as Obj_AI_Hero).ChampionName.Equals("Blitzcrank") &&
                     !(target as Obj_AI_Hero).HasBuff("BlitzcrankManaBarrierCD"))
                 {
-                    debuffer += target.Mana / 2;
+                    debuffer += target.Mana/2;
                 }
             }
 
             return target.Health +
-                target.PhysicalShield +
-                target.HPRegenRate +
-                debuffer;
+                   target.PhysicalShield +
+                   target.HPRegenRate +
+                   debuffer;
+        }
+
+        /// <summary>
+        ///     The jungle HP bar offset.
+        /// </summary>
+        internal class JungleHpBarOffset
+        {
+            internal string BaseSkinName;
+            internal int Height;
+            internal int Width;
+            internal int XOffset;
+            internal int YOffset;
         }
     }
 }

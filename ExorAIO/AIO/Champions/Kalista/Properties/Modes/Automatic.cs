@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Kalista
 {
@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Kalista
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.CountEnemyHeroesInRange(1500f) == 0 &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var loc in Vars.Locations.Where(
@@ -80,7 +80,7 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The E Before death Logic.
                 /// </summary>
-                if (Health.GetPrediction(GameObjects.Player, (int)(1000 + Game.Ping/2f)) <= 0 &&
+                if (Health.GetPrediction(GameObjects.Player, (int) (1000 + Game.Ping/2f)) <= 0 &&
                     Vars.Menu["spells"]["e"]["ondeath"].GetValue<MenuBool>().Value)
                 {
                     Vars.E.Cast();
@@ -92,11 +92,11 @@ namespace ExorAIO.Champions.Kalista
                 if (GameObjects.EnemyHeroes.Any(t => Bools.IsPerfectRendTarget(t)) &&
                     Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue &&
                     Targets.Minions.Any(
-						m =>
-							Bools.IsPerfectRendTarget(m) &&
-							Vars.GetRealHealth(m) <
-								(float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-								(float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                        m =>
+                            Bools.IsPerfectRendTarget(m) &&
+                            Vars.GetRealHealth(m) <
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                 {
                     /// <summary>
                     ///     Check for Mana Manager if not in combo mode and the killable minion is only one, else do not use it.
@@ -106,11 +106,11 @@ namespace ExorAIO.Champions.Kalista
                             m =>
                                 Bools.IsPerfectRendTarget(m) &&
                                 Vars.GetRealHealth(m) <
-                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
                     {
                         if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
+                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
                         {
                             return;
                         }
@@ -124,8 +124,8 @@ namespace ExorAIO.Champions.Kalista
                             m =>
                                 Bools.IsPerfectRendTarget(m) &&
                                 Vars.GetRealHealth(m) <
-                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
                     {
                         if (!Vars.Menu["spells"]["e"]["whitelist"][GameObjects.EnemyHeroes.FirstOrDefault(
                             t =>
@@ -158,8 +158,8 @@ namespace ExorAIO.Champions.Kalista
                         m =>
                             Bools.IsPerfectRendTarget(m) &&
                             m.Health <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }

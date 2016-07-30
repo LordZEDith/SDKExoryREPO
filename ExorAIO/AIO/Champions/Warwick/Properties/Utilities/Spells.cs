@@ -16,7 +16,7 @@ namespace ExorAIO.Champions.Warwick
         {
             Vars.Q = new Spell(SpellSlot.Q, 400f);
             Vars.W = new Spell(SpellSlot.W, 1250f);
-            Vars.E = new Spell(SpellSlot.E, 700f + 800f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level);
+            Vars.E = new Spell(SpellSlot.E, 700f + 800f*GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level);
             Vars.R = new Spell(SpellSlot.R, 700f);
         }
     }

@@ -20,7 +20,7 @@ namespace ExorAIO.Champions.Ryze
         public static void Killsteal(EventArgs args)
         {
             if (GameObjects.Player.HealthPercent <=
-                    Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
+                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
             {
                 return;
@@ -37,9 +37,10 @@ namespace ExorAIO.Champions.Ryze
                         t.IsValidTarget(Vars.Q.Range - 50f) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * (1 + (t.HasBuff("RyzeE")
-                                ? new double[] { 40, 55, 70, 85, 100 }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1] / 100
-                                : 0))))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*(1 + (t.HasBuff("RyzeE")
+                            ? new double[] {40, 55, 70, 85, 100}[
+                                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1]/100
+                            : 0))))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -59,7 +60,7 @@ namespace ExorAIO.Champions.Ryze
                         t.IsValidTarget(Vars.W.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical, false) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.CastOnUnit(target);
                 }
@@ -76,7 +77,7 @@ namespace ExorAIO.Champions.Ryze
                         t.IsValidTarget(Vars.E.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical, false) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

@@ -24,11 +24,11 @@ namespace ExorAIO.Champions.Vayne
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("harass",      "Harass / if Mana >= x%",      50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("buildings",   "Buildings / if Mana >= x%",   50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("farmhelper",  "FarmHelper / if Mana >= x%",  50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("farmhelper", "FarmHelper / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
@@ -38,12 +38,13 @@ namespace ExorAIO.Champions.Vayne
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuSeparator("condemn", "ExorCondemn: 95% Accuracy, 100% Walls and Buildings taken into account."));
-                    Vars.EMenu.Add(new MenuBool("logical",     "Logical",                  true));
-                    Vars.EMenu.Add(new MenuBool("dashpred",    "Dash-Prediction"));
-                    Vars.EMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser"));
+                    Vars.EMenu.Add(new MenuSeparator("condemn",
+                        "ExorCondemn: 95% Accuracy, 100% Walls and Buildings taken into account."));
+                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.EMenu.Add(new MenuBool("dashpred", "Dash-Prediction"));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser"));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuBool("killsteal",   "KillSteal"));
+                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal"));
                     {
                         /// <summary>
                         ///     Sets the menu for the E Whitelist.
@@ -71,9 +72,10 @@ namespace ExorAIO.Champions.Vayne
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuBool("alwaysq",     "Always Q after AA", true));
-                Vars.MiscMenu.Add(new MenuBool("wstacks",     "Use Q only to proc 3rd W Ring"));
-                Vars.MiscMenu.Add(new MenuSlider("stealthtime", "Stay in stealth mode for at least x (ms) [1000 ms = 1 second]", 0, 0, 1000));
+                Vars.MiscMenu.Add(new MenuBool("alwaysq", "Always Q after AA", true));
+                Vars.MiscMenu.Add(new MenuBool("wstacks", "Use Q only to proc 3rd W Ring"));
+                Vars.MiscMenu.Add(new MenuSlider("stealthtime",
+                    "Stay in stealth mode for at least x (ms) [1000 ms = 1 second]", 0, 0, 1000));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

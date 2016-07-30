@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Ezreal
             if (Vars.Q.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["q"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Ezreal
             if (Vars.W.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.W.Range) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                 Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);

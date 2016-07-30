@@ -28,7 +28,8 @@ namespace ExorAIO.Champions.Jhin
                         t.IsValidTarget(Vars.R.Range) &&
                         GameObjects.Player.IsFacing(t) &&
                         !Invulnerable.Check(t, DamageType.True, false) &&
-                        Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value).ToList();
+                        Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                    .ToList();
 
         /// <summary>
         ///     The minions target.
@@ -49,6 +50,6 @@ namespace ExorAIO.Champions.Jhin
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

@@ -3,9 +3,9 @@ using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Veigar
 {
@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Veigar
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
                 Vars.Menu["miscellaneous"]["tear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast(Game.CursorPos);
@@ -61,7 +61,7 @@ namespace ExorAIO.Champions.Veigar
             /// </summary>
             if (Vars.E.IsReady() &&
                 Vars.E.GetPrediction(Targets.Target).AoeTargetsHitCount >=
-                    Vars.Menu["spells"]["e"]["enemies"].GetValue<MenuSliderButton>().SValue &&
+                Vars.Menu["spells"]["e"]["enemies"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["e"]["enemies"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).CastPosition);

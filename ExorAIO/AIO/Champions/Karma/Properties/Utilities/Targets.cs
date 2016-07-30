@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.Karma
         /// <summary>
         ///     The main hero target.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.Q.Range+200f, DamageType.Magical);
+        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.Q.Range + 200f, DamageType.Magical);
 
         /// <summary>
         ///     The minions target.
@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Karma
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The lowest ally in range.

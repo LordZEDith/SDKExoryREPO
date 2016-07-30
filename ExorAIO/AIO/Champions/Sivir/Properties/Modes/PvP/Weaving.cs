@@ -43,7 +43,7 @@ namespace ExorAIO.Champions.Sivir
             {
                 Vars.Q.Cast(
                     Vars.Q.GetPrediction(Targets.Target)
-                        .UnitPosition.Extend((Vector2)GameObjects.Player.ServerPosition, -140));
+                        .UnitPosition.Extend((Vector2) GameObjects.Player.ServerPosition, -140));
             }
         }
     }

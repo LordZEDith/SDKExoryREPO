@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Kalista
 {
@@ -33,14 +33,15 @@ namespace ExorAIO.Champions.Kalista
                         t.IsValidTarget(Vars.Q.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any() ||
-						Vars.Q.GetPrediction(target).CollisionObjects.Count(
-                        c =>
-                            Targets.Minions.Contains(c) &&
-                            c.Health <
-                                (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) == Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                        Vars.Q.GetPrediction(target).CollisionObjects.Count(
+                            c =>
+                                Targets.Minions.Contains(c) &&
+                                c.Health <
+                                (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                        Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
@@ -57,8 +58,8 @@ namespace ExorAIO.Champions.Kalista
                     t =>
                         Bools.IsPerfectRendTarget(t) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
                 {
                     Vars.E.Cast();
                 }

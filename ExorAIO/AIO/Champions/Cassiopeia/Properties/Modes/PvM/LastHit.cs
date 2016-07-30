@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Cassiopeia
 {
@@ -31,10 +31,10 @@ namespace ExorAIO.Champions.Cassiopeia
                     foreach (var minion in Targets.Minions.Where(
                         m =>
                             Vars.GetRealHealth(m) <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) + 
-                                (m.HasBuffOfType(BuffType.Poison)
-                                    ? (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
-                                    : 0)))
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (m.HasBuffOfType(BuffType.Poison)
+                                ? (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
+                                : 0)))
                     {
                         Vars.E.CastOnUnit(minion);
                     }

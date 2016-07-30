@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Jhin
         public static void Combo(EventArgs args)
         {
             if (Bools.HasSheenBuff() ||
-				!Targets.Target.IsValidTarget() ||
+                !Targets.Target.IsValidTarget() ||
                 Invulnerable.Check(Targets.Target) ||
                 Vars.R.Instance.Name.Equals("JhinRShot"))
             {
@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Jhin
                     t =>
                         !Invulnerable.Check(t) &&
                         t.HasBuff("jhinespotteddebuff") &&
-                        t.IsValidTarget(Vars.W.Range-150f) &&
+                        t.IsValidTarget(Vars.W.Range - 150f) &&
                         Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);

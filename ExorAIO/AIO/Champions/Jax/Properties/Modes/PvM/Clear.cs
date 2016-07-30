@@ -16,14 +16,14 @@ namespace ExorAIO.Champions.Jax
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void Clear(EventArgs args) 
+        public static void Clear(EventArgs args)
         {
             /// <summary>
             ///     The Clear E Logics.
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -50,7 +50,7 @@ namespace ExorAIO.Champions.Jax
             if (Vars.Q.IsReady() &&
                 Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
                 Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.CastOnUnit(Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range)));
@@ -65,7 +65,7 @@ namespace ExorAIO.Champions.Jax
         public static void Clear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null ||
-                !Targets.Minions.Contains((Variables.Orbwalker.GetTarget() as Obj_AI_Minion)))
+                !Targets.Minions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;
             }
@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Jax
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();
@@ -101,7 +101,7 @@ namespace ExorAIO.Champions.Jax
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
                 Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();

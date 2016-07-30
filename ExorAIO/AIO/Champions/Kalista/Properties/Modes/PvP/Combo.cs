@@ -27,7 +27,8 @@ namespace ExorAIO.Champions.Kalista
                 !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
                 Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
             {
-                ObjectManager.Player.IssueOrder(GameObjectOrder.AttackUnit, Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
+                ObjectManager.Player.IssueOrder(GameObjectOrder.AttackUnit,
+                    Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
             }
 
             if (!Targets.Target.IsValidTarget() ||
@@ -59,7 +60,8 @@ namespace ExorAIO.Champions.Kalista
                     c =>
                         Targets.Minions.Contains(c) &&
                         c.Health <
-                            (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) == Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                        (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                         Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

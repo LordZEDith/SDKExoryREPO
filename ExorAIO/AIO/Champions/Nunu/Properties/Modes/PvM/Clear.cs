@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.ManaPercent <
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;
@@ -40,7 +40,7 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Q.CastOnUnit(Targets.Minions.FirstOrDefault(
                     m =>
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
             }
 
             /// <summary>
@@ -50,7 +50,7 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.ManaPercent <
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;
@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Nunu
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(minion);
                 }

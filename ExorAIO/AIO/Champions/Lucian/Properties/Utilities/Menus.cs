@@ -28,9 +28,9 @@ namespace ExorAIO.Champions.Lucian
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     {
                         if (GameObjects.EnemyHeroes.Any())
@@ -40,10 +40,11 @@ namespace ExorAIO.Champions.Lucian
                             /// </summary>
                             Vars.Q2Menu = new Menu("extended", "Use Extended Q in:", true);
                             {
-                                Vars.Q2Menu.Add(new MenuBool("excombo",     "Combo",     true));
+                                Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
                                 Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("mixed",       "Mixed / if Mana >= %",     50, 0, 99, true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0, 99, true));
+                                Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
+                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0,
+                                    99, true));
                             }
                             Vars.QMenu.Add(Vars.Q2Menu);
 
@@ -52,7 +53,8 @@ namespace ExorAIO.Champions.Lucian
                             /// </summary>
                             Vars.WhiteListMenu = new Menu("whitelist", "Extended Harass: Whitelist", true);
                             {
-                                Vars.WhiteListMenu.Add(new MenuSeparator("extendedsep", "Note: The Whitelist only works for Mixed and LaneClear."));
+                                Vars.WhiteListMenu.Add(new MenuSeparator("extendedsep",
+                                    "Note: The Whitelist only works for Mixed and LaneClear."));
 
                                 foreach (var target in GameObjects.EnemyHeroes)
                                 {
@@ -67,7 +69,8 @@ namespace ExorAIO.Champions.Lucian
                         }
                         else
                         {
-                            Vars.QMenu.Add(new MenuSeparator("exseparator", "No enemy champions found, no need for an Extended Q Menu."));
+                            Vars.QMenu.Add(new MenuSeparator("exseparator",
+                                "No enemy champions found, no need for an Extended Q Menu."));
                         }
                     }
                 }
@@ -78,10 +81,10 @@ namespace ExorAIO.Champions.Lucian
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",     "Combo",       true));
-                    Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal",   true));
-                    Vars.WMenu.Add(new MenuSliderButton("buildings",   "Buildings / if Mana >= x%",   50, 0, 99, true));
-                    Vars.WMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.WMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -92,10 +95,14 @@ namespace ExorAIO.Champions.Lucian
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
                     Vars.EMenu.Add(new MenuSeparator("esep", "E Modes:"));
-                    Vars.EMenu.Add(new MenuSeparator("esep1", "[KEEP IN MIND THAT, NO MATTER THE MODE, THE DASH WILL BE DIRECTED TOWARDS YOUR MOUSE]"));
-                    Vars.EMenu.Add(new MenuSeparator("esep2", "Exory: The Logic you have always used, with smart Short & Long dash."));
-                    Vars.EMenu.Add(new MenuSeparator("esep3", "Normal: This Logic will make you always dash at the maximum distance."));
-                    Vars.EMenu.Add(new MenuSeparator("esep4", "None: This Logic will prevent the assembly from using E automatically in combo."));
+                    Vars.EMenu.Add(new MenuSeparator("esep1",
+                        "[KEEP IN MIND THAT, NO MATTER THE MODE, THE DASH WILL BE DIRECTED TOWARDS YOUR MOUSE]"));
+                    Vars.EMenu.Add(new MenuSeparator("esep2",
+                        "Exory: The Logic you have always used, with smart Short & Long dash."));
+                    Vars.EMenu.Add(new MenuSeparator("esep3",
+                        "Normal: This Logic will make you always dash at the maximum distance."));
+                    Vars.EMenu.Add(new MenuSeparator("esep4",
+                        "None: This Logic will prevent the assembly from using E automatically in combo."));
                     Vars.EMenu.Add(new MenuList<string>("mode", "E Mode",
                         new[]
                         {
@@ -103,10 +110,10 @@ namespace ExorAIO.Champions.Lucian
                             "Normal",
                             "None"
                         }));
-                    Vars.EMenu.Add(new MenuBool("engager",   "Engager",        true));
+                    Vars.EMenu.Add(new MenuBool("engager", "Engager", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.EMenu.Add(new MenuSliderButton("buildings",   "Buildings / if Mana >= x%",   50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("laneclear",   "LaneClear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
@@ -117,9 +124,12 @@ namespace ExorAIO.Champions.Lucian
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
                     Vars.RMenu.Add(new MenuSeparator("separator", "How does it work:"));
-                    Vars.RMenu.Add(new MenuSeparator("separator2", "Keep the button pressed until you want to stop the ultimate."));
-                    Vars.RMenu.Add(new MenuSeparator("separator3", "You don't have to press both Spacebar and the Semi-Automatic button while doing this,"));
-                    Vars.RMenu.Add(new MenuSeparator("separator4", "since ExorLucian automatically orbwalks while channelling his R, so just press the button."));
+                    Vars.RMenu.Add(new MenuSeparator("separator2",
+                        "Keep the button pressed until you want to stop the ultimate."));
+                    Vars.RMenu.Add(new MenuSeparator("separator3",
+                        "You don't have to press both Spacebar and the Semi-Automatic button while doing this,"));
+                    Vars.RMenu.Add(new MenuSeparator("separator4",
+                        "since ExorLucian automatically orbwalks while channelling his R, so just press the button."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(
                         new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));

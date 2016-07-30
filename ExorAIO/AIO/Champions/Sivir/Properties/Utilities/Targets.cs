@@ -24,7 +24,7 @@ namespace ExorAIO.Champions.Sivir
             =>
                 GameObjects.EnemyMinions.Where(
                     m =>
-                        m.IsMinion() && 
+                        m.IsMinion() &&
                         m.IsValidTarget(Vars.Q.Range)).ToList();
 
         /// <summary>
@@ -36,6 +36,6 @@ namespace ExorAIO.Champions.Sivir
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

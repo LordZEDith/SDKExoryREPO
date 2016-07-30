@@ -113,7 +113,7 @@ namespace ExorAIO.Champions.Ezreal
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         break;
-                        
+
                     default:
                         break;
                 }
@@ -134,7 +134,8 @@ namespace ExorAIO.Champions.Ezreal
                 if (args.Buff.Name.Equals("ThreshQ") ||
                     args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Range));
+                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition,
+                        -Vars.E.Range));
                 }
             }
         }

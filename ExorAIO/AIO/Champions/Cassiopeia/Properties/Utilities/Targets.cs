@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Cassiopeia
                     m =>
                         m.IsValidTarget(Vars.W.Range) &&
                         (!GameObjects.JungleSmall.Contains(m) ||
-                        m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The ultimate targets.
@@ -45,7 +45,7 @@ namespace ExorAIO.Champions.Cassiopeia
             =>
                 GameObjects.EnemyHeroes.Where(
                     t =>
-                        t.IsValidTarget(Vars.R.Range-100f) &&
+                        t.IsValidTarget(Vars.R.Range - 100f) &&
                         t.IsFacing(GameObjects.Player)).ToList();
     }
 }

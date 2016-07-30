@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Evelynn
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",   "Combo",   true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);

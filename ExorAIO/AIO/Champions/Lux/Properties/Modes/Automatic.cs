@@ -3,9 +3,9 @@ using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Lux
 {
@@ -43,7 +43,7 @@ namespace ExorAIO.Champions.Lux
                             t =>
                                 !Bools.IsImmobile(t) &&
                                 !t.HasBuff("luxilluminatingfraulein") &&
-                                t.Distance(Lux.EMissile.Position) < Vars.E.Width-10f))
+                                t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
                         {
                             Vars.E.Cast();
                         }

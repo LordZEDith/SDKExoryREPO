@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Tryndamere
                         t.IsValidTarget(Vars.E.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            GameObjects.Player.GetAutoAttackDamage(t)*3 +
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                        GameObjects.Player.GetAutoAttackDamage(t)*3 +
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                 }

@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Tristana
 {
@@ -104,7 +104,8 @@ namespace ExorAIO.Champions.Tristana
                 if (args.Buff.Name.Equals("ThreshQ") ||
                     args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.W.Range));
+                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition,
+                        -Vars.W.Range));
                 }
             }
         }
@@ -142,7 +143,7 @@ namespace ExorAIO.Champions.Tristana
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
                             t =>

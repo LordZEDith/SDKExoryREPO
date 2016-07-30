@@ -31,11 +31,11 @@ namespace ExorAIO.Champions.Vayne
                         !t.IsValidTarget(Vars.AARange) &&
                         t.CountEnemyHeroesInRange(700f) <= 2 &&
                         Vars.GetRealHealth(t) <
-                            GameObjects.Player.GetAutoAttackDamage(t) +
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
-                            (t.GetBuffCount("vaynesilvereddebuff") == 2
-                                ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)
-                                : 0)))
+                        GameObjects.Player.GetAutoAttackDamage(t) +
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
+                        (t.GetBuffCount("vaynesilvereddebuff") == 2
+                            ? (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)
+                            : 0)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                     Variables.Orbwalker.ForceTarget = target;
@@ -53,10 +53,10 @@ namespace ExorAIO.Champions.Vayne
                     t =>
                         t.IsValidTarget(Vars.E.Range) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                            (t.GetBuffCount("vaynesilvereddebuff") == 2
-                                ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)
-                                : 0)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                        (t.GetBuffCount("vaynesilvereddebuff") == 2
+                            ? (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)
+                            : 0)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

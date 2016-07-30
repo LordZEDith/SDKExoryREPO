@@ -1,11 +1,11 @@
 using System;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.Utils;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.Data.Enumerations;
+using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Lucian
 {
@@ -57,11 +57,11 @@ namespace ExorAIO.Champions.Lucian
             Logics.Automatic(args);
 
             if (GameObjects.Player.HasBuff("LucianR") ||
-				GameObjects.Player.HasBuff("LucianPassiveBuff"))
+                GameObjects.Player.HasBuff("LucianPassiveBuff"))
             {
                 return;
             }
-            
+
             /// <summary>
             ///     Initializes the Killsteal events.
             /// </summary>

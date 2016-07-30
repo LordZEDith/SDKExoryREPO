@@ -11,6 +11,8 @@ namespace ExorAIO.Champions.Vayne
         ///     Called when the game updates itself.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void Combo(EventArgs args) {}
+        public static void Combo(EventArgs args)
+        {
+        }
     }
 }

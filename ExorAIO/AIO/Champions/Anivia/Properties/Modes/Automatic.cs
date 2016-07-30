@@ -67,7 +67,7 @@ namespace ExorAIO.Champions.Anivia
                 {
                     Vars.W.Cast(
                         GameObjects.Player.ServerPosition.Extend(
-                            target.ServerPosition, GameObjects.Player.Distance(target)+20f));
+                            target.ServerPosition, GameObjects.Player.Distance(target) + 20f));
                 }
             }
 
@@ -89,8 +89,8 @@ namespace ExorAIO.Champions.Anivia
                         {
                             Vars.Q.Cast();
                         }
-						
-						if (!Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+
+                        if (!Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
                         {
                             return;
                         }
@@ -140,8 +140,8 @@ namespace ExorAIO.Champions.Anivia
                         }
 
                         if (!Targets.RMinions.Any() ||
-							GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
+                            GameObjects.Player.ManaPercent <
+                            ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
                         {
                             Vars.R.Cast();
                         }
@@ -157,7 +157,7 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (Anivia.RMissile.Position.CountEnemyHeroesInRange(Vars.R.Width+250f) < 1)
+                        if (Anivia.RMissile.Position.CountEnemyHeroesInRange(Vars.R.Width + 250f) < 1)
                         {
                             Vars.R.Cast();
                         }

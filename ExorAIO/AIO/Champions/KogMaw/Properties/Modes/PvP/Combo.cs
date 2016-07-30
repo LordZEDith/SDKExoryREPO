@@ -46,8 +46,8 @@ namespace ExorAIO.Champions.KogMaw
             if (Vars.Q.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.Mana >
-                    Vars.Q.Instance.ManaCost +
-                    Vars.W.Instance.ManaCost &&
+                Vars.Q.Instance.ManaCost +
+                Vars.W.Instance.ManaCost &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
@@ -62,8 +62,8 @@ namespace ExorAIO.Champions.KogMaw
             if (Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.E.Range - 100f) &&
                 GameObjects.Player.Mana >
-                    Vars.E.Instance.ManaCost +
-                    Vars.W.Instance.ManaCost &&
+                Vars.E.Instance.ManaCost +
+                Vars.W.Instance.ManaCost &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
@@ -76,11 +76,11 @@ namespace ExorAIO.Champions.KogMaw
                 Targets.Target.HealthPercent < 50 &&
                 Targets.Target.IsValidTarget(Vars.R.Range) &&
                 GameObjects.Player.Mana >
-                    Vars.W.Instance.ManaCost +
-                    (50 * (GameObjects.Player.GetBuffCount("kogmawlivingartillerycost") + 1)) &&
+                Vars.W.Instance.ManaCost +
+                50*(GameObjects.Player.GetBuffCount("kogmawlivingartillerycost") + 1) &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue >
-                    GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).CastPosition);
             }

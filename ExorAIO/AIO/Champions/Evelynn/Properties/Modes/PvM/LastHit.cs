@@ -23,10 +23,13 @@ namespace ExorAIO.Champions.Evelynn
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
                 Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in Targets.Minions.Where(m => Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                foreach (
+                    var minion in
+                        Targets.Minions.Where(
+                            m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     Vars.Q.Cast();
                 }

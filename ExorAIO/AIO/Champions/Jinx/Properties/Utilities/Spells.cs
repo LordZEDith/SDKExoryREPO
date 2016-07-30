@@ -18,7 +18,8 @@ namespace ExorAIO.Champions.Jinx
             Vars.PowPow = new Spell(SpellSlot.Q, !GameObjects.Player.HasBuff("JinxQ")
                 ? Vars.AARange
                 : 525f + GameObjects.Player.BoundingRadius);
-            Vars.Q = new Spell(SpellSlot.Q, Vars.PowPow.Range + (50f + 25f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level));
+            Vars.Q = new Spell(SpellSlot.Q,
+                Vars.PowPow.Range + (50f + 25f*GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level));
             Vars.W = new Spell(SpellSlot.W, 1350f); // Test - Original Range: 1450f.
             Vars.E = new Spell(SpellSlot.E, 900f);
             Vars.R = new Spell(SpellSlot.R, 1500f);

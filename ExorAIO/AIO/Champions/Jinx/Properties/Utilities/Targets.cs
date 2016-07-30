@@ -30,6 +30,7 @@ namespace ExorAIO.Champions.Jinx
         /// <summary>
         ///     The jungle minion targets.
         /// </summary>
-        public static List<Obj_AI_Minion> JungleMinions => GameObjects.Jungle.Where(m => m.IsValidTarget(Vars.Q.Range)).ToList();
+        public static List<Obj_AI_Minion> JungleMinions
+            => GameObjects.Jungle.Where(m => m.IsValidTarget(Vars.Q.Range)).ToList();
     }
 }

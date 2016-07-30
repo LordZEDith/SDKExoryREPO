@@ -3,8 +3,8 @@ using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Enumerations;
+using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Taliyah
@@ -40,7 +40,7 @@ namespace ExorAIO.Champions.Taliyah
             Drawings.Initialize();
         }
 
-		/// <summary>
+        /// <summary>
         ///     Called when an object gets created by the game.
         /// </summary>
         /// <param name="obj">The object.</param>
@@ -64,17 +64,17 @@ namespace ExorAIO.Champions.Taliyah
             if (obj.IsValid &&
                 obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
-                DelayAction.Add(500, ()=>
+                DelayAction.Add(500, () =>
+                {
+                    if (!ObjectManager.Get<GameObject>().Any(
+                        o =>
+                            o.IsAlly &&
+                            o.Distance(GameObjects.Player) < 412.5f &&
+                            o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
                     {
-                        if (!ObjectManager.Get<GameObject>().Any(
-                            o =>
-                                o.IsAlly &&
-                                o.Distance(GameObjects.Player) < 412.5f &&
-                                o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
-                        {
-                            TerrainObject = null;
-                        }
-                    });
+                        TerrainObject = null;
+                    }
+                });
             }
         }
 
@@ -166,7 +166,8 @@ namespace ExorAIO.Champions.Taliyah
                     args.Sender.ServerPosition,
                     args.Sender.IsFacing(GameObjects.Player) &&
                     GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender)*2)
+                        ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
+                            GameObjects.Player.Distance(args.Sender)*2)
                         : GameObjects.Player.ServerPosition);
             }
 

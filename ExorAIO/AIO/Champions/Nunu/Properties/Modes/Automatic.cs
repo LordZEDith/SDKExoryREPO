@@ -58,7 +58,7 @@ namespace ExorAIO.Champions.Nunu
                         m =>
                             m.IsValidTarget(Vars.Q.Range) &&
                             Vars.GetRealHealth(m) <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(minion);
                     }
@@ -73,9 +73,9 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.Player.MaxHealth >
-                        GameObjects.Player.Health +
-                        (30 + 45 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level) +
-                        GameObjects.Player.TotalMagicalDamage * 0.75)
+                    GameObjects.Player.Health +
+                    (30 + 45*GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level) +
+                    GameObjects.Player.TotalMagicalDamage*0.75)
                 {
                     foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range)))
                     {
@@ -91,7 +91,7 @@ namespace ExorAIO.Champions.Nunu
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.ManaPercent <
-                        ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
+                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;
@@ -111,15 +111,17 @@ namespace ExorAIO.Champions.Nunu
                             a =>
                                 !a.IsMe &&
                                 a.IsValidTarget(Vars.W.Range, false) &&
-                                Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>()
+                                    .Value))
                         {
                             Vars.W.CastOnUnit(GameObjects.AllyHeroes.Where(
                                 a =>
                                     !a.IsMe &&
                                     a.IsValidTarget(Vars.W.Range, false) &&
-                                    Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>().Value).OrderBy(
-                                        o =>
-                                            o.TotalAttackDamage).First());
+                                    Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>()
+                                        .Value).OrderBy(
+                                            o =>
+                                                o.TotalAttackDamage).First());
                         }
 
                         /// <summary>

@@ -13,7 +13,7 @@ namespace ExorAIO
             /// <summary>
             ///     Loads the Bootstrap.
             /// </summary>
-            LeagueSharp.SDK.Bootstrap.Init();
+            Bootstrap.Init();
 
             Events.OnLoad += (sender, eventArgs) =>
             {

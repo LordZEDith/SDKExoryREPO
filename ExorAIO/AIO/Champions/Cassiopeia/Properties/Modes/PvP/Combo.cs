@@ -37,10 +37,7 @@ namespace ExorAIO.Champions.Cassiopeia
                         !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                        () =>
-                        {
-                            Vars.E.CastOnUnit(Targets.Target);
-                        });
+                        () => { Vars.E.CastOnUnit(Targets.Target); });
                 }
             }
 
@@ -56,7 +53,7 @@ namespace ExorAIO.Champions.Cassiopeia
             if (Vars.R.IsReady() &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue <=
-                    Targets.RTargets.Count())
+                Targets.RTargets.Count())
             {
                 Vars.R.Cast(Targets.RTargets[0].ServerPosition);
             }

@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Tristana
 {
@@ -32,10 +32,11 @@ namespace ExorAIO.Champions.Tristana
                         t.IsValidTarget(Vars.R.Range)))
                 {
                     if (Vars.GetRealHealth(target) <
-                            (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.R) + (target.HasBuff("TristanaECharge")
-                                ? (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.E) +
-                                  (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.E, DamageStage.Buff)
-                                : 0))
+                        (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.R) +
+                        (target.HasBuff("TristanaECharge")
+                            ? (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E) +
+                              (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E, DamageStage.Buff)
+                            : 0))
                     {
                         Vars.R.CastOnUnit(target);
                     }

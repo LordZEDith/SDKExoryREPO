@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Corki
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Minions.Count() >= 3 ||
@@ -42,7 +42,7 @@ namespace ExorAIO.Champions.Corki
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -68,7 +68,7 @@ namespace ExorAIO.Champions.Corki
             /// </summary>
             if (Vars.R.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                 Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>

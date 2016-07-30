@@ -28,12 +28,12 @@ namespace ExorAIO.Champions.Warwick
             /// </summary>
             if (Vars.Q.IsReady() &&
                 Targets.Minions.Any() &&
-				!GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.R.Range)) &&
+                !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.R.Range)) &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.Player.MaxHealth <
-                        GameObjects.Player.Health +
-                        (float)GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q)*0.8)
+                    GameObjects.Player.Health +
+                    (float) GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q)*0.8)
                 {
                     Vars.Q.CastOnUnit(Targets.Minions.FirstOrDefault());
                 }

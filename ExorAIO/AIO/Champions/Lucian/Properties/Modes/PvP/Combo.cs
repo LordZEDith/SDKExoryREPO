@@ -31,7 +31,8 @@ namespace ExorAIO.Champions.Lucian
             {
                 if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
                     GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f).CountEnemyHeroesInRange(1000f) < 3 &&
-                    Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f)) < Vars.AARange)
+                    Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f)) <
+                    Vars.AARange)
                 {
                     Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f));
                 }
@@ -41,7 +42,7 @@ namespace ExorAIO.Champions.Lucian
                 t =>
                     !Invulnerable.Check(t) &&
                     !t.IsValidTarget(Vars.Q.Range) &&
-                    t.IsValidTarget(Vars.Q2.Range-50f)))
+                    t.IsValidTarget(Vars.Q2.Range - 50f)))
             {
                 return;
             }
@@ -57,21 +58,18 @@ namespace ExorAIO.Champions.Lucian
                 /// </summary>
                 foreach (var minion 
                     in from minion
-                    in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
-
-                    let polygon = new Geometry.Rectangle(
-                        GameObjects.Player.ServerPosition,
-                        GameObjects.Player.ServerPosition.Extend(minion.ServerPosition, Vars.Q2.Range-50f),
-                        Vars.Q2.Width)
-
-                    where !polygon.IsOutside(
-                        (Vector2)Vars.Q2.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            !t.IsValidTarget(Vars.Q.Range) &&
-                            t.IsValidTarget(Vars.Q2.Range-50f))).UnitPosition)
-
-                    select minion)
+                        in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
+                        let polygon = new Geometry.Rectangle(
+                            GameObjects.Player.ServerPosition,
+                            GameObjects.Player.ServerPosition.Extend(minion.ServerPosition, Vars.Q2.Range - 50f),
+                            Vars.Q2.Width)
+                        where !polygon.IsOutside(
+                            (Vector2) Vars.Q2.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
+                                t =>
+                                    !Invulnerable.Check(t) &&
+                                    !t.IsValidTarget(Vars.Q.Range) &&
+                                    t.IsValidTarget(Vars.Q2.Range - 50f))).UnitPosition)
+                        select minion)
                 {
                     Vars.Q.CastOnUnit(minion);
                 }

@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Corki
 {
@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Corki
                         !t.IsValidTarget(Vars.AARange) &&
                         t.IsValidTarget(Vars.Q.Range - 100f) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
                     return;
@@ -51,9 +51,11 @@ namespace ExorAIO.Champions.Corki
                         t.IsValidTarget(Vars.R.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R, (ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
-                                ? DamageStage.Empowered
-                                : DamageStage.Default))))
+                        (float)
+                            GameObjects.Player.GetSpellDamage(t, SpellSlot.R,
+                                ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
+                                    ? DamageStage.Empowered
+                                    : DamageStage.Default)))
                 {
                     if (!Vars.R.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {

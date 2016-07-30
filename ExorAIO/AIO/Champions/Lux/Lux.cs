@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Lux
 {
@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Lux
         /// <summary>
         ///     Defines the missile object for the E.
         /// </summary>
-        public static GameObject EMissile = null;
+        public static GameObject EMissile;
 
         /// <summary>
         ///     Loads Lux.
@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Lux
             Drawings.Initialize();
         }
 
-		/// <summary>
+        /// <summary>
         ///     Called when an object gets created by the game.
         /// </summary>
         /// <param name="obj">The object.</param>
@@ -157,7 +157,8 @@ namespace ExorAIO.Champions.Lux
             if (Vars.W.IsReady() &&
                 (args.Target as Obj_AI_Hero).IsValidTarget(Vars.W.Range, false) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["w"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["w"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
+                    .GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(args.Target as Obj_AI_Hero).UnitPosition);
             }
@@ -196,7 +197,7 @@ namespace ExorAIO.Champions.Lux
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
                             t =>
@@ -212,7 +213,7 @@ namespace ExorAIO.Champions.Lux
                                             Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
                             return;
                         }
- 
+
                         Variables.Orbwalker.ForceTarget = null;
                     }
 

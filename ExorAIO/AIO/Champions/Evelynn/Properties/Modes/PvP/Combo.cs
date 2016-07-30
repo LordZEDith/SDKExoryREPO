@@ -61,7 +61,8 @@ namespace ExorAIO.Champions.Evelynn
             if (Vars.R.IsReady() &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.R.CastIfWillHit(Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
+                Vars.R.CastIfWillHit(Targets.Target,
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
             }
         }
     }

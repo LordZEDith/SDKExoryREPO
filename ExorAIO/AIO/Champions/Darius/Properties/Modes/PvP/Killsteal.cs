@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Darius
 {
@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Darius
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

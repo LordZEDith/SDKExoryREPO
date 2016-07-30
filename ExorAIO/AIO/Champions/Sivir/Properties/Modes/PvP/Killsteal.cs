@@ -32,11 +32,11 @@ namespace ExorAIO.Champions.Sivir
                         !t.IsValidTarget(Vars.AARange) &&
                         t.IsValidTarget(Vars.Q.Range - 100f) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2))
                 {
                     Vars.Q.Cast(
                         Vars.Q.GetPrediction(Targets.Target)
-                            .UnitPosition.Extend((Vector2)GameObjects.Player.ServerPosition, -140));
+                            .UnitPosition.Extend((Vector2) GameObjects.Player.ServerPosition, -140));
                 }
             }
         }

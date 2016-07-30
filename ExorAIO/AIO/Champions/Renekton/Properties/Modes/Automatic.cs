@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
+using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Enumerations;
-using ExorAIO.Utilities;
+using LeagueSharp.SDK.UI;
 
 namespace ExorAIO.Champions.Renekton
 {
@@ -19,7 +19,9 @@ namespace ExorAIO.Champions.Renekton
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
-            if (GameObjects.Player.IsRecalling()) {}
+            if (GameObjects.Player.IsRecalling())
+            {
+            }
 
             /// <summary>
             ///     The Automatic Q Logic.
@@ -51,13 +53,14 @@ namespace ExorAIO.Champions.Renekton
             if (Vars.R.IsReady() &&
                 GameObjects.Player.CountEnemyHeroesInRange(700f) > 0)
             {
-                if (Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping/2f)) <= GameObjects.Player.MaxHealth/6 &&
+                if (Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <=
+                    GameObjects.Player.MaxHealth/6 &&
                     Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value)
                 {
                     Vars.R.Cast();
                 }
                 else if (GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) >= 2 &&
-                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>().Value)
+                         Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>().Value)
                 {
                     Vars.R.Cast();
                 }

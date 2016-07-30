@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Amumu
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
                 Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
@@ -42,7 +42,7 @@ namespace ExorAIO.Champions.Amumu
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>

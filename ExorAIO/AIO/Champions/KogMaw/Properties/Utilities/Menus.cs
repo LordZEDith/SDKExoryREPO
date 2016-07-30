@@ -24,10 +24,10 @@ namespace ExorAIO.Champions.KogMaw
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",       "Combo",          true));
-                    Vars.QMenu.Add(new MenuBool("logical",     "Logical",        true));
-                    Vars.QMenu.Add(new MenuBool("killsteal",   "KillSteal",      true));
-                    Vars.QMenu.Add(new MenuBool("gapcloser",   "Anti-Gapcloser", true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.QMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
@@ -47,9 +47,9 @@ namespace ExorAIO.Champions.KogMaw
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("combo",     "Combo",          true));
-                    Vars.EMenu.Add(new MenuBool("logical",   "Logical",        true));
-                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal",      true));
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
@@ -60,10 +60,10 @@ namespace ExorAIO.Champions.KogMaw
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuSliderButton("combo",     "Combo / if Stacks <= x",     1, 1, 10, true));
-                    Vars.RMenu.Add(new MenuSliderButton("logical",   "Logical / if Stacks <= x",   2, 1, 10, true));
+                    Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / if Stacks <= x", 1, 1, 10, true));
+                    Vars.RMenu.Add(new MenuSliderButton("logical", "Logical / if Stacks <= x", 2, 1, 10, true));
                     Vars.RMenu.Add(new MenuSliderButton("killsteal", "KillSteal / if Stacks <= x", 3, 1, 10, true));
-                    {   
+                    {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
                         /// </summary>

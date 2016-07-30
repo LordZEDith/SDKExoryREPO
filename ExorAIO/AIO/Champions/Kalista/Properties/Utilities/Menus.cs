@@ -24,10 +24,10 @@ namespace ExorAIO.Champions.Kalista
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%",   50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -45,12 +45,12 @@ namespace ExorAIO.Champions.Kalista
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("killsteal",   "KillSteal",      true));
-                    Vars.EMenu.Add(new MenuBool("junglesteal", "JungleSteal",    true));
-                    Vars.EMenu.Add(new MenuBool("ondeath",     "Before Death",   true));
-                    Vars.EMenu.Add(new MenuSliderButton("harass",     "Minion Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("farmhelper", "FarmHelper / if Mana >= x%",    50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("laneclear",  "LaneClear / if Mana >= x%",     50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.EMenu.Add(new MenuBool("junglesteal", "JungleSteal", true));
+                    Vars.EMenu.Add(new MenuBool("ondeath", "Before Death", true));
+                    Vars.EMenu.Add(new MenuSliderButton("harass", "Minion Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("farmhelper", "FarmHelper / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     {
                         /// <summary>
                         ///     Sets the menu for the E Whitelist.

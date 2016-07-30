@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Evelynn
                     t =>
                         !Invulnerable.Check(t) &&
                         t.IsValidTarget(Vars.R.Range) &&
-                        Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                        Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).CastPosition);
                 }

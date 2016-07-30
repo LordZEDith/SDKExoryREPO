@@ -36,14 +36,15 @@ namespace ExorAIO.Champions.Anivia
                 Vars.Menu["spells"]["w"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.Player.Distance(
-                        GameObjects.Player.ServerPosition.Extend(
-                            Targets.Target.ServerPosition,
-                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f)) < Vars.W.Range)
+                    GameObjects.Player.ServerPosition.Extend(
+                        Targets.Target.ServerPosition,
+                        GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f)) <
+                    Vars.W.Range)
                 {
                     Vars.W.Cast(
                         GameObjects.Player.ServerPosition.Extend(
                             Targets.Target.ServerPosition,
-							GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f));
+                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f));
                 }
             }
 
@@ -51,16 +52,16 @@ namespace ExorAIO.Champions.Anivia
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-				Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-			{
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
-					t =>
-						t.HasBuff("chilled") &&
-						t.IsValidTarget(Vars.E.Range)))
-				{
-					Vars.E.CastOnUnit(target);
-				}
-			}
+                    t =>
+                        t.HasBuff("chilled") &&
+                        t.IsValidTarget(Vars.E.Range)))
+                {
+                    Vars.E.CastOnUnit(target);
+                }
+            }
 
             /// <summary>
             ///     The R Combo Logic.

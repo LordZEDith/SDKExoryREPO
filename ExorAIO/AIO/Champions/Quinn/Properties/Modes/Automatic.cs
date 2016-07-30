@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Quinn
                         !x.IsDead &&
                         !x.IsVisible &&
                         Vars.W.Range >
-                            x.Distance(GameObjects.Player.ServerPosition)))
+                        x.Distance(GameObjects.Player.ServerPosition)))
                 {
                     Vars.W.Cast();
                 }
@@ -38,7 +38,7 @@ namespace ExorAIO.Champions.Quinn
                         !x.IsDead &&
                         !x.IsVisible &&
                         Vars.W.Range >
-                            x.Distance(GameObjects.Player.ServerPosition)) &&
+                        x.Distance(GameObjects.Player.ServerPosition)) &&
                     Vars.Locations.Any(h => Vars.W.Range > GameObjects.Player.Distance(h)))
                 {
                     Vars.W.Cast();

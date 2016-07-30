@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Darius
             if (Vars.Q.IsReady() &&
                 !GameObjects.Player.IsUnderEnemyTurret() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.EnemyHeroes.Any(

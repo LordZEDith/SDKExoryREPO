@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
-using LeagueSharp.Data.Enumerations;
 
 namespace ExorAIO.Champions.Kalista
 {
@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -38,12 +38,13 @@ namespace ExorAIO.Champions.Kalista
                 if (Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
                     m =>
                         m.Health <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).MinionsHit >= 3)
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).MinionsHit >=
+                    3)
                 {
                     Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
                         m =>
                             m.Health <
-                                (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).Position);
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).Position);
                 }
 
                 /// <summary>
@@ -60,15 +61,15 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                 Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Minions.Count(
                     m =>
                         Bools.IsPerfectRendTarget(m) &&
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 2)
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 2)
                 {
                     Vars.E.Cast();
                 }

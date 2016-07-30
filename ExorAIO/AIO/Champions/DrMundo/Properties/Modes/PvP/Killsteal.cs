@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.DrMundo
                         t.IsValidTarget(Vars.Q.Range) &&
                         !t.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(
                         c =>

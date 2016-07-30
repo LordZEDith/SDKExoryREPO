@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Evelynn
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Targets.Minions.Any() ||
@@ -43,7 +43,7 @@ namespace ExorAIO.Champions.Evelynn
             if (Vars.E.IsReady() &&
                 Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                 Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.CastOnUnit(Targets.JungleMinions[0]);

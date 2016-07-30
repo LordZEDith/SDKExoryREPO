@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
 using SharpDX;
 
 namespace ExorAIO.Champions.Vayne
@@ -150,7 +150,7 @@ namespace ExorAIO.Champions.Vayne
                 /// </summary>
                 if (!GameObjects.Player.IsDashing() &&
                     GameObjects.Player.Distance(args.End) >
-                        GameObjects.Player.BoundingRadius &&
+                    GameObjects.Player.BoundingRadius &&
                     Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
@@ -158,8 +158,8 @@ namespace ExorAIO.Champions.Vayne
                     {
                         var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
 
-                        if ((args.End + vector * (float)(i * 42.5)).IsWall() &&
-                            (args.End + vector * (float)(i * 44.5)).IsWall())
+                        if ((args.End + vector*(float) (i*42.5)).IsWall() &&
+                            (args.End + vector*(float) (i*44.5)).IsWall())
                         {
                             Console.WriteLine("DASHPREDICTION CONDEMN!!1!11");
                             Vars.E.CastOnUnit(args.Sender);
@@ -206,7 +206,8 @@ namespace ExorAIO.Champions.Vayne
                         ///     The Automatic Stealth Logic.
                         /// </summary>
                         if (GameObjects.Player.GetBuff("vaynetumblefade").EndTime - Game.Time >
-                            GameObjects.Player.GetBuff("vaynetumblefade").EndTime - GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
+                            GameObjects.Player.GetBuff("vaynetumblefade").EndTime -
+                            GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
                             Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000)
                         {
                             args.Process = false;
@@ -216,7 +217,7 @@ namespace ExorAIO.Champions.Vayne
                         ///     The Automatic Stealth Logic.
                         /// </summary>
                         else if (GameObjects.Player.HasBuff("summonerexhaust") ||
-                            GameObjects.Player.HasBuffOfType(BuffType.Blind))
+                                 GameObjects.Player.HasBuffOfType(BuffType.Blind))
                         {
                             args.Process = false;
                         }
@@ -227,7 +228,7 @@ namespace ExorAIO.Champions.Vayne
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
                             t =>

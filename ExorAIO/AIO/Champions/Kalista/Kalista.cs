@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.Data.Enumerations;
 using LeagueSharp.Data;
 using LeagueSharp.Data.DataTypes;
+using LeagueSharp.Data.Enumerations;
+using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Kalista
 {
@@ -111,7 +111,7 @@ namespace ExorAIO.Champions.Kalista
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
                             t =>
@@ -140,8 +140,10 @@ namespace ExorAIO.Champions.Kalista
                     if (Vars.E.IsReady() &&
                         Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Minion) <
-                            (float)GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
-                            (float)GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E, DamageStage.Buff))
+                        (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
+                        (float)
+                            GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E,
+                                DamageStage.Buff))
                     {
                         Vars.E.Cast();
                     }

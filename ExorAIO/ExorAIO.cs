@@ -1,6 +1,7 @@
 ﻿using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
+using Bootstrap = ExorAIO.Core.Bootstrap;
 
 namespace ExorAIO
 {
@@ -17,7 +18,7 @@ namespace ExorAIO
             /// <summary>
             ///     Tries to load the current Champion.
             /// </summary>
-            Core.Bootstrap.LoadChampion();
+            Bootstrap.LoadChampion();
 
             if (Vars.IsLoaded)
             {
@@ -28,8 +29,9 @@ namespace ExorAIO
             }
 
             Game.PrintChat(
-                $"[SDK]<b><font color='#009aff'>Exor</font></b>AIO: <font color='#009aff'>Ultima</font> - {GameObjects.Player.ChampionName} " + (Vars.IsLoaded
-                    ? "Loaded." 
+                $"[SDK]<b><font color='#009aff'>Exor</font></b>AIO: <font color='#009aff'>Ultima</font> - {GameObjects.Player.ChampionName} " +
+                (Vars.IsLoaded
+                    ? "Loaded."
                     : "not supported."));
         }
     }

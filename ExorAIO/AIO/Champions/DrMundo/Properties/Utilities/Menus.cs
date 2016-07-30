@@ -23,11 +23,11 @@ namespace ExorAIO.Champions.DrMundo
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / If Health >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear",  "Clear / If Health >= x%",  50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / If Health >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.DrMundo
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.EMenu.Add(new MenuSliderButton("buildings",   "Buildings / If Health >= x%",   50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / If Health >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / If Health >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

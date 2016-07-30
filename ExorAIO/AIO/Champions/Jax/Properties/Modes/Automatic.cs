@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Jax
             if (Vars.R.IsReady() &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.HealthPercent < 20 && 
+                if (GameObjects.Player.HealthPercent < 20 &&
                     GameObjects.Player.CountEnemyHeroesInRange(750f) > 0)
                 {
                     Vars.R.Cast();

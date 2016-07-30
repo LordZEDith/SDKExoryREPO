@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Draven
             if (Vars.W.IsReady() &&
                 !GameObjects.Player.HasBuff("dravenfurybuff") &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"]) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&

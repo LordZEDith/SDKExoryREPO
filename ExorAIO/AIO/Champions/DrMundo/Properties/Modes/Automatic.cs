@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.DrMundo
             if (Vars.Q.IsReady() &&
                 Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                 GameObjects.Player.HealthPercent >
-                    ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["logical"]) &&
+                ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["logical"]) &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in GameObjects.EnemyMinions.Where(
@@ -33,7 +33,7 @@ namespace ExorAIO.Champions.DrMundo
                         m.IsValidTarget(Vars.Q.Range) &&
                         !m.IsValidTarget(Vars.AARange) &&
                         Vars.GetRealHealth(m) <
-                            (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
@@ -126,7 +126,7 @@ namespace ExorAIO.Champions.DrMundo
             if (Vars.R.IsReady() &&
                 GameObjects.Player.CountEnemyHeroesInRange(700) > 0 &&
                 Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value &&
-                    Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping / 2f)) <= GameObjects.Player.MaxHealth / 5)
+                Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <= GameObjects.Player.MaxHealth/5)
             {
                 Vars.R.Cast();
             }

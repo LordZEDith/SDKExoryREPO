@@ -2,8 +2,8 @@ using System;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Enumerations;
+using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
 namespace ExorAIO.Champions.Akali
@@ -107,30 +107,28 @@ namespace ExorAIO.Champions.Akali
                             Logics.Weaving(sender, args);
                             break;
                         }
-                        else
+                        switch (args.SData.Name)
                         {
-                            switch (args.SData.Name)
-                            {
-                                case "AkaliMota":
-                                    if (Vars.R.IsReady() &&
-                                        Targets.Target.IsValidTarget(Vars.R.Range) &&
-                                        !Targets.Target.IsValidTarget(Vars.AARange) &&
-                                        Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
-                                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                            case "AkaliMota":
+                                if (Vars.R.IsReady() &&
+                                    Targets.Target.IsValidTarget(Vars.R.Range) &&
+                                    !Targets.Target.IsValidTarget(Vars.AARange) &&
+                                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
+                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                        .GetValue<MenuBool>().Value)
+                                {
+                                    if (!Targets.Target.IsUnderEnemyTurret() ||
+                                        !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                                     {
-                                        if (!Targets.Target.IsUnderEnemyTurret() ||
-                                            !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
-                                        {
-                                            Vars.R.CastOnUnit(Targets.Target);
-                                        }
+                                        Vars.R.CastOnUnit(Targets.Target);
                                     }
-                                    break;
+                                }
+                                break;
 
-                                default:
-                                    break;
-                            }
-                            break;
+                            default:
+                                break;
                         }
+                        break;
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);

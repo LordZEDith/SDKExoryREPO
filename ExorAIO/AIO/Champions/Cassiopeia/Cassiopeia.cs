@@ -187,7 +187,6 @@ namespace ExorAIO.Champions.Cassiopeia
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(args.End);
-                return;
             }
         }
 

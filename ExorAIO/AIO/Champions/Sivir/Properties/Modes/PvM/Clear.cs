@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Sivir
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Sivir
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -86,11 +86,11 @@ namespace ExorAIO.Champions.Sivir
                                 GameObjects.Player.ServerPosition,
                                 GameObjects.Player.ServerPosition.Extend(
                                     Targets.Minions[0].ServerPosition, Vars.Q.Range),
-                                    Vars.Q.Width).IsOutside((Vector2)Vars.Q.GetPrediction(
-                                        GameObjects.EnemyHeroes.FirstOrDefault(
-                                            t =>
-                                                !Invulnerable.Check(t) &&
-                                                t.IsValidTarget(Vars.Q.Range))).UnitPosition))
+                                Vars.Q.Width).IsOutside((Vector2) Vars.Q.GetPrediction(
+                                    GameObjects.EnemyHeroes.FirstOrDefault(
+                                        t =>
+                                            !Invulnerable.Check(t) &&
+                                            t.IsValidTarget(Vars.Q.Range))).UnitPosition))
                         {
                             Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
                         }
@@ -132,7 +132,7 @@ namespace ExorAIO.Champions.Sivir
             /// </summary>
             if (Vars.W.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["buildings"]) &&
                 Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();

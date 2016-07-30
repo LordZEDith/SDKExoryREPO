@@ -50,7 +50,7 @@ namespace ExorAIO.Champions.Ryze
             ///     Updates the spells.
             /// </summary>
             Spells.Initialize();
-            
+
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>
@@ -96,7 +96,7 @@ namespace ExorAIO.Champions.Ryze
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (GameObjects.Player.HealthPercent <=
-                    Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
+                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
             {
                 return;

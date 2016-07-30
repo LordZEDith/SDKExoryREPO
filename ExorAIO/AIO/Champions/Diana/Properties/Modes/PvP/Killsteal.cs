@@ -30,13 +30,13 @@ namespace ExorAIO.Champions.Diana
                         t.IsValidTarget(Vars.Q.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
                     return;
                 }
             }
-            
+
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Diana
                         !t.IsValidTarget(Vars.E.Range) &&
                         !Invulnerable.Check(t, DamageType.Magical) &&
                         Vars.GetRealHealth(t) <
-                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
+                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
                 {
                     /*
                     if (!target.HasBuff("dianamoonlight") &&

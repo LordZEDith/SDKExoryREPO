@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
+using LeagueSharp.Data;
+using LeagueSharp.Data.DataTypes;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
 
 namespace ExorAIO.Champions.Quinn
 {
@@ -114,7 +114,7 @@ namespace ExorAIO.Champions.Quinn
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         break;
-                        
+
                     default:
                         break;
                 }
@@ -177,7 +177,7 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
                     {
                         if (GameObjects.EnemyHeroes.Any(
                             t =>

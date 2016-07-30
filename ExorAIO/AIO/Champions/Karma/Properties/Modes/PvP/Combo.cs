@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Karma
                 if (Vars.R.IsReady() &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue >
-                        GameObjects.Player.HealthPercent)
+                    GameObjects.Player.HealthPercent)
                 {
                     Vars.R.Cast();
                 }
@@ -59,7 +59,7 @@ namespace ExorAIO.Champions.Karma
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range-100f) &&
+                Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
                 !Invulnerable.Check(Targets.Target, DamageType.Magical) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {

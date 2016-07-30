@@ -98,7 +98,7 @@ namespace ExorAIO.Utilities
                     target.HasBuffOfType(BuffType.Knockback) ||
                     target.HasBuffOfType(BuffType.Polymorph) ||
                     target.HasBuffOfType(BuffType.Suppression)
-                );
+                    );
 
         /// <summary>
         ///     Defines whether the player has a deadly mark.
@@ -134,7 +134,7 @@ namespace ExorAIO.Utilities
                     return true;
                 }
             }
-            
+
             return false;
         }
     }

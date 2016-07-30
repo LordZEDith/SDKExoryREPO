@@ -24,8 +24,8 @@ namespace ExorAIO.Champions.Corki
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
@@ -46,10 +46,10 @@ namespace ExorAIO.Champions.Corki
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo",     "Combo",     true));
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.RMenu.Add(new MenuSliderButton("logical",    "Logical / if Mana >= x%",    50, 0, 99, true));
-                    Vars.RMenu.Add(new MenuSliderButton("clear",      "Clear / if Mana >= x%",      50, 0, 99, true));
+                    Vars.RMenu.Add(new MenuSliderButton("logical", "Logical / if Mana >= x%", 50, 0, 99, true));
+                    Vars.RMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                     Vars.RMenu.Add(new MenuSliderButton("autoharass", "AutoHarass / if Mana >= x%", 50, 0, 99));
                     {
                         /// <summary>
@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Corki
                                     new MenuBool(
                                         target.ChampionName.ToLower(),
                                         $"AutoHarass: {target.ChampionName}",
-                                        true));                                 
+                                        true));
                             }
                         }
                         Vars.RMenu.Add(Vars.WhiteListMenu);

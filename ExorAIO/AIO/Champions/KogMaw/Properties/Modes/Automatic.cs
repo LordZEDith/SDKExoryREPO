@@ -64,10 +64,10 @@ namespace ExorAIO.Champions.KogMaw
             /// </summary>
             if (Vars.R.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
+                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().SValue >
-                    GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(
                     t =>

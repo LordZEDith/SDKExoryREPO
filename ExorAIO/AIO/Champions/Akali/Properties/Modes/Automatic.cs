@@ -29,7 +29,8 @@ namespace ExorAIO.Champions.Akali
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (Bools.HasDeadlyMark() ||
-                    Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping / 2f), 70) <= GameObjects.Player.MaxHealth / 4)
+                    Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping/2f), 70) <=
+                    GameObjects.Player.MaxHealth/4)
                 {
                     Vars.W.Cast(GameObjects.Player.ServerPosition);
                 }

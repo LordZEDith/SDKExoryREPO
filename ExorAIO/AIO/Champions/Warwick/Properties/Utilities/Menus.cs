@@ -24,8 +24,8 @@ namespace ExorAIO.Champions.Warwick
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("combo",     "Combo",     true));
-                    Vars.QMenu.Add(new MenuBool("logical",   "Logical",   true));                  
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear", 50, 0, 99, true));
                 }
@@ -36,8 +36,8 @@ namespace ExorAIO.Champions.Warwick
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo",   "Combo",   true));
-                    Vars.WMenu.Add(new MenuBool("clear",   "Clear",   true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("clear", "Clear", true));
                     Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -47,8 +47,8 @@ namespace ExorAIO.Champions.Warwick
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo",       "Combo",                    true));
-                    Vars.RMenu.Add(new MenuBool("killsteal",   "KillSteal",                true));
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                     {
                         Vars.WhiteListMenu = new Menu("whitelist", "Ultimate: Whitelist Menu");

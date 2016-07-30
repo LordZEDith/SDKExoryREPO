@@ -111,7 +111,8 @@ namespace ExorAIO.Champions.Karma
             if (Vars.E.IsReady() &&
                 (args.Target as Obj_AI_Hero).IsValidTarget(Vars.E.Range, false) &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["e"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["e"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
+                    .GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(args.Target as Obj_AI_Hero);
             }
