@@ -23,13 +23,11 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.R.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)))
                 {
                     if (Vars.GetRealHealth(target) <
                         (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.R) +

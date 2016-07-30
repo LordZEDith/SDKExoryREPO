@@ -102,8 +102,7 @@ namespace ExorAIO.Champions.Ryze
                 return;
             }
 
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -130,10 +129,7 @@ namespace ExorAIO.Champions.Ryze
                             /// </summary>
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
-                                if (Vars.Q.IsReady() ||
-                                    Vars.W.IsReady() ||
-                                    Vars.E.IsReady() ||
-                                    !Bools.HasSheenBuff() ||
+                                if (Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady() || !Bools.HasSheenBuff() ||
                                     GameObjects.Player.ManaPercent > 10)
                                 {
                                     args.Process = false;

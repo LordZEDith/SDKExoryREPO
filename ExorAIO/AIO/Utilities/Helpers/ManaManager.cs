@@ -15,7 +15,7 @@ namespace ExorAIO.Utilities
         public static int GetNeededHealth(SpellSlot slot, AMenuComponent value)
             =>
                 value.GetValue<MenuSliderButton>().SValue +
-                (int) (GameObjects.Player.Spellbook.GetSpell(slot).ManaCost/GameObjects.Player.MaxHealth*100);
+                (int) (GameObjects.Player.Spellbook.GetSpell(slot).ManaCost / GameObjects.Player.MaxHealth * 100);
 
         /// <summary>
         ///     The minimum mana needed to cast the given Spell.
@@ -23,6 +23,6 @@ namespace ExorAIO.Utilities
         public static int GetNeededMana(SpellSlot slot, AMenuComponent value)
             =>
                 value.GetValue<MenuSliderButton>().SValue +
-                (int) (GameObjects.Player.Spellbook.GetSpell(slot).ManaCost/GameObjects.Player.MaxMana*100);
+                (int) (GameObjects.Player.Spellbook.GetSpell(slot).ManaCost / GameObjects.Player.MaxMana * 100);
     }
 }

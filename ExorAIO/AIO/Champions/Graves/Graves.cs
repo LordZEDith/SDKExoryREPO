@@ -94,8 +94,7 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -124,9 +123,7 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.W.IsReady() &&
-                args.IsDirectedToPlayer &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {

@@ -19,8 +19,7 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -28,8 +27,7 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
@@ -51,8 +49,7 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The W Harass Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                 Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)

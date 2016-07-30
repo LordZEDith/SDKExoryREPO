@@ -22,15 +22,14 @@ namespace ExorAIO.Champions.Diana
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.Q.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
                     return;
@@ -40,16 +39,15 @@ namespace ExorAIO.Champions.Diana
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.R.Range) &&
-                        !t.IsValidTarget(Vars.E.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.E.Range) &&
+                                !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) * 2))
                 {
                     /*
                     if (!target.HasBuff("dianamoonlight") &&

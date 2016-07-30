@@ -22,26 +22,26 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.Q.Range - 100f) &&
-                        !Invulnerable.Check(t, DamageType.Magical) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(Vars.Q.Range - 100f) && !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
-                    else if (Vars.Q.GetPrediction(target).CollisionObjects.Count(
-                        c =>
-                            Targets.Minions.Contains(c) &&
-                            c.Health <
-                            (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
-                             Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                    else if (
+                        Vars.Q.GetPrediction(target)
+                            .CollisionObjects.Count(
+                                c =>
+                                    Targets.Minions.Contains(c) &&
+                                    c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                        Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
@@ -51,15 +51,14 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The KillSteal W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.W.Range - 150f) &&
-                        !Invulnerable.Check(t, DamageType.Magical) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(Vars.W.Range - 150f) && !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).CastPosition);
                 }
@@ -68,17 +67,15 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.R.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical) &&
-                        Vars.GetRealHealth(t) >
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

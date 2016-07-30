@@ -68,9 +68,7 @@ namespace ExorAIO.Champions.Nautilus
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.RMenu.Add(Vars.WhiteListMenu);
@@ -85,8 +83,10 @@ namespace ExorAIO.Champions.Nautilus
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuSeparator("separator",
-                    "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
+                Vars.MiscMenu.Add(
+                    new MenuSeparator(
+                        "separator",
+                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
             }
             Vars.Menu.Add(Vars.MiscMenu);

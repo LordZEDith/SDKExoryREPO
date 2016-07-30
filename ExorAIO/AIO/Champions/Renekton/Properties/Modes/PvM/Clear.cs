@@ -26,18 +26,15 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
             {
-                if (Targets.Minions.Any() &&
-                    Targets.Minions.Count() >= 3)
+                if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
                 {
                     Vars.Q.Cast();
                 }
                 else if (Targets.JungleMinions.Any())
                 {
-                    if (!Vars.W.IsReady() &&
-                        !GameObjects.Player.HasBuff("RenektonPreExecute"))
+                    if (!Vars.W.IsReady() && !GameObjects.Player.HasBuff("RenektonPreExecute"))
                     {
                         Vars.Q.Cast();
                     }
@@ -77,8 +74,7 @@ namespace ExorAIO.Champions.Renekton
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

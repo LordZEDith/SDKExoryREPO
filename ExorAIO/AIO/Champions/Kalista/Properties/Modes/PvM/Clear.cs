@@ -35,16 +35,16 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The Q LaneClear Logic.
                 /// </summary>
-                if (Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
-                    m =>
-                        m.Health <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).MinionsHit >=
-                    3)
+                if (
+                    Vars.Q.GetLineFarmLocation(
+                        Targets.Minions.Where(m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                            .ToList(), Vars.Q.Width).MinionsHit >= 3)
                 {
-                    Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
-                        m =>
-                            m.Health <
-                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width).Position);
+                    Vars.Q.Cast(
+                        Vars.Q.GetLineFarmLocation(
+                            Targets.Minions.Where(
+                                m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(),
+                            Vars.Q.Width).Position);
                 }
 
                 /// <summary>
@@ -64,12 +64,13 @@ namespace ExorAIO.Champions.Kalista
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                 Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count(
-                    m =>
-                        Bools.IsPerfectRendTarget(m) &&
-                        Vars.GetRealHealth(m) <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 2)
+                if (
+                    Targets.Minions.Count(
+                        m =>
+                            Bools.IsPerfectRendTarget(m) &&
+                            Vars.GetRealHealth(m) <
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 2)
                 {
                     Vars.E.Cast();
                 }

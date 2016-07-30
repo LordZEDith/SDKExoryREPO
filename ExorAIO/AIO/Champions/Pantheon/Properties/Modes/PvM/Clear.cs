@@ -25,9 +25,7 @@ namespace ExorAIO.Champions.Pantheon
             /// <summary>
             ///     The Q JungleClear Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.JungleMinions.Any() &&
-                !GameObjects.Player.HasBuff("pantheonpassiveshield") &&
+            if (Vars.Q.IsReady() && Targets.JungleMinions.Any() && !GameObjects.Player.HasBuff("pantheonpassiveshield") &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -54,8 +52,7 @@ namespace ExorAIO.Champions.Pantheon
                 /// <summary>
                 ///     The JungleClear E Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any() &&
-                         !GameObjects.Player.HasBuff("pantheonpassiveshield"))
+                else if (Targets.JungleMinions.Any() && !GameObjects.Player.HasBuff("pantheonpassiveshield"))
                 {
                     Vars.E.Cast(Targets.JungleMinions[0].ServerPosition);
                 }

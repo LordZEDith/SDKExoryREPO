@@ -110,8 +110,7 @@ namespace ExorAIO.Champions.Akali
                         switch (args.SData.Name)
                         {
                             case "AkaliMota":
-                                if (Vars.R.IsReady() &&
-                                    Targets.Target.IsValidTarget(Vars.R.Range) &&
+                                if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
                                     !Targets.Target.IsValidTarget(Vars.AARange) &&
                                     Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
                                     Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]

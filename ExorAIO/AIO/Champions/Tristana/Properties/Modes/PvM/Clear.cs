@@ -19,8 +19,7 @@ namespace ExorAIO.Champions.Tristana
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Clear(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
+            if (Bools.HasSheenBuff() || !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
             {
                 return;
             }
@@ -28,8 +27,7 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.IsWindingUp &&
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp &&
                 (Targets.Minions.Any() || Targets.JungleMinions.Any()) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
             {
@@ -60,18 +58,17 @@ namespace ExorAIO.Champions.Tristana
                     /// <summary>
                     ///     The Aggressive LaneClear E Logic.
                     /// </summary>
-                    if (GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.W.Range)) &&
+                    if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)) &&
                         GameObjects.Player.ManaPercent >
                         ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
                         Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
                     {
-                        foreach (var minion in Targets.Minions.Where(
-                            m =>
-                                m.CountEnemyHeroesInRange(150f) > 0 &&
-                                Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
+                        foreach (
+                            var minion in
+                                Targets.Minions.Where(
+                                    m =>
+                                        m.CountEnemyHeroesInRange(150f) > 0 &&
+                                        Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
                         {
                             Vars.E.CastOnUnit(minion);
                         }

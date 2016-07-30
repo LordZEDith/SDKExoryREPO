@@ -28,21 +28,19 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Q LastHit Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
+            if (Vars.Q.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["farmhelper"]) &&
                 Vars.Menu["spells"]["q"]["farmhelper"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in Targets.Minions.Where(
-                    m =>
-                        !m.IsValidTarget(Vars.AARange) &&
-                        Vars.GetRealHealth(m) >
-                        GameObjects.Player.GetAutoAttackDamage(m) &&
-                        Vars.GetRealHealth(m) <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).OrderBy(
-                            o =>
-                                o.MaxHealth))
+                foreach (
+                    var minion in
+                        Targets.Minions.Where(
+                            m =>
+                                !m.IsValidTarget(Vars.AARange) &&
+                                Vars.GetRealHealth(m) > GameObjects.Player.GetAutoAttackDamage(m) &&
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                            .OrderBy(o => o.MaxHealth))
                 {
                     if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any())
                     {
@@ -54,9 +52,7 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Tear Stacking Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !Targets.Minions.Any() &&
-                Bools.HasTear(GameObjects.Player) &&
+            if (Vars.Q.IsReady() && !Targets.Minions.Any() && Bools.HasTear(GameObjects.Player) &&
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
                 GameObjects.Player.ManaPercent >
@@ -66,8 +62,7 @@ namespace ExorAIO.Champions.Ezreal
                 Vars.Q.Cast(Game.CursorPos);
             }
 
-            if (GameObjects.Player.TotalAttackDamage <
-                GameObjects.Player.TotalMagicalDamage)
+            if (GameObjects.Player.TotalAttackDamage < GameObjects.Player.TotalMagicalDamage)
             {
                 return;
             }
@@ -113,11 +108,10 @@ namespace ExorAIO.Champions.Ezreal
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var target in GameObjects.AllyHeroes.Where(
-                    t =>
-                        !t.IsMe &&
-                        t.IsWindingUp &&
-                        t.IsValidTarget(Vars.W.Range, false)))
+                foreach (
+                    var target in
+                        GameObjects.AllyHeroes.Where(
+                            t => !t.IsMe && t.IsWindingUp && t.IsValidTarget(Vars.W.Range, false)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }
@@ -126,27 +120,26 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.R.Range) &&
-                        Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>
-                            ().Value))
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                            Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
+                                .GetValue<MenuBool>().Value))
                 {
                     return;
                 }
 
-                Vars.R.Cast(Vars.R.GetPrediction(
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
-                                .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                Vars.R.Cast(
+                    Vars.R.GetPrediction(
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                                Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
+                                    .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
     }

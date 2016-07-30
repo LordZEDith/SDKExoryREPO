@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Corki
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,8 +26,7 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The R Harass Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.R.Range) &&
+            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["autoharass"]) &&
                 Vars.Menu["spells"]["r"]["autoharass"].GetValue<MenuSliderButton>().BValue &&

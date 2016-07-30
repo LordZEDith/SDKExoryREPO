@@ -17,8 +17,7 @@ namespace ExorAIO.Champions.Olaf
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) ||
-                Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
             {
                 return;
             }
@@ -26,8 +25,7 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The E Weaving Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(args.Target as Obj_AI_Hero);
             }

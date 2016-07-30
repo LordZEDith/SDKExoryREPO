@@ -27,9 +27,7 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     The Tear Stacking Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !Targets.Minions.Any() &&
-                Bools.HasTear(GameObjects.Player) &&
+            if (Vars.Q.IsReady() && !Targets.Minions.Any() && Bools.HasTear(GameObjects.Player) &&
                 GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.ManaPercent >

@@ -18,14 +18,12 @@ namespace ExorAIO.Champions.Ryze
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
 
-            if (Bools.HasSheenBuff() &&
-                Targets.Target.IsValidTarget(Vars.AARange))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AARange))
             {
                 return;
             }
@@ -40,12 +38,12 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
-                    if (Vars.RyzeStacks != 1 || GameObjects.Player.HealthPercent >
+                    if (Vars.RyzeStacks != 1 ||
+                        GameObjects.Player.HealthPercent >
                         Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
                         !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
-                        if (Vars.Q.IsReady() &&
-                            Environment.TickCount - Vars.LastTick > 250 &&
+                        if (Vars.Q.IsReady() && Environment.TickCount - Vars.LastTick > 250 &&
                             Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
                             Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                         {
@@ -56,8 +54,7 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The W Combo Logic.
                     /// </summary>
-                    if (Vars.W.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.W.Range) &&
+                    if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
                         Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                     {
                         Vars.W.CastOnUnit(Targets.Target);
@@ -66,8 +63,7 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The E Combo Logic.
                     /// </summary>
-                    if (Vars.E.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.E.Range) &&
+                    if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                         Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
                     {
                         Vars.E.CastOnUnit(Targets.Target);
@@ -79,8 +75,7 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
-                    if (Vars.Q.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
+                    if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
                         Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);

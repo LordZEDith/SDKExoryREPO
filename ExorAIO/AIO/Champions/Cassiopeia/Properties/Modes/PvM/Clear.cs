@@ -39,13 +39,14 @@ namespace ExorAIO.Champions.Cassiopeia
                         ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                         Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
                     {
-                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
-                        {
-                            foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
+                        DelayAction.Add(
+                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
                             {
-                                Vars.E.CastOnUnit(minion);
-                            }
-                        });
+                                foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
+                                {
+                                    Vars.E.CastOnUnit(minion);
+                                }
+                            });
                     }
                 }
 
@@ -58,32 +59,37 @@ namespace ExorAIO.Champions.Cassiopeia
                         ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["lasthit"]) &&
                         Vars.Menu["spells"]["e"]["lasthit"].GetValue<MenuSliderButton>().BValue)
                     {
-                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
-                        {
-                            foreach (var minion in Targets.Minions.Where(
-                                m =>
-                                    Vars.GetRealHealth(m) <
-                                    (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                    (m.HasBuffOfType(BuffType.Poison)
-                                        ? (float)
-                                            GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
-                                        : 0)))
+                        DelayAction.Add(
+                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
                             {
-                                Vars.E.CastOnUnit(minion);
-                            }
-                        });
+                                foreach (
+                                    var minion in
+                                        Targets.Minions.Where(
+                                            m =>
+                                                Vars.GetRealHealth(m) <
+                                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                                (m.HasBuffOfType(BuffType.Poison)
+                                                    ? (float)
+                                                        GameObjects.Player.GetSpellDamage(
+                                                            m, SpellSlot.E, DamageStage.Empowered)
+                                                    : 0)))
+                                {
+                                    Vars.E.CastOnUnit(minion);
+                                }
+                            });
                     }
                     else if (GameObjects.Player.ManaPercent >=
                              ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                              Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
                     {
-                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
-                        {
-                            foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
+                        DelayAction.Add(
+                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
                             {
-                                Vars.E.CastOnUnit(minion);
-                            }
-                        });
+                                foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
+                                {
+                                    Vars.E.CastOnUnit(minion);
+                                }
+                            });
                     }
                 }
             }

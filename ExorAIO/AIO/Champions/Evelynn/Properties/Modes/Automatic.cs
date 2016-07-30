@@ -25,8 +25,7 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.HasBuffOfType(BuffType.Slow) &&
+            if (Vars.W.IsReady() && GameObjects.Player.HasBuffOfType(BuffType.Slow) &&
                 Vars.Menu["spells"]["w"]["auto"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();

@@ -51,9 +51,7 @@ namespace ExorAIO.Champions.Jhin
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.WMenu.Add(Vars.WhiteListMenu);
@@ -79,8 +77,7 @@ namespace ExorAIO.Champions.Jhin
                     Vars.RMenu.Add(new MenuBool("logical", "Automatic", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("nearmouse", "Focus the enemy nearest to your cursor"));
-                    Vars.RMenu.Add(
-                        new MenuSeparator("separator", "- You need to manually start the Ultimate. -"));
+                    Vars.RMenu.Add(new MenuSeparator("separator", "- You need to manually start the Ultimate. -"));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
@@ -91,9 +88,7 @@ namespace ExorAIO.Champions.Jhin
                             {
                                 Vars.WhiteList2Menu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.RMenu.Add(Vars.WhiteList2Menu);

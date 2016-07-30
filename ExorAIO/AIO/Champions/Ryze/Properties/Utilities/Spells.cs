@@ -18,7 +18,7 @@ namespace ExorAIO.Champions.Ryze
             Vars.Q = new Spell(SpellSlot.Q, 1000f);
             Vars.W = new Spell(SpellSlot.W, Vars.AARange);
             Vars.E = new Spell(SpellSlot.E, Vars.AARange);
-            Vars.R = new Spell(SpellSlot.R, 1500*GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).Level);
+            Vars.R = new Spell(SpellSlot.R, 1500 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).Level);
 
             Vars.Q.SetSkillshot(0.25f, 60f, 1400f, true, SkillshotType.SkillshotLine); // Original Width: 55
         }

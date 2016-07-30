@@ -76,21 +76,18 @@ namespace ExorAIO.Champions.Sivir
                     /// <summary>
                     ///     The Aggressive LaneClear Q Logic.
                     /// </summary>
-                    if (GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.Q.Range)))
+                    if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                     {
                         if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3 &&
                             !new Geometry.Rectangle(
                                 GameObjects.Player.ServerPosition,
                                 GameObjects.Player.ServerPosition.Extend(
-                                    Targets.Minions[0].ServerPosition, Vars.Q.Range),
-                                Vars.Q.Width).IsOutside((Vector2) Vars.Q.GetPrediction(
-                                    GameObjects.EnemyHeroes.FirstOrDefault(
-                                        t =>
-                                            !Invulnerable.Check(t) &&
-                                            t.IsValidTarget(Vars.Q.Range))).UnitPosition))
+                                    Targets.Minions[0].ServerPosition, Vars.Q.Range), Vars.Q.Width).IsOutside(
+                                        (Vector2)
+                                            Vars.Q.GetPrediction(
+                                                GameObjects.EnemyHeroes.FirstOrDefault(
+                                                    t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                                                .UnitPosition))
                         {
                             Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
                         }
@@ -99,10 +96,9 @@ namespace ExorAIO.Champions.Sivir
                     /// <summary>
                     ///     The LaneClear Q Logic.
                     /// </summary>
-                    else if (!GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.Q.Range + 100f)))
+                    else if (
+                        !GameObjects.EnemyHeroes.Any(
+                            t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                     {
                         if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
                         {
@@ -120,8 +116,7 @@ namespace ExorAIO.Champions.Sivir
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

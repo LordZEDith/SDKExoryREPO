@@ -67,8 +67,7 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             Logics.Killsteal(args);
 
-            if (GameObjects.Player.IsWindingUp ||
-                GameObjects.Player.IsDashing())
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsDashing())
             {
                 return;
             }
@@ -111,20 +110,19 @@ namespace ExorAIO.Champions.Kalista
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(
-                            t =>
-                                t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("kalistacoopstrikemarkally")))
+                        if (
+                            GameObjects.EnemyHeroes.Any(
+                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally")))
                         {
                             args.Process = false;
-                            Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(Vars.AARange) &&
-                                    t.HasBuff("kalistacoopstrikemarkally")).OrderByDescending(
-                                        o =>
-                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(
+                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
                             return;
                         }
 
@@ -137,13 +135,12 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     The E against Non-Killable Minions Logic.
                     /// </summary>
-                    if (Vars.E.IsReady() &&
-                        Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
+                    if (Vars.E.IsReady() && Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Minion) <
                         (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
                         (float)
-                            GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E,
-                                DamageStage.Buff))
+                            GameObjects.Player.GetSpellDamage(
+                                args.Target as Obj_AI_Minion, SpellSlot.E, DamageStage.Buff))
                     {
                         Vars.E.Cast();
                     }

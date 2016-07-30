@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Darius
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,16 +26,12 @@ namespace ExorAIO.Champions.Darius
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
+            if (Vars.Q.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(
-                    t =>
-                        t.IsValidTarget(Vars.Q.Range) &&
-                        !t.IsValidTarget(Vars.AARange)))
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)))
                 {
                     Vars.Q.Cast();
                 }

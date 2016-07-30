@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.Lucian
         /// </summary>
         public static void Initialize()
         {
-            Vars.Q = new Spell(SpellSlot.Q, GameObjects.Player.BoundingRadius*4 + 500f);
+            Vars.Q = new Spell(SpellSlot.Q, GameObjects.Player.BoundingRadius * 4 + 500f);
             Vars.Q2 = new Spell(SpellSlot.Q, 900f);
             Vars.W = new Spell(SpellSlot.W, 900f);
             Vars.E = new Spell(SpellSlot.E, Vars.AARange + 475f);

@@ -22,23 +22,21 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
+            if (Vars.R.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.R.Range) &&
-                        t.HasBuff("luxilluminatingfraulein") &&
-                        !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) &&
+                                t.HasBuff("luxilluminatingfraulein") && !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }
             }
 
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget())
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget())
             {
                 return;
             }
@@ -46,9 +44,7 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !Invulnerable.Check(Targets.Target) &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target) && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 !Targets.Target.HasBuff("luxilluminatingfraulein") &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
@@ -61,8 +57,7 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1 &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {

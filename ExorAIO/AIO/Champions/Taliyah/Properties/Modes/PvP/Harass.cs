@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -27,8 +26,7 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)

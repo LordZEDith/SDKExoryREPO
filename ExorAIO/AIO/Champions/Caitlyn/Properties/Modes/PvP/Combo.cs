@@ -19,10 +19,7 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                GameObjects.Player.Mana <
-                Vars.E.Instance.ManaCost +
-                Vars.Q.Instance.ManaCost)
+            if (Bools.HasSheenBuff() || GameObjects.Player.Mana < Vars.E.Instance.ManaCost + Vars.Q.Instance.ManaCost)
             {
                 return;
             }
@@ -30,15 +27,12 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(700f) &&
-                            !Invulnerable.Check(t) &&
-                            !t.HasBuff("caitlynyordletrapinternal")))
+                        t => t.IsValidTarget(650f) && !Invulnerable.Check(t) && !t.HasBuff("caitlynyordletrapinternal"))
+                    )
                 {
                     if (!Vars.E.GetPrediction(target).CollisionObjects.Any() &&
                         Vars.E.GetPrediction(target).Hitchance >= HitChance.Medium)

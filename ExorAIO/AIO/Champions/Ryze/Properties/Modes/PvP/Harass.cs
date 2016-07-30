@@ -19,8 +19,7 @@ namespace ExorAIO.Champions.Ryze
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -41,16 +40,16 @@ namespace ExorAIO.Champions.Ryze
                     }
                     else
                     {
-                        foreach (var minion in Targets.Minions.Where(
-                            m =>
-                                !m.HasBuff("RyzeE") &&
-                                m.IsValidTarget(Vars.E.Range) &&
-                                (m.Distance(Targets.Target) < 200 ||
-                                 Targets.Minions.Any(
-                                     m2 =>
-                                         m2.HasBuff("RyzeE") &&
-                                         m2.Distance(m) < 200 &&
-                                         m2.Distance(Targets.Target) < 200))))
+                        foreach (
+                            var minion in
+                                Targets.Minions.Where(
+                                    m =>
+                                        !m.HasBuff("RyzeE") && m.IsValidTarget(Vars.E.Range) &&
+                                        (m.Distance(Targets.Target) < 200 ||
+                                         Targets.Minions.Any(
+                                             m2 =>
+                                                 m2.HasBuff("RyzeE") && m2.Distance(m) < 200 &&
+                                                 m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.E.CastOnUnit(minion);
                         }
@@ -75,16 +74,16 @@ namespace ExorAIO.Champions.Ryze
                     }
                     else
                     {
-                        foreach (var minion in Targets.Minions.Where(
-                            m =>
-                                m.HasBuff("RyzeE") &&
-                                m.IsValidTarget(Vars.Q.Range) &&
-                                (m.Distance(Targets.Target) < 200 ||
-                                 Targets.Minions.Any(
-                                     m2 =>
-                                         m2.HasBuff("RyzeE") &&
-                                         m2.Distance(m) < 200 &&
-                                         m2.Distance(Targets.Target) < 200))))
+                        foreach (
+                            var minion in
+                                Targets.Minions.Where(
+                                    m =>
+                                        m.HasBuff("RyzeE") && m.IsValidTarget(Vars.Q.Range) &&
+                                        (m.Distance(Targets.Target) < 200 ||
+                                         Targets.Minions.Any(
+                                             m2 =>
+                                                 m2.HasBuff("RyzeE") && m2.Distance(m) < 200 &&
+                                                 m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.Q.Cast(minion.ServerPosition);
                         }

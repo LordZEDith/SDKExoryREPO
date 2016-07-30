@@ -22,15 +22,14 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range) &&
-                        Vars.GetRealHealth(t) <
-                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast();
                 }

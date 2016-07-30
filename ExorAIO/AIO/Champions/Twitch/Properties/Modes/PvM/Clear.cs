@@ -27,8 +27,7 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The LaneClear W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                !GameObjects.Player.HasBuff("TwitchFullAutomatic") &&
+            if (Vars.W.IsReady() && !GameObjects.Player.HasBuff("TwitchFullAutomatic") &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
@@ -61,18 +60,18 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The LaneClear E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Minions.Any() &&
+            if (Vars.E.IsReady() && Targets.Minions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                 Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count(
-                    m =>
-                        m.IsValidTarget(Vars.E.Range) &&
-                        m.Health <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 3)
+                if (
+                    Targets.Minions.Count(
+                        m =>
+                            m.IsValidTarget(Vars.E.Range) &&
+                            m.Health <
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 3)
                 {
                     Vars.E.Cast();
                 }
@@ -111,8 +110,7 @@ namespace ExorAIO.Champions.Twitch
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

@@ -51,20 +51,18 @@ namespace ExorAIO.Champions.Olaf
                     /// <summary>
                     ///     The Aggressive LaneClear Q Logic.
                     /// </summary>
-                    if (GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.Q.Range)))
+                    if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                     {
                         if (Vars.Q.GetLineFarmLocation(Targets.Minions).MinionsHit >= 3 &&
                             !new Geometry.Rectangle(
                                 GameObjects.Player.ServerPosition,
-                                GameObjects.Player.ServerPosition.Extend(Targets.Minions[0].ServerPosition, Vars.Q.Range),
-                                Vars.Q.Width).IsOutside(
-                                    (Vector2) Vars.Q.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
-                                        t =>
-                                            !Invulnerable.Check(t) &&
-                                            t.IsValidTarget(Vars.Q.Range))).UnitPosition))
+                                GameObjects.Player.ServerPosition.Extend(
+                                    Targets.Minions[0].ServerPosition, Vars.Q.Range), Vars.Q.Width).IsOutside(
+                                        (Vector2)
+                                            Vars.Q.GetPrediction(
+                                                GameObjects.EnemyHeroes.FirstOrDefault(
+                                                    t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                                                .UnitPosition))
                         {
                             Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions).Position);
                         }
@@ -73,10 +71,9 @@ namespace ExorAIO.Champions.Olaf
                     /// <summary>
                     ///     The LaneClear Q Logic.
                     /// </summary>
-                    else if (!GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.Q.Range + 100f)))
+                    else if (
+                        !GameObjects.EnemyHeroes.Any(
+                            t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                     {
                         if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
                         {
@@ -105,17 +102,16 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The E LaneClear Logics.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in Targets.Minions.Where(
-                    m =>
-                        m.IsValidTarget(Vars.E.Range) &&
-                        Vars.GetRealHealth(m) <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                foreach (
+                    var minion in
+                        Targets.Minions.Where(
+                            m =>
+                                m.IsValidTarget(Vars.E.Range) &&
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
-                    if (minion.GetMinionType() == MinionTypes.Siege ||
-                        minion.GetMinionType() == MinionTypes.Super)
+                    if (minion.GetMinionType() == MinionTypes.Siege || minion.GetMinionType() == MinionTypes.Super)
                     {
                         Vars.E.CastOnUnit(minion);
                     }
@@ -155,8 +151,7 @@ namespace ExorAIO.Champions.Olaf
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

@@ -30,8 +30,7 @@ namespace ExorAIO.Champions.Corki
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count() >= 3 ||
-                    Targets.JungleMinions.Any())
+                if (Targets.Minions.Count() >= 3 || Targets.JungleMinions.Any())
                 {
                     Vars.E.Cast();
                 }

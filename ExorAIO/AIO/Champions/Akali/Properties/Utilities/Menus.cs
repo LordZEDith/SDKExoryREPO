@@ -68,9 +68,7 @@ namespace ExorAIO.Champions.Akali
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.RMenu.Add(Vars.WhiteListMenu);
@@ -86,7 +84,8 @@ namespace ExorAIO.Champions.Akali
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
                 Vars.MiscMenu.Add(new MenuBool("safe", "Don't R into Turret", true));
-                Vars.MiscMenu.Add(new MenuSliderButton("gapclose", "Use R to Gapclose / If R Stacks >= x", 2, 2, 3, true));
+                Vars.MiscMenu.Add(
+                    new MenuSliderButton("gapclose", "Use R to Gapclose / If R Stacks >= x", 2, 2, 3, true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

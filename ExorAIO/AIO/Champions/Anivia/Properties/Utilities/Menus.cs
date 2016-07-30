@@ -50,9 +50,7 @@ namespace ExorAIO.Champions.Anivia
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.WMenu.Add(Vars.WhiteListMenu);

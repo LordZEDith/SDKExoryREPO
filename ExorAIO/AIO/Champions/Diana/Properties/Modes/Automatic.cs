@@ -29,18 +29,16 @@ namespace ExorAIO.Champions.Diana
             if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                DelayAction.Add((int) (100 + Game.Ping/2f),
+                DelayAction.Add(
+                    (int) (100 + Game.Ping / 2f),
                     () => { GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos); });
             }
 
             /// <summary>
             ///     The Misaya Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Q.IsReady() &&
-                GameObjects.Player.Mana >
-                Vars.R.Instance.ManaCost +
-                Vars.Q.Instance.ManaCost &&
+            if (Vars.R.IsReady() && Vars.Q.IsReady() &&
+                GameObjects.Player.Mana > Vars.R.Instance.ManaCost + Vars.Q.Instance.ManaCost &&
                 Targets.Target.IsValidTarget(Vars.R2.Range) &&
                 Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active &&

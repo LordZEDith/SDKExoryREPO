@@ -12,8 +12,6 @@ namespace ExorAIO.Champions.Pantheon
         /// </summary>
         /// <param name="(sender as Obj_AI_Hero)">The (sender as Obj_AI_Hero).</param>
         /// <param name="args">The args.</param>
-        public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-        }
+        public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args) {}
     }
 }

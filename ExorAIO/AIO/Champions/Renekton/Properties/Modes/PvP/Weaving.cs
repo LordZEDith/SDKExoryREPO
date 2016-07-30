@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Renekton
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) ||
-                Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
             {
                 return;
             }
@@ -27,8 +26,7 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The W Weaving Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
             }
@@ -36,8 +34,7 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 !GameObjects.Player.HasBuff("RenektonPreExecute") &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {

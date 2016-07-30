@@ -59,8 +59,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             Logics.Killsteal(args);
 
-            if (GameObjects.Player.IsWindingUp ||
-                GameObjects.Player.HealthPercent <= 10)
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.HealthPercent <= 10)
             {
                 return;
             }
@@ -94,8 +93,7 @@ namespace ExorAIO.Champions.DrMundo
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.

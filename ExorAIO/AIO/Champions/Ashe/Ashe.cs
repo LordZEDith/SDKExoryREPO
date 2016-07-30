@@ -96,9 +96,7 @@ namespace ExorAIO.Champions.Ashe
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.R.IsReady() &&
-                args.Sender.IsMelee &&
-                args.Sender.IsValidTarget(Vars.R.Range) &&
+            if (Vars.R.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.R.Range) &&
                 args.SkillType == GapcloserType.Targeted &&
                 Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -116,8 +114,7 @@ namespace ExorAIO.Champions.Ashe
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.R.IsReady() &&
-                args.Sender.IsValidTarget(Vars.R.Range) &&
+            if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {

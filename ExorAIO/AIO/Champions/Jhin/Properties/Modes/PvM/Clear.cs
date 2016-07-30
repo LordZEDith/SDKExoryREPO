@@ -32,10 +32,7 @@ namespace ExorAIO.Champions.Jhin
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
                 Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.W.Range - 100f)))
+                if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range - 100f)))
                 {
                     return;
                 }
@@ -57,15 +54,15 @@ namespace ExorAIO.Champions.Jhin
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                if (Targets.Minions.Any() &&
-                    Targets.Minions.Count() >= 3)
+                if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
                 {
-                    if (Targets.Minions.Where(
-                        m =>
-                            m.IsValidTarget(Vars.Q.Range)).Sum(
+                    if (
+                        Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
+                            .Sum(
                                 s =>
-                                    (int) (Vars.GetRealHealth(s)/
-                                           (float) GameObjects.Player.GetSpellDamage(s, SpellSlot.Q))) >= 3)
+                                    (int)
+                                        (Vars.GetRealHealth(s) /
+                                         (float) GameObjects.Player.GetSpellDamage(s, SpellSlot.Q))) >= 3)
                     {
                         Vars.Q.CastOnUnit(Targets.Minions.OrderBy(m => Vars.GetRealHealth(m)).First());
                     }

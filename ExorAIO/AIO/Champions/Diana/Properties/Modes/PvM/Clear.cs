@@ -59,8 +59,7 @@ namespace ExorAIO.Champions.Diana
                 /// <summary>
                 ///     The LaneClear W Logic.
                 /// </summary>
-                if (Targets.Minions.Any() &&
-                    Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3 &&
+                if (Targets.Minions.Any() && Targets.Minions.Count(m => m.IsValidTarget(Vars.W.Range)) >= 3 &&
                     GameObjects.Player.ManaPercent >
                     ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
                     Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
@@ -83,8 +82,7 @@ namespace ExorAIO.Champions.Diana
             /// <summary>
             ///     The JungleClear R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Targets.JungleMinions.Any(m => m.HasBuff("dianamoonlight")) &&
+            if (Vars.R.IsReady() && Targets.JungleMinions.Any(m => m.HasBuff("dianamoonlight")) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["jungleclear"]) &&
                 Vars.Menu["spells"]["r"]["jungleclear"].GetValue<MenuSliderButton>().BValue)

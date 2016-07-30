@@ -22,18 +22,17 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The Automatic Q LastHit Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
+            if (Vars.Q.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                 GameObjects.Player.HealthPercent >
                 ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["logical"]) &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in GameObjects.EnemyMinions.Where(
-                    m =>
-                        m.IsValidTarget(Vars.Q.Range) &&
-                        !m.IsValidTarget(Vars.AARange) &&
-                        Vars.GetRealHealth(m) <
-                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                foreach (
+                    var minion in
+                        GameObjects.EnemyMinions.Where(
+                            m =>
+                                m.IsValidTarget(Vars.Q.Range) && !m.IsValidTarget(Vars.AARange) &&
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
@@ -62,8 +61,7 @@ namespace ExorAIO.Champions.DrMundo
                                 ManaManager.GetNeededHealth(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
                             {
-                                if (Targets.JungleMinions.Any() ||
-                                    Targets.Minions.Count() >= 2)
+                                if (Targets.JungleMinions.Any() || Targets.Minions.Count() >= 2)
                                 {
                                     Vars.W.Cast();
                                 }
@@ -123,10 +121,10 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The R Lifesaver Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                GameObjects.Player.CountEnemyHeroesInRange(700) > 0 &&
+            if (Vars.R.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(700) > 0 &&
                 Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value &&
-                Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <= GameObjects.Player.MaxHealth/5)
+                Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping / 2f)) <=
+                GameObjects.Player.MaxHealth / 5)
             {
                 Vars.R.Cast();
             }

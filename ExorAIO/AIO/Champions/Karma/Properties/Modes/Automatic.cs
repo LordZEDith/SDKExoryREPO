@@ -24,9 +24,7 @@ namespace ExorAIO.Champions.Karma
             /// <summary>
             ///     The AoE E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
+            if (Vars.E.IsReady() && Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
                 GameObjects.Player.CountEnemyHeroesInRange(2000f) >= 2 &&
                 GameObjects.Player.CountAllyHeroesInRange(600f) >=
                 Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue + 1 &&

@@ -33,7 +33,8 @@ namespace ExorAIO.Champions.Amumu
                 if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
                     !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
-                    Vars.Q.Cast(Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range)).ServerPosition);
+                    Vars.Q.Cast(
+                        Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range)).ServerPosition);
                 }
             }
 

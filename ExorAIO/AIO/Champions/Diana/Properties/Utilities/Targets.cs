@@ -15,17 +15,13 @@ namespace ExorAIO.Champions.Diana
         /// <summary>
         ///     The main hero target.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.R.Range*2, DamageType.Magical);
+        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.R.Range * 2, DamageType.Magical);
 
         /// <summary>
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            =>
-                GameObjects.EnemyMinions.Where(
-                    m =>
-                        m.IsMinion() &&
-                        m.IsValidTarget(Vars.W.Range)).ToList();
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.W.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -35,7 +31,6 @@ namespace ExorAIO.Champions.Diana
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.R.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) ||
-                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
     }
 }

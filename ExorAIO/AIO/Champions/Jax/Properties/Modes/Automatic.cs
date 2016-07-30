@@ -26,11 +26,9 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Automatic R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.HealthPercent < 20 &&
-                    GameObjects.Player.CountEnemyHeroesInRange(750f) > 0)
+                if (GameObjects.Player.HealthPercent < 20 && GameObjects.Player.CountEnemyHeroesInRange(750f) > 0)
                 {
                     Vars.R.Cast();
                 }
@@ -43,14 +41,12 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
+            if (Vars.E.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.E.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast();
                 }

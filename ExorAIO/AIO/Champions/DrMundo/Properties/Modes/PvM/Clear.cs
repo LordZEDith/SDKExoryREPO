@@ -36,10 +36,9 @@ namespace ExorAIO.Champions.DrMundo
                 /// </summary>
                 if (Targets.Minions.Any())
                 {
-                    foreach (
-                        var minion in
-                            Targets.Minions.Where(
-                                m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                    foreach (var minion in
+                        Targets.Minions.Where(
+                            m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                         {
@@ -90,8 +89,7 @@ namespace ExorAIO.Champions.DrMundo
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

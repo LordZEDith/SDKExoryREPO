@@ -56,9 +56,7 @@ namespace ExorAIO.Champions.Tristana
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use E on: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use E on: {target.ChampionName}", true));
                             }
                         }
                         Vars.EMenu.Add(Vars.WhiteListMenu);

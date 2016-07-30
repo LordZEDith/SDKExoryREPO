@@ -28,8 +28,7 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Stacking Manager.
             /// </summary>
-            if (GameObjects.Player.InFountain() &&
-                Bools.HasTear(GameObjects.Player) &&
+            if (GameObjects.Player.InFountain() && Bools.HasTear(GameObjects.Player) &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1 &&
                 Vars.Menu["miscellaneous"]["tear"].GetValue<MenuBool>().Value)
             {
@@ -39,15 +38,13 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
+            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                 }
@@ -56,14 +53,12 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.W.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
                     Vars.W.Cast(
                         GameObjects.Player.ServerPosition.Extend(
@@ -74,8 +69,7 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Q Missile Manager.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Anivia.QMissile != null &&
+            if (Vars.Q.IsReady() && Anivia.QMissile != null &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
@@ -85,7 +79,7 @@ namespace ExorAIO.Champions.Anivia
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
 
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width * 2) > 0)
                         {
                             Vars.Q.Cast();
                         }
@@ -111,7 +105,7 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width * 2) > 0)
                         {
                             Vars.Q.Cast();
                         }
@@ -122,9 +116,7 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Missile Manager.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Anivia.RMissile != null &&
-                !GameObjects.Player.InFountain() &&
+            if (Vars.R.IsReady() && Anivia.RMissile != null && !GameObjects.Player.InFountain() &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)

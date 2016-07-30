@@ -47,8 +47,7 @@ namespace ExorAIO.Champions.Renekton
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.EMenu.Add(
-                        new MenuSeparator("e", "Will only use the first E"));
+                    Vars.EMenu.Add(new MenuSeparator("e", "Will only use the first E"));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

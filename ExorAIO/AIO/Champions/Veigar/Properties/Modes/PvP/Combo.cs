@@ -19,8 +19,7 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() ||
                 Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
@@ -29,20 +28,18 @@ namespace ExorAIO.Champions.Veigar
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent > 25 &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > 25 && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target)
-                    .CastPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Width/2));
+                Vars.E.Cast(
+                    Vars.E.GetPrediction(Targets.Target)
+                        .CastPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Width / 2));
             }
 
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())

@@ -21,11 +21,7 @@ namespace ExorAIO.Champions.Cassiopeia
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            =>
-                GameObjects.EnemyMinions.Where(
-                    m =>
-                        m.IsMinion() &&
-                        m.IsValidTarget(Vars.W.Range)).ToList();
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.W.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -35,8 +31,7 @@ namespace ExorAIO.Champions.Cassiopeia
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.W.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) ||
-                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The ultimate targets.
@@ -44,8 +39,6 @@ namespace ExorAIO.Champions.Cassiopeia
         public static List<Obj_AI_Hero> RTargets
             =>
                 GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.R.Range - 100f) &&
-                        t.IsFacing(GameObjects.Player)).ToList();
+                    t => t.IsValidTarget(Vars.R.Range - 100f) && t.IsFacing(GameObjects.Player)).ToList();
     }
 }

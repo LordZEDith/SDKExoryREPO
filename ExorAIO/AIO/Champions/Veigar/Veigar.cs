@@ -94,8 +94,7 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -110,8 +109,7 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
@@ -138,10 +136,7 @@ namespace ExorAIO.Champions.Veigar
                             /// </summary>
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
-                                if (Vars.Q.IsReady() ||
-                                    Vars.W.IsReady() ||
-                                    Vars.E.IsReady() ||
-                                    !Bools.HasSheenBuff() ||
+                                if (Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady() || !Bools.HasSheenBuff() ||
                                     GameObjects.Player.ManaPercent > 10)
                                 {
                                     args.Process = false;

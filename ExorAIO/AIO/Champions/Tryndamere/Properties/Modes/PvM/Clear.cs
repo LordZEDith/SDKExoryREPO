@@ -23,8 +23,7 @@ namespace ExorAIO.Champions.Tryndamere
             /// <summary>
             ///     The LaneClear E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuBool>().Value)
             {
                 if (Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 4)
                 {

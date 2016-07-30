@@ -29,8 +29,7 @@ namespace ExorAIO.Champions.Jax
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Targets.Minions.Count() >= 3 &&
-                    GameObjects.Player.CountEnemyHeroesInRange(2000f) == 0)
+                if (Targets.Minions.Count() >= 3 && GameObjects.Player.CountEnemyHeroesInRange(2000f) == 0)
                 {
                     Vars.E.Cast();
                 }
@@ -47,8 +46,7 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Q JungleGrab Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
+            if (Vars.Q.IsReady() && Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
                 Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
@@ -89,8 +87,7 @@ namespace ExorAIO.Champions.Jax
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

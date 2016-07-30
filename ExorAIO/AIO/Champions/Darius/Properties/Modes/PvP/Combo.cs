@@ -17,9 +17,7 @@ namespace ExorAIO.Champions.Darius
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,8 +25,7 @@ namespace ExorAIO.Champions.Darius
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 !Targets.Target.IsValidTarget(Vars.AARange) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {

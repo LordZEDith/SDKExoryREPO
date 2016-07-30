@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Udyr
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Clear(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
+            if (Bools.HasSheenBuff() || !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
             {
                 return;
             }
@@ -28,8 +27,7 @@ namespace ExorAIO.Champions.Udyr
             ///     The W Clear Logic.
             /// </summary>
             if (Vars.W.IsReady() &&
-                GameObjects.Player.HealthPercent <
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().SValue &&
+                GameObjects.Player.HealthPercent < Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();
@@ -62,8 +60,7 @@ namespace ExorAIO.Champions.Udyr
                     /// <summary>
                     ///     The R JungleClear Logic.
                     /// </summary>
-                    if (Vars.R.IsReady() &&
-                        GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
+                    if (Vars.R.IsReady() && GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
                         GameObjects.Player.ManaPercent >=
                         ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                         Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
@@ -89,11 +86,9 @@ namespace ExorAIO.Champions.Udyr
             /// <summary>
             ///     The LaneClear R Logic.
             /// </summary>
-            else if (Targets.Minions.Any() &&
-                     Targets.Minions.Count() >= 3)
+            else if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
             {
-                if (Vars.R.IsReady() &&
-                    GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
+                if (Vars.R.IsReady() && GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
                     GameObjects.Player.ManaPercent >=
                     ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                     Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)

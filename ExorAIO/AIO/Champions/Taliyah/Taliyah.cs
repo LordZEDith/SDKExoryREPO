@@ -47,8 +47,7 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnCreate(GameObject obj, EventArgs args)
         {
-            if (obj.IsValid &&
-                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
+            if (obj.IsValid && obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
                 TerrainObject = obj;
             }
@@ -61,20 +60,21 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnDelete(GameObject obj, EventArgs args)
         {
-            if (obj.IsValid &&
-                obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
+            if (obj.IsValid && obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
-                DelayAction.Add(500, () =>
-                {
-                    if (!ObjectManager.Get<GameObject>().Any(
-                        o =>
-                            o.IsAlly &&
-                            o.Distance(GameObjects.Player) < 412.5f &&
-                            o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
+                DelayAction.Add(
+                    500, () =>
                     {
-                        TerrainObject = null;
-                    }
-                });
+                        if (
+                            !ObjectManager.Get<GameObject>()
+                                .Any(
+                                    o =>
+                                        o.IsAlly && o.Distance(GameObjects.Player) < 412.5f &&
+                                        o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
+                        {
+                            TerrainObject = null;
+                        }
+                    });
             }
         }
 
@@ -133,16 +133,15 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End)*2));
+                Vars.W.Cast(
+                    GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2));
             }
 
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -157,22 +156,20 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(
                     args.Sender.ServerPosition,
                     args.Sender.IsFacing(GameObjects.Player) &&
-                    GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
-                        ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
-                            GameObjects.Player.Distance(args.Sender)*2)
+                    GameObjects.Player.Distance(args.Sender) < Vars.AARange / 2
+                        ? GameObjects.Player.ServerPosition.Extend(
+                            args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender) * 2)
                         : GameObjects.Player.ServerPosition);
             }
 
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {

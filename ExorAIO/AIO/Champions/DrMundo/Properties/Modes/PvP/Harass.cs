@@ -26,8 +26,7 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
+            if (Vars.Q.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.HealthPercent >
                 ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&

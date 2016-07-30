@@ -17,9 +17,7 @@ namespace ExorAIO.Champions.Twitch
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,8 +25,7 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!GameObjects.Player.HasBuff("TwitchFullAutomatic") &&

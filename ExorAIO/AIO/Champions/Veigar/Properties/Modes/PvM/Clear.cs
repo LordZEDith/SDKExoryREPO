@@ -33,24 +33,27 @@ namespace ExorAIO.Champions.Veigar
             {
                 if (Targets.Minions.Any())
                 {
-                    if (Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
-                        m =>
-                            m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(), Vars.Q.Width)
-                        .MinionsHit == 2)
+                    if (
+                        Vars.Q.GetLineFarmLocation(
+                            Targets.Minions.Where(
+                                m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(),
+                            Vars.Q.Width).MinionsHit == 2)
                     {
-                        Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions.Where(
-                            m =>
-                                m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(),
-                            Vars.Q.Width).Position);
+                        Vars.Q.Cast(
+                            Vars.Q.GetLineFarmLocation(
+                                Targets.Minions.Where(
+                                    m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(),
+                                Vars.Q.Width).Position);
                     }
                 }
-                else if (Targets.JungleMinions.Any(
-                    m =>
-                        m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                else if (
+                    Targets.JungleMinions.Any(
+                        m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
-                    Vars.Q.Cast(Targets.JungleMinions.FirstOrDefault(
-                        m =>
-                            m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ServerPosition);
+                    Vars.Q.Cast(
+                        Targets.JungleMinions.FirstOrDefault(
+                            m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                            .ServerPosition);
                 }
             }
 
@@ -85,9 +88,9 @@ namespace ExorAIO.Champions.Veigar
                         ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                         Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                     {
-                        if (!Targets.JungleMinions.Any(
-                            m =>
-                                m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.W)))
+                        if (
+                            !Targets.JungleMinions.Any(
+                                m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.W)))
                         {
                             Vars.W.Cast(Targets.JungleMinions[0].ServerPosition);
                         }

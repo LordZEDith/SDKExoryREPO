@@ -103,8 +103,7 @@ namespace ExorAIO.Champions.Jhin
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -128,9 +127,7 @@ namespace ExorAIO.Champions.Jhin
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                !Invulnerable.Check(args.Sender) &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(args.End);

@@ -26,8 +26,7 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Q LaneClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Minions.Any() &&
+            if (Vars.Q.IsReady() && Targets.Minions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                 Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)

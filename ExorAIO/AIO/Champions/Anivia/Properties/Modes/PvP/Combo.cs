@@ -19,9 +19,7 @@ namespace ExorAIO.Champions.Anivia
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -29,16 +27,15 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Wall Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent > 30 &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && GameObjects.Player.ManaPercent > 30 && Targets.Target.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["w"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.Distance(
-                    GameObjects.Player.ServerPosition.Extend(
-                        Targets.Target.ServerPosition,
-                        GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f)) <
+                if (
+                    GameObjects.Player.Distance(
+                        GameObjects.Player.ServerPosition.Extend(
+                            Targets.Target.ServerPosition,
+                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius + 20f)) <
                     Vars.W.Range)
                 {
                     Vars.W.Cast(
@@ -51,13 +48,11 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.HasBuff("chilled") &&
-                        t.IsValidTarget(Vars.E.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(t => t.HasBuff("chilled") && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.CastOnUnit(target);
                 }
@@ -66,8 +61,7 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.R.Range) &&
+            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1 &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {
@@ -77,8 +71,7 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {

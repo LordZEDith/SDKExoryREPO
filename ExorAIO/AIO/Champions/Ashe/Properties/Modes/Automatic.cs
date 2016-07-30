@@ -29,14 +29,12 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.W.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -54,26 +52,24 @@ namespace ExorAIO.Champions.Ashe
                 Vars.Menu["spells"]["e"]["vision"].GetValue<MenuBool>().Value)
             {
                 if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
-                    GameObjects.Player.CountEnemyHeroesInRange(1000f) == 0 &&
-                    GameObjects.EnemyHeroes.Any() &&
-                    GameObjects.EnemyHeroes.Count(
-                        x =>
-                            !x.IsDead &&
-                            !x.IsVisible) >= 3)
+                    GameObjects.Player.CountEnemyHeroesInRange(1000f) == 0 && GameObjects.EnemyHeroes.Any() &&
+                    GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
                 {
-                    Vars.E.Cast(Vars.Locations
-                        .Where(d => GameObjects.Player.Distance(d) > 1500f)
-                        .OrderBy(d2 => GameObjects.Player.Distance(d2))
-                        .FirstOrDefault());
+                    Vars.E.Cast(
+                        Vars.Locations.Where(d => GameObjects.Player.Distance(d) > 1500f)
+                            .OrderBy(d2 => GameObjects.Player.Distance(d2))
+                            .FirstOrDefault());
                 }
 
                 else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
                 {
-                    foreach (var target in GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.Distance(t.GetWaypoints().Last()) < 1500 &&
-                            NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
-                            GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
+                    foreach (
+                        var target in
+                            GameObjects.EnemyHeroes.Where(
+                                t =>
+                                    t.Distance(t.GetWaypoints().Last()) < 1500 &&
+                                    NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                    GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
                     {
                         Vars.E.Cast(target.GetWaypoints().Last());
                     }
@@ -83,16 +79,14 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The E -> R Combo Logics.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active &&
                 !Invulnerable.Check(Targets.Target, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
                 if (!Vars.R.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
-                    if (Vars.E.IsReady() &&
-                        Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                    if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
                     {
                         Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
                     }
@@ -104,27 +98,26 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.R.Range) &&
-                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                            .Value))
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                .GetValue<MenuBool>().Value))
                 {
                     return;
                 }
 
-                Vars.R.Cast(Vars.R.GetPrediction(
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                Vars.R.Cast(
+                    Vars.R.GetPrediction(
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                    .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
     }

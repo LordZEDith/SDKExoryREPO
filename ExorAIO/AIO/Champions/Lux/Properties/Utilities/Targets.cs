@@ -21,11 +21,7 @@ namespace ExorAIO.Champions.Lux
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            =>
-                GameObjects.EnemyMinions.Where(
-                    m =>
-                        m.IsMinion() &&
-                        m.IsValidTarget(Vars.E.Range)).ToList();
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -35,31 +31,27 @@ namespace ExorAIO.Champions.Lux
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) ||
-                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The minions hit by the E missile.
         /// </summary>
         public static List<Obj_AI_Minion> EMinions
-            =>
-                Minions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
+            => Minions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
 
         /// <summary>
         ///     The jungle minions hit by the E missile.
         /// </summary>
         public static List<Obj_AI_Minion> EJungleMinions
-            =>
-                JungleMinions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
+            => JungleMinions.Where(m => m.Distance(Lux.EMissile.Position) < Vars.E.Width).ToList();
 
         /// <summary>
         ///     The lowest ally in range.
         /// </summary>
         public static Obj_AI_Hero LowestAlly
             =>
-                GameObjects.AllyHeroes.Where(
-                    a =>
-                        !a.IsMe &&
-                        a.IsValidTarget(Vars.W.Range, false)).OrderBy(o => o.Health).LastOrDefault();
+                GameObjects.AllyHeroes.Where(a => !a.IsMe && a.IsValidTarget(Vars.W.Range, false))
+                    .OrderBy(o => o.Health)
+                    .LastOrDefault();
     }
 }

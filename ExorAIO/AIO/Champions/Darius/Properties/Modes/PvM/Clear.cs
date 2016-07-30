@@ -31,8 +31,7 @@ namespace ExorAIO.Champions.Darius
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count() >= 3 ||
-                    Targets.JungleMinions.Any())
+                if (Targets.Minions.Count() >= 3 || Targets.JungleMinions.Any())
                 {
                     Vars.Q.Cast();
                 }
@@ -71,8 +70,7 @@ namespace ExorAIO.Champions.Darius
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;

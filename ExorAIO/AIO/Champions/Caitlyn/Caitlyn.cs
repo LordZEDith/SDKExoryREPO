@@ -107,12 +107,11 @@ namespace ExorAIO.Champions.Caitlyn
                         {
                             case "CaitlynEntrapment":
                             case "CaitlynEntrapmentMissile":
-                                if (Vars.W.IsReady() &&
-                                    Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                                if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                                 {
-                                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(
-                                        args.End,
-                                        GameObjects.Player.Distance(args.End) + Vars.W.Width));
+                                    Vars.W.Cast(
+                                        GameObjects.Player.ServerPosition.Extend(
+                                            args.End, GameObjects.Player.Distance(args.End) + Vars.W.Width));
                                 }
                                 break;
 
@@ -142,10 +141,12 @@ namespace ExorAIO.Champions.Caitlyn
                         /// <summary>
                         ///     Blocks trap cast if there is another trap nearby.
                         /// </summary>
-                        if (ObjectManager.Get<Obj_AI_Minion>().Any(
-                            m =>
-                                m.Distance(args.EndPosition) < 200 &&
-                                m.CharData.BaseSkinName.Equals("caitlyntrap")))
+                        if (
+                            ObjectManager.Get<Obj_AI_Minion>()
+                                .Any(
+                                    m =>
+                                        m.Distance(args.EndPosition) < 200 &&
+                                        m.CharData.BaseSkinName.Equals("caitlyntrap")))
                         {
                             args.Process = false;
                         }
@@ -184,8 +185,7 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Trap AA-Reset.
             /// </summary>
-            if (sender.IsMe &&
-                (args.Target as Obj_AI_Hero).IsValidTarget() &&
+            if (sender.IsMe && (args.Target as Obj_AI_Hero).IsValidTarget() &&
                 args.SData.Name.Equals("CaitlynHeadshotMissile") &&
                 GameObjects.Player.HasBuff("caitlynheadshotrangecheck") &&
                 (args.Target as Obj_AI_Hero).HasBuff("caitlynyordletrapdebuff"))
@@ -201,9 +201,7 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.IsDirectedToPlayer &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -214,8 +212,7 @@ namespace ExorAIO.Champions.Caitlyn
                 }
             }
 
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -235,8 +232,7 @@ namespace ExorAIO.Champions.Caitlyn
                 return;
             }
 
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.E.GetPrediction(args.Sender).CollisionObjects.Any())
@@ -246,8 +242,7 @@ namespace ExorAIO.Champions.Caitlyn
                 }
             }
 
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(args.Sender).CastPosition);

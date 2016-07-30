@@ -73,9 +73,7 @@ namespace ExorAIO.Champions.KogMaw
                             {
                                 Vars.WhiteListMenu.Add(
                                     new MenuBool(
-                                        target.ChampionName.ToLower(),
-                                        $"Use against: {target.ChampionName}",
-                                        true));
+                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
                         Vars.RMenu.Add(Vars.WhiteListMenu);

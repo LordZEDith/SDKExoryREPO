@@ -94,22 +94,18 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender as Obj_AI_Hero == null &&
-                sender as Obj_AI_Turret == null &&
+            if (sender as Obj_AI_Hero == null && sender as Obj_AI_Turret == null &&
                 !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
             {
                 return;
             }
 
-            if (sender.IsAlly ||
-                args.Target as Obj_AI_Hero == null ||
-                !(args.Target as Obj_AI_Hero).IsAlly)
+            if (sender.IsAlly || args.Target as Obj_AI_Hero == null || !(args.Target as Obj_AI_Hero).IsAlly)
             {
                 return;
             }
 
-            if (Vars.E.IsReady() &&
-                (args.Target as Obj_AI_Hero).IsValidTarget(Vars.E.Range, false) &&
+            if (Vars.E.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.E.Range, false) &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["e"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
                     .GetValue<MenuBool>().Value)
@@ -125,12 +121,10 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.Distance(args.End) < 750 &&
+            if (Vars.E.IsReady() && GameObjects.Player.Distance(args.End) < 750 &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                if (Vars.R.IsReady() &&
-                    Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
+                if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
                     GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
                 {
                     Vars.R.Cast();

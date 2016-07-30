@@ -53,8 +53,7 @@ namespace ExorAIO.Champions.Quinn
                 return;
             }
 
-            if (GameObjects.Player.IsWindingUp ||
-                GameObjects.Player.IsRecalling() ||
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsRecalling() ||
                 Vars.R.Instance.Name.Equals("QuinnRFinale"))
             {
                 return;
@@ -99,8 +98,7 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -128,8 +126,7 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -144,8 +141,7 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
                 Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
@@ -177,20 +173,16 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(
-                            t =>
-                                t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("quinnw")))
+                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw")))
                         {
                             args.Process = false;
-                            Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(Vars.AARange) &&
-                                    t.HasBuff("quinnw")).OrderByDescending(
-                                        o =>
-                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
                             return;
                         }
 

@@ -35,8 +35,7 @@ namespace ExorAIO.Champions.Karma
                 /// </summary>
                 if (Targets.JungleMinions.Any())
                 {
-                    if (Vars.R.IsReady() &&
-                        Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value)
+                    if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value)
                     {
                         Vars.R.Cast();
                     }
@@ -49,8 +48,7 @@ namespace ExorAIO.Champions.Karma
                 /// </summary>
                 else if (Vars.Q.GetCircularFarmLocation(Targets.Minions, 125f).MinionsHit >= 3)
                 {
-                    if (Vars.R.IsReady() &&
-                        Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value)
+                    if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value)
                     {
                         Vars.R.Cast();
                     }
@@ -62,14 +60,12 @@ namespace ExorAIO.Champions.Karma
             /// <summary>
             ///     The W JungleClear Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.JungleMinions.Any() &&
+            if (Vars.W.IsReady() && Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Vars.R.IsReady() &&
-                    Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue &&
+                if (Vars.R.IsReady() && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue >
                     GameObjects.Player.HealthPercent)
                 {

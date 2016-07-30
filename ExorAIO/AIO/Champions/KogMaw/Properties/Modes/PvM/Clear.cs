@@ -26,8 +26,7 @@ namespace ExorAIO.Champions.KogMaw
             /// <summary>
             ///     The JungleClear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.JungleMinions.Any() &&
+            if (Vars.Q.IsReady() && Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -47,8 +46,7 @@ namespace ExorAIO.Champions.KogMaw
                 {
                     Vars.W.Cast();
                 }
-                else if (!Targets.Minions.Any() &&
-                         Targets.JungleMinions.Any())
+                else if (!Targets.Minions.Any() && Targets.JungleMinions.Any())
                 {
                     Vars.W.Cast();
                 }
@@ -73,10 +71,9 @@ namespace ExorAIO.Champions.KogMaw
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                else if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.E.Range + 100f)))
+                else if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + 100f)))
                 {
                     if (Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3)
                     {

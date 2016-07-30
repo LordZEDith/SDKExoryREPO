@@ -17,8 +17,7 @@ namespace ExorAIO.Champions.Twitch
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -26,8 +25,7 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The W Harass Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                 Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)

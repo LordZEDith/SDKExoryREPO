@@ -42,10 +42,9 @@ namespace ExorAIO.Champions.Lux
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                else if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range + 100f)))
+                else if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                 {
                     if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit == 2)
                     {

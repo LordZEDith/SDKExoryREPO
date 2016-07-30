@@ -154,8 +154,7 @@ namespace ExorAIO.Champions.MissFortune
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -182,25 +181,24 @@ namespace ExorAIO.Champions.MissFortune
                     /// <summary>
                     ///     The Target Switching Logic (Passive Stacks).
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        args.Target.NetworkId == Vars.PassiveTarget.NetworkId &&
+                    if (args.Target is Obj_AI_Hero && args.Target.NetworkId == Vars.PassiveTarget.NetworkId &&
                         Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
                         if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                         {
-                            if (GameObjects.EnemyHeroes.Any(
-                                t =>
-                                    t.IsValidTarget(Vars.AARange) &&
-                                    t.NetworkId != Vars.PassiveTarget.NetworkId))
+                            if (
+                                GameObjects.EnemyHeroes.Any(
+                                    t => t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
                             {
                                 args.Process = false;
-                                Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                                    t =>
-                                        t.IsValidTarget(Vars.AARange) &&
-                                        t.NetworkId != Vars.PassiveTarget.NetworkId).OrderByDescending(
-                                            o =>
-                                                Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                                Variables.Orbwalker.ForceTarget =
+                                    GameObjects.EnemyHeroes.Where(
+                                        t =>
+                                            t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
+                                        .OrderByDescending(
+                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                        .First();
                                 return;
                             }
 

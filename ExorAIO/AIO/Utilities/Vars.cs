@@ -16,7 +16,7 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     A list of the names of the champions who cast Invalid Snares.
         /// </summary>
-        public static readonly List<string> InvalidSnareCasters = new List<string> {"Leona", "Zyra", "Lissandra"};
+        public static readonly List<string> InvalidSnareCasters = new List<string> { "Leona", "Zyra", "Lissandra" };
 
         /// <summary>
         ///     A list of the names of the champions who cast Invalid Stuns.
@@ -57,7 +57,14 @@ namespace ExorAIO.Utilities
         /// </summary>
         internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
         {
-            new JungleHpBarOffset {BaseSkinName = "SRU_Dragon_Air", Width = 140, Height = 4, XOffset = 12, YOffset = 24},
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_Dragon_Air",
+                Width = 140,
+                Height = 4,
+                XOffset = 12,
+                YOffset = 24
+            },
             new JungleHpBarOffset
             {
                 BaseSkinName = "SRU_Dragon_Fire",
@@ -90,15 +97,22 @@ namespace ExorAIO.Utilities
                 XOffset = 12,
                 YOffset = 24
             },
-            new JungleHpBarOffset {BaseSkinName = "SRU_Baron", Width = 190, Height = 10, XOffset = 16, YOffset = 24},
-            new JungleHpBarOffset {BaseSkinName = "SRU_RiftHerald", Width = 139, Height = 6, XOffset = 12, YOffset = 22},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Red", Width = 139, Height = 4, XOffset = 12, YOffset = 24},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Blue", Width = 139, Height = 4, XOffset = 12, YOffset = 24},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Gromp", Width = 86, Height = 2, XOffset = 1, YOffset = 7},
-            new JungleHpBarOffset {BaseSkinName = "Sru_Crab", Width = 61, Height = 2, XOffset = 1, YOffset = 5},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Krug", Width = 79, Height = 2, XOffset = 1, YOffset = 7},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Razorbeak", Width = 74, Height = 2, XOffset = 1, YOffset = 7},
-            new JungleHpBarOffset {BaseSkinName = "SRU_Murkwolf", Width = 74, Height = 2, XOffset = 1, YOffset = 7}
+            new JungleHpBarOffset { BaseSkinName = "SRU_Baron", Width = 190, Height = 10, XOffset = 16, YOffset = 24 },
+            new JungleHpBarOffset
+            {
+                BaseSkinName = "SRU_RiftHerald",
+                Width = 139,
+                Height = 6,
+                XOffset = 12,
+                YOffset = 22
+            },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Red", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Blue", Width = 139, Height = 4, XOffset = 12, YOffset = 24 },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Gromp", Width = 86, Height = 2, XOffset = 1, YOffset = 7 },
+            new JungleHpBarOffset { BaseSkinName = "Sru_Crab", Width = 61, Height = 2, XOffset = 1, YOffset = 5 },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Krug", Width = 79, Height = 2, XOffset = 1, YOffset = 7 },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Razorbeak", Width = 74, Height = 2, XOffset = 1, YOffset = 7 },
+            new JungleHpBarOffset { BaseSkinName = "SRU_Murkwolf", Width = 74, Height = 2, XOffset = 1, YOffset = 7 }
         };
 
         /// <summary>
@@ -107,10 +121,8 @@ namespace ExorAIO.Utilities
         internal static readonly string[] JungleList =
         {
             "SRU_Dragon_Air", "SRU_Dragon_Fire", "SRU_Dragon_Water",
-            "SRU_Dragon_Earth", "SRU_Dragon_Elder", "SRU_Baron",
-            "SRU_RiftHerald", "SRU_Red", "SRU_Blue",
-            "SRU_Gromp", "Sru_Crab", "SRU_Krug",
-            "SRU_Razorbeak", "SRU_Murkwolf"
+            "SRU_Dragon_Earth", "SRU_Dragon_Elder", "SRU_Baron", "SRU_RiftHerald", "SRU_Red", "SRU_Blue", "SRU_Gromp",
+            "Sru_Crab", "SRU_Krug", "SRU_Razorbeak", "SRU_Murkwolf"
         };
 
         /// <summary>
@@ -136,12 +148,11 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     The args End.
         /// </summary>
-        public static Geometry.Sector Cone =>
-            new Geometry.Sector(
-                GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius*3),
-                End,
-                55f*(float) Math.PI/180f,
-                R.Range);
+        public static Geometry.Sector Cone
+            =>
+                new Geometry.Sector(
+                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius * 3), End,
+                    55f * (float) Math.PI / 180f, R.Range);
 
         /// <summary>
         ///     The Q Stacks.
@@ -150,9 +161,7 @@ namespace ExorAIO.Utilities
             =>
                 GameObjects.Player.HasBuff("ryzeqiconnocharge")
                     ? 0
-                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
-                        ? 1
-                        : 2;
+                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge") ? 1 : 2;
 
         /// <summary>
         ///     Gets or sets the Q Spell.
@@ -197,8 +206,8 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     Gets or sets the assembly menu.
         /// </summary>
-        public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}",
-            $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);
+        public static Menu Menu { get; set; } = new Menu(
+            $"aio.{GameObjects.Player.ChampionName.ToLower()}", $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);
 
         /// <summary>
         ///     Gets or sets the settings menu.
@@ -286,14 +295,11 @@ namespace ExorAIO.Utilities
                 if ((target as Obj_AI_Hero).ChampionName.Equals("Blitzcrank") &&
                     !(target as Obj_AI_Hero).HasBuff("BlitzcrankManaBarrierCD"))
                 {
-                    debuffer += target.Mana/2;
+                    debuffer += target.Mana / 2;
                 }
             }
 
-            return target.Health +
-                   target.PhysicalShield +
-                   target.HPRegenRate +
-                   debuffer;
+            return target.Health + target.PhysicalShield + target.HPRegenRate + debuffer;
         }
 
         /// <summary>

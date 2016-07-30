@@ -28,14 +28,12 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -87,8 +85,7 @@ namespace ExorAIO.Champions.Sivir
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void AutoShield(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender == null ||
-                !sender.IsEnemy)
+            if (sender == null || !sender.IsEnemy)
             {
                 return;
             }
@@ -107,14 +104,12 @@ namespace ExorAIO.Champions.Sivir
                     /// </summary>
                     if ((sender as Obj_AI_Hero).ChampionName.Equals("Gangplank"))
                     {
-                        if (args.Target == null ||
-                            !(args.Target is Obj_AI_Minion))
+                        if (args.Target == null || !(args.Target is Obj_AI_Minion))
                         {
                             return;
                         }
 
-                        if (AutoAttack.IsAutoAttack(args.SData.Name) ||
-                            args.SData.Name.Equals("GangplankQProceed"))
+                        if (AutoAttack.IsAutoAttack(args.SData.Name) || args.SData.Name.Equals("GangplankQProceed"))
                         {
                             if ((args.Target as Obj_AI_Minion).Health == 1 &&
                                 (args.Target as Obj_AI_Minion).DistanceToPlayer() < 450 &&
@@ -226,7 +221,8 @@ namespace ExorAIO.Champions.Sivir
                                         break;
 
                                     default:
-                                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
+                                        DelayAction.Add(
+                                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
                                             () => { Vars.E.Cast(); });
                                         break;
                                 }
@@ -260,8 +256,7 @@ namespace ExorAIO.Champions.Sivir
 
                 case GameObjectType.obj_AI_Minion:
 
-                    if (args.Target == null ||
-                        !args.Target.IsMe)
+                    if (args.Target == null || !args.Target.IsMe)
                     {
                         return;
                     }

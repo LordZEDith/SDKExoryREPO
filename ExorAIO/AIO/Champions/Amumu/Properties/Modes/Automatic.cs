@@ -26,8 +26,7 @@ namespace ExorAIO.Champions.Amumu
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     If the player doesn't have the W Buff.

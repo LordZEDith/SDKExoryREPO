@@ -28,20 +28,17 @@ namespace ExorAIO.Champions.KogMaw
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.E.Range)))
+                if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
                     if (Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3 &&
                         !new Geometry.Rectangle(
                             GameObjects.Player.ServerPosition,
                             GameObjects.Player.ServerPosition.Extend(Targets.Minions[0].ServerPosition, Vars.E.Range),
                             Vars.E.Width).IsOutside(
-                                (Vector2) Vars.E.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
-                                    t =>
-                                        !Invulnerable.Check(t) &&
-                                        t.IsValidTarget(Vars.E.Range))).UnitPosition))
+                                (Vector2)
+                                    Vars.E.GetPrediction(
+                                        GameObjects.EnemyHeroes.FirstOrDefault(
+                                            t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range))).UnitPosition))
                     {
                         Vars.E.Cast(Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).Position);
                     }

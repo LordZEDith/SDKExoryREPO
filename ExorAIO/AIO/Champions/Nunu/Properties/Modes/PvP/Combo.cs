@@ -17,8 +17,7 @@ namespace ExorAIO.Champions.Nunu
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -34,8 +33,7 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(Targets.Target);

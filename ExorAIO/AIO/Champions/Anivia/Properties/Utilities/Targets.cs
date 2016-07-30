@@ -21,11 +21,7 @@ namespace ExorAIO.Champions.Anivia
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            =>
-                GameObjects.EnemyMinions.Where(
-                    m =>
-                        m.IsMinion() &&
-                        m.IsValidTarget(Vars.E.Range)).ToList();
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -35,8 +31,7 @@ namespace ExorAIO.Champions.Anivia
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) ||
-                         m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The minions hit by the Q missile.
@@ -44,7 +39,7 @@ namespace ExorAIO.Champions.Anivia
         public static List<Obj_AI_Minion> QMinions
             =>
                 Minions.Concat(JungleMinions)
-                    .Where(m => m.Distance(Anivia.QMissile.Position) < Vars.Q.Width*2 - 10f)
+                    .Where(m => m.Distance(Anivia.QMissile.Position) < Vars.Q.Width * 2 - 10f)
                     .ToList();
 
         /// <summary>

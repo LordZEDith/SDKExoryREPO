@@ -42,8 +42,7 @@ namespace ExorAIO.Champions.Udyr
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnUpdate(EventArgs args)
         {
-            if (GameObjects.Player.IsDead ||
-                GameObjects.Player.IsWindingUp)
+            if (GameObjects.Player.IsDead || GameObjects.Player.IsWindingUp)
             {
                 return;
             }

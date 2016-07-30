@@ -97,15 +97,12 @@ namespace ExorAIO.Champions.Tristana
         /// <param name="args">The <see cref="Obj_AI_BaseBuffAddEventArgs" /> instance containing the event data.</param>
         public static void OnBuffAdd(Obj_AI_Base sender, Obj_AI_BaseBuffAddEventArgs args)
         {
-            if (sender.IsMe &&
-                Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["antigrab"].GetValue<MenuBool>().Value)
+            if (sender.IsMe && Vars.W.IsReady() && Vars.Menu["spells"]["w"]["antigrab"].GetValue<MenuBool>().Value)
             {
-                if (args.Buff.Name.Equals("ThreshQ") ||
-                    args.Buff.Name.Equals("rocketgrab2"))
+                if (args.Buff.Name.Equals("ThreshQ") || args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition,
-                        -Vars.W.Range));
+                    Vars.W.Cast(
+                        GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.W.Range));
                 }
             }
         }
@@ -117,9 +114,7 @@ namespace ExorAIO.Champions.Tristana
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.W.IsReady() &&
-                args.Sender.IsMelee &&
-                args.IsDirectedToPlayer &&
+            if (Vars.W.IsReady() && args.Sender.IsMelee && args.IsDirectedToPlayer &&
                 args.Sender.IsValidTarget(Vars.W.Range) &&
                 Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -143,19 +138,18 @@ namespace ExorAIO.Champions.Tristana
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(
-                            t =>
-                                t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("TristanaECharge")))
+                        if (
+                            GameObjects.EnemyHeroes.Any(
+                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("TristanaECharge")))
                         {
-                            Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(Vars.AARange) &&
-                                    t.HasBuff("TristanaECharge")).OrderByDescending(
-                                        o =>
-                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(
+                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("TristanaECharge"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
                             return;
                         }
 

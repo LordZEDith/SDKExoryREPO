@@ -27,14 +27,14 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Automatic W Logic. 
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        t.IsValidTarget(Vars.W.Range) &&
-                        !Invulnerable.Check(t, DamageType.Magical, false)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
+                                !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }
@@ -43,16 +43,15 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) < 3 &&
+            if (Vars.Q.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) < 3 &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(
-                    t =>
-                        Bools.IsImmobile(t) &&
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.Q.Range) &&
-                        t.HasBuff("caitlynyordletrapsight")))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                                t.HasBuff("caitlynyordletrapsight")))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -61,16 +60,15 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        t.IsValidTarget(Vars.R.Range) &&
-                        Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                            .Value))
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                .GetValue<MenuBool>().Value))
                 {
                     return;
                 }
@@ -78,8 +76,7 @@ namespace ExorAIO.Champions.Caitlyn
                 Vars.R.CastOnUnit(
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range) &&
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
                             Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                                 .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
             }

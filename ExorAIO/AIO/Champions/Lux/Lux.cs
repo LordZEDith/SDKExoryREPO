@@ -140,22 +140,18 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender as Obj_AI_Hero == null &&
-                sender as Obj_AI_Turret == null &&
+            if (sender as Obj_AI_Hero == null && sender as Obj_AI_Turret == null &&
                 !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
             {
                 return;
             }
 
-            if (sender.IsAlly ||
-                args.Target as Obj_AI_Hero == null ||
-                !(args.Target as Obj_AI_Hero).IsAlly)
+            if (sender.IsAlly || args.Target as Obj_AI_Hero == null || !(args.Target as Obj_AI_Hero).IsAlly)
             {
                 return;
             }
 
-            if (Vars.W.IsReady() &&
-                (args.Target as Obj_AI_Hero).IsValidTarget(Vars.W.Range, false) &&
+            if (Vars.W.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.W.Range, false) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["w"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
                     .GetValue<MenuBool>().Value)
@@ -171,9 +167,7 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.Q.IsReady() &&
-                args.IsDirectedToPlayer &&
-                args.Sender.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.Q.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -197,20 +191,19 @@ namespace ExorAIO.Champions.Lux
                     /// </summary>
                     if (args.Target is Obj_AI_Hero &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero)*3)
+                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(
-                            t =>
-                                t.IsValidTarget(Vars.AARange) &&
-                                t.HasBuff("luxilluminatingfraulein")))
+                        if (
+                            GameObjects.EnemyHeroes.Any(
+                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein")))
                         {
                             args.Process = false;
-                            Variables.Orbwalker.ForceTarget = GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(Vars.AARange) &&
-                                    t.HasBuff("luxilluminatingfraulein")).OrderByDescending(
-                                        o =>
-                                            Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).First();
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(
+                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
                             return;
                         }
 

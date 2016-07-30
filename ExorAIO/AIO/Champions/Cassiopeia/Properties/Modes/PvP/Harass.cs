@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical, false))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }
@@ -27,8 +26,7 @@ namespace ExorAIO.Champions.Cassiopeia
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
@@ -40,11 +38,10 @@ namespace ExorAIO.Champions.Cassiopeia
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            DelayAction.Add(1000,
-                () =>
+            DelayAction.Add(
+                1000, () =>
                 {
-                    if (Vars.W.IsReady() &&
-                        Targets.Target.IsValidTarget(Vars.W.Range) &&
+                    if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
                         GameObjects.Player.ManaPercent >
                         ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
                         Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)

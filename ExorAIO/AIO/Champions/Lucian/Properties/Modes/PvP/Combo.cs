@@ -24,8 +24,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
                 !Targets.Target.IsValidTarget(Vars.AARange) &&
                 Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
             {
@@ -38,11 +37,10 @@ namespace ExorAIO.Champions.Lucian
                 }
             }
 
-            if (!GameObjects.EnemyHeroes.Any(
-                t =>
-                    !Invulnerable.Check(t) &&
-                    !t.IsValidTarget(Vars.Q.Range) &&
-                    t.IsValidTarget(Vars.Q2.Range - 50f)))
+            if (
+                !GameObjects.EnemyHeroes.Any(
+                    t =>
+                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) && t.IsValidTarget(Vars.Q2.Range - 50f)))
             {
                 return;
             }
@@ -50,25 +48,26 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["extended"]["excombo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["extended"]["excombo"].GetValue<MenuBool>().Value)
             {
                 /// <summary>
                 ///     Through enemy minions.
                 /// </summary>
                 foreach (var minion 
-                    in from minion
-                        in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
-                        let polygon = new Geometry.Rectangle(
-                            GameObjects.Player.ServerPosition,
-                            GameObjects.Player.ServerPosition.Extend(minion.ServerPosition, Vars.Q2.Range - 50f),
-                            Vars.Q2.Width)
-                        where !polygon.IsOutside(
-                            (Vector2) Vars.Q2.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
-                                t =>
-                                    !Invulnerable.Check(t) &&
-                                    !t.IsValidTarget(Vars.Q.Range) &&
-                                    t.IsValidTarget(Vars.Q2.Range - 50f))).UnitPosition)
+                    in from minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
+                        let polygon =
+                            new Geometry.Rectangle(
+                                GameObjects.Player.ServerPosition,
+                                GameObjects.Player.ServerPosition.Extend(minion.ServerPosition, Vars.Q2.Range - 50f),
+                                Vars.Q2.Width)
+                        where
+                            !polygon.IsOutside(
+                                (Vector2)
+                                    Vars.Q2.GetPrediction(
+                                        GameObjects.EnemyHeroes.FirstOrDefault(
+                                            t =>
+                                                !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
+                                                t.IsValidTarget(Vars.Q2.Range - 50f))).UnitPosition)
                         select minion)
                 {
                     Vars.Q.CastOnUnit(minion);

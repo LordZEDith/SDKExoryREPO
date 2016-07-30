@@ -18,8 +18,7 @@ namespace ExorAIO.Champions.MissFortune
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) ||
-                Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
             {
                 return;
             }
@@ -27,8 +26,7 @@ namespace ExorAIO.Champions.MissFortune
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit(args.Target as Obj_AI_Hero);

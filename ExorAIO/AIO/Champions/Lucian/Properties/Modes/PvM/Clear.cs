@@ -26,12 +26,12 @@ namespace ExorAIO.Champions.Lucian
             /// </summary>
             if (Vars.Q.IsReady())
             {
-                if (!GameObjects.EnemyHeroes.Any(
-                    t =>
-                        !Invulnerable.Check(t) &&
-                        !t.IsValidTarget(Vars.Q.Range) &&
-                        t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                        Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t =>
+                            !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
+                            t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                            Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     /// <summary>
                     ///     The LaneClear Q Logic.
@@ -57,20 +57,22 @@ namespace ExorAIO.Champions.Lucian
                         Vars.Menu["spells"]["q"]["extended"]["exlaneclear"].GetValue<MenuSliderButton>().BValue)
                     {
                         foreach (var minion 
-                            in from minion
-                                in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
-                                let polygon = new Geometry.Rectangle(
-                                    GameObjects.Player.ServerPosition,
-                                    GameObjects.Player.ServerPosition.Extend(minion.ServerPosition, Vars.Q2.Range - 50f),
-                                    Vars.Q2.Width)
-                                where !polygon.IsOutside(
-                                    (Vector2) Vars.Q2.GetPrediction(GameObjects.EnemyHeroes.FirstOrDefault(
-                                        t =>
-                                            !Invulnerable.Check(t) &&
-                                            !t.IsValidTarget(Vars.Q.Range) &&
-                                            t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                                            Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()]
-                                                .GetValue<MenuBool>().Value)).UnitPosition)
+                            in from minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
+                                let polygon =
+                                    new Geometry.Rectangle(
+                                        GameObjects.Player.ServerPosition,
+                                        GameObjects.Player.ServerPosition.Extend(
+                                            minion.ServerPosition, Vars.Q2.Range - 50f), Vars.Q2.Width)
+                                where
+                                    !polygon.IsOutside(
+                                        (Vector2)
+                                            Vars.Q2.GetPrediction(
+                                                GameObjects.EnemyHeroes.FirstOrDefault(
+                                                    t =>
+                                                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
+                                                        t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                                                        Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()]
+                                                            .GetValue<MenuBool>().Value)).UnitPosition)
                                 select minion)
                         {
                             Vars.Q.CastOnUnit(minion);
@@ -82,8 +84,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The LaneClear W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Minions.Any() &&
+            if (Vars.W.IsReady() && Targets.Minions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"]) &&
                 Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
@@ -128,8 +129,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The JungleClear E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.JungleMinions.Any() &&
+            if (Vars.E.IsReady() && Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                 Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -141,8 +141,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The JungleClear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Targets.JungleMinions.Any() &&
+            if (Vars.Q.IsReady() && Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -154,8 +153,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The JungleClear W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.JungleMinions.Any() &&
+            if (Vars.W.IsReady() && Targets.JungleMinions.Any() &&
                 GameObjects.Player.ManaPercent >
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -171,8 +169,7 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
-                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
