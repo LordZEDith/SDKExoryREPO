@@ -21,7 +21,7 @@ namespace AsunaCondemn
             /// </summary>
             Vars.Menu = new Menu("asunacondemn", "AsunaCondemn", true);
             {
-                Vars.Menu.Add(new MenuBool("enable",     "Enable", true));
+                Vars.Menu.Add(new MenuBool("enable", "Enable", true));
                 Vars.Menu.Add(new MenuKeyBind("keybind", "Execute:", Keys.Space, KeyBindType.Press));
 
                 /// <summary>
@@ -33,21 +33,18 @@ namespace AsunaCondemn
                 }
                 Vars.Menu.Add(Vars.EMenu);
 
-				/// <summary>
-				///     Sets the menu for the Whitelist.
-				/// </summary>
-				Vars.WhiteListMenu = new Menu("whitelist", "Whitelist Menu");
-				{
-					foreach (var target in GameObjects.EnemyHeroes)
-					{
-						Vars.WhiteListMenu.Add(
-							new MenuBool(
-								target.ChampionName.ToLower(),
-								$"Use against: {target.ChampionName}",
-								true));
-					}
-				}
-				Vars.Menu.Add(Vars.WhiteListMenu);
+                /// <summary>
+                ///     Sets the menu for the Whitelist.
+                /// </summary>
+                Vars.WhiteListMenu = new Menu("whitelist", "Whitelist Menu");
+                {
+                    foreach (var target in GameObjects.EnemyHeroes)
+                    {
+                        Vars.WhiteListMenu.Add(
+                            new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                    }
+                }
+                Vars.Menu.Add(Vars.WhiteListMenu);
 
                 /// <summary>
                 ///     Sets the drawings menu.

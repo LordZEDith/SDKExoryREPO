@@ -36,7 +36,8 @@ namespace AsunaCondemn
                 /// <summary>
                 ///     Tells the player the assembly has been loaded.
                 /// </summary>
-                Game.PrintChat("[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
+                Game.PrintChat(
+                    "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
             };
         }
     }
