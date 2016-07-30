@@ -1,7 +1,7 @@
-using System.Windows.Forms;
 using System.Linq;
-using LeagueSharp.SDK.Enumerations;
+using System.Windows.Forms;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using Menu = LeagueSharp.SDK.UI.Menu;
 
@@ -25,7 +25,7 @@ namespace NabbAlerter
                 Vars.Menu.Add(new MenuBool("nocombo", "Don't Alert while in Combo Mode", true));
                 Vars.Menu.Add(new MenuBool("onscreen", "Don't Alert if sender isn't on screen", true));
                 Vars.Menu.Add(new MenuKeyBind("combokey", "Combo:", Keys.Space, KeyBindType.Press));
-                Vars.Menu.Add(new MenuSliderButton("enable",  "Enable / Only if Range < x", 10000, 2000, 20000, true));
+                Vars.Menu.Add(new MenuSliderButton("enable", "Enable / Only if Range < x", 10000, 2000, 20000, true));
 
                 /// <summary>
                 ///     Checks the enemies.
@@ -45,7 +45,10 @@ namespace NabbAlerter
                         {
                             if (Vars.NotIncludedChampions.Contains(target.ChampionName.ToLower()))
                             {
-                                Vars.HeroMenu.Add(new MenuSeparator("notincluded", $"You don't need to alert about {target.ChampionName}'s Ultimate."));
+                                Vars.HeroMenu.Add(
+                                    new MenuSeparator(
+                                        "notincluded",
+                                        $"You don't need to alert about {target.ChampionName}'s Ultimate."));
                             }
                             else
                             {
