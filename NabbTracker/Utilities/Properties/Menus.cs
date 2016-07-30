@@ -52,15 +52,10 @@ namespace NabbTracker
                     Vars.ColorblindMenu = new Menu("colorblind", "Colorblind Menu");
                     {
                         Vars.ColorblindMenu.Add(new MenuSeparator("separator", "Select your colorblind mode."));
-                        Vars.ColorblindMenu.Add(new MenuList<string>("mode", "Colorblind Mode",
-                            new[]
-                            {
-                                "Normal",
-                                "Deuteranopia",
-                                "Protanopia",
-                                "Tritanopia",
-                                "Achromatopsia"
-                            }));
+                        Vars.ColorblindMenu.Add(
+                            new MenuList<string>(
+                                "mode", "Colorblind Mode",
+                                new[] { "Normal", "Deuteranopia", "Protanopia", "Tritanopia", "Achromatopsia" }));
                     }
                     Vars.MiscMenu.Add(Vars.ColorblindMenu);
                 }
