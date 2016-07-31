@@ -36,10 +36,9 @@ namespace ExorAIO.Champions.Jhin
                     GameObjects.EnemyHeroes.Any(
                         t => t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2) t.ServerPosition)))
                 {
-                    foreach (
-                        var target in
-                            GameObjects.EnemyHeroes.Where(
-                                t => t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2) t.ServerPosition)))
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2) t.ServerPosition)))
                     {
                         if (Vars.Menu["spells"]["r"]["nearmouse"].GetValue<MenuBool>().Value)
                         {
@@ -79,12 +78,11 @@ namespace ExorAIO.Champions.Jhin
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
                 Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var minion in
-                        Targets.Minions.Where(
-                            m =>
-                                m.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                foreach (var minion in
+                    Targets.Minions.Where(
+                        m =>
+                            m.IsValidTarget(Vars.Q.Range) &&
+                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(minion);
                 }
@@ -95,10 +93,9 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast(
                         GameObjects.Player.ServerPosition.Extend(
@@ -112,14 +109,12 @@ namespace ExorAIO.Champions.Jhin
             if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
-                                t.IsValidTarget(Vars.W.Range - 150f) &&
-                                Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                    .Value))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
+                            t.IsValidTarget(Vars.W.Range - 150f) &&
+                            Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }

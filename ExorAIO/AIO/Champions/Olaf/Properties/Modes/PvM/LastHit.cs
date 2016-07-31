@@ -25,12 +25,11 @@ namespace ExorAIO.Champions.Olaf
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["lasthit"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var minion in
-                        Targets.Minions.Where(
-                            m =>
-                                m.IsValidTarget(Vars.E.Range) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                foreach (var minion in
+                    Targets.Minions.Where(
+                        m =>
+                            m.IsValidTarget(Vars.E.Range) &&
+                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     if (minion.GetMinionType() == MinionTypes.Siege || minion.GetMinionType() == MinionTypes.Super)
                     {

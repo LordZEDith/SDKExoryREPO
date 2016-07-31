@@ -50,9 +50,8 @@ namespace ExorAIO.Champions.Anivia
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(t => t.HasBuff("chilled") && t.IsValidTarget(Vars.E.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(t => t.HasBuff("chilled") && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

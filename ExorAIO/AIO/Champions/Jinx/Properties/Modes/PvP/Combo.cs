@@ -59,13 +59,12 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.W.Range) &&
-                                t.CountEnemyHeroesInRange(225f) >=
-                                Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.W.Range) &&
+                            t.CountEnemyHeroesInRange(225f) >=
+                            Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

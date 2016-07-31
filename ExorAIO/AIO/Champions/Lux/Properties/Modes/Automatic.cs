@@ -73,12 +73,11 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {

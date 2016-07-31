@@ -29,12 +29,11 @@ namespace ExorAIO.Champions.Cassiopeia
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.E.Range) && t.HasBuffOfType(BuffType.Poison) &&
-                                !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.E.Range) && t.HasBuffOfType(BuffType.Poison) &&
+                            !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     DelayAction.Add(
                         Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,

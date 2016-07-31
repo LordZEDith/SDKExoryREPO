@@ -33,14 +33,13 @@ namespace ExorAIO.Champions.Ezreal
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["farmhelper"]) &&
                 Vars.Menu["spells"]["q"]["farmhelper"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var minion in
-                        Targets.Minions.Where(
-                            m =>
-                                !m.IsValidTarget(Vars.AARange) &&
-                                Vars.GetRealHealth(m) > GameObjects.Player.GetAutoAttackDamage(m) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
-                            .OrderBy(o => o.MaxHealth))
+                foreach (var minion in
+                    Targets.Minions.Where(
+                        m =>
+                            !m.IsValidTarget(Vars.AARange) &&
+                            Vars.GetRealHealth(m) > GameObjects.Player.GetAutoAttackDamage(m) &&
+                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                        .OrderBy(o => o.MaxHealth))
                 {
                     if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any())
                     {
@@ -108,10 +107,8 @@ namespace ExorAIO.Champions.Ezreal
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var target in
-                        GameObjects.AllyHeroes.Where(
-                            t => !t.IsMe && t.IsWindingUp && t.IsValidTarget(Vars.W.Range, false)))
+                foreach (var target in
+                    GameObjects.AllyHeroes.Where(t => !t.IsMe && t.IsWindingUp && t.IsValidTarget(Vars.W.Range, false)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }

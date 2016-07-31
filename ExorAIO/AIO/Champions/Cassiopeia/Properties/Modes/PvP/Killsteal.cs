@@ -24,12 +24,11 @@ namespace ExorAIO.Champions.Cassiopeia
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                     return;
@@ -41,12 +40,11 @@ namespace ExorAIO.Champions.Cassiopeia
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range - 100f) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range - 100f) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }

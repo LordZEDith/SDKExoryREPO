@@ -31,15 +31,13 @@ namespace ExorAIO.Champions.Vayne
             if (Vars.E.IsReady() && !GameObjects.Player.IsDashing() &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
-                                !Invulnerable.Check(t, DamageType.True, false) &&
-                                !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
-                                Vars.Menu["spells"]["e"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                    .Value))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
+                            !Invulnerable.Check(t, DamageType.True, false) &&
+                            !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
+                            Vars.Menu["spells"]["e"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     for (var i = 1; i < 10; i++)
                     {

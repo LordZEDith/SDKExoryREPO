@@ -24,14 +24,13 @@ namespace ExorAIO.Champions.Taliyah
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                Vars.GetRealHealth(t) <
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) *
-                                (Taliyah.TerrainObject != null ? 1 : 3)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) *
+                            (Taliyah.TerrainObject != null ? 1 : 3)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {

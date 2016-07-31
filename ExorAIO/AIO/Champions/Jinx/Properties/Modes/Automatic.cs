@@ -404,12 +404,11 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.E.Cast(target.ServerPosition);
                 }
@@ -422,10 +421,9 @@ namespace ExorAIO.Champions.Jinx
                 GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {

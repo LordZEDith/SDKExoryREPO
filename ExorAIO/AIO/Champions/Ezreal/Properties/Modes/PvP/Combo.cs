@@ -28,13 +28,12 @@ namespace ExorAIO.Champions.Ezreal
                 /// </summary>
                 if (Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
                 {
-                    foreach (
-                        var target in
-                            GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(2000f) && !Invulnerable.Check(t) &&
-                                    Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>(
-                                        ).Value))
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(2000f) && !Invulnerable.Check(t) &&
+                                Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                    .Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }
@@ -45,14 +44,13 @@ namespace ExorAIO.Champions.Ezreal
                 /// </summary>
                 if (Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
                 {
-                    foreach (
-                        var target in
-                            GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.IsValidTarget(2000f) && Bools.IsImmobile(Targets.Target) &&
-                                    !Invulnerable.Check(Targets.Target) &&
-                                    Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>(
-                                        ).Value))
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.IsValidTarget(2000f) && Bools.IsImmobile(Targets.Target) &&
+                                !Invulnerable.Check(Targets.Target) &&
+                                Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                    .Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }

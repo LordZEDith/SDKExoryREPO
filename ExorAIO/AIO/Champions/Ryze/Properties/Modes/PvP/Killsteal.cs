@@ -31,18 +31,17 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                Vars.GetRealHealth(t) <
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) *
-                                (1 +
-                                 (t.HasBuff("RyzeE")
-                                     ? new double[] { 40, 55, 70, 85, 100 }[
-                                         GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1] / 100
-                                     : 0))))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) *
+                            (1 +
+                             (t.HasBuff("RyzeE")
+                                 ? new double[] { 40, 55, 70, 85, 100 }[
+                                     GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1] / 100
+                                 : 0))))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -56,12 +55,11 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.CastOnUnit(target);
                 }
@@ -72,12 +70,11 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

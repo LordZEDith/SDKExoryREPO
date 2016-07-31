@@ -56,12 +56,11 @@ namespace ExorAIO.Champions.Nunu
                 /// <summary>
                 ///     The E LaneClear Logic.
                 /// </summary>
-                foreach (
-                    var minion in
-                        Targets.Minions.Where(
-                            m =>
-                                m.IsValidTarget(Vars.E.Range) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                foreach (var minion in
+                    Targets.Minions.Where(
+                        m =>
+                            m.IsValidTarget(Vars.E.Range) &&
+                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(minion);
                 }

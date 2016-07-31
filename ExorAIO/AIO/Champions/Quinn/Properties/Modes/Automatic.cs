@@ -22,12 +22,9 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var enemy in
-                        GameObjects.EnemyHeroes.Where(
-                            x =>
-                                !x.IsDead && !x.IsVisible &&
-                                Vars.W.Range > x.Distance(GameObjects.Player.ServerPosition)))
+                foreach (var enemy in
+                    GameObjects.EnemyHeroes.Where(
+                        x => !x.IsDead && !x.IsVisible && Vars.W.Range > x.Distance(GameObjects.Player.ServerPosition)))
                 {
                     Vars.W.Cast();
                 }

@@ -25,12 +25,11 @@ namespace ExorAIO.Champions.Lux
             if (Vars.E.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
                 Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).CastPosition);
                     return;
@@ -42,12 +41,11 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -62,12 +60,11 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     if (Bools.IsImmobile(target) || !target.IsValidTarget(Vars.AARange))
                     {

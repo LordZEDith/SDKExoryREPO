@@ -31,12 +31,11 @@ namespace ExorAIO.Champions.Lucian
                 /// </summary>
                 if (Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
                 {
-                    foreach (
-                        var target in
-                            GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                    Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(target);
                     }
@@ -116,13 +115,11 @@ namespace ExorAIO.Champions.Lucian
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) &&
-                                !t.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) && !t.IsValidTarget(Vars.Q.Range) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {

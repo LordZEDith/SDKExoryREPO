@@ -40,14 +40,12 @@ namespace ExorAIO.Champions.Jhin
             if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
-                                t.IsValidTarget(Vars.W.Range - 150f) &&
-                                Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                    .Value))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
+                            t.IsValidTarget(Vars.W.Range - 150f) &&
+                            Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }

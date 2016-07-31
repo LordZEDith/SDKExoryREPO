@@ -63,12 +63,11 @@ namespace ExorAIO.Champions.Tristana
                         ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
                         Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
                     {
-                        foreach (
-                            var minion in
-                                Targets.Minions.Where(
-                                    m =>
-                                        m.CountEnemyHeroesInRange(150f) > 0 &&
-                                        Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
+                        foreach (var minion in
+                            Targets.Minions.Where(
+                                m =>
+                                    m.CountEnemyHeroesInRange(150f) > 0 &&
+                                    Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
                         {
                             Vars.E.CastOnUnit(minion);
                         }

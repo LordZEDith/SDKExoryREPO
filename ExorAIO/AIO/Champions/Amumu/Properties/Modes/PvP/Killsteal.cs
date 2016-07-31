@@ -41,13 +41,12 @@ namespace ExorAIO.Champions.Amumu
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
-                                !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
+                            !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (
                         !Vars.Q.GetPrediction(target)

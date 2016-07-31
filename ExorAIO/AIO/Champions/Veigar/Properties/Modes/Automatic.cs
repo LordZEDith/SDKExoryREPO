@@ -43,12 +43,11 @@ namespace ExorAIO.Champions.Veigar
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }

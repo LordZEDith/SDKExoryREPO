@@ -25,12 +25,11 @@ namespace ExorAIO.Champions.Lux
             if (Vars.R.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) &&
-                                t.HasBuff("luxilluminatingfraulein") && !Invulnerable.Check(t, DamageType.Magical)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) && t.HasBuff("luxilluminatingfraulein") &&
+                            !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

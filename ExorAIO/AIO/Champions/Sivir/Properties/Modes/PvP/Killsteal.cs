@@ -25,13 +25,12 @@ namespace ExorAIO.Champions.Sivir
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                                t.IsValidTarget(Vars.Q.Range - 100f) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
+                            t.IsValidTarget(Vars.Q.Range - 100f) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2))
                 {
                     Vars.Q.Cast(
                         Vars.Q.GetPrediction(Targets.Target)

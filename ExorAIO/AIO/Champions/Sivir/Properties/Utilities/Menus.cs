@@ -120,14 +120,13 @@ namespace ExorAIO.Champions.Sivir
                                     return;
                                 }
 
-                                foreach (
-                                    var spell in
-                                        SpellDatabase.Get()
-                                            .Where(
-                                                s =>
-                                                    !s.SpellName.Equals("KatarinaE") &&
-                                                    !s.SpellName.Equals("TalonCutthroat") &&
-                                                    s.ChampionName.Equals(enemy.ChampionName)))
+                                foreach (var spell in
+                                    SpellDatabase.Get()
+                                        .Where(
+                                            s =>
+                                                !s.SpellName.Equals("KatarinaE") &&
+                                                !s.SpellName.Equals("TalonCutthroat") &&
+                                                s.ChampionName.Equals(enemy.ChampionName)))
                                 {
                                     if ((enemy.IsMelee && spell.CastType.Contains(CastType.Activate) &&
                                          spell.SpellType.HasFlag(SpellType.Activated) &&

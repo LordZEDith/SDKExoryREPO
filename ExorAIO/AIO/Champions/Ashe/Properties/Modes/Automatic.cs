@@ -31,10 +31,9 @@ namespace ExorAIO.Champions.Ashe
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -63,13 +62,12 @@ namespace ExorAIO.Champions.Ashe
 
                 else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
                 {
-                    foreach (
-                        var target in
-                            GameObjects.EnemyHeroes.Where(
-                                t =>
-                                    t.Distance(t.GetWaypoints().Last()) < 1500 &&
-                                    NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
-                                    GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                                t.Distance(t.GetWaypoints().Last()) < 1500 &&
+                                NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
                     {
                         Vars.E.Cast(target.GetWaypoints().Last());
                     }

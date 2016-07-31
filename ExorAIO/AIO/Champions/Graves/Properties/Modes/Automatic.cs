@@ -29,10 +29,9 @@ namespace ExorAIO.Champions.Graves
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                     return;
@@ -44,12 +43,11 @@ namespace ExorAIO.Champions.Graves
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }

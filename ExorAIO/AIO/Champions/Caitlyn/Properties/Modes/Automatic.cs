@@ -29,12 +29,11 @@ namespace ExorAIO.Champions.Caitlyn
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }
@@ -46,12 +45,11 @@ namespace ExorAIO.Champions.Caitlyn
             if (Vars.Q.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) < 3 &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                t.HasBuff("caitlynyordletrapsight")))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                            t.HasBuff("caitlynyordletrapsight")))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }

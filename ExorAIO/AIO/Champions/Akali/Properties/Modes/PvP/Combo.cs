@@ -41,10 +41,9 @@ namespace ExorAIO.Champions.Akali
                 Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var minion in
-                        Targets.Minions.Where(
-                            m => m.IsValidTarget(Vars.R.Range) && m.Distance(Targets.Target) < Vars.Q.Range))
+                foreach (var minion in
+                    Targets.Minions.Where(
+                        m => m.IsValidTarget(Vars.R.Range) && m.Distance(Targets.Target) < Vars.Q.Range))
                 {
                     Vars.R.CastOnUnit(minion);
                 }

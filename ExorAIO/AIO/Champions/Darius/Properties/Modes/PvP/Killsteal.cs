@@ -25,14 +25,13 @@ namespace ExorAIO.Champions.Darius
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.GetRealHealth(t) <
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

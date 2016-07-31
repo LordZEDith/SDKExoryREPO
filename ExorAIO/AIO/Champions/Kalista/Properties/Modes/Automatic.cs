@@ -54,13 +54,12 @@ namespace ExorAIO.Champions.Kalista
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (
-                    var loc in
-                        Vars.Locations.Where(
-                            l =>
-                                GameObjects.Player.Distance(l) < Vars.W.Range &&
-                                !ObjectManager.Get<Obj_AI_Minion>()
-                                    .Any(m => m.Distance(l) < 1000f && m.CharData.BaseSkinName.Equals("kalistaspawn"))))
+                foreach (var loc in
+                    Vars.Locations.Where(
+                        l =>
+                            GameObjects.Player.Distance(l) < Vars.W.Range &&
+                            !ObjectManager.Get<Obj_AI_Minion>()
+                                .Any(m => m.Distance(l) < 1000f && m.CharData.BaseSkinName.Equals("kalistaspawn"))))
                 {
                     Vars.W.Cast(loc);
                 }
@@ -149,14 +148,13 @@ namespace ExorAIO.Champions.Kalista
                 /// </summary>
                 if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>().Value)
                 {
-                    foreach (
-                        var minion in
-                            Targets.JungleMinions.Where(
-                                m =>
-                                    Bools.IsPerfectRendTarget(m) &&
-                                    m.Health <
-                                    (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                    (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                    foreach (var minion in
+                        Targets.JungleMinions.Where(
+                            m =>
+                                Bools.IsPerfectRendTarget(m) &&
+                                m.Health <
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }

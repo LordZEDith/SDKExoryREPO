@@ -24,13 +24,12 @@ namespace ExorAIO.Champions.Nautilus
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                     {
@@ -45,13 +44,12 @@ namespace ExorAIO.Champions.Nautilus
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

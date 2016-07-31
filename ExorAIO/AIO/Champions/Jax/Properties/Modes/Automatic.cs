@@ -44,9 +44,8 @@ namespace ExorAIO.Champions.Jax
             if (Vars.E.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast();
                 }

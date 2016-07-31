@@ -25,13 +25,12 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && !Bools.IsPerfectRendTarget(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                !t.IsValidTarget(Vars.AARange) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && !Bools.IsPerfectRendTarget(t) && t.IsValidTarget(Vars.Q.Range) &&
+                            !t.IsValidTarget(Vars.AARange) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any() ||
                         Vars.Q.GetPrediction(target)
@@ -51,14 +50,13 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                Bools.IsPerfectRendTarget(t) &&
-                                Vars.GetRealHealth(t) <
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                                (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            Bools.IsPerfectRendTarget(t) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
                 {
                     Vars.E.Cast();
                 }

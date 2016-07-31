@@ -52,12 +52,11 @@ namespace ExorAIO.Champions.Nunu
             {
                 if (Targets.JungleMinions.Any())
                 {
-                    foreach (
-                        var minion in
-                            Targets.JungleMinions.Where(
-                                m =>
-                                    m.IsValidTarget(Vars.Q.Range) &&
-                                    Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                    foreach (var minion in
+                        Targets.JungleMinions.Where(
+                            m =>
+                                m.IsValidTarget(Vars.Q.Range) &&
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(minion);
                     }

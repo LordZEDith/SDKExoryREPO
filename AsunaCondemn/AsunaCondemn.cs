@@ -60,17 +60,16 @@ namespace AsunaCondemn
             /// </summary>
             if (Vars.E.IsReady() && Vars.Flash.IsReady() && !GameObjects.Player.IsDashing())
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
-                                GameObjects.Player.Distance(
-                                    GameObjects.Player.ServerPosition.Extend(t.ServerPosition, Vars.Flash.Range)) >
-                                GameObjects.Player.Distance(t) + t.BoundingRadius &&
-                                Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
+                            GameObjects.Player.Distance(
+                                GameObjects.Player.ServerPosition.Extend(t.ServerPosition, Vars.Flash.Range)) >
+                            GameObjects.Player.Distance(t) + t.BoundingRadius &&
+                            Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     for (var i = 1; i < 10; i++)
                     {
