@@ -18,14 +18,13 @@ namespace NabbTracker
         {
             Drawing.OnDraw += delegate
             {
-                foreach (
-                    var unit in
-                        GameObjects.Heroes.Where(
-                            e =>
-                                e.IsHPBarRendered &&
-                                (e.IsMe && Vars.Menu["exptracker"]["me"].GetValue<MenuBool>().Value ||
-                                 e.IsEnemy && Vars.Menu["exptracker"]["enemies"].GetValue<MenuBool>().Value ||
-                                 e.IsAlly && !e.IsMe && Vars.Menu["exptracker"]["allies"].GetValue<MenuBool>().Value)))
+                foreach (var unit in
+                    GameObjects.Heroes.Where(
+                        e =>
+                            e.IsHPBarRendered &&
+                            (e.IsMe && Vars.Menu["exptracker"]["me"].GetValue<MenuBool>().Value ||
+                             e.IsEnemy && Vars.Menu["exptracker"]["enemies"].GetValue<MenuBool>().Value ||
+                             e.IsAlly && !e.IsMe && Vars.Menu["exptracker"]["allies"].GetValue<MenuBool>().Value)))
                 {
                     var actualExp = unit.Experience;
                     var neededExp = 180 + 100 * unit.Level;

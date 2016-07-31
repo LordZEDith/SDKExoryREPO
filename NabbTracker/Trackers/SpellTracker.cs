@@ -23,15 +23,13 @@ namespace NabbTracker
                     return;
                 }
 
-                foreach (
-                    var unit in
-                        GameObjects.Heroes.Where(
-                            e =>
-                                e.IsHPBarRendered &&
-                                (e.IsMe && Vars.Menu["spelltracker"]["me"].GetValue<MenuBool>().Value ||
-                                 e.IsEnemy && Vars.Menu["spelltracker"]["enemies"].GetValue<MenuBool>().Value ||
-                                 e.IsAlly && !e.IsMe && Vars.Menu["spelltracker"]["allies"].GetValue<MenuBool>().Value))
-                    )
+                foreach (var unit in
+                    GameObjects.Heroes.Where(
+                        e =>
+                            e.IsHPBarRendered &&
+                            (e.IsMe && Vars.Menu["spelltracker"]["me"].GetValue<MenuBool>().Value ||
+                             e.IsEnemy && Vars.Menu["spelltracker"]["enemies"].GetValue<MenuBool>().Value ||
+                             e.IsAlly && !e.IsMe && Vars.Menu["spelltracker"]["allies"].GetValue<MenuBool>().Value)))
                 {
                     for (var Spell = 0; Spell < Vars.SpellSlots.Count(); Spell++)
                     {
