@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Warwick
                 !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.R.Range)) &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.MaxHealth <
+                if (GameObjects.Player.MaxHealth >
                     GameObjects.Player.Health +
                     (float) GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q) * 0.8)
                 {
