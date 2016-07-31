@@ -51,20 +51,18 @@ namespace NabbActivator
             {
                 if (GameObjects.AllyMinions.Any(m => m.GetMinionType() == MinionTypes.Super))
                 {
-                    foreach (
-                        var super in
-                            GameObjects.AllyMinions.Where(
-                                m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Super))
+                    foreach (var super in
+                        GameObjects.AllyMinions.Where(
+                            m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Super))
                     {
                         Items.UseItem(3060, super);
                     }
                 }
                 else
                 {
-                    foreach (
-                        var siege in
-                            GameObjects.AllyMinions.Where(
-                                m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Siege))
+                    foreach (var siege in
+                        GameObjects.AllyMinions.Where(
+                            m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Siege))
                     {
                         Items.UseItem(3060, siege);
                     }
@@ -76,12 +74,11 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3401))
             {
-                foreach (
-                    var ally in
-                        GameObjects.AllyHeroes.Where(
-                            a =>
-                                a.IsValidTarget(500f, false) &&
-                                Health.GetPrediction(a, (int) (250 + Game.Ping / 2f)) <= a.MaxHealth / 4))
+                foreach (var ally in
+                    GameObjects.AllyHeroes.Where(
+                        a =>
+                            a.IsValidTarget(500f, false) &&
+                            Health.GetPrediction(a, (int) (250 + Game.Ping / 2f)) <= a.MaxHealth / 4))
                 {
                     Items.UseItem(3401, ally);
                     return;

@@ -27,9 +27,8 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3222))
             {
-                foreach (
-                    var ally in
-                        GameObjects.AllyHeroes.Where(a => Bools.ShouldCleanse(a) && a.IsValidTarget(750f, false)))
+                foreach (var ally in
+                    GameObjects.AllyHeroes.Where(a => Bools.ShouldCleanse(a) && a.IsValidTarget(750f, false)))
                 {
                     DelayAction.Add(
                         Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () => { Items.UseItem(3222, ally); });
