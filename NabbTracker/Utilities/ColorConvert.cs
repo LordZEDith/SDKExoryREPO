@@ -59,7 +59,7 @@ namespace NabbTracker
         /// </summary>
         public static Color Convert(Color color)
         {
-            var sdxConvert = new uint[6, 5]
+            var sdxConvert = new[,]
             {
                 { 0xFF808080, 0xFF7F7F81, 0xFF807E82, 0xFF808080, 0xFF7F7F7F }, // gray
                 { 0xFFFFFF00, 0xFFFFE802, 0xFFFFF205, 0xFFFFD6D0, 0xFFE1E1E1 }, // yellow
@@ -83,7 +83,7 @@ namespace NabbTracker
         /// </summary>
         public static System.Drawing.Color Convert(System.Drawing.Color color)
         {
-            var sdConvert = new int[6, 5, 3]
+            var sdConvert = new[,,]
             {
                 { { 128, 128, 128 }, { 127, 127, 129 }, { 128, 126, 130 }, { 128, 128, 128 }, { 127, 127, 127 } }, // gray
                 { { 255, 255, 0 }, { 255, 232, 2 }, { 255, 242, 5 }, { 255, 214, 208 }, { 225, 225, 225 } }, // yellow

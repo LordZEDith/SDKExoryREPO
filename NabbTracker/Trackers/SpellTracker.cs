@@ -39,9 +39,7 @@ namespace NabbTracker
                         Vars.DisplayTextFont.DrawText(
                             null,
                             unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time > 0
-                                ? string.Format(
-                                    "{0:0}",
-                                    unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time + 1)
+                                ? $"{unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time + 1:0}"
                                 : Vars.SpellSlots[Spell].ToString(), Vars.SpellX, Vars.SpellY,
                             unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).Level < 1
                                 ? Colors.Convert(Color.Gray)
@@ -119,10 +117,7 @@ namespace NabbTracker
                             unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires - Game.Time >
                             0
                                 ? Vars.GetSummonerSpellName + ":" +
-                                  string.Format(
-                                      "{0:0}",
-                                      unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires -
-                                      Game.Time + 1)
+                                  $"{unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires - Game.Time + 1:0}"
                                 : Vars.GetSummonerSpellName + ": UP ", Vars.SummonerSpellX, Vars.SummonerSpellY,
                             unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires - Game.Time >
                             0
