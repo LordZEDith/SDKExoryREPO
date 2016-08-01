@@ -1,6 +1,8 @@
 ﻿using LeagueSharp;
 using LeagueSharp.SDK;
 
+#pragma warning disable 1587
+
 namespace AsunaCondemn
 {
     /// <summary>
@@ -11,8 +13,7 @@ namespace AsunaCondemn
         /// <summary>
         ///     The entry point of the application.
         /// </summary>
-        /// <param name="args">The arguments.</param>
-        private static void Main(string[] args)
+        private static void Main()
         {
             /// <summary>
             ///     Loads the Bootstrap.
@@ -24,7 +25,7 @@ namespace AsunaCondemn
                 if (!GameObjects.Player.ChampionName.Equals("Vayne"))
                 {
                     Game.PrintChat(
-                        $"[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
+                        "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
                     return;
                 }
 

@@ -6,6 +6,8 @@ using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 using SharpDX;
 
+#pragma warning disable 1587
+
 namespace AsunaCondemn
 {
     /// <summary>

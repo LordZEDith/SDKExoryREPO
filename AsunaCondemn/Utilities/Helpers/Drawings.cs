@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Color = System.Drawing.Color;
 
+#pragma warning disable 1587
+
 namespace AsunaCondemn
 {
     /// <summary>
