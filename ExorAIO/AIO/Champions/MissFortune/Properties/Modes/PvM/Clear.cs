@@ -55,7 +55,7 @@ namespace ExorAIO.Champions.MissFortune
                                 t =>
                                     !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f) &&
                                     ((Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId) ||
-                                     !Targets.Minions.Any(m => !polygon.IsOutside((Vector2) m.ServerPosition))) &&
+                                     Targets.Minions.All(m => polygon.IsOutside((Vector2) m.ServerPosition))) &&
                                     Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
                                         .Value)
                         where target != null

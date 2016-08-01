@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero) args.Target))
             {
                 return;
             }

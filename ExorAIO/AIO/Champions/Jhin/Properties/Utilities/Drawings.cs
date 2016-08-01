@@ -5,6 +5,7 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using SharpDX;
 using Color = System.Drawing.Color;
+#pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jhin
 {
