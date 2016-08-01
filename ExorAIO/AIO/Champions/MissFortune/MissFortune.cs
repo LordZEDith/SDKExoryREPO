@@ -9,6 +9,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.MissFortune
 {
     /// <summary>
@@ -94,9 +96,6 @@ namespace ExorAIO.Champions.MissFortune
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -124,9 +123,6 @@ namespace ExorAIO.Champions.MissFortune
                             Logics.JungleClear(sender, args);
                             Logics.BuildingClear(sender, args);
                             break;
-
-                        default:
-                            break;
                     }
 
                     Vars.PassiveTarget = args.Target as AttackableUnit;
@@ -138,9 +134,6 @@ namespace ExorAIO.Champions.MissFortune
                         case "MissFortuneRicochetShot":
                             //case "MissFortuneRicochetShotMissile":
                             Vars.PassiveTarget = args.Target as AttackableUnit;
-                            break;
-
-                        default:
                             break;
                     }
                 }
@@ -181,11 +174,11 @@ namespace ExorAIO.Champions.MissFortune
                     /// <summary>
                     ///     The Target Switching Logic (Passive Stacks).
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero && args.Target.NetworkId == Vars.PassiveTarget.NetworkId &&
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && hero.NetworkId == Vars.PassiveTarget.NetworkId &&
                         Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
-                        if (Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                            GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                        if (Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                         {
                             if (
                                 GameObjects.EnemyHeroes.Any(
@@ -205,9 +198,6 @@ namespace ExorAIO.Champions.MissFortune
                             Variables.Orbwalker.ForceTarget = null;
                         }
                     }
-                    break;
-
-                default:
                     break;
             }
         }

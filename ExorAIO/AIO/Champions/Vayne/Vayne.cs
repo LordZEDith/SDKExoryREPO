@@ -10,6 +10,8 @@ using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 using SharpDX;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Vayne
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Vayne
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -113,9 +112,6 @@ namespace ExorAIO.Champions.Vayne
                         Logics.Clear(sender, args);
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -202,7 +198,7 @@ namespace ExorAIO.Champions.Vayne
                         if (GameObjects.Player.GetBuff("vaynetumblefade").EndTime - Game.Time >
                             GameObjects.Player.GetBuff("vaynetumblefade").EndTime -
                             GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
-                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value / 1000)
+                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value / 1000f)
                         {
                             args.Process = false;
                         }
@@ -220,22 +216,21 @@ namespace ExorAIO.Champions.Vayne
                     /// <summary>
                     ///     The Target Forcing Logic (W Stacks).
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
                                 t =>
                                     t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
-                                    t.NetworkId != (args.Target as Obj_AI_Hero).NetworkId))
+                                    t.NetworkId != hero.NetworkId))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
                                     t =>
                                         t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
-                                        t.NetworkId != (args.Target as Obj_AI_Hero).NetworkId)
+                                        t.NetworkId != hero.NetworkId)
                                     .OrderByDescending(
                                         o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                     .First();
@@ -244,9 +239,6 @@ namespace ExorAIO.Champions.Vayne
 
                         Variables.Orbwalker.ForceTarget = null;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Twitch
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Twitch
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -108,9 +107,6 @@ namespace ExorAIO.Champions.Twitch
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -145,14 +141,11 @@ namespace ExorAIO.Champions.Twitch
                         if (GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime - Game.Time >
                             GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime -
                             GameObjects.Player.GetBuff("TwitchHideInShadows").StartTime -
-                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value / 1000)
+                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value / 1000f)
                         {
                             args.Process = false;
                         }
                     }
-                    break;
-
-                default:
                     break;
             }
         }

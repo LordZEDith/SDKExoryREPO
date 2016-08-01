@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Pantheon
 {
     /// <summary>
@@ -71,9 +73,6 @@ namespace ExorAIO.Champions.Pantheon
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -111,9 +110,6 @@ namespace ExorAIO.Champions.Pantheon
                     {
                         args.Process = false;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

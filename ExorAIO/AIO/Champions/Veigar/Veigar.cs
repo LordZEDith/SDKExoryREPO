@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Veigar
 {
     /// <summary>
@@ -80,9 +82,6 @@ namespace ExorAIO.Champions.Veigar
 
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    break;
-
-                default:
                     break;
             }
         }
@@ -171,13 +170,7 @@ namespace ExorAIO.Champions.Veigar
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

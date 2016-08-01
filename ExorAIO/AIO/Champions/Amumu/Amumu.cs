@@ -3,6 +3,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Amumu
 {
     /// <summary>
@@ -77,13 +79,6 @@ namespace ExorAIO.Champions.Amumu
 
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    break;
-
-                case OrbwalkingMode.None:
-                    break;
-                case OrbwalkingMode.LastHit:
-                    break;
-                default:
                     break;
             }
         }

@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Cassiopeia
 {
     /// <summary>
@@ -86,9 +88,6 @@ namespace ExorAIO.Champions.Cassiopeia
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -146,13 +145,7 @@ namespace ExorAIO.Champions.Cassiopeia
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

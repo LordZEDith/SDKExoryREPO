@@ -8,7 +8,10 @@ using LeagueSharp.Data.Enumerations;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+#pragma warning disable 1587
+
 // ReSharper disable once CheckNamespace
+
 namespace ExorAIO.Champions.Kalista
 {
     /// <summary>
@@ -106,20 +109,21 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage((Obj_AI_Hero) args.Target) * 3)
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(
-                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally")))
+                        foreach (var t1 in GameObjects.EnemyHeroes)
                         {
-                            Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(
-                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
-                                    .OrderByDescending(
-                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                    .First();
-                            return;
+                            if (t1.IsValidTarget(Vars.AARange) && t1.HasBuff("kalistacoopstrikemarkally"))
+                            {
+                                Variables.Orbwalker.ForceTarget =
+                                    GameObjects.EnemyHeroes.Where(
+                                        t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
+                                        .OrderByDescending(
+                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                        .First();
+                                return;
+                            }
                         }
 
                         Variables.Orbwalker.ForceTarget = null;

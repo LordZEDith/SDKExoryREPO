@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Ryze
 {
     /// <summary>
@@ -82,9 +84,6 @@ namespace ExorAIO.Champions.Ryze
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -153,13 +152,7 @@ namespace ExorAIO.Champions.Ryze
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

@@ -9,6 +9,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Lux
 {
     /// <summary>
@@ -127,9 +129,6 @@ namespace ExorAIO.Champions.Lux
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -140,23 +139,23 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender as Obj_AI_Hero == null && sender as Obj_AI_Turret == null &&
+            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) &&
                 !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
             {
                 return;
             }
 
-            if (sender.IsAlly || args.Target as Obj_AI_Hero == null || !(args.Target as Obj_AI_Hero).IsAlly)
+            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero) args.Target).IsAlly)
             {
                 return;
             }
 
-            if (Vars.W.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.W.Range, false) &&
+            if (Vars.W.IsReady() && ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.W.Range, false) &&
                 Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["w"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
+                Vars.Menu["spells"]["w"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
                     .GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Vars.W.GetPrediction(args.Target as Obj_AI_Hero).UnitPosition);
+                Vars.W.Cast(Vars.W.GetPrediction((Obj_AI_Hero) args.Target).UnitPosition);
             }
         }
 
@@ -189,9 +188,8 @@ namespace ExorAIO.Champions.Lux
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
@@ -228,13 +226,7 @@ namespace ExorAIO.Champions.Lux
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

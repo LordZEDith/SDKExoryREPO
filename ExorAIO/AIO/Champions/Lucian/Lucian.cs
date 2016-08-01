@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Lucian
 {
     /// <summary>
@@ -87,9 +89,6 @@ namespace ExorAIO.Champions.Lucian
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -114,9 +113,6 @@ namespace ExorAIO.Champions.Lucian
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -170,9 +166,6 @@ namespace ExorAIO.Champions.Lucian
                     {
                         args.Process = false;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

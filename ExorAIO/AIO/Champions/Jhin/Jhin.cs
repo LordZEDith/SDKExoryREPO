@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Jhin
 {
     /// <summary>
@@ -90,9 +92,6 @@ namespace ExorAIO.Champions.Jhin
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -112,9 +111,6 @@ namespace ExorAIO.Champions.Jhin
                 {
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -170,9 +166,6 @@ namespace ExorAIO.Champions.Jhin
                     {
                         args.Process = false;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

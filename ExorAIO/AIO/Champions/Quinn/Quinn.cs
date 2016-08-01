@@ -9,6 +9,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Quinn
 {
     /// <summary>
@@ -85,9 +87,6 @@ namespace ExorAIO.Champions.Quinn
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -111,9 +110,6 @@ namespace ExorAIO.Champions.Quinn
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -171,9 +167,8 @@ namespace ExorAIO.Champions.Quinn
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
                         if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw")))
                         {
@@ -188,9 +183,6 @@ namespace ExorAIO.Champions.Quinn
 
                         Variables.Orbwalker.ForceTarget = null;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Nunu
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Nunu
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -115,13 +114,7 @@ namespace ExorAIO.Champions.Nunu
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

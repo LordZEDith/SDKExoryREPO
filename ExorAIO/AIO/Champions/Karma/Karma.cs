@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Karma
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Karma
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -94,23 +93,23 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender as Obj_AI_Hero == null && sender as Obj_AI_Turret == null &&
+            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) &&
                 !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
             {
                 return;
             }
 
-            if (sender.IsAlly || args.Target as Obj_AI_Hero == null || !(args.Target as Obj_AI_Hero).IsAlly)
+            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero) args.Target).IsAlly)
             {
                 return;
             }
 
-            if (Vars.E.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.E.Range, false) &&
+            if (Vars.E.IsReady() && ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.E.Range, false) &&
                 Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["e"]["whitelist"][(args.Target as Obj_AI_Hero).ChampionName.ToLower()]
+                Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
                     .GetValue<MenuBool>().Value)
             {
-                Vars.E.CastOnUnit(args.Target as Obj_AI_Hero);
+                Vars.E.CastOnUnit((Obj_AI_Hero) args.Target);
             }
         }
 
@@ -162,13 +161,7 @@ namespace ExorAIO.Champions.Karma
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
-                    break;
-
-                default:
                     break;
             }
         }

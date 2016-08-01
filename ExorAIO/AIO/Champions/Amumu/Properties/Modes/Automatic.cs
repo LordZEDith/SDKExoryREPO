@@ -5,6 +5,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Amumu
 {
     /// <summary>
@@ -53,13 +55,10 @@ namespace ExorAIO.Champions.Amumu
 
                             if (GameObjects.Player.ManaPercent >=
                                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
-                                (Targets.Minions.Count() >= 2 || Targets.JungleMinions.Any()))
+                                (Targets.Minions.Count >= 2 || Targets.JungleMinions.Any()))
                             {
                                 Vars.W.Cast();
                             }
-                            break;
-
-                        default:
                             break;
                     }
                 }
@@ -78,7 +77,7 @@ namespace ExorAIO.Champions.Amumu
 
                             if (GameObjects.Player.ManaPercent <
                                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) ||
-                                (Targets.Minions.Count() < 2 && !Targets.JungleMinions.Any()))
+                                (Targets.Minions.Count < 2 && !Targets.JungleMinions.Any()))
                             {
                                 Vars.W.Cast();
                             }

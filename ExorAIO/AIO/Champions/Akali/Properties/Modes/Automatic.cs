@@ -4,6 +4,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Akali
 {
     /// <summary>
@@ -28,7 +30,7 @@ namespace ExorAIO.Champions.Akali
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (Bools.HasDeadlyMark() ||
-                    Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping / 2f), 70) <=
+                    Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping / 2f)) <=
                     GameObjects.Player.MaxHealth / 4)
                 {
                     Vars.W.Cast(GameObjects.Player.ServerPosition);

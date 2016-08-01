@@ -8,6 +8,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Tristana
 {
     /// <summary>
@@ -84,9 +86,6 @@ namespace ExorAIO.Champions.Tristana
                     Logics.Clear(args);
                     Logics.BuildingClear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -136,9 +135,8 @@ namespace ExorAIO.Champions.Tristana
                     /// <summary>
                     ///     The Target Forcing Logic.
                     /// </summary>
-                    if (args.Target is Obj_AI_Hero &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Hero) >
-                        GameObjects.Player.GetAutoAttackDamage(args.Target as Obj_AI_Hero) * 3)
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
@@ -155,9 +153,6 @@ namespace ExorAIO.Champions.Tristana
 
                         Variables.Orbwalker.ForceTarget = null;
                     }
-                    break;
-
-                default:
                     break;
             }
         }
