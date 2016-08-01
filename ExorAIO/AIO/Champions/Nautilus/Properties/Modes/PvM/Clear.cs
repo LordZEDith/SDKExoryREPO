@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Nautilus
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace ExorAIO.Champions.Nautilus
         /// <param name="args">The args.</param>
         public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null ||
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion) ||
                 !Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;

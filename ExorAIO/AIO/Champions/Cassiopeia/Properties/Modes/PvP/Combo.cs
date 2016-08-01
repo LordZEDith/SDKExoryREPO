@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Cassiopeia
 {
     /// <summary>
@@ -37,7 +39,7 @@ namespace ExorAIO.Champions.Cassiopeia
                 {
                     DelayAction.Add(
                         Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                        () => { Vars.E.CastOnUnit(Targets.Target); });
+                        () => { Vars.E.CastOnUnit(target); });
                 }
             }
 
@@ -50,7 +52,7 @@ namespace ExorAIO.Champions.Cassiopeia
             ///     The R Combo Logic.
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue <= Targets.RTargets.Count())
+                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue <= Targets.RTargets.Count)
             {
                 Vars.R.Cast(Targets.RTargets[0].ServerPosition);
             }

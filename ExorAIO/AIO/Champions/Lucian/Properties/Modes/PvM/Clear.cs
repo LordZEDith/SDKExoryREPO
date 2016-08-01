@@ -8,6 +8,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Lucian
 {
     /// <summary>
@@ -121,7 +123,7 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The args.</param>
         public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null)
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion))
             {
                 return;
             }
@@ -158,7 +160,7 @@ namespace ExorAIO.Champions.Lucian
                 ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"]) &&
                 Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.W.Cast((Variables.Orbwalker.GetTarget() as Obj_AI_Minion).ServerPosition);
+                Vars.W.Cast(((Obj_AI_Minion) Variables.Orbwalker.GetTarget()).ServerPosition);
             }
         }
 

@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.DrMundo
 {
     /// <summary>
@@ -60,7 +62,7 @@ namespace ExorAIO.Champions.DrMundo
                                 ManaManager.GetNeededHealth(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
                                 Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
                             {
-                                if (Targets.JungleMinions.Any() || Targets.Minions.Count() >= 2)
+                                if (Targets.JungleMinions.Any() || Targets.Minions.Count >= 2)
                                 {
                                     Vars.W.Cast();
                                 }
@@ -76,9 +78,6 @@ namespace ExorAIO.Champions.DrMundo
                             {
                                 Vars.W.Cast();
                             }
-                            break;
-
-                        default:
                             break;
                     }
                 }
@@ -96,7 +95,7 @@ namespace ExorAIO.Champions.DrMundo
                         case OrbwalkingMode.LaneClear:
                             if (GameObjects.Player.HealthPercent <
                                 ManaManager.GetNeededHealth(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) ||
-                                !Targets.JungleMinions.Any() && Targets.Minions.Count() < 2 ||
+                                !Targets.JungleMinions.Any() && Targets.Minions.Count < 2 ||
                                 !Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
                             {
                                 Vars.W.Cast();

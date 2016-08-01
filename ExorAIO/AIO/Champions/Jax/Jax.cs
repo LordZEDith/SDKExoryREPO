@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Jax
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Jax
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -108,9 +107,6 @@ namespace ExorAIO.Champions.Jax
                     case OrbwalkingMode.LaneClear:
                         Logics.Clear(sender, args);
                         Logics.BuildingClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

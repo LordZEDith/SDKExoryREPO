@@ -9,6 +9,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.MissFortune
 {
     /// <summary>
@@ -72,7 +74,7 @@ namespace ExorAIO.Champions.MissFortune
                                             GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm) &&
                                         ((Vars.PassiveTarget.IsValidTarget() &&
                                           t.NetworkId == Vars.PassiveTarget.NetworkId) ||
-                                         !Targets.Minions.Any(m => !polygon.IsOutside((Vector2) m.ServerPosition))))
+                                         Targets.Minions.All(m => polygon.IsOutside((Vector2) m.ServerPosition))))
                             where target != null
                             where
                                 !polygon.IsOutside((Vector2) target.ServerPosition) &&
@@ -111,7 +113,7 @@ namespace ExorAIO.Champions.MissFortune
                                             GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm) &&
                                         ((Vars.PassiveTarget.IsValidTarget() &&
                                           t.NetworkId == Vars.PassiveTarget.NetworkId) ||
-                                         !Targets.Minions.Any(m => !polygon.IsOutside((Vector2) m.ServerPosition))))
+                                         Targets.Minions.All(m => polygon.IsOutside((Vector2) m.ServerPosition))))
                             where target2 != null
                             where
                                 !polygon.IsOutside((Vector2) target2.ServerPosition) &&

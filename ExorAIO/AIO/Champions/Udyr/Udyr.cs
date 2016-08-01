@@ -3,6 +3,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Udyr
 {
     /// <summary>
@@ -59,9 +61,6 @@ namespace ExorAIO.Champions.Udyr
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     Logics.BuildingClear(args);
-                    break;
-
-                default:
                     break;
             }
         }

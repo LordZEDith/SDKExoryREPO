@@ -4,6 +4,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Corki
 {
     /// <summary>
@@ -30,7 +32,7 @@ namespace ExorAIO.Champions.Corki
                 ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
                 Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count() >= 3 || Targets.JungleMinions.Any())
+                if (Targets.Minions.Count >= 3 || Targets.JungleMinions.Any())
                 {
                     Vars.E.Cast();
                 }

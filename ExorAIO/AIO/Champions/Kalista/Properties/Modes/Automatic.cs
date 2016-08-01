@@ -8,6 +8,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Kalista
 {
     /// <summary>
@@ -82,7 +84,7 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The E Minion Harass Logic.
                 /// </summary>
-                if (GameObjects.EnemyHeroes.Any(t => Bools.IsPerfectRendTarget(t)) &&
+                if (GameObjects.EnemyHeroes.Any(Bools.IsPerfectRendTarget) &&
                     Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue &&
                     Targets.Minions.Any(
                         m =>
@@ -112,7 +114,7 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     Check for E Whitelist if the harassable target is only one and there is only one killable minion, else do not use the whitelist.
                     /// </summary>
-                    if (GameObjects.EnemyHeroes.Count(t => Bools.IsPerfectRendTarget(t)) == 1 &&
+                    if (GameObjects.EnemyHeroes.Count(Bools.IsPerfectRendTarget) == 1 &&
                         Targets.Minions.Count(
                             m =>
                                 Bools.IsPerfectRendTarget(m) &&
@@ -120,10 +122,10 @@ namespace ExorAIO.Champions.Kalista
                                 (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
                                 (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
                     {
-                        if (
-                            !Vars.Menu["spells"]["e"]["whitelist"][
-                                GameObjects.EnemyHeroes.FirstOrDefault(t => Bools.IsPerfectRendTarget(t))
-                                    .ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                        var hero = GameObjects.EnemyHeroes.FirstOrDefault(Bools.IsPerfectRendTarget);
+                        if (hero != null &&
+                            !Vars.Menu["spells"]["e"]["whitelist"][hero.ChampionName.ToLower()].GetValue<MenuBool>()
+                                .Value)
                         {
                             return;
                         }
@@ -132,7 +134,7 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     Check for invulnerability through all the harassable targets.
                     /// </summary>
-                    foreach (var target in GameObjects.EnemyHeroes.Where(t => Bools.IsPerfectRendTarget(t)))
+                    foreach (var target in GameObjects.EnemyHeroes.Where(Bools.IsPerfectRendTarget))
                     {
                         if (Invulnerable.Check(target, DamageType.True, false))
                         {
@@ -148,8 +150,8 @@ namespace ExorAIO.Champions.Kalista
                 /// </summary>
                 if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>().Value)
                 {
-                    foreach (var minion in
-                        Targets.JungleMinions.Where(
+                    if (
+                        Targets.JungleMinions.Any(
                             m =>
                                 Bools.IsPerfectRendTarget(m) &&
                                 m.Health <

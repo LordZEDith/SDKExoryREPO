@@ -1,8 +1,14 @@
 using System;
 using System.Linq;
 using ExorAIO.Utilities;
+using LeagueSharp;
 using LeagueSharp.SDK;
+using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
+using LeagueSharp.SDK.Utils;
+using SharpDX;
+
+#pragma warning disable 1587
 
 namespace ExorAIO.Champions.Quinn
 {
@@ -22,19 +28,23 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
             {
-                foreach (var enemy in
-                    GameObjects.EnemyHeroes.Where(
-                        x => !x.IsDead && !x.IsVisible && Vars.W.Range > x.Distance(GameObjects.Player.ServerPosition)))
+                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
+                    GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
                 {
-                    Vars.W.Cast();
+                    Vars.E.Cast();
                 }
 
-                if (
-                    !GameObjects.EnemyHeroes.Any(
-                        x => !x.IsDead && !x.IsVisible && Vars.W.Range > x.Distance(GameObjects.Player.ServerPosition)) &&
-                    Vars.Locations.Any(h => Vars.W.Range > GameObjects.Player.Distance(h)))
+                else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
                 {
-                    Vars.W.Cast();
+                    if (
+                        GameObjects.EnemyHeroes.Any(
+                            t =>
+                                t.Distance(t.GetWaypoints().Last()) < 1500 &&
+                                NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
+                    {
+                        Vars.E.Cast();
+                    }
                 }
             }
 

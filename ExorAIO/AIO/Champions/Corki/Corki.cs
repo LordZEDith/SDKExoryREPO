@@ -3,6 +3,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Corki
 {
     /// <summary>
@@ -77,9 +79,6 @@ namespace ExorAIO.Champions.Corki
 
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    break;
-
-                default:
                     break;
             }
         }

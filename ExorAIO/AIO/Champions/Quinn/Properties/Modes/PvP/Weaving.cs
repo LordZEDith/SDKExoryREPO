@@ -4,6 +4,8 @@ using LeagueSharp;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Quinn
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero) args.Target))
             {
                 return;
             }
@@ -28,9 +30,9 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (!Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction((Obj_AI_Hero) args.Target).CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(args.Target as Obj_AI_Hero).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction((Obj_AI_Hero) args.Target).UnitPosition);
                     return;
                 }
             }
@@ -40,7 +42,7 @@ namespace ExorAIO.Champions.Quinn
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.E.CastOnUnit(args.Target as Obj_AI_Hero);
+                Vars.E.CastOnUnit((Obj_AI_Hero) args.Target);
             }
         }
     }

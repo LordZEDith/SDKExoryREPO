@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Akali
 {
     /// <summary>
@@ -40,8 +42,8 @@ namespace ExorAIO.Champions.Akali
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
+                if (
+                    GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget(Vars.AARange) && !Invulnerable.Check(t, DamageType.Physical) &&
                             Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))

@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Caitlyn
 {
     /// <summary>
@@ -82,9 +84,6 @@ namespace ExorAIO.Champions.Caitlyn
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -114,13 +113,7 @@ namespace ExorAIO.Champions.Caitlyn
                                             args.End, GameObjects.Player.Distance(args.End) + Vars.W.Width));
                                 }
                                 break;
-
-                            default:
-                                break;
                         }
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -168,9 +161,6 @@ namespace ExorAIO.Champions.Caitlyn
                             Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, -Vars.E.Range));
                         }
                         break;
-
-                    default:
-                        break;
                 }
             }
         }
@@ -188,7 +178,7 @@ namespace ExorAIO.Champions.Caitlyn
             if (sender.IsMe && (args.Target as Obj_AI_Hero).IsValidTarget() &&
                 args.SData.Name.Equals("CaitlynHeadshotMissile") &&
                 GameObjects.Player.HasBuff("caitlynheadshotrangecheck") &&
-                (args.Target as Obj_AI_Hero).HasBuff("caitlynyordletrapdebuff"))
+                ((Obj_AI_Hero) args.Target).HasBuff("caitlynyordletrapdebuff"))
             {
                 Variables.Orbwalker.ResetSwingTimer();
             }

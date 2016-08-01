@@ -10,7 +10,7 @@ namespace ExorAIO.Champions.Karma
         /// <summary>
         ///     Called on do-cast.
         /// </summary>
-        /// <param name="(sender as Obj_AI_Hero)">The (sender as Obj_AI_Hero).</param>
+        /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args) {}
     }

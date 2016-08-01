@@ -54,8 +54,8 @@ namespace NabbActivator
                 /// </summary>
                 Vars.SliderMenu = new Menu("consumables", "Consumables Menu");
                 {
-                    Vars.SliderMenu.Add(new MenuSlider("health", "Consumables: Health < x%", 50, 0, 100));
-                    Vars.SliderMenu.Add(new MenuSlider("mana", "Consumables: Mana < x%", 50, 0, 100));
+                    Vars.SliderMenu.Add(new MenuSlider("health", "Consumables: Health < x%", 50));
+                    Vars.SliderMenu.Add(new MenuSlider("mana", "Consumables: Mana < x%", 50));
                 }
                 Vars.Menu.Add(Vars.SliderMenu);
 

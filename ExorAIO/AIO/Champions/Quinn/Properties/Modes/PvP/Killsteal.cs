@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Quinn
 {
     /// <summary>
@@ -31,9 +33,9 @@ namespace ExorAIO.Champions.Quinn
                             t.IsValidTarget(Vars.Q.Range - 100f) &&
                             Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
                 }
             }

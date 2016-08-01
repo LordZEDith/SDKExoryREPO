@@ -4,6 +4,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Amumu
 {
     /// <summary>
@@ -33,8 +35,11 @@ namespace ExorAIO.Champions.Amumu
                 if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
                     !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
-                    Vars.Q.Cast(
-                        Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range)).ServerPosition);
+                    var minion = Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range));
+                    if (minion != null)
+                    {
+                        Vars.Q.Cast(minion.ServerPosition);
+                    }
                 }
             }
 

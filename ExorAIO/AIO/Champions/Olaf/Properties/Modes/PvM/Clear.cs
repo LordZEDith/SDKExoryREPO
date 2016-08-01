@@ -9,6 +9,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Olaf
 {
     /// <summary>
@@ -83,22 +85,6 @@ namespace ExorAIO.Champions.Olaf
                 }
             }
 
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null)
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     The W Clear Logic.
-            /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
-            {
-                Vars.W.Cast();
-            }
-
             /// <summary>
             ///     The E LaneClear Logics.
             /// </summary>
@@ -116,6 +102,22 @@ namespace ExorAIO.Champions.Olaf
                     }
                 }
             }
+
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion))
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     The W Clear Logic.
+            /// </summary>
+            if (Vars.W.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
+            {
+                Vars.W.Cast();
+            }
         }
 
         /// <summary>
@@ -125,7 +127,7 @@ namespace ExorAIO.Champions.Olaf
         /// <param name="args">The args.</param>
         public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null ||
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion) ||
                 !Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;

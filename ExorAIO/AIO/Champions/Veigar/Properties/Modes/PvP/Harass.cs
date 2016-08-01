@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Veigar
 {
     /// <summary>
@@ -36,7 +38,7 @@ namespace ExorAIO.Champions.Veigar
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
-                else if (Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count() == 1 &&
+                else if (Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count == 1 &&
                          Vars.Q.GetPrediction(Targets.Target).CollisionObjects[0].Health <
                          (float)
                              GameObjects.Player.GetSpellDamage(

@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Ashe
 {
     /// <summary>
@@ -82,9 +84,6 @@ namespace ExorAIO.Champions.Ashe
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     Logics.BuildingClear(args);
-                    break;
-
-                default:
                     break;
             }
         }

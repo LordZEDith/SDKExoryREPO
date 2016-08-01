@@ -9,6 +9,8 @@ using SharpDX;
 using Color = System.Drawing.Color;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.MissFortune
 {
     /// <summary>
@@ -55,8 +57,8 @@ namespace ExorAIO.Champions.MissFortune
                             GameObjects.EnemyHeroes.FirstOrDefault(
                                 t =>
                                     !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                                    ((Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId) ||
-                                     !Targets.Minions.Any(m => !polygon.IsOutside((Vector2) m.ServerPosition))));
+                                    (Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId ||
+                                     Targets.Minions.All(m => polygon.IsOutside((Vector2) m.ServerPosition))));
 
                         if (target != null)
                         {

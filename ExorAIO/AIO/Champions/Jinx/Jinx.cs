@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Jinx
 {
     /// <summary>
@@ -76,9 +78,6 @@ namespace ExorAIO.Champions.Jinx
 
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
-                    break;
-
-                default:
                     break;
             }
         }

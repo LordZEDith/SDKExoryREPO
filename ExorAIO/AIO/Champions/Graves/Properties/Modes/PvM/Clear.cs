@@ -8,6 +8,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Graves
 {
     /// <summary>
@@ -90,7 +92,7 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null ||
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion) ||
                 !Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;
@@ -115,9 +117,8 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_HQ == null &&
-                Variables.Orbwalker.GetTarget() as Obj_AI_Turret == null &&
-                Variables.Orbwalker.GetTarget() as Obj_BarracksDampener == null)
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+                !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
             }

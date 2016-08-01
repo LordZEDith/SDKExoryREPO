@@ -4,6 +4,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.MissFortune
 {
     /// <summary>
@@ -14,11 +16,11 @@ namespace ExorAIO.Champions.MissFortune
         /// <summary>
         ///     Called on do-cast.
         /// </summary>
-        /// <param name="(sender as Obj_AI_Hero)">The (sender as Obj_AI_Hero).</param>
+        /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check(args.Target as Obj_AI_Hero))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero) args.Target))
             {
                 return;
             }
@@ -26,10 +28,10 @@ namespace ExorAIO.Champions.MissFortune
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && (args.Target as Obj_AI_Hero).IsValidTarget(Vars.Q.Range) &&
+            if (Vars.Q.IsReady() && ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.Q.Range) &&
                 Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.Q.CastOnUnit(args.Target as Obj_AI_Hero);
+                Vars.Q.CastOnUnit((Obj_AI_Hero) args.Target);
             }
         }
     }

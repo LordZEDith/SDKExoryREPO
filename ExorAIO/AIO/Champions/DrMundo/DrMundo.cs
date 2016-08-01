@@ -5,6 +5,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.DrMundo
 {
     /// <summary>
@@ -80,9 +82,6 @@ namespace ExorAIO.Champions.DrMundo
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -107,9 +106,6 @@ namespace ExorAIO.Champions.DrMundo
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

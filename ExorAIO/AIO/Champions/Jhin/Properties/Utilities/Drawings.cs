@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Jhin
                     Vars.Cone.Draw(
                         GameObjects.EnemyHeroes.Any(t => !Vars.Cone.IsOutside((Vector2) t.ServerPosition))
                             ? Color.Green
-                            : Color.Red, 1);
+                            : Color.Red);
                 }
             };
         }

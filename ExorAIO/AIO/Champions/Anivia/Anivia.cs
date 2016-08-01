@@ -5,6 +5,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Anivia
 {
     /// <summary>
@@ -143,9 +145,6 @@ namespace ExorAIO.Champions.Anivia
 
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    break;
-
-                default:
                     break;
             }
         }

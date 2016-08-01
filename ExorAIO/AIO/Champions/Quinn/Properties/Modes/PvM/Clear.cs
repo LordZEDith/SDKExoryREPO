@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Quinn
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace ExorAIO.Champions.Quinn
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                 Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.Q.Cast((Variables.Orbwalker.GetTarget() as Obj_AI_Minion).ServerPosition);
+                Vars.Q.Cast(((Obj_AI_Minion) Variables.Orbwalker.GetTarget()).ServerPosition);
                 return;
             }
 

@@ -3,6 +3,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using Bootstrap = ExorAIO.Core.Bootstrap;
 
+#pragma warning disable 1587
+
 namespace ExorAIO
 {
     /// <summary>

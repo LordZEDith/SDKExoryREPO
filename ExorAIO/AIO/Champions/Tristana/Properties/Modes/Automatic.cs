@@ -4,6 +4,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Tristana
 {
     /// <summary>
@@ -28,7 +30,8 @@ namespace ExorAIO.Champions.Tristana
             if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp &&
                 Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (!Vars.E.IsReady() || (Variables.Orbwalker.GetTarget() as Obj_AI_Base).HasBuff("TristanaECharge"))
+                var objAiBase = Variables.Orbwalker.GetTarget() as Obj_AI_Base;
+                if (objAiBase != null && (!Vars.E.IsReady() || objAiBase.HasBuff("TristanaECharge")))
                 {
                     Vars.Q.Cast();
                 }

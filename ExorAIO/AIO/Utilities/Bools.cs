@@ -45,7 +45,7 @@ namespace ExorAIO.Utilities
                 target.Buffs.Any(
                     b =>
                         b.Type == BuffType.Snare &&
-                        !Vars.InvalidSnareCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
+                        !Vars.InvalidSnareCasters.Contains(((Obj_AI_Hero) b.Caster).ChampionName));
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace ExorAIO.Utilities
                 target.Buffs.Any(
                     b =>
                         b.Type == BuffType.Stun &&
-                        !Vars.InvalidStunCasters.Contains((b.Caster as Obj_AI_Hero).ChampionName));
+                        !Vars.InvalidStunCasters.Contains(((Obj_AI_Hero) b.Caster).ChampionName));
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace ExorAIO.Utilities
             else if (target is Obj_AI_Hero)
             {
                 if (target.IsValidTarget(Vars.E.Range) && target.HasBuff("kalistaexpungemarker") &&
-                    !Invulnerable.Check(target as Obj_AI_Hero))
+                    !Invulnerable.Check((Obj_AI_Hero) target))
                 {
                     return true;
                 }

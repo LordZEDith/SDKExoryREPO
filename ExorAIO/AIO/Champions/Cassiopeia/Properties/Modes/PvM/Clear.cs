@@ -7,6 +7,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Cassiopeia
 {
     /// <summary>
@@ -129,12 +131,10 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// <summary>
                 ///     The W JungleClear Logic.
                 /// </summary>
-                if (Targets.JungleMinions.Any(m => !m.HasBuffOfType(BuffType.Poison)))
+                var minion = Targets.JungleMinions.FirstOrDefault(m => !m.HasBuffOfType(BuffType.Poison));
+                if (minion != null)
                 {
-                    Vars.W.Cast(
-                        Targets.JungleMinions.Where(m => !m.HasBuffOfType(BuffType.Poison))
-                            .FirstOrDefault()
-                            .ServerPosition);
+                    Vars.W.Cast(minion.ServerPosition);
                 }
 
                 /// <summary>

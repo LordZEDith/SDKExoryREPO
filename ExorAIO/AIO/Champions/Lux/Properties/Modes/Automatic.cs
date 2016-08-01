@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Lux
 {
     /// <summary>
@@ -53,7 +55,7 @@ namespace ExorAIO.Champions.Lux
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
 
-                        if (Targets.EMinions.Any() && Targets.EMinions.Count() >= 3)
+                        if (Targets.EMinions.Any() && Targets.EMinions.Count >= 3)
                         {
                             Vars.E.Cast();
                         }
@@ -61,9 +63,6 @@ namespace ExorAIO.Champions.Lux
                         {
                             Vars.E.Cast();
                         }
-                        break;
-
-                    default:
                         break;
                 }
             }

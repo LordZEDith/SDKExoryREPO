@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Jhin
 {
     /// <summary>
@@ -54,7 +56,7 @@ namespace ExorAIO.Champions.Jhin
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
+                if (Targets.Minions.Any() && Targets.Minions.Count >= 3)
                 {
                     if (
                         Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
@@ -64,7 +66,7 @@ namespace ExorAIO.Champions.Jhin
                                         (Vars.GetRealHealth(s) /
                                          (float) GameObjects.Player.GetSpellDamage(s, SpellSlot.Q))) >= 3)
                     {
-                        Vars.Q.CastOnUnit(Targets.Minions.OrderBy(m => Vars.GetRealHealth(m)).First());
+                        Vars.Q.CastOnUnit(Targets.Minions.OrderBy(Vars.GetRealHealth).First());
                     }
                 }
 

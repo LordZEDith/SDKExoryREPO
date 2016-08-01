@@ -6,6 +6,8 @@ using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 using SharpDX;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Utilities
 {
     /// <summary>
@@ -290,12 +292,12 @@ namespace ExorAIO.Utilities
             /// <summary>
             ///     Gets the predicted reduction from Blitzcrank Shield.
             /// </summary>
-            if (target is Obj_AI_Hero)
+            var hero = target as Obj_AI_Hero;
+            if (hero != null)
             {
-                if ((target as Obj_AI_Hero).ChampionName.Equals("Blitzcrank") &&
-                    !(target as Obj_AI_Hero).HasBuff("BlitzcrankManaBarrierCD"))
+                if (hero.ChampionName.Equals("Blitzcrank") && !hero.HasBuff("BlitzcrankManaBarrierCD"))
                 {
-                    debuffer += target.Mana / 2;
+                    debuffer += hero.Mana / 2;
                 }
             }
 

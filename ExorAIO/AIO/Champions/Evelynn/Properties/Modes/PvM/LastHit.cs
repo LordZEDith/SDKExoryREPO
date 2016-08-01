@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Evelynn
 {
     /// <summary>
@@ -26,8 +28,8 @@ namespace ExorAIO.Champions.Evelynn
                 ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
                 Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
             {
-                foreach (var minion in
-                    Targets.Minions.Where(
+                if (
+                    Targets.Minions.Any(
                         m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     Vars.Q.Cast();

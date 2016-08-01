@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Akali
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Akali
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -123,17 +122,11 @@ namespace ExorAIO.Champions.Akali
                                     }
                                 }
                                 break;
-
-                            default:
-                                break;
                         }
                         break;
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Diana
 {
     /// <summary>
@@ -81,9 +83,6 @@ namespace ExorAIO.Champions.Diana
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -103,9 +102,6 @@ namespace ExorAIO.Champions.Diana
                 {
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

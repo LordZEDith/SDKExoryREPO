@@ -3,6 +3,8 @@ using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.Enumerations;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Tryndamere
 {
     /// <summary>
@@ -68,9 +70,6 @@ namespace ExorAIO.Champions.Tryndamere
 
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    break;
-
-                default:
                     break;
             }
         }

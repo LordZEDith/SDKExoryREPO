@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Nunu
 {
     /// <summary>
@@ -141,9 +143,6 @@ namespace ExorAIO.Champions.Nunu
                         {
                             Vars.W.CastOnUnit(GameObjects.Player);
                         }
-                        break;
-
-                    default:
                         break;
                 }
 

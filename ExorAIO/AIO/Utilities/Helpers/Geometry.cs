@@ -274,10 +274,7 @@ namespace ExorAIO.Utilities
             /// <value>
             ///     The direction.
             /// </value>
-            public Vector2 Direction
-            {
-                get { return (End - Start).Normalized(); }
-            }
+            public Vector2 Direction => (End - Start).Normalized();
 
             /// <summary>
             ///     Gets the perpendicular.
@@ -285,10 +282,7 @@ namespace ExorAIO.Utilities
             /// <value>
             ///     The perpendicular.
             /// </value>
-            public Vector2 Perpendicular
-            {
-                get { return Direction.Perpendicular(); }
-            }
+            public Vector2 Perpendicular => Direction.Perpendicular();
 
             /// <summary>
             ///     Updates the polygon.
@@ -379,7 +373,7 @@ namespace ExorAIO.Utilities
             public float Radius;
 
             /// <summary>
-            ///     Initializes a new instance of the <see cref="Polygon.Sector" /> class.
+            ///     Initializes a new instance of the <see cref="Sector" /> class.
             /// </summary>
             /// <param name="center">The center.</param>
             /// <param name="direction">The direction.</param>
@@ -390,7 +384,7 @@ namespace ExorAIO.Utilities
                 : this(center.To2D(), direction.To2D(), angle, radius, quality) {}
 
             /// <summary>
-            ///     Initializes a new instance of the <see cref="Polygon.Sector" /> class.
+            ///     Initializes a new instance of the <see cref="Sector" /> class.
             /// </summary>
             /// <param name="center">The center.</param>
             /// <param name="direction">The direction.</param>

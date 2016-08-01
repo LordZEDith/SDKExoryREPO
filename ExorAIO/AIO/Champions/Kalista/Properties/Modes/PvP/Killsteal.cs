@@ -7,6 +7,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Kalista
 {
     /// <summary>
@@ -50,8 +52,8 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
+                if (
+                    GameObjects.EnemyHeroes.Any(
                         t =>
                             Bools.IsPerfectRendTarget(t) &&
                             Vars.GetRealHealth(t) <

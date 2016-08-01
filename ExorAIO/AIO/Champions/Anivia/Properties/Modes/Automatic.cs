@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Anivia
 {
     /// <summary>
@@ -87,7 +89,7 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (Targets.QMinions.Count() >= 2)
+                        if (Targets.QMinions.Count >= 2)
                         {
                             Vars.Q.Cast();
                         }
@@ -151,9 +153,6 @@ namespace ExorAIO.Champions.Anivia
                         {
                             Vars.R.Cast();
                         }
-                        break;
-
-                    default:
                         break;
                 }
             }

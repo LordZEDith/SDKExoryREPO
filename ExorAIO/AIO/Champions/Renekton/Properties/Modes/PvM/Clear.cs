@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Renekton
 {
     /// <summary>
@@ -28,7 +30,7 @@ namespace ExorAIO.Champions.Renekton
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
             {
-                if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
+                if (Targets.Minions.Any() && Targets.Minions.Count >= 3)
                 {
                     Vars.Q.Cast();
                 }
@@ -49,7 +51,7 @@ namespace ExorAIO.Champions.Renekton
         /// <param name="args">The args.</param>
         public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_AI_Minion == null)
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion))
             {
                 return;
             }

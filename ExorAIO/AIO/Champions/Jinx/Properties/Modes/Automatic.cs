@@ -7,6 +7,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Jinx
 {
     /// <summary>
@@ -121,7 +123,7 @@ namespace ExorAIO.Champions.Jinx
                                 ///     The player has Runaan's Hurricane and there are more than 1 hittable Minions..
                                 ///     And there more than 2 killable minions in Q explosion range (Lane AoE Logic).
                                 /// </summary>
-                                if ((Items.HasItem(3085) && Targets.Minions.Count() > 1) ||
+                                if ((Items.HasItem(3085) && Targets.Minions.Count > 1) ||
                                     Targets.Minions.Where(
                                         m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)
                                         .Count(
@@ -208,9 +210,6 @@ namespace ExorAIO.Champions.Jinx
                                 }
                             }
                             break;
-
-                        default:
-                            break;
                     }
                 }
 
@@ -263,7 +262,7 @@ namespace ExorAIO.Champions.Jinx
                             ///     Disable if:
                             ///     The target is not a hero. (Target check),
                             /// </summary>
-                            if (Variables.Orbwalker.GetTarget() as Obj_AI_Hero != null &&
+                            if (Variables.Orbwalker.GetTarget() is Obj_AI_Hero &&
                                 (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget())
                             {
                                 /// <summary>
@@ -309,7 +308,7 @@ namespace ExorAIO.Champions.Jinx
                             ///     The player has no Runaan's Hurricane or there is only 1 hittable Minion..
                             ///     And there are no killable minions in Q explosion range or the number of killable minions is less than 3 (Lane AoE Logic).
                             /// </summary>
-                            if ((!Items.HasItem(3085) || Targets.Minions.Count() < 2) &&
+                            if ((!Items.HasItem(3085) || Targets.Minions.Count < 2) &&
                                 (!Targets.Minions.Any(
                                     m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1) ||
                                  Targets.Minions.Count(

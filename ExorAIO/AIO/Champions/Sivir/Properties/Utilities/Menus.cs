@@ -5,6 +5,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Sivir
 {
     /// <summary>
@@ -107,17 +109,6 @@ namespace ExorAIO.Champions.Sivir
                                         new MenuBool(
                                             $"{enemy.ChampionName.ToLower()}.udyrbearattack",
                                             $"Shield: {enemy.ChampionName}'s E", true));
-                                }
-
-                                if (
-                                    SpellDatabase.Get()
-                                        .Where(
-                                            s =>
-                                                !s.SpellName.Equals("KatarinaE") &&
-                                                !s.SpellName.Equals("TalonCutthroat") &&
-                                                s.ChampionName.Equals(enemy.ChampionName)) == null)
-                                {
-                                    return;
                                 }
 
                                 foreach (var spell in

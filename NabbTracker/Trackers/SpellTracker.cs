@@ -31,7 +31,7 @@ namespace NabbTracker
                              e.IsEnemy && Vars.Menu["spelltracker"]["enemies"].GetValue<MenuBool>().Value ||
                              e.IsAlly && !e.IsMe && Vars.Menu["spelltracker"]["allies"].GetValue<MenuBool>().Value)))
                 {
-                    for (var Spell = 0; Spell < Vars.SpellSlots.Count(); Spell++)
+                    for (var Spell = 0; Spell < Vars.SpellSlots.Length; Spell++)
                     {
                         Vars.SpellX = (int) unit.HPBarPosition.X + Vars.SpellXAdjustment(unit) + Spell * 25;
                         Vars.SpellY = (int) unit.HPBarPosition.Y + Vars.SpellYAdjustment(unit);
@@ -65,7 +65,7 @@ namespace NabbTracker
                         }
                     }
 
-                    for (var SummonerSpell = 0; SummonerSpell < Vars.SummonerSpellSlots.Count(); SummonerSpell++)
+                    for (var SummonerSpell = 0; SummonerSpell < Vars.SummonerSpellSlots.Length; SummonerSpell++)
                     {
                         Vars.SummonerSpellX = (int) unit.HPBarPosition.X + Vars.SummonerSpellXAdjustment(unit) +
                                               SummonerSpell * 88;

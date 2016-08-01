@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Udyr
 {
     /// <summary>
@@ -47,8 +49,9 @@ namespace ExorAIO.Champions.Udyr
                     ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                     Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if ((Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget(Vars.R.Range) &&
-                        !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).HasBuff("udyrbearstuncheck"))
+                    var objAiMinion = Variables.Orbwalker.GetTarget() as Obj_AI_Minion;
+                    if (objAiMinion != null && objAiMinion.IsValidTarget(Vars.R.Range) &&
+                        !objAiMinion.HasBuff("udyrbearstuncheck"))
                     {
                         Vars.E.Cast();
                     }
@@ -86,7 +89,7 @@ namespace ExorAIO.Champions.Udyr
             /// <summary>
             ///     The LaneClear R Logic.
             /// </summary>
-            else if (Targets.Minions.Any() && Targets.Minions.Count() >= 3)
+            else if (Targets.Minions.Any() && Targets.Minions.Count >= 3)
             {
                 if (Vars.R.IsReady() && GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
                     GameObjects.Player.ManaPercent >=
@@ -104,9 +107,8 @@ namespace ExorAIO.Champions.Udyr
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void BuildingClear(EventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget() as Obj_HQ == null &&
-                Variables.Orbwalker.GetTarget() as Obj_AI_Turret == null &&
-                Variables.Orbwalker.GetTarget() as Obj_BarracksDampener == null)
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+                !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
             }

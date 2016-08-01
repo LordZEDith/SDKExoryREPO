@@ -6,6 +6,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Ezreal
 {
     /// <summary>
@@ -85,9 +87,6 @@ namespace ExorAIO.Champions.Ezreal
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
-                default:
-                    break;
             }
         }
 
@@ -111,9 +110,6 @@ namespace ExorAIO.Champions.Ezreal
 
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

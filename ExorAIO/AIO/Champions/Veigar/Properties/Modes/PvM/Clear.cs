@@ -5,6 +5,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Veigar
 {
     /// <summary>
@@ -46,14 +48,15 @@ namespace ExorAIO.Champions.Veigar
                                 Vars.Q.Width).Position);
                     }
                 }
-                else if (
-                    Targets.JungleMinions.Any(
-                        m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                else
                 {
-                    Vars.Q.Cast(
+                    var objAiMinion =
                         Targets.JungleMinions.FirstOrDefault(
-                            m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
-                            .ServerPosition);
+                            m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q));
+                    if (objAiMinion != null)
+                    {
+                        Vars.Q.Cast(objAiMinion.ServerPosition);
+                    }
                 }
             }
 

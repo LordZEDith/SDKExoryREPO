@@ -7,6 +7,8 @@ using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 using SharpDX;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Sivir
 {
     /// <summary>
@@ -33,7 +35,7 @@ namespace ExorAIO.Champions.Sivir
                             Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2))
                 {
                     Vars.Q.Cast(
-                        Vars.Q.GetPrediction(Targets.Target)
+                        Vars.Q.GetPrediction(target)
                             .UnitPosition.Extend((Vector2) GameObjects.Player.ServerPosition, -140));
                 }
             }

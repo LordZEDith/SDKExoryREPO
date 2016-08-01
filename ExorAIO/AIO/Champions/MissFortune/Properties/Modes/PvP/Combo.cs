@@ -8,6 +8,8 @@ using LeagueSharp.SDK.Utils;
 using SharpDX;
 using Geometry = ExorAIO.Utilities.Geometry;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.MissFortune
 {
     /// <summary>
@@ -68,9 +70,8 @@ namespace ExorAIO.Champions.MissFortune
                         Targets.Minions.Where(
                             m =>
                                 m.IsValidTarget(Vars.Q.Range) &&
-                                Vars.Menu["spells"]["q"]["extended"]["excombokill"].GetValue<MenuBool>().Value
-                                    ? m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)
-                                    : true)
+                                (!Vars.Menu["spells"]["q"]["extended"]["excombokill"].GetValue<MenuBool>().Value ||
+                                 m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     let polygon =
                         new Geometry.Sector(
                             (Vector2) minion.ServerPosition,
@@ -83,7 +84,7 @@ namespace ExorAIO.Champions.MissFortune
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f) &&
                                 ((Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId) ||
-                                 !Targets.Minions.Any(m => !polygon.IsOutside((Vector2) m.ServerPosition))))
+                                 Targets.Minions.All(m => polygon.IsOutside((Vector2) m.ServerPosition))))
                     where target != null
                     where
                         !polygon.IsOutside((Vector2) target.ServerPosition) &&

@@ -6,6 +6,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Olaf
 {
     /// <summary>
@@ -31,8 +33,7 @@ namespace ExorAIO.Champions.Olaf
                             Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(
-                        Vars.Q.GetPrediction(Targets.Target)
-                            .UnitPosition.Extend(GameObjects.Player.ServerPosition, -100f));
+                        Vars.Q.GetPrediction(target).UnitPosition.Extend(GameObjects.Player.ServerPosition, -100f));
                 }
             }
         }
