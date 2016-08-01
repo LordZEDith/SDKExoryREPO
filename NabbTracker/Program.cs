@@ -1,5 +1,6 @@
 ﻿using LeagueSharp;
 using LeagueSharp.SDK;
+
 #pragma warning disable 1587
 
 namespace NabbTracker
