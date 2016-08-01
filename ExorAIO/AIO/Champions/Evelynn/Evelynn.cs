@@ -67,15 +67,12 @@ namespace ExorAIO.Champions.Evelynn
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LastHit:
                     Logics.LastHit(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;

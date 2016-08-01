@@ -50,8 +50,7 @@ namespace ExorAIO.Champions.DrMundo
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / If Health >= x%", 50, 0, 99, true));
-                    Vars.EMenu.Add(
-                        new MenuSliderButton("jungleclear", "JungleClear / If Health >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / If Health >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

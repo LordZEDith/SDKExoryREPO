@@ -29,17 +29,18 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                     .Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => t.IsValidTarget(650f) && !Invulnerable.Check(t) && !t.HasBuff("caitlynyordletrapinternal"))
-                    )
+                    GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(650f) && !Invulnerable.Check(t) && !t.HasBuff("caitlynyordletrapinternal")))
                 {
-                    if (!Vars.E.GetPrediction(target).CollisionObjects.Any() &&
-                        Vars.E.GetPrediction(target).Hitchance >= HitChance.Medium)
+                    if (!Vars.E.GetPrediction(target)
+                             .CollisionObjects.Any() && Vars.E.GetPrediction(target)
+                                                            .Hitchance >= HitChance.Medium)
                     {
-                        Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
+                        Vars.E.Cast(Vars.E.GetPrediction(target)
+                                        .UnitPosition);
                     }
                 }
             }

@@ -28,13 +28,12 @@ namespace ExorAIO.Champions.Udyr
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && !Targets.Target.HasBuff("udyrbearstuncheck") &&
-                !Targets.Target.HasBuffOfType(BuffType.Stun) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && !Targets.Target.HasBuff("udyrbearstuncheck") && !Targets.Target.HasBuffOfType(BuffType.Stun) &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
                 Vars.E.Cast();
             }
-
             if (!Targets.Target.HasBuff("udyrbearstuncheck"))
             {
                 return;
@@ -43,11 +42,12 @@ namespace ExorAIO.Champions.Udyr
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (GameObjects.Player.HasBuff("itemmagicshankcharge") ||
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level == 0)
+            if (GameObjects.Player.HasBuff("itemmagicshankcharge") || GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q)
+                                                                                 .Level == 0)
             {
                 if (Vars.R.IsReady() && GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
-                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                     .Value)
                 {
                     Vars.R.Cast();
                 }
@@ -58,7 +58,8 @@ namespace ExorAIO.Champions.Udyr
             /// </summary>
             else
             {
-                if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                         .Value)
                 {
                     Vars.Q.Cast();
                 }

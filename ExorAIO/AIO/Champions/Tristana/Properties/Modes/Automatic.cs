@@ -27,8 +27,8 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                                                         .Value)
             {
                 var objAiBase = Variables.Orbwalker.GetTarget() as Obj_AI_Base;
                 if (objAiBase != null && (!Vars.E.IsReady() || objAiBase.HasBuff("TristanaECharge")))

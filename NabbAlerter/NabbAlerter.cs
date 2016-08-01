@@ -34,7 +34,8 @@ namespace NabbAlerter
         /// </summary>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!Vars.Menu["enable"].GetValue<MenuSliderButton>().BValue)
+            if (!Vars.Menu["enable"].GetValue<MenuSliderButton>()
+                                    .BValue)
             {
                 return;
             }
@@ -44,13 +45,13 @@ namespace NabbAlerter
             {
                 return;
             }
-
-            if (!objAiHero.ServerPosition.IsOnScreen() && Vars.Menu["onscreen"].GetValue<MenuBool>().Value)
+            if (!objAiHero.ServerPosition.IsOnScreen() && Vars.Menu["onscreen"].GetValue<MenuBool>()
+                                                                               .Value)
             {
                 return;
             }
-
-            if (GameObjects.Player.Distance(objAiHero) > Vars.Menu["enable"].GetValue<MenuSliderButton>().SValue)
+            if (GameObjects.Player.Distance(objAiHero) > Vars.Menu["enable"].GetValue<MenuSliderButton>()
+                                                                            .SValue)
             {
                 return;
             }
@@ -66,10 +67,12 @@ namespace NabbAlerter
             switch (args.Slot)
             {
                 case SpellSlot.R:
+
                     /// <summary>
                     ///     The Ultimate (R).
                     /// </summary>
-                    if (Vars.Menu[objAiHero.ChampionName.ToLower()]["ultimate"].GetValue<MenuBool>().Value)
+                    if (Vars.Menu[objAiHero.ChampionName.ToLower()]["ultimate"].GetValue<MenuBool>()
+                                                                               .Value)
                     {
                         /// <summary>
                         ///     Exceptions check.
@@ -92,11 +95,12 @@ namespace NabbAlerter
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(
-                            WeightedRandom.Next(5000, 10000), () =>
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
+                            () =>
                             {
-                                if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                    Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                                if (Vars.Menu["nocombo"].GetValue<MenuBool>()
+                                                        .Value && Vars.Menu["combokey"].GetValue<MenuKeyBind>()
+                                                                                       .Active)
                                 {
                                     return;
                                 }
@@ -109,38 +113,38 @@ namespace NabbAlerter
                                     case 1:
                                         Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no ulti");
                                         break;
-
                                     case 2:
                                         Game.Say($"no ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     case 3:
                                         Game.Say($"ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     default:
                                         Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} ult");
                                         break;
                                 }
                             });
                     }
-                    break;
 
+                    break;
                 case SpellSlot.Summoner1:
+
                     /// <summary>
                     ///     The First SummonerSpell.
                     /// </summary>
                     if (Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower()) != null &&
-                        Vars.Menu[objAiHero.ChampionName.ToLower()]["sum1"].GetValue<MenuBool>().Value)
+                        Vars.Menu[objAiHero.ChampionName.ToLower()]["sum1"].GetValue<MenuBool>()
+                                                                           .Value)
                     {
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(
-                            WeightedRandom.Next(5000, 10000), () =>
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
+                            () =>
                             {
-                                if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                    Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                                if (Vars.Menu["nocombo"].GetValue<MenuBool>()
+                                                        .Value && Vars.Menu["combokey"].GetValue<MenuKeyBind>()
+                                                                                       .Active)
                                 {
                                     return;
                                 }
@@ -151,48 +155,43 @@ namespace NabbAlerter
                                 switch (WeightedRandom.Next(1, 4))
                                 {
                                     case 1:
-                                        Game.Say(
-                                            $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
+                                        Game.Say($"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
                                             $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     case 2:
-                                        Game.Say(
-                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
+                                        Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
                                         break;
-
                                     case 3:
-                                        Game.Say(
-                                            $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
+                                        Game.Say($"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
                                             $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     default:
-                                        Game.Say(
-                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
+                                        Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
                                         break;
                                 }
                             });
                     }
                     break;
-
                 case SpellSlot.Summoner2:
+
                     /// <summary>
                     ///     The Second SummonerSpell.
                     /// </summary>
                     if (Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower()) != null &&
-                        Vars.Menu[objAiHero.ChampionName.ToLower()]["sum2"].GetValue<MenuBool>().Value)
+                        Vars.Menu[objAiHero.ChampionName.ToLower()]["sum2"].GetValue<MenuBool>()
+                                                                           .Value)
                     {
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(
-                            WeightedRandom.Next(5000, 10000), () =>
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
+                            () =>
                             {
-                                if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                    Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                                if (Vars.Menu["nocombo"].GetValue<MenuBool>()
+                                                        .Value && Vars.Menu["combokey"].GetValue<MenuKeyBind>()
+                                                                                       .Active)
                                 {
                                     return;
                                 }
@@ -203,26 +202,19 @@ namespace NabbAlerter
                                 switch (WeightedRandom.Next(1, 4))
                                 {
                                     case 1:
-                                        Game.Say(
-                                            $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
+                                        Game.Say($"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
                                             $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     case 2:
-                                        Game.Say(
-                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
+                                        Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
                                         break;
-
                                     case 3:
-                                        Game.Say(
-                                            $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
+                                        Game.Say($"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
                                             $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
                                         break;
-
                                     default:
-                                        Game.Say(
-                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
+                                        Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
                                         break;
                                 }

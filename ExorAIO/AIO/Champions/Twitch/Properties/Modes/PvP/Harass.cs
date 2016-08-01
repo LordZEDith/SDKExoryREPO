@@ -28,13 +28,14 @@ namespace ExorAIO.Champions.Twitch
             ///     The W Harass Logic.
             /// </summary>
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
-                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>()
+                                                  .BValue)
             {
                 if (Targets.Target.GetBuffCount("twitchdeadlyvenom") <= 4)
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                    .CastPosition);
                 }
             }
         }

@@ -25,13 +25,11 @@ namespace ExorAIO.Champions.Kalista
             ///     Orbwalk on minions.
             /// </summary>
             if (Items.HasItem(3085) && Targets.Minions.Any(m => m.IsValidTarget(Vars.AARange)) &&
-                !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
-                Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
+                !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) && Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>()
+                                                                                                                                .Value)
             {
-                ObjectManager.Player.IssueOrder(
-                    GameObjectOrder.AttackUnit, Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
+                ObjectManager.Player.IssueOrder(GameObjectOrder.AttackUnit, Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
             }
-
             if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
@@ -48,22 +46,26 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                            .Value)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
-                else if (
+                else if (Vars.Q.GetPrediction(Targets.Target)
+                             .CollisionObjects.Count(
+                                                     c =>
+                                                         Targets.Minions.Contains(c)
+                                                             && c.Health < (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q))
+                    ==
                     Vars.Q.GetPrediction(Targets.Target)
-                        .CollisionObjects.Count(
-                            c =>
-                                Targets.Minions.Contains(c) &&
-                                c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
-                    Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                        .CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
         }

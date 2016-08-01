@@ -27,11 +27,12 @@ namespace ExorAIO.Champions.Darius
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                !Targets.Target.IsValidTarget(Vars.AARange) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target)
+                                .UnitPosition);
             }
         }
     }

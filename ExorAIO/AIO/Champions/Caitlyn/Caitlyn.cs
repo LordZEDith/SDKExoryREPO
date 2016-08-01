@@ -62,7 +62,6 @@ namespace ExorAIO.Champions.Caitlyn
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -76,11 +75,9 @@ namespace ExorAIO.Champions.Caitlyn
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -106,14 +103,15 @@ namespace ExorAIO.Champions.Caitlyn
                         {
                             case "CaitlynEntrapment":
                             case "CaitlynEntrapmentMissile":
-                                if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                                if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                         .Value)
                                 {
-                                    Vars.W.Cast(
-                                        GameObjects.Player.ServerPosition.Extend(
-                                            args.End, GameObjects.Player.Distance(args.End) + Vars.W.Width));
+                                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.End,
+                                        GameObjects.Player.Distance(args.End) + Vars.W.Width));
                                 }
                                 break;
                         }
+
                         break;
                 }
             }
@@ -131,20 +129,16 @@ namespace ExorAIO.Champions.Caitlyn
                 switch (args.Slot)
                 {
                     case SpellSlot.W:
+
                         /// <summary>
                         ///     Blocks trap cast if there is another trap nearby.
                         /// </summary>
-                        if (
-                            ObjectManager.Get<Obj_AI_Minion>()
-                                .Any(
-                                    m =>
-                                        m.Distance(args.EndPosition) < 200 &&
-                                        m.CharData.BaseSkinName.Equals("caitlyntrap")))
+                        if (ObjectManager.Get<Obj_AI_Minion>()
+                                         .Any(m => m.Distance(args.EndPosition) < 200 && m.CharData.BaseSkinName.Equals("caitlyntrap")))
                         {
                             args.Process = false;
                         }
                         break;
-
                     case SpellSlot.E:
                         if (Environment.TickCount - Vars.LastTick < 1000)
                         {
@@ -154,8 +148,8 @@ namespace ExorAIO.Champions.Caitlyn
                         /// <summary>
                         ///     The Dash to CursorPos Option.
                         /// </summary>
-                        if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
-                            Vars.Menu["miscellaneous"]["reversede"].GetValue<MenuBool>().Value)
+                        if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None && Vars.Menu["miscellaneous"]["reversede"].GetValue<MenuBool>()
+                                                                                                                            .Value)
                         {
                             Vars.LastTick = Environment.TickCount;
                             Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, -Vars.E.Range));
@@ -175,10 +169,8 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Trap AA-Reset.
             /// </summary>
-            if (sender.IsMe && (args.Target as Obj_AI_Hero).IsValidTarget() &&
-                args.SData.Name.Equals("CaitlynHeadshotMissile") &&
-                GameObjects.Player.HasBuff("caitlynheadshotrangecheck") &&
-                ((Obj_AI_Hero) args.Target).HasBuff("caitlynyordletrapdebuff"))
+            if (sender.IsMe && (args.Target as Obj_AI_Hero).IsValidTarget() && args.SData.Name.Equals("CaitlynHeadshotMissile") &&
+                GameObjects.Player.HasBuff("caitlynheadshotrangecheck") && ((Obj_AI_Hero)args.Target).HasBuff("caitlynyordletrapdebuff"))
             {
                 Variables.Orbwalker.ResetSwingTimer();
             }
@@ -192,19 +184,20 @@ namespace ExorAIO.Champions.Caitlyn
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                                                                                    .Value)
             {
-                if (!Vars.E.GetPrediction(args.Sender).CollisionObjects.Any())
+                if (!Vars.E.GetPrediction(args.Sender)
+                         .CollisionObjects.Any())
                 {
                     Vars.E.Cast(args.Sender.ServerPosition);
                     return;
                 }
             }
 
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.W.Cast(args.End);
             }
@@ -222,20 +215,23 @@ namespace ExorAIO.Champions.Caitlyn
                 return;
             }
 
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>()
+                                                                                                                      .Value)
             {
-                if (!Vars.E.GetPrediction(args.Sender).CollisionObjects.Any())
+                if (!Vars.E.GetPrediction(args.Sender)
+                         .CollisionObjects.Any())
                 {
-                    Vars.E.Cast(Vars.E.GetPrediction(args.Sender).UnitPosition);
+                    Vars.E.Cast(Vars.E.GetPrediction(args.Sender)
+                                    .UnitPosition);
                     return;
                 }
             }
 
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>()
+                                                                                                                      .Value)
             {
-                Vars.W.Cast(Vars.W.GetPrediction(args.Sender).CastPosition);
+                Vars.W.Cast(Vars.W.GetPrediction(args.Sender)
+                                .CastPosition);
             }
         }
     }

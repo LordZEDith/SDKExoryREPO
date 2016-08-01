@@ -20,8 +20,8 @@ namespace ExorAIO.Champions.Draven
         /// <summary>
         ///     The minions target.
         /// </summary>
-        public static List<Obj_AI_Minion> Minions
-            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.AARange)).ToList();
+        public static List<Obj_AI_Minion> Minions => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.AARange))
+                                                                .ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -29,8 +29,9 @@ namespace ExorAIO.Champions.Draven
         public static List<Obj_AI_Minion> JungleMinions
             =>
                 GameObjects.Jungle.Where(
-                    m =>
-                        m.IsValidTarget(Vars.AARange) &&
-                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                                         m =>
+                                             m.IsValidTarget(Vars.AARange)
+                                                 && (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
+                           .ToList();
     }
 }

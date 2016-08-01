@@ -71,15 +71,12 @@ namespace ExorAIO.Champions.Veigar
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LastHit:
                     Logics.LastHit(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -93,9 +90,9 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.E.Cast(args.Sender.ServerPosition);
             }
@@ -108,9 +105,9 @@ namespace ExorAIO.Champions.Veigar
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>()
+                                                       .Value)
             {
                 Vars.E.Cast(args.Sender.ServerPosition);
             }
@@ -133,7 +130,8 @@ namespace ExorAIO.Champions.Veigar
                             /// <summary>
                             ///     The 'No AA in Combo' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>()
+                                                                       .Value)
                             {
                                 if (Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady() || !Bools.HasSheenBuff() ||
                                     GameObjects.Player.ManaPercent > 10)
@@ -142,7 +140,6 @@ namespace ExorAIO.Champions.Veigar
                                 }
                             }
                             break;
-
                         case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
@@ -150,7 +147,8 @@ namespace ExorAIO.Champions.Veigar
                             /// <summary>
                             ///     The 'No AA if Q Ready' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["qfarmmode"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["qfarmmode"].GetValue<MenuBool>()
+                                                                       .Value)
                             {
                                 if (Vars.Q.IsReady())
                                 {
@@ -161,16 +159,17 @@ namespace ExorAIO.Champions.Veigar
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            else if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            else if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
+                                                                          .Value)
                             {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
                             }
                             break;
                     }
+
                     break;
             }
         }

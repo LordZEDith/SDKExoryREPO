@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Akali
             Vars.W = new Spell(SpellSlot.W, 700f);
             Vars.E = new Spell(SpellSlot.E, 325f);
             Vars.R = new Spell(SpellSlot.R, 700f);
-
             Vars.W.SetSkillshot(0.25f, 400f, float.MaxValue, false, SkillshotType.SkillshotCircle);
         }
     }

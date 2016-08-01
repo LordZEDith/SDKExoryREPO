@@ -78,16 +78,17 @@ namespace ExorAIO.Champions.Diana
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(
-                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>
@@ -97,6 +98,7 @@ namespace ExorAIO.Champions.Diana
             {
                 Vars.MiscMenu.Add(new MenuBool("safe", "Don't R into Turret", true));
                 Vars.MiscMenu.Add(new MenuBool("gapclose", "Use R to Gapclose with minions", true));
+
                 //Vars.MiscMenu.Add(new MenuBool("rcheck",   "Don't R to KillSteal if Target not marked",       true));
                 Vars.MiscMenu.Add(new MenuBool("rcombo", "Use second R in combo even if target not marked"));
             }

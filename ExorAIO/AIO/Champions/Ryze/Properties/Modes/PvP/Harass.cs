@@ -31,10 +31,9 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (!Targets.Target.HasBuff("RyzeE"))
             {
-                if (Vars.E.IsReady() &&
-                    GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
-                    Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
+                if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
+                    Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>()
+                                                      .BValue)
                 {
                     if (Targets.Target.IsValidTarget(Vars.E.Range))
                     {
@@ -44,13 +43,13 @@ namespace ExorAIO.Champions.Ryze
                     {
                         foreach (var minion in
                             Targets.Minions.Where(
-                                m =>
-                                    !m.HasBuff("RyzeE") && m.IsValidTarget(Vars.E.Range) &&
-                                    (m.Distance(Targets.Target) < 200 ||
-                                     Targets.Minions.Any(
-                                         m2 =>
-                                             m2.HasBuff("RyzeE") && m2.Distance(m) < 200 &&
-                                             m2.Distance(Targets.Target) < 200))))
+                                                  m =>
+                                                      !m.HasBuff("RyzeE") && m.IsValidTarget(Vars.E.Range) &&
+                                                          (m.Distance(Targets.Target) < 200 ||
+                                                              Targets.Minions.Any(
+                                                                                  m2 =>
+                                                                                      m2.HasBuff("RyzeE") && m2.Distance(m) < 200
+                                                                                          && m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.E.CastOnUnit(minion);
                         }
@@ -63,27 +62,27 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             else
             {
-                if (Vars.Q.IsReady() &&
-                    GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                    Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+                if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                    Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
+                                                      .BValue)
                 {
-                    if (Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                        !Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                    if (Targets.Target.IsValidTarget(Vars.Q.Range) && !Vars.Q.GetPrediction(Targets.Target)
+                                                                           .CollisionObjects.Any())
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                        .UnitPosition);
                     }
                     else
                     {
                         foreach (var minion in
                             Targets.Minions.Where(
-                                m =>
-                                    m.HasBuff("RyzeE") && m.IsValidTarget(Vars.Q.Range) &&
-                                    (m.Distance(Targets.Target) < 200 ||
-                                     Targets.Minions.Any(
-                                         m2 =>
-                                             m2.HasBuff("RyzeE") && m2.Distance(m) < 200 &&
-                                             m2.Distance(Targets.Target) < 200))))
+                                                  m =>
+                                                      m.HasBuff("RyzeE") && m.IsValidTarget(Vars.Q.Range) &&
+                                                          (m.Distance(Targets.Target) < 200 ||
+                                                              Targets.Minions.Any(
+                                                                                  m2 =>
+                                                                                      m2.HasBuff("RyzeE") && m2.Distance(m) < 200
+                                                                                          && m2.Distance(Targets.Target) < 200))))
                         {
                             Vars.Q.Cast(minion.ServerPosition);
                         }

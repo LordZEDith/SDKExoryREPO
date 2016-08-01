@@ -12,58 +12,58 @@ namespace NabbAlerter
         ///     A list containing the names of the champs whose ultimate is useless to track.
         /// </summary>
         public static readonly List<string> NotIncludedChampions = new List<string>
-        {
-            "akali",
-            "anivia",
-            "swain",
-            "jayce",
-            "nidalee",
-            "blitzcrank",
-            "chogath",
-            "corki",
-            "darius",
-            "diana",
-            "elise",
-            "karma",
-            "kassadin",
-            "khazix",
-            "kogmaw",
-            "leblanc",
-            "maokai",
-            "quinn",
-            "ryze",
-            "teemo",
-            "udyr",
-            "yasuo"
-        };
+                                                                   {
+                                                                       "akali",
+                                                                       "anivia",
+                                                                       "swain",
+                                                                       "jayce",
+                                                                       "nidalee",
+                                                                       "blitzcrank",
+                                                                       "chogath",
+                                                                       "corki",
+                                                                       "darius",
+                                                                       "diana",
+                                                                       "elise",
+                                                                       "karma",
+                                                                       "kassadin",
+                                                                       "khazix",
+                                                                       "kogmaw",
+                                                                       "leblanc",
+                                                                       "maokai",
+                                                                       "quinn",
+                                                                       "ryze",
+                                                                       "teemo",
+                                                                       "udyr",
+                                                                       "yasuo"
+                                                                   };
 
         /// <summary>
         ///     A list containing the names of the champs whose ultimate is useless to track.
         /// </summary>
         public static readonly List<string> ExChampions = new List<string>
-        {
-            "Ahri",
-            "Annie",
-            "Irelia",
-            "Jhin",
-            "Riven",
-            "Shaco",
-            "Zed"
-        };
+                                                          {
+                                                              "Ahri",
+                                                              "Annie",
+                                                              "Irelia",
+                                                              "Jhin",
+                                                              "Riven",
+                                                              "Shaco",
+                                                              "Zed"
+                                                          };
 
         /// <summary>
         ///     A list containing the names of the champs whose ultimate is useless to track.
         /// </summary>
         public static readonly List<string> RealSpells = new List<string>
-        {
-            "AhriTumble",
-            "InfernalGuardian",
-            "IreliaTranscendentBladesSpell",
-            "JhinR",
-            "RivenIzunaBlade",
-            "HallucinateFull",
-            "ZedR"
-        };
+                                                         {
+                                                             "AhriTumble",
+                                                             "InfernalGuardian",
+                                                             "IreliaTranscendentBladesSpell",
+                                                             "JhinR",
+                                                             "RivenIzunaBlade",
+                                                             "HallucinateFull",
+                                                             "ZedR"
+                                                         };
 
         /// <summary>
         ///     The Menu.

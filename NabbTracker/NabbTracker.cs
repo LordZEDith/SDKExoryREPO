@@ -14,8 +14,14 @@ namespace NabbTracker
         /// </summary>
         public static void OnLoad()
         {
-            Drawing.OnPreReset += args => { Vars.DisplayTextFont.OnLostDevice(); };
-            Drawing.OnPostReset += args => { Vars.DisplayTextFont.OnResetDevice(); };
+            Drawing.OnPreReset += args =>
+                                  {
+                                      Vars.DisplayTextFont.OnLostDevice();
+                                  };
+            Drawing.OnPostReset += args =>
+                                   {
+                                       Vars.DisplayTextFont.OnResetDevice();
+                                   };
 
             /// <summary>
             ///     Initialize the menus.

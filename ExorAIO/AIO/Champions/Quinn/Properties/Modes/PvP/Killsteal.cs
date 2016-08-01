@@ -24,18 +24,21 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) && t.IsValidTarget(Vars.Q.Range - 100f)
+                                                          &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                    if (!Vars.Q.GetPrediction(target)
+                             .CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target)
+                                        .UnitPosition);
                     }
                 }
             }
@@ -43,15 +46,16 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The KillSteal E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) <
-                            GameObjects.Player.GetAutoAttackDamage(t) * 2 +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(Vars.AARange) &&
+                                                          Vars.GetRealHealth(t) <
+                                                              GameObjects.Player.GetAutoAttackDamage(t) * 2
+                                                                  + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

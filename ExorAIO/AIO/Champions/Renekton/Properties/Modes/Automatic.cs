@@ -27,10 +27,10 @@ namespace ExorAIO.Champions.Renekton
             ///     The Automatic Q Logic.
             /// </summary>
             if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent >= 50 && !GameObjects.Player.IsUnderEnemyTurret() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                   .Value)
             {
-                if (GameObjects.Player.HasBuff("RenektonPreExecute") ||
-                    Variables.Orbwalker.ActiveMode == OrbwalkingMode.Combo)
+                if (GameObjects.Player.HasBuff("RenektonPreExecute") || Variables.Orbwalker.ActiveMode == OrbwalkingMode.Combo)
                 {
                     return;
                 }
@@ -49,13 +49,14 @@ namespace ExorAIO.Champions.Renekton
             /// </summary>
             if (Vars.R.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(700f) > 0)
             {
-                if (Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping / 2f)) <=
-                    GameObjects.Player.MaxHealth / 6 && Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value)
+                if (Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping / 2f)) <= GameObjects.Player.MaxHealth / 6 &&
+                    Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>()
+                                                         .Value)
                 {
                     Vars.R.Cast();
                 }
-                else if (GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) >= 2 &&
-                         Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>().Value)
+                else if (GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) >= 2 && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>()
+                                                                                                                         .Value)
                 {
                     Vars.R.Cast();
                 }

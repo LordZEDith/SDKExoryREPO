@@ -20,7 +20,7 @@ namespace ExorAIO.Champions.Vayne
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero) args.Target))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero)args.Target))
             {
                 return;
             }
@@ -28,21 +28,21 @@ namespace ExorAIO.Champions.Vayne
             /// <summary>
             ///     The Q Weaving Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                     .Value)
             {
-                if (Vars.Menu["miscellaneous"]["wstacks"].GetValue<MenuBool>().Value &&
-                    ((Obj_AI_Hero) args.Target).GetBuffCount("vaynesilvereddebuff") != 1)
+                if (Vars.Menu["miscellaneous"]["wstacks"].GetValue<MenuBool>()
+                                                         .Value && ((Obj_AI_Hero)args.Target).GetBuffCount("vaynesilvereddebuff") != 1)
                 {
                     return;
                 }
 
-                if (!Vars.Menu["miscellaneous"]["alwaysq"].GetValue<MenuBool>().Value)
+                if (!Vars.Menu["miscellaneous"]["alwaysq"].GetValue<MenuBool>()
+                                                          .Value)
                 {
-                    if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
-                        GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f).CountEnemyHeroesInRange(1000f) <
-                        3 &&
-                        Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f)) <
-                        Vars.AARange)
+                    if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange && GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f)
+                                                                                                 .CountEnemyHeroesInRange(1000f) < 3 &&
+                        Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f)) < Vars.AARange)
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }

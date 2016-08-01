@@ -47,16 +47,12 @@ namespace NabbAlerter
                         {
                             if (Vars.NotIncludedChampions.Contains(target.ChampionName.ToLower()))
                             {
-                                Vars.HeroMenu.Add(
-                                    new MenuSeparator(
-                                        "notincluded",
-                                        $"You don't need to alert about {target.ChampionName}'s Ultimate."));
+                                Vars.HeroMenu.Add(new MenuSeparator("notincluded", $"You don't need to alert about {target.ChampionName}'s Ultimate."));
                             }
                             else
                             {
                                 Vars.HeroMenu.Add(new MenuBool("ultimate", "Alert R (Ultimate)", true));
                             }
-
                             Vars.HeroMenu.Add(new MenuBool("sum1", $"Alert {target.Spellbook.Spells[4].Name}", true));
                             Vars.HeroMenu.Add(new MenuBool("sum2", $"Alert {target.Spellbook.Spells[5].Name}", true));
                         }
@@ -64,6 +60,7 @@ namespace NabbAlerter
                     }
                 }
             }
+
             Vars.Menu.Attach();
         }
     }

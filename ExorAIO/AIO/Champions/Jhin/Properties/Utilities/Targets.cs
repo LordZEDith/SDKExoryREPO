@@ -24,17 +24,18 @@ namespace ExorAIO.Champions.Jhin
         public static List<Obj_AI_Hero> RTargets
             =>
                 GameObjects.EnemyHeroes.Where(
-                    t =>
-                        t.IsValidTarget(Vars.R.Range) && GameObjects.Player.IsFacing(t) &&
-                        !Invulnerable.Check(t, DamageType.True, false) &&
-                        Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
-                    .ToList();
+                                              t =>
+                                                  t.IsValidTarget(Vars.R.Range) && GameObjects.Player.IsFacing(t)
+                                                      && !Invulnerable.Check(t, DamageType.True, false) &&
+                                                      Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                                     .Value)
+                           .ToList();
 
         /// <summary>
         ///     The minions target.
         /// </summary>
-        public static List<Obj_AI_Minion> Minions
-            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.W.Range)).ToList();
+        public static List<Obj_AI_Minion> Minions => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.W.Range))
+                                                                .ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -42,8 +43,9 @@ namespace ExorAIO.Champions.Jhin
         public static List<Obj_AI_Minion> JungleMinions
             =>
                 GameObjects.Jungle.Where(
-                    m =>
-                        m.IsValidTarget(Vars.Q.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                                         m =>
+                                             m.IsValidTarget(Vars.Q.Range)
+                                                 && (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
+                           .ToList();
     }
 }

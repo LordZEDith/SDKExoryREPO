@@ -37,12 +37,13 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// </summary>
                 if (Targets.JungleMinions.Any())
                 {
-                    if (GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                        Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+                    if (GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                        Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
+                                                         .BValue)
                     {
-                        DelayAction.Add(
-                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
+                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>()
+                                                                         .Value,
+                            () =>
                             {
                                 foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
                                 {
@@ -57,34 +58,35 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// </summary>
                 else if (Targets.Minions.Any())
                 {
-                    if (GameObjects.Player.ManaPercent <
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["lasthit"]) &&
-                        Vars.Menu["spells"]["e"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+                    if (GameObjects.Player.ManaPercent < ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["lasthit"]) &&
+                        Vars.Menu["spells"]["e"]["lasthit"].GetValue<MenuSliderButton>()
+                                                           .BValue)
                     {
-                        DelayAction.Add(
-                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
+                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>()
+                                                                         .Value,
+                            () =>
                             {
                                 foreach (var minion in
                                     Targets.Minions.Where(
-                                        m =>
-                                            Vars.GetRealHealth(m) <
-                                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                            (m.HasBuffOfType(BuffType.Poison)
-                                                ? (float)
-                                                    GameObjects.Player.GetSpellDamage(
-                                                        m, SpellSlot.E, DamageStage.Empowered)
-                                                : 0)))
+                                                          m =>
+                                                              Vars.GetRealHealth(m) <
+                                                                  (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                                                      (m.HasBuffOfType(BuffType.Poison)
+                                                                          ? (float)
+                                                                              GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
+                                                                          : 0)))
                                 {
                                     Vars.E.CastOnUnit(minion);
                                 }
                             });
                     }
-                    else if (GameObjects.Player.ManaPercent >=
-                             ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                             Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+                    else if (GameObjects.Player.ManaPercent >= ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                        Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
+                                                         .BValue)
                     {
-                        DelayAction.Add(
-                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
+                        DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>()
+                                                                         .Value,
+                            () =>
                             {
                                 foreach (var minion in Targets.Minions.Where(m => m.HasBuffOfType(BuffType.Poison)))
                                 {
@@ -98,10 +100,9 @@ namespace ExorAIO.Champions.Cassiopeia
             /// <summary>
             ///     The Q Clear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The Q JungleClear Logic.
@@ -114,19 +115,20 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// <summary>
                 ///     The Q LaneClear Logic.
                 /// </summary>
-                else if (Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
+                else if (Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width)
+                             .MinionsHit >= 3)
                 {
-                    Vars.Q.Cast(Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width).Position);
+                    Vars.Q.Cast(Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width)
+                                    .Position);
                 }
             }
 
             /// <summary>
             ///     The W Clear Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.W.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The W JungleClear Logic.
@@ -140,12 +142,13 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// <summary>
                 ///     The W LaneClear Logic.
                 /// </summary>
-                else if (Vars.W.GetCircularFarmLocation(Targets.Minions, Vars.W.Width).MinionsHit >= 3)
+                else if (Vars.W.GetCircularFarmLocation(Targets.Minions, Vars.W.Width)
+                             .MinionsHit >= 3)
                 {
-                    Vars.W.Cast(
-                        Vars.W.GetCircularFarmLocation(
-                            Targets.Minions.Where(m => !m.HasBuffOfType(BuffType.Poison)).ToList(), Vars.W.Width)
-                            .Position);
+                    Vars.W.Cast(Vars.W.GetCircularFarmLocation(Targets.Minions.Where(m => !m.HasBuffOfType(BuffType.Poison))
+                                                                      .ToList(),
+                        Vars.W.Width)
+                                    .Position);
                 }
             }
         }

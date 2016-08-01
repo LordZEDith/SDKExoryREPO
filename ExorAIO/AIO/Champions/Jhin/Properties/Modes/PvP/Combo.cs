@@ -29,9 +29,9 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                GameObjects.Player.HasBuff("JhinPassiveReload") &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && GameObjects.Player.HasBuff("JhinPassiveReload") &&
+                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);
             }
@@ -39,17 +39,19 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                                                 .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
-                            t.IsValidTarget(Vars.W.Range - 150f) &&
-                            Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff")
+                                                          && t.IsValidTarget(Vars.W.Range - 150f) &&
+                                                          Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                                         .Value))
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(target)
+                                    .UnitPosition);
                 }
             }
         }

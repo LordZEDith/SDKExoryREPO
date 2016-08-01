@@ -65,11 +65,9 @@ namespace ExorAIO.Champions.Pantheon
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -83,9 +81,9 @@ namespace ExorAIO.Champions.Pantheon
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
+                Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>()
+                                                       .Value)
             {
                 Vars.W.CastOnUnit(args.Sender);
             }

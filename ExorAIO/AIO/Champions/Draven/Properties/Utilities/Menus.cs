@@ -62,10 +62,8 @@ namespace ExorAIO.Champions.Draven
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
                     Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.RMenu.Add(
-                        new MenuSeparator(
-                            "separator",
-                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(new MenuSeparator("separator",
+                        "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -76,16 +74,17 @@ namespace ExorAIO.Champions.Draven
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(
-                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>

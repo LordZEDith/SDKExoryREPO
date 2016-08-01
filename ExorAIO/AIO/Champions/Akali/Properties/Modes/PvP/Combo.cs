@@ -28,8 +28,8 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);
             }
@@ -37,15 +37,14 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The R Gapclose Logic.
             /// </summary>
-            if (Vars.R.IsReady() && !Targets.Target.IsValidTarget(Vars.R.Range) &&
-                Targets.Target.IsValidTarget(Vars.R.Range * 2) &&
-                GameObjects.Player.GetBuffCount("AkaliShadowDance") >=
-                Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().SValue &&
-                Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.R.IsReady() && !Targets.Target.IsValidTarget(Vars.R.Range) && Targets.Target.IsValidTarget(Vars.R.Range * 2) &&
+                GameObjects.Player.GetBuffCount("AkaliShadowDance") >= Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>()
+                                                                                                             .SValue
+                && Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>()
+                                                         .BValue)
             {
                 foreach (var minion in
-                    Targets.Minions.Where(
-                        m => m.IsValidTarget(Vars.R.Range) && m.Distance(Targets.Target) < Vars.Q.Range))
+                    Targets.Minions.Where(m => m.IsValidTarget(Vars.R.Range) && m.Distance(Targets.Target) < Vars.Q.Range))
                 {
                     Vars.R.CastOnUnit(minion);
                 }

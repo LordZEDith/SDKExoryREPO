@@ -31,10 +31,9 @@ namespace ExorAIO.Champions.Graves
             /// <summary>
             ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The JungleClear Q Logic.
@@ -54,31 +53,37 @@ namespace ExorAIO.Champions.Graves
                     /// </summary>
                     if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                     {
-                        if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3 &&
-                            !new Geometry.Rectangle(
-                                GameObjects.Player.ServerPosition,
-                                GameObjects.Player.ServerPosition.Extend(
-                                    Targets.Minions[0].ServerPosition, Vars.Q.Range), Vars.Q.Width).IsOutside(
-                                        (Vector2)
-                                            Vars.Q.GetPrediction(
-                                                GameObjects.EnemyHeroes.FirstOrDefault(
-                                                    t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
-                                                .UnitPosition))
+                        if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                                .MinionsHit >= 3 &&
+                            !new Geometry.Rectangle(GameObjects.Player.ServerPosition,
+                                GameObjects.Player.ServerPosition.Extend(Targets.Minions[0].ServerPosition, Vars.Q.Range),
+                                Vars.Q.Width).IsOutside(
+                                                        (Vector2)
+                                                            Vars.Q.GetPrediction(
+                                                                                 GameObjects.EnemyHeroes.FirstOrDefault(
+                                                                                                                        t =>
+                                                                                                                            !Invulnerable.Check(t)
+                                                                                                                                && t.IsValidTarget(
+                                                                                                                                                   Vars
+                                                                                                                                                       .Q
+                                                                                                                                                       .Range)))
+                                                                .UnitPosition))
                         {
-                            Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
+                            Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                                            .Position);
                         }
                     }
 
                     /// <summary>
                     ///     The LaneClear Q Logic.
                     /// </summary>
-                    else if (
-                        !GameObjects.EnemyHeroes.Any(
-                            t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
+                    else if (!GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                     {
-                        if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
+                        if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                                .MinionsHit >= 3)
                         {
-                            Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
+                            Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                                            .Position);
                         }
                     }
                 }
@@ -101,10 +106,10 @@ namespace ExorAIO.Champions.Graves
             /// <summary>
             ///     The E JungleClear Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
-                Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
+                &&
+                Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>()
+                                                       .BValue)
             {
                 Vars.E.Cast(Game.CursorPos);
             }
@@ -126,10 +131,9 @@ namespace ExorAIO.Champions.Graves
             /// <summary>
             ///     The E BuildingClear Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
-                Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
+                Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>()
+                                                     .BValue)
             {
                 Vars.E.Cast(Game.CursorPos);
             }

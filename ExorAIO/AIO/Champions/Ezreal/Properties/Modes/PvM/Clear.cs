@@ -28,10 +28,9 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The LaneClear Q Logic.
@@ -40,17 +39,16 @@ namespace ExorAIO.Champions.Ezreal
                 {
                     if (Items.HasItem(3025) && Targets.Minions.Count(m => m.Distance(Targets.Minions[0]) < 100f) >= 2)
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Minions[0]).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Minions[0])
+                                        .UnitPosition);
                     }
-                    else if (
-                        Targets.Minions.Any(
-                            m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                    else if (Targets.Minions.Any(m => Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.Cast(
-                            Targets.Minions.FirstOrDefault(
-                                m =>
-                                    Vars.GetRealHealth(m) <
-                                    (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
+                                    Targets.Minions.FirstOrDefault(
+                                                                   m =>
+                                                                       Vars.GetRealHealth(m)
+                                                                           < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)));
                     }
                 }
 
@@ -80,12 +78,11 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Q JungleClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
-                Vars.Q.Cast(((Obj_AI_Minion) Variables.Orbwalker.GetTarget()).ServerPosition);
+                Vars.Q.Cast(((Obj_AI_Minion)Variables.Orbwalker.GetTarget()).ServerPosition);
             }
         }
     }

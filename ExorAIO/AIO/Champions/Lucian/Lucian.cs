@@ -57,7 +57,6 @@ namespace ExorAIO.Champions.Lucian
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-
             if (GameObjects.Player.HasBuff("LucianR") || GameObjects.Player.HasBuff("LucianPassiveBuff"))
             {
                 return;
@@ -67,7 +66,6 @@ namespace ExorAIO.Champions.Lucian
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -81,11 +79,9 @@ namespace ExorAIO.Champions.Lucian
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
@@ -109,7 +105,6 @@ namespace ExorAIO.Champions.Lucian
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
@@ -141,9 +136,9 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range) &&
-                args.SkillType == GapcloserType.Targeted &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range) && args.SkillType == GapcloserType.Targeted &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 if (args.Target.IsMe)
                 {

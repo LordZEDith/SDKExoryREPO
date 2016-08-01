@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Ezreal
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,15 +74,12 @@ namespace ExorAIO.Champions.Ezreal
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LastHit:
                     Logics.LastHit(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -107,7 +103,6 @@ namespace ExorAIO.Champions.Ezreal
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         break;
@@ -122,12 +117,12 @@ namespace ExorAIO.Champions.Ezreal
         /// <param name="args">The <see cref="Obj_AI_BaseBuffAddEventArgs" /> instance containing the event data.</param>
         public static void OnBuffAdd(Obj_AI_Base sender, Obj_AI_BaseBuffAddEventArgs args)
         {
-            if (sender.IsMe && Vars.E.IsReady() && Vars.Menu["spells"]["e"]["antigrab"].GetValue<MenuBool>().Value)
+            if (sender.IsMe && Vars.E.IsReady() && Vars.Menu["spells"]["e"]["antigrab"].GetValue<MenuBool>()
+                                                                                       .Value)
             {
                 if (args.Buff.Name.Equals("ThreshQ") || args.Buff.Name.Equals("rocketgrab2"))
                 {
-                    Vars.E.Cast(
-                        GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Range));
+                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(GameObjects.Player.ServerPosition, -Vars.E.Range));
                 }
             }
         }
@@ -139,9 +134,9 @@ namespace ExorAIO.Champions.Ezreal
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsMelee && args.IsDirectedToPlayer &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsMelee && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.E.Range) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -Vars.E.Range));
             }

@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Jhin
             Vars.W = new Spell(SpellSlot.W, 2500f);
             Vars.E = new Spell(SpellSlot.E, 750f);
             Vars.R = new Spell(SpellSlot.R, 3500f);
-
             Vars.W.SetSkillshot(0.75f, 40f, 5000f, false, SkillshotType.SkillshotLine);
             Vars.E.SetSkillshot(1f, 260f, 1000f, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(0.25f, 80f, 5000f, false, SkillshotType.SkillshotLine);

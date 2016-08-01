@@ -31,27 +31,34 @@ namespace ExorAIO.Champions.Lucian
             /// </summary>
             if (GameObjects.Player.HasBuff("LucianR"))
             {
-                DelayAction.Add(
-                    (int) (100 + Game.Ping / 2f),
-                    () => { GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos); });
+                DelayAction.Add((int)(100 + Game.Ping / 2f),
+                    () =>
+                    {
+                        GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
+                    });
             }
 
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>()
+                                                                    .Value)
             {
                 if (!GameObjects.Player.HasBuff("LucianR") && Targets.Target.IsValidTarget(Vars.R.Range) &&
-                    Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                    Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>()
+                                                   .Active)
                 {
-                    if (!Vars.W.GetPrediction(Targets.Target).CollisionObjects.Any())
+                    if (!Vars.W.GetPrediction(Targets.Target)
+                             .CollisionObjects.Any())
                     {
-                        Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);
+                        Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                        .UnitPosition);
                     }
-                    Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.R.Cast(Vars.R.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
-                else if (GameObjects.Player.HasBuff("LucianR") &&
-                         !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                else if (GameObjects.Player.HasBuff("LucianR") && !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>()
+                                                                                                  .Active)
                 {
                     Vars.R.Cast();
                 }

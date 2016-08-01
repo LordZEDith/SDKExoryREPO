@@ -28,12 +28,14 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                if (!Vars.Q.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
         }

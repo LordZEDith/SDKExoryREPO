@@ -26,16 +26,14 @@ namespace ExorAIO.Champions.Jinx
                 ///     The E AoE Logic.
                 /// </summary>
                 if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                    Targets.Target.CountEnemyHeroesInRange(Vars.E.Width) >=
-                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue &&
-                    Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
+                    Targets.Target.CountEnemyHeroesInRange(Vars.E.Width) >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>()
+                                                                                                           .SValue
+                    && Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>()
+                                                      .BValue)
                 {
-                    Vars.E.Cast(
-                        GameObjects.Player.ServerPosition.Extend(
-                            Targets.Target.ServerPosition,
-                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
+                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition,
+                        GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
                 }
-
                 if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)))
                 {
                     return;
@@ -44,14 +42,15 @@ namespace ExorAIO.Champions.Jinx
                 /// <summary>
                 ///     The W Combo Logic.
                 /// </summary>
-                if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
-                    Targets.Target.IsValidTarget(Vars.W.Range) &&
-                    GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 &&
-                    Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() && Targets.Target.IsValidTarget(Vars.W.Range) &&
+                    GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                                                     .Value)
                 {
-                    if (!Vars.W.GetPrediction(Targets.Target).CollisionObjects.Any())
+                    if (!Vars.W.GetPrediction(Targets.Target)
+                             .CollisionObjects.Any())
                     {
-                        Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);
+                        Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                        .UnitPosition);
                     }
                 }
             }
@@ -59,14 +58,16 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The R AoE Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>()
+                                                                   .BValue)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.W.Range) &&
-                            t.CountEnemyHeroesInRange(225f) >=
-                            Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.W.Range) &&
+                                                          t.CountEnemyHeroesInRange(225f)
+                                                              >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>()
+                                                                                                .SValue))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

@@ -24,18 +24,21 @@ namespace ExorAIO.Champions.Nautilus
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)
+                                                          && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                    if (!Vars.Q.GetPrediction(Targets.Target)
+                             .CollisionObjects.Any())
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target)
+                                        .UnitPosition);
                         return;
                     }
                 }
@@ -44,14 +47,15 @@ namespace ExorAIO.Champions.Nautilus
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange)
+                                                          && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

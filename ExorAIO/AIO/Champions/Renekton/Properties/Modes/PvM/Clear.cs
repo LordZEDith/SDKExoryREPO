@@ -28,7 +28,8 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>()
+                                                                     .Value)
             {
                 if (Targets.Minions.Any() && Targets.Minions.Count >= 3)
                 {
@@ -59,11 +60,10 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The W JungleClear Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["manamanager"]) &&
-                Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuBool>().Value &&
-                Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
+            if (Vars.W.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["manamanager"])
+                &&
+                Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuBool>()
+                                                       .Value && Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 Vars.W.Cast();
             }
@@ -85,10 +85,10 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The W BuildingClear Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["manamanager"]) &&
-                Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["manamanager"])
+                &&
+                Vars.Menu["spells"]["w"]["buildings"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.W.Cast();
             }

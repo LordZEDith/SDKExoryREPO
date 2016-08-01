@@ -27,8 +27,8 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.Q.Cast();
             }
@@ -36,9 +36,9 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                !Targets.Target.IsValidTarget(Vars.AARange) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
                 Vars.W.Cast();
             }
@@ -46,8 +46,8 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.E.CastOnUnit(Targets.Target);
             }
@@ -55,10 +55,12 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>()
+                                                                     .BValue)
             {
-                Vars.R.CastIfWillHit(
-                    Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
+                Vars.R.CastIfWillHit(Targets.Target,
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>()
+                                                     .SValue);
             }
         }
     }

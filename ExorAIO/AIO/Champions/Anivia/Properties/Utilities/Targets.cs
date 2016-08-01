@@ -20,8 +20,8 @@ namespace ExorAIO.Champions.Anivia
         /// <summary>
         ///     The minions target.
         /// </summary>
-        public static List<Obj_AI_Minion> Minions
-            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range)).ToList();
+        public static List<Obj_AI_Minion> Minions => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range))
+                                                                .ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -29,26 +29,23 @@ namespace ExorAIO.Champions.Anivia
         public static List<Obj_AI_Minion> JungleMinions
             =>
                 GameObjects.Jungle.Where(
-                    m =>
-                        m.IsValidTarget(Vars.Q.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                                         m =>
+                                             m.IsValidTarget(Vars.Q.Range)
+                                                 && (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
+                           .ToList();
 
         /// <summary>
         ///     The minions hit by the Q missile.
         /// </summary>
-        public static List<Obj_AI_Minion> QMinions
-            =>
-                Minions.Concat(JungleMinions)
-                    .Where(m => m.Distance(Anivia.QMissile.Position) < Vars.Q.Width * 2 - 10f)
-                    .ToList();
+        public static List<Obj_AI_Minion> QMinions => Minions.Concat(JungleMinions)
+                                                             .Where(m => m.Distance(Anivia.QMissile.Position) < Vars.Q.Width * 2 - 10f)
+                                                             .ToList();
 
         /// <summary>
         ///     The minions hit by the R missile.
         /// </summary>
-        public static List<Obj_AI_Minion> RMinions
-            =>
-                Minions.Concat(JungleMinions)
-                    .Where(m => m.Distance(Anivia.RMissile.Position) < Vars.R.Width + 250f)
-                    .ToList();
+        public static List<Obj_AI_Minion> RMinions => Minions.Concat(JungleMinions)
+                                                             .Where(m => m.Distance(Anivia.RMissile.Position) < Vars.R.Width + 250f)
+                                                             .ToList();
     }
 }

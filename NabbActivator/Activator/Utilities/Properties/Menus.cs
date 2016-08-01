@@ -72,7 +72,6 @@ namespace NabbActivator
                     Vars.KeysMenu.Add(new MenuKeyBind("smite", "Smite (Toggle):", Keys.Y, KeyBindType.Toggle));
                 }
                 Vars.Menu.Add(Vars.KeysMenu);
-
                 Vars.Menu.Add(new MenuBool("offensives", "Offensives", true));
                 Vars.Menu.Add(new MenuBool("defensives", "Defensives", true));
                 Vars.Menu.Add(new MenuBool("spells", "Spells", true));

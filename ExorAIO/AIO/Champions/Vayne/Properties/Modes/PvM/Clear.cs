@@ -28,16 +28,16 @@ namespace ExorAIO.Champions.Vayne
                 /// <summary>
                 ///     The Q FarmHelper Logic.
                 /// </summary>
-                if (Vars.Menu["spells"]["q"]["farmhelper"].GetValue<MenuSliderButton>().BValue &&
-                    GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["farmhelper"]))
+                if (Vars.Menu["spells"]["q"]["farmhelper"].GetValue<MenuSliderButton>()
+                                                          .BValue
+                    && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["farmhelper"]))
                 {
                     if (Targets.Minions.Any() &&
                         Targets.Minions.Count(
-                            m =>
-                                Vars.GetRealHealth(m) <
-                                GameObjects.Player.GetAutoAttackDamage(m) +
-                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)) > 1)
+                                              m =>
+                                                  Vars.GetRealHealth(m) <
+                                                      GameObjects.Player.GetAutoAttackDamage(m)
+                                                          + (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)) > 1)
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }
@@ -61,10 +61,10 @@ namespace ExorAIO.Champions.Vayne
             /// <summary>
             ///     The Q JungleClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                &&
+                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>()
+                                                       .BValue)
             {
                 Vars.Q.Cast(Game.CursorPos);
             }
@@ -86,10 +86,9 @@ namespace ExorAIO.Champions.Vayne
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
-                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
+                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>()
+                                                     .BValue)
             {
                 Vars.Q.Cast(Game.CursorPos);
             }

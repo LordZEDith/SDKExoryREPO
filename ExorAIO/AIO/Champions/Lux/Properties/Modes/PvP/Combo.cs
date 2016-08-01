@@ -24,14 +24,15 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState == 1 &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E)
+                                               .ToggleState == 1 && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                                                                     .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) && t.HasBuff("luxilluminatingfraulein") &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                                  t =>
+                                                      Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) && t.HasBuff("luxilluminatingfraulein") &&
+                                                          !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }
@@ -46,23 +47,27 @@ namespace ExorAIO.Champions.Lux
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target) && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                !Targets.Target.HasBuff("luxilluminatingfraulein") &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                !Targets.Target.HasBuff("luxilluminatingfraulein") && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                       .Value)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
 
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1 &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E)
+                                                                                             .ToggleState != 1
+                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                    .Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).CastPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target)
+                                .CastPosition);
             }
         }
     }

@@ -35,13 +35,14 @@ namespace ExorAIO.Champions.Twitch
                 /// <summary>
                 ///     The Automatic Enemy E Logic.
                 /// </summary>
-                if (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                if (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
+                                                       .Value)
                 {
                     if (
                         GameObjects.EnemyHeroes.Any(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                                t.GetBuffCount("twitchdeadlyvenom") == 6))
+                                                    t =>
+                                                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)
+                                                            && t.GetBuffCount("twitchdeadlyvenom") == 6))
                     {
                         Vars.E.Cast();
                     }
@@ -50,15 +51,16 @@ namespace ExorAIO.Champions.Twitch
                 /// <summary>
                 ///     The Automatic JungleSteal E Logic.
                 /// </summary>
-                if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>().Value)
+                if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>()
+                                                           .Value)
                 {
                     if (
                         Targets.JungleMinions.Any(
-                            m =>
-                                m.IsValidTarget(Vars.E.Range) &&
-                                m.Health <
-                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                                                  m =>
+                                                      m.IsValidTarget(Vars.E.Range) &&
+                                                          m.Health <
+                                                              (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                                                  (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }

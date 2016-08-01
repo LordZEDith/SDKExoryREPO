@@ -66,7 +66,6 @@ namespace ExorAIO.Champions.Jhin
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -80,15 +79,12 @@ namespace ExorAIO.Champions.Jhin
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LastHit:
                     Logics.LastHit(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -124,7 +120,8 @@ namespace ExorAIO.Champions.Jhin
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.E.Cast(args.End);
             }

@@ -23,14 +23,11 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The Q LastHit Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
-                Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
+                Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>()
+                                                   .BValue)
             {
-                if (
-                    Targets.Minions.Any(
-                        m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                if (Targets.Minions.Any(m => Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     Vars.Q.Cast();
                 }

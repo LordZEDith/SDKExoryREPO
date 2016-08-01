@@ -24,20 +24,24 @@ namespace ExorAIO.Champions.Veigar
             ///     The Q LastHit Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Minions.Any() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
-                Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"]) &&
+                Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>()
+                                                   .BValue)
             {
-                if (
-                    Vars.Q.GetLineFarmLocation(
-                        Targets.Minions.Where(m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
-                            .ToList(), Vars.Q.Width).MinionsHit == 1)
+                if (Vars.Q.GetLineFarmLocation(Targets.Minions.Where(m => m.Health < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                                      .ToList(),
+                    Vars.Q.Width)
+                        .MinionsHit == 1)
                 {
                     Vars.Q.Cast(
-                        Vars.Q.GetLineFarmLocation(
-                            Targets.Minions.Where(
-                                m => m.Health < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)).ToList(),
-                            Vars.Q.Width).Position);
+                                Vars.Q.GetLineFarmLocation(
+                                                           Targets.Minions.Where(
+                                                                                 m =>
+                                                                                     m.Health
+                                                                                         < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                                                  .ToList(),
+                                    Vars.Q.Width)
+                                    .Position);
                 }
             }
         }

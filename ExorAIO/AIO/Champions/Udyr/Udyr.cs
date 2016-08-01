@@ -57,7 +57,6 @@ namespace ExorAIO.Champions.Udyr
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     Logics.BuildingClear(args);

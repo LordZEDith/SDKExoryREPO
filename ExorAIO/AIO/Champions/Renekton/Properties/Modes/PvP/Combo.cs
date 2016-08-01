@@ -27,9 +27,9 @@ namespace ExorAIO.Champions.Renekton
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                !GameObjects.Player.HasBuff("renektonsliceanddicedelay") &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && !GameObjects.Player.HasBuff("renektonsliceanddicedelay") &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
                 if (Targets.Target.HealthPercent < 10 || !Targets.Target.IsUnderEnemyTurret())
                 {

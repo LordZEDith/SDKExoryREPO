@@ -48,13 +48,14 @@ namespace ExorAIO.Champions.Lux
                         {
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
                             }
                         }
+
                         Vars.WMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
                 /// <summary>
@@ -79,6 +80,7 @@ namespace ExorAIO.Champions.Lux
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>
@@ -86,10 +88,8 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(
-                    new MenuSeparator(
-                        "separator",
-                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
+                Vars.MiscMenu.Add(new MenuSeparator("separator",
+                    "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
             }
             Vars.Menu.Add(Vars.MiscMenu);

@@ -28,8 +28,8 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The Combo W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.AARange) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.AARange) && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.W.Cast();
             }
@@ -37,12 +37,12 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && !Targets.Target.HasBuffOfType(BuffType.Slow) &&
-                Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && !Targets.Target.HasBuffOfType(BuffType.Slow) && Targets.Target.IsValidTarget(Vars.Q.Range) &&
+                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
-                Vars.Q.Cast(
-                    Vars.Q.GetPrediction(Targets.Target).UnitPosition.Extend(GameObjects.Player.ServerPosition, -100f));
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                .UnitPosition.Extend(GameObjects.Player.ServerPosition, -100f));
             }
         }
     }

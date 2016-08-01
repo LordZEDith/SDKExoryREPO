@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Karma
             Vars.W = new Spell(SpellSlot.W, 675f);
             Vars.E = new Spell(SpellSlot.E, 800f);
             Vars.R = new Spell(SpellSlot.R);
-
             Vars.Q.SetSkillshot(0.25f, 60f, 1700f, true, SkillshotType.SkillshotLine);
         }
     }

@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Veigar
             Vars.W = new Spell(SpellSlot.W, 900f);
             Vars.E = new Spell(SpellSlot.E, 700f);
             Vars.R = new Spell(SpellSlot.R, 650f);
-
             Vars.Q.SetSkillshot(0.25f, 70f, 2000f, false, SkillshotType.SkillshotLine);
             Vars.W.SetSkillshot(1.25f, 112.5f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.E.SetSkillshot(0.5f, 375f, float.MaxValue, false, SkillshotType.SkillshotCircle);

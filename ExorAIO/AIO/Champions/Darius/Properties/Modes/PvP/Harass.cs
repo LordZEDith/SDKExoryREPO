@@ -29,9 +29,9 @@ namespace ExorAIO.Champions.Darius
             ///     The Q Harass Logic.
             /// </summary>
             if (Vars.Q.IsReady() && !GameObjects.Player.IsUnderEnemyTurret() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
+                                                  .BValue)
             {
                 if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)))
                 {

@@ -27,13 +27,13 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
-                if (!GameObjects.Player.HasBuff("TwitchFullAutomatic") &&
-                    Targets.Target.GetBuffCount("twitchdeadlyvenom") <= 4)
+                if (!GameObjects.Player.HasBuff("TwitchFullAutomatic") && Targets.Target.GetBuffCount("twitchdeadlyvenom") <= 4)
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                    .CastPosition);
                 }
             }
         }

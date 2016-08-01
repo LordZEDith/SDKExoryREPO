@@ -29,13 +29,13 @@ namespace ExorAIO.Champions.Draven
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() && !GameObjects.Player.HasBuff("dravenfurybuff") &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"]) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"]) &&
+                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
-                    !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
-                    Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value)
+                    !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) && Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>()
+                                                                                                                           .Value)
                 {
                     Vars.W.Cast();
                 }
@@ -44,20 +44,23 @@ namespace ExorAIO.Champions.Draven
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target)
+                                .UnitPosition);
             }
 
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value
+                && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                               .Value)
             {
-                Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
+                Vars.R.Cast(Vars.R.GetPrediction(Targets.Target)
+                                .UnitPosition);
             }
         }
     }

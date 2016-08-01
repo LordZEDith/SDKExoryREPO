@@ -15,14 +15,13 @@ namespace ExorAIO
             ///     Loads the Bootstrap.
             /// </summary>
             Bootstrap.Init();
-
             Events.OnLoad += (sender, eventArgs) =>
-            {
-                /// <summary>
-                ///     Loads the AIO.
-                /// </summary>
-                AIO.OnLoad();
-            };
+                             {
+                                 /// <summary>
+                                 ///     Loads the AIO.
+                                 /// </summary>
+                                 AIO.OnLoad();
+                             };
         }
     }
 }

@@ -21,9 +21,10 @@ namespace ExorAIO.Champions.Ryze
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Killsteal(EventArgs args)
         {
-            if (GameObjects.Player.HealthPercent <=
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+            if (GameObjects.Player.HealthPercent <= Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                                                      .SValue
+                && Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                     .BValue)
             {
                 return;
             }
@@ -31,23 +32,31 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) *
-                            (1 +
-                             (t.HasBuff("RyzeE")
-                                 ? new double[] { 40, 55, 70, 85, 100 }[
-                                     GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1] / 100
-                                 : 0))))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical) &&
+                                                          Vars.GetRealHealth(t)
+                                                              < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * (1 + (t.HasBuff("RyzeE")
+                                                                  ? new double[]
+                                                                    {
+                                                                        40,
+                                                                        55,
+                                                                        70,
+                                                                        85,
+                                                                        100
+                                                                    }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.E)
+                                                                                 .Level - 1] / 100
+                                                                  : 0))))
                 {
-                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
+                    if (!Vars.Q.GetPrediction(target)
+                             .CollisionObjects.Any())
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target)
+                                        .UnitPosition);
                     }
                 }
             }
@@ -55,13 +64,14 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     The KillSteal W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.CastOnUnit(target);
                 }
@@ -70,13 +80,14 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     The KillSteal E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                                  t =>
+                                                      t.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

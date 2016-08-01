@@ -73,16 +73,17 @@ namespace ExorAIO.Champions.KogMaw
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(
-                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>

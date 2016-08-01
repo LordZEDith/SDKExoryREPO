@@ -40,8 +40,7 @@ namespace ExorAIO.Champions.Karma
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
-                    Vars.WMenu.Add(
-                        new MenuSliderButton("lifesaver", "Logical Lifesaver / If Health < x%", 20, 10, 100, true));
+                    Vars.WMenu.Add(new MenuSliderButton("lifesaver", "Logical Lifesaver / If Health < x%", 20, 10, 100, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
@@ -62,13 +61,14 @@ namespace ExorAIO.Champions.Karma
                         {
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
                             }
                         }
+
                         Vars.EMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.EMenu);
 
                 /// <summary> summary set W
@@ -81,6 +81,7 @@ namespace ExorAIO.Champions.Karma
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>
@@ -88,10 +89,8 @@ namespace ExorAIO.Champions.Karma
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(
-                    new MenuSeparator(
-                        "separator",
-                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
+                Vars.MiscMenu.Add(new MenuSeparator("separator",
+                    "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
             }
             Vars.Menu.Add(Vars.MiscMenu);

@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Kalista
             Vars.W = new Spell(SpellSlot.W, 5000f);
             Vars.E = new Spell(SpellSlot.E, 1000f);
             Vars.R = new Spell(SpellSlot.R, 1100f);
-
             Vars.Q.SetSkillshot(0.25f, 40f, 2400f, true, SkillshotType.SkillshotLine);
         }
     }

@@ -27,14 +27,13 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
-                Vars.Q.Cast(
-                    Targets.Target.IsValidTarget(300f)
-                        ? Targets.Target.ServerPosition
-                        : Vars.Q.GetPrediction(Targets.Target)
-                            .CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
+                Vars.Q.Cast(Targets.Target.IsValidTarget(300f)
+                    ? Targets.Target.ServerPosition
+                    : Vars.Q.GetPrediction(Targets.Target)
+                          .CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
             }
         }
     }

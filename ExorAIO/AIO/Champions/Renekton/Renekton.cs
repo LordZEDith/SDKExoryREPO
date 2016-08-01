@@ -60,7 +60,6 @@ namespace ExorAIO.Champions.Renekton
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -74,11 +73,9 @@ namespace ExorAIO.Champions.Renekton
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -102,7 +99,6 @@ namespace ExorAIO.Champions.Renekton
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);

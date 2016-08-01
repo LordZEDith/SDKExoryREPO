@@ -20,13 +20,14 @@ namespace NabbActivator
         /// <param name="args">The args.</param>
         public static void Resetters(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!Vars.Menu["resetters"].GetValue<MenuBool>().Value)
+            if (!Vars.Menu["resetters"].GetValue<MenuBool>()
+                                       .Value)
             {
                 return;
             }
-
-            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active &&
-                !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>().Active)
+            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>()
+                                           .Active && !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>()
+                                                                                     .Active)
             {
                 return;
             }

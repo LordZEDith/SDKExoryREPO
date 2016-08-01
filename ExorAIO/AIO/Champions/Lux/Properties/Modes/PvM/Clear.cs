@@ -28,10 +28,9 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The Q Clear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The Q JungleClear Logic.
@@ -44,13 +43,13 @@ namespace ExorAIO.Champions.Lux
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                else if (
-                    !GameObjects.EnemyHeroes.Any(
-                        t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
+                else if (!GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                 {
-                    if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit == 2)
+                    if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                            .MinionsHit == 2)
                     {
-                        Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
+                        Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
+                                        .Position);
                     }
                 }
             }
@@ -58,17 +57,18 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The E Clear Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The E LaneClear Logic.
                 /// </summary>
-                if (Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3)
+                if (Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width)
+                        .MinionsHit >= 3)
                 {
-                    Vars.E.Cast(Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).Position);
+                    Vars.E.Cast(Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width)
+                                    .Position);
                 }
 
                 /// <summary>

@@ -28,9 +28,9 @@ namespace ExorAIO.Champions.Nautilus
             ///     The E Harass Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
-                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
+                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>()
+                                                  .BValue)
             {
                 Vars.E.Cast();
             }

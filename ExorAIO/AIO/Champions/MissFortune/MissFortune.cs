@@ -64,7 +64,6 @@ namespace ExorAIO.Champions.MissFortune
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-
             if (GameObjects.Player.HasBuff("missfortunebulletsound"))
             {
                 return;
@@ -74,7 +73,6 @@ namespace ExorAIO.Champions.MissFortune
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -88,11 +86,9 @@ namespace ExorAIO.Champions.MissFortune
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -118,7 +114,6 @@ namespace ExorAIO.Champions.MissFortune
                         case OrbwalkingMode.Combo:
                             Logics.Weaving(sender, args);
                             break;
-
                         case OrbwalkingMode.LaneClear:
                             Logics.JungleClear(sender, args);
                             Logics.BuildingClear(sender, args);
@@ -132,6 +127,7 @@ namespace ExorAIO.Champions.MissFortune
                     switch (args.SData.Name)
                     {
                         case "MissFortuneRicochetShot":
+
                             //case "MissFortuneRicochetShotMissile":
                             Vars.PassiveTarget = args.Target as AttackableUnit;
                             break;
@@ -147,9 +143,9 @@ namespace ExorAIO.Champions.MissFortune
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.E.Cast(args.End);
             }
@@ -166,7 +162,6 @@ namespace ExorAIO.Champions.MissFortune
             ///     Stop attack commands while channeling R.
             /// </summary>
             args.Process = !GameObjects.Player.HasBuff("missfortunebulletsound");
-
             switch (args.Type)
             {
                 case OrbwalkingType.BeforeAttack:
@@ -175,29 +170,26 @@ namespace ExorAIO.Champions.MissFortune
                     ///     The Target Switching Logic (Passive Stacks).
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && hero.NetworkId == Vars.PassiveTarget.NetworkId &&
-                        Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
+                    if (hero != null && hero.NetworkId == Vars.PassiveTarget.NetworkId && Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>()
+                                                                                                                               .Value)
                     {
                         if (Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                         {
-                            if (
-                                GameObjects.EnemyHeroes.Any(
-                                    t => t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
+                            if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
                             {
                                 args.Process = false;
                                 Variables.Orbwalker.ForceTarget =
-                                    GameObjects.EnemyHeroes.Where(
-                                        t =>
-                                            t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
-                                        .OrderByDescending(
-                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                        .First();
+                                    GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
+                                               .OrderByDescending(o => Data.Get<ChampionPriorityData>()
+                                                                           .GetPriority(o.ChampionName))
+                                               .First();
                                 return;
                             }
 
                             Variables.Orbwalker.ForceTarget = null;
                         }
                     }
+
                     break;
             }
         }

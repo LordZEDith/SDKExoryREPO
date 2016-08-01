@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Sivir
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,7 +74,6 @@ namespace ExorAIO.Champions.Sivir
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
@@ -99,7 +97,6 @@ namespace ExorAIO.Champions.Sivir
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.Clear(sender, args);
                         Logics.BuildingClear(sender, args);
@@ -118,7 +115,8 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
+                                                                       .Value)
             {
                 Logics.AutoShield(sender, args);
             }

@@ -29,13 +29,15 @@ namespace ExorAIO.Champions.Ashe
             ///     The W Harass Logic.
             /// </summary>
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
-                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>()
+                                                  .BValue)
             {
-                if (!Vars.W.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if (!Vars.W.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any())
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
         }

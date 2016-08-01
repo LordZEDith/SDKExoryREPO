@@ -70,7 +70,6 @@ namespace ExorAIO.Champions.Kalista
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsDashing())
             {
                 return;
@@ -84,11 +83,9 @@ namespace ExorAIO.Champions.Kalista
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -117,19 +114,18 @@ namespace ExorAIO.Champions.Kalista
                             if (t1.IsValidTarget(Vars.AARange) && t1.HasBuff("kalistacoopstrikemarkally"))
                             {
                                 Variables.Orbwalker.ForceTarget =
-                                    GameObjects.EnemyHeroes.Where(
-                                        t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
-                                        .OrderByDescending(
-                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                        .First();
+                                    GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
+                                               .OrderByDescending(o => Data.Get<ChampionPriorityData>()
+                                                                           .GetPriority(o.ChampionName))
+                                               .First();
                                 return;
                             }
                         }
 
                         Variables.Orbwalker.ForceTarget = null;
                     }
-                    break;
 
+                    break;
                 case OrbwalkingType.NonKillableMinion:
 
                     /// <summary>
@@ -137,10 +133,8 @@ namespace ExorAIO.Champions.Kalista
                     /// </summary>
                     if (Vars.E.IsReady() && Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Minion) <
-                        (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
-                        (float)
-                            GameObjects.Player.GetSpellDamage(
-                                args.Target as Obj_AI_Minion, SpellSlot.E, DamageStage.Buff))
+                            (float)GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
+                                (float)GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E, DamageStage.Buff))
                     {
                         Vars.E.Cast();
                     }

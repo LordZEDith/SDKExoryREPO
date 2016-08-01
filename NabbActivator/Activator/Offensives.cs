@@ -19,8 +19,9 @@ namespace NabbActivator
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Offensives(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || !Vars.Menu["offensives"].GetValue<MenuBool>().Value ||
-                !Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active)
+            if (!Targets.Target.IsValidTarget() || !Vars.Menu["offensives"].GetValue<MenuBool>()
+                                                                           .Value || !Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>()
+                                                                                                                .Active)
             {
                 return;
             }
@@ -56,10 +57,13 @@ namespace NabbActivator
             {
                 if (
                     GameObjects.EnemyHeroes.Count(
-                        t =>
-                            t.IsValidTarget(4000f) &&
-                            t.CountEnemyHeroesInRange(1500f) <=
-                            GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) >= 1)
+                                                  t =>
+                                                      t.IsValidTarget(4000f) &&
+                                                          t.CountEnemyHeroesInRange(1500f)
+                                                              <= GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f)
+                                                                  - 1)
+                        >=
+                        1)
                 {
                     Items.UseItem(3092);
                 }
@@ -96,8 +100,7 @@ namespace NabbActivator
             ///     The Hextech Protobelt Logic.
             /// </summary>
             if (Items.CanUseItem(3152) &&
-                Targets.Target.IsValidTarget(
-                    GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f))))
+                Targets.Target.IsValidTarget(GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f))))
             {
                 Items.UseItem(3152, GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f));
             }

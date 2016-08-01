@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Karma
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Karma
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -93,23 +90,22 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) &&
-                !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
+            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) && !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
+            {
+                return;
+            }
+            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero)args.Target).IsAlly)
             {
                 return;
             }
 
-            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero) args.Target).IsAlly)
+            if (Vars.E.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.E.Range, false) &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
+                                                   .Value
+                && Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                           .Value)
             {
-                return;
-            }
-
-            if (Vars.E.IsReady() && ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.E.Range, false) &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
-                    .GetValue<MenuBool>().Value)
-            {
-                Vars.E.CastOnUnit((Obj_AI_Hero) args.Target);
+                Vars.E.CastOnUnit((Obj_AI_Hero)args.Target);
             }
         }
 
@@ -120,15 +116,14 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && GameObjects.Player.Distance(args.End) < 750 &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && GameObjects.Player.Distance(args.End) < 750 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                                                                                        .Value)
             {
-                if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
-                    GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
+                if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>()
+                                                                        .Value && GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
                 {
                     Vars.R.Cast();
                 }
-
                 Vars.E.Cast();
             }
         }
@@ -152,16 +147,17 @@ namespace ExorAIO.Champions.Karma
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
+                                                                     .Value)
                             {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
                             }
                             break;
                     }
+
                     break;
             }
         }

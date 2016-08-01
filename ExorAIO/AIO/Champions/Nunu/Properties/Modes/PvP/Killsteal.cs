@@ -24,13 +24,14 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The KillSteal E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

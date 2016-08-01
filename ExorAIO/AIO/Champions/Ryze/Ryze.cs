@@ -62,7 +62,6 @@ namespace ExorAIO.Champions.Ryze
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -76,11 +75,9 @@ namespace ExorAIO.Champions.Ryze
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -94,16 +91,17 @@ namespace ExorAIO.Champions.Ryze
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (GameObjects.Player.HealthPercent <=
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+            if (GameObjects.Player.HealthPercent <= Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                                                      .SValue
+                && Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                     .BValue)
             {
                 return;
             }
 
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.W.CastOnUnit(args.Sender);
             }
@@ -126,7 +124,8 @@ namespace ExorAIO.Champions.Ryze
                             /// <summary>
                             ///     The 'No AA in Combo' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>()
+                                                                       .Value)
                             {
                                 if (Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady() || !Bools.HasSheenBuff() ||
                                     GameObjects.Player.ManaPercent > 10)
@@ -135,7 +134,6 @@ namespace ExorAIO.Champions.Ryze
                                 }
                             }
                             break;
-
                         case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
@@ -143,16 +141,17 @@ namespace ExorAIO.Champions.Ryze
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
+                                                                     .Value)
                             {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
                             }
                             break;
                     }
+
                     break;
             }
         }

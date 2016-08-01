@@ -35,8 +35,8 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.E.CastOnUnit(Targets.Target);
             }

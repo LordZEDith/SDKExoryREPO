@@ -24,7 +24,6 @@ namespace ExorAIO.Champions.Ryze
             {
                 return;
             }
-
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AARange))
             {
                 return;
@@ -37,27 +36,29 @@ namespace ExorAIO.Champions.Ryze
             {
                 case 0:
                 case 1:
+
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
-                    if (Vars.RyzeStacks != 1 ||
-                        GameObjects.Player.HealthPercent >
-                        Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
-                        !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+                    if (Vars.RyzeStacks != 1 || GameObjects.Player.HealthPercent > Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                                                                                     .SValue
+                        || !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>()
+                                                              .BValue)
                     {
-                        if (Vars.Q.IsReady() && Environment.TickCount - Vars.LastTick > 250 &&
-                            Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                        if (Vars.Q.IsReady() && Environment.TickCount - Vars.LastTick > 250 && Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
+                            Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                             .Value)
                         {
-                            Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                            Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                            .UnitPosition);
                         }
                     }
 
                     /// <summary>
                     ///     The W Combo Logic.
                     /// </summary>
-                    if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                        Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                    if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                                                                                           .Value)
                     {
                         Vars.W.CastOnUnit(Targets.Target);
                     }
@@ -65,22 +66,24 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The E Combo Logic.
                     /// </summary>
-                    if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                        Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                    if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                                                                           .Value)
                     {
                         Vars.E.CastOnUnit(Targets.Target);
                         Vars.LastTick = Environment.TickCount;
                     }
                     break;
-
                 default:
+
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
                     if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 100f) &&
-                        Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                        Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                         .Value)
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                        .UnitPosition);
                     }
                     break;
             }

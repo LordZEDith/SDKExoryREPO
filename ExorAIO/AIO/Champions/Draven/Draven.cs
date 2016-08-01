@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Draven
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Draven
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -93,11 +90,12 @@ namespace ExorAIO.Champions.Draven
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(args.Sender).UnitPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(args.Sender)
+                                .UnitPosition);
             }
         }
 
@@ -108,9 +106,9 @@ namespace ExorAIO.Champions.Draven
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>()
+                                                       .Value)
             {
                 Vars.E.Cast(args.Sender.ServerPosition);
             }

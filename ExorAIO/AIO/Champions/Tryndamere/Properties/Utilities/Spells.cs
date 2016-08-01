@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Tryndamere
             Vars.W = new Spell(SpellSlot.W, 400f);
             Vars.E = new Spell(SpellSlot.E, 660f);
             Vars.R = new Spell(SpellSlot.R);
-
             Vars.E.SetSkillshot(0.25f, 93f, 1300f, false, SkillshotType.SkillshotLine);
         }
     }

@@ -28,13 +28,14 @@ namespace ExorAIO.Champions.KogMaw
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                       .Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                    GameObjects.EnemyHeroes.Where(t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
-                    if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                    if (!Vars.Q.GetPrediction(Targets.Target)
+                             .CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
                         Vars.Q.Cast(target.ServerPosition);
                     }
@@ -44,11 +45,11 @@ namespace ExorAIO.Champions.KogMaw
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
+                                                                       .Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
+                    GameObjects.EnemyHeroes.Where(t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast(target.ServerPosition);
                 }
@@ -57,18 +58,17 @@ namespace ExorAIO.Champions.KogMaw
             /// <summary>
             ///     The Automatic R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().SValue >
-                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+            if (Vars.R.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
+                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>()
+                                                   .BValue && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>()
+                                                                                                 .SValue
+                                                       > GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            Bools.IsImmobile(t) && t.HealthPercent < 50 && !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range)))
+                                                  t =>
+                                                      Bools.IsImmobile(t) && t.HealthPercent < 50 && !Invulnerable.Check(t)
+                                                          && t.IsValidTarget(Vars.R.Range)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

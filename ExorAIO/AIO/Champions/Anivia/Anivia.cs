@@ -124,7 +124,6 @@ namespace ExorAIO.Champions.Anivia
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -138,11 +137,9 @@ namespace ExorAIO.Champions.Anivia
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -157,11 +154,10 @@ namespace ExorAIO.Champions.Anivia
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.W.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>()
+                                                     .Value)
             {
-                Vars.W.Cast(
-                    GameObjects.Player.ServerPosition.Extend(
-                        args.Sender.ServerPosition, GameObjects.Player.BoundingRadius));
+                Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.BoundingRadius));
             }
         }
 
@@ -172,17 +168,14 @@ namespace ExorAIO.Champions.Anivia
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range) && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>()
+                                                                                                                      .Value)
             {
                 if (
-                    GameObjects.Player.Distance(
-                        GameObjects.Player.ServerPosition.Extend(
-                            args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender) + 20f)) < Vars.W.Range)
+                    GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
+                        GameObjects.Player.Distance(args.Sender) + 20f)) < Vars.W.Range)
                 {
-                    Vars.W.Cast(
-                        GameObjects.Player.ServerPosition.Extend(
-                            args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender) + 20f));
+                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, GameObjects.Player.Distance(args.Sender) + 20f));
                 }
             }
         }

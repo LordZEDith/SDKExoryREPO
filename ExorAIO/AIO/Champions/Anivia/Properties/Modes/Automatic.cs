@@ -30,9 +30,10 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Stacking Manager.
             /// </summary>
-            if (GameObjects.Player.InFountain() && Bools.HasTear(GameObjects.Player) &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1 &&
-                Vars.Menu["miscellaneous"]["tear"].GetValue<MenuBool>().Value)
+            if (GameObjects.Player.InFountain() && Bools.HasTear(GameObjects.Player) && GameObjects.Player.Spellbook.GetSpell(SpellSlot.R)
+                                                                                                   .ToggleState == 1
+                && Vars.Menu["miscellaneous"]["tear"].GetValue<MenuBool>()
+                                                     .Value)
             {
                 Vars.R.Cast(Game.CursorPos);
             }
@@ -40,37 +41,36 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q)
+                                               .ToggleState == 1 && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                                                       .Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                    GameObjects.EnemyHeroes.Where(t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(target)
+                                    .UnitPosition);
                 }
             }
 
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>()
+                                                                       .Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
+                    GameObjects.EnemyHeroes.Where(t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
-                    Vars.W.Cast(
-                        GameObjects.Player.ServerPosition.Extend(
-                            target.ServerPosition, GameObjects.Player.Distance(target) + 20f));
+                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(target.ServerPosition, GameObjects.Player.Distance(target) + 20f));
                 }
             }
 
             /// <summary>
             ///     The Q Missile Manager.
             /// </summary>
-            if (Vars.Q.IsReady() && Anivia.QMissile != null &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState != 1)
+            if (Vars.Q.IsReady() && Anivia.QMissile != null && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q)
+                                                                          .ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -78,13 +78,12 @@ namespace ExorAIO.Champions.Anivia
                     ///     The Clear Q Explosion Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
-
                         if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width * 2) > 0)
                         {
                             Vars.Q.Cast();
                         }
-
-                        if (!Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+                        if (!Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
+                                                              .BValue)
                         {
                             return;
                         }
@@ -99,8 +98,8 @@ namespace ExorAIO.Champions.Anivia
                     ///     The Combo Q Explosion Logic.
                     /// </summary>
                     default:
-
-                        if (!Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                        if (!Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                              .Value)
                         {
                             return;
                         }
@@ -116,8 +115,8 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Missile Manager.
             /// </summary>
-            if (Vars.R.IsReady() && Anivia.RMissile != null && !GameObjects.Player.InFountain() &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState != 1)
+            if (Vars.R.IsReady() && Anivia.RMissile != null && !GameObjects.Player.InFountain() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.R)
+                                                                                                              .ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -125,15 +124,14 @@ namespace ExorAIO.Champions.Anivia
                     ///     The Clear R Disable Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
-
-                        if (!Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
+                        if (!Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>()
+                                                              .BValue)
                         {
                             return;
                         }
 
                         if (!Targets.RMinions.Any() ||
-                            GameObjects.Player.ManaPercent <
-                            ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
+                            GameObjects.Player.ManaPercent < ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
                         {
                             Vars.R.Cast();
                         }
@@ -143,8 +141,8 @@ namespace ExorAIO.Champions.Anivia
                     ///     The Combo R Disable Logic.
                     /// </summary>
                     case OrbwalkingMode.Combo:
-
-                        if (!Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+                        if (!Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                              .Value)
                         {
                             return;
                         }

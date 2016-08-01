@@ -28,9 +28,9 @@ namespace ExorAIO.Champions.Pantheon
             ///     The Q JungleClear Logics.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.JungleMinions.Any() && !GameObjects.Player.HasBuff("pantheonpassiveshield") &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>()
+                                                       .BValue)
             {
                 Vars.Q.CastOnUnit(Targets.JungleMinions[0]);
             }
@@ -38,10 +38,9 @@ namespace ExorAIO.Champions.Pantheon
             /// <summary>
             ///     The E Clear Logics.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
+                                                 .BValue)
             {
                 /// <summary>
                 ///     The LaneClear E Logic.

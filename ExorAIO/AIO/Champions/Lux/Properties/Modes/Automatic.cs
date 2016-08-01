@@ -30,8 +30,8 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The E Missile Manager.
             /// </summary>
-            if (Vars.E.IsReady() && Lux.EMissile != null &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1)
+            if (Vars.E.IsReady() && Lux.EMissile != null && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E)
+                                                                       .ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -39,12 +39,11 @@ namespace ExorAIO.Champions.Lux
                     ///     The E Combo Logic.
                     /// </summary>
                     case OrbwalkingMode.Combo:
-
                         if (
                             GameObjects.EnemyHeroes.Any(
-                                t =>
-                                    !Bools.IsImmobile(t) && !t.HasBuff("luxilluminatingfraulein") &&
-                                    t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
+                                                        t =>
+                                                            !Bools.IsImmobile(t) && !t.HasBuff("luxilluminatingfraulein") &&
+                                                                t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
                         {
                             Vars.E.Cast();
                         }
@@ -54,7 +53,6 @@ namespace ExorAIO.Champions.Lux
                     ///     The E Clear Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
-
                         if (Targets.EMinions.Any() && Targets.EMinions.Count >= 3)
                         {
                             Vars.E.Cast();
@@ -70,15 +68,17 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                       .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                                  t =>
+                                                      Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range)
+                                                          && !Invulnerable.Check(t, DamageType.Magical)))
                 {
-                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
+                    if (!Vars.Q.GetPrediction(target)
+                             .CollisionObjects.Any())
                     {
                         Vars.Q.Cast(target.ServerPosition);
                     }

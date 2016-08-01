@@ -29,22 +29,23 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Combo Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                !Vars.R.Instance.Name.Equals("QuinnRFinale") &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && !Vars.R.Instance.Name.Equals("QuinnRFinale") &&
+                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
-
 
             /// <summary>
             ///     The Combo E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
                 Vars.E.CastOnUnit(Targets.Target);
             }

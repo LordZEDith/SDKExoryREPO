@@ -68,10 +68,8 @@ namespace ExorAIO.Champions.Graves
                 {
                     Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.RMenu.Add(
-                        new MenuSeparator(
-                            "separator",
-                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(new MenuSeparator("separator",
+                        "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -82,16 +80,17 @@ namespace ExorAIO.Champions.Graves
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteList2Menu.Add(
-                                    new MenuBool(
-                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteList2Menu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>

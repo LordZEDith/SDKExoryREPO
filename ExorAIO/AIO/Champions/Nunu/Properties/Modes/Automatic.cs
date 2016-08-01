@@ -30,17 +30,17 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>()
+                                                                    .Value)
             {
-                if (!GameObjects.Player.HasBuff("AbsoluteZero") &&
-                    GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) > 0 &&
-                    Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                if (!GameObjects.Player.HasBuff("AbsoluteZero") && GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) > 0 &&
+                    Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>()
+                                                   .Active)
                 {
                     Vars.R.Cast();
                 }
-
-                if (GameObjects.Player.HasBuff("AbsoluteZero") &&
-                    !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                if (GameObjects.Player.HasBuff("AbsoluteZero") && !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>()
+                                                                                                  .Active)
                 {
                     Vars.R.Cast();
                     Variables.Orbwalker.Move(Game.CursorPos);
@@ -50,15 +50,16 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The JungleClear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuBool>()
+                                                                           .Value)
             {
                 if (Targets.JungleMinions.Any())
                 {
                     foreach (var minion in
                         Targets.JungleMinions.Where(
-                            m =>
-                                m.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                                                    m =>
+                                                        m.IsValidTarget(Vars.Q.Range)
+                                                            && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(minion);
                     }
@@ -68,12 +69,12 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Minions.Any() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Minions.Any() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                                                .Value)
             {
-                if (GameObjects.Player.MaxHealth >
-                    GameObjects.Player.Health + (30 + 45 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level) +
-                    GameObjects.Player.TotalMagicalDamage * 0.75)
+                if (GameObjects.Player.MaxHealth > GameObjects.Player.Health + (30 + 45 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q)
+                                                                                                     .Level)
+                    + GameObjects.Player.TotalMagicalDamage * 0.75)
                 {
                     foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range)))
                     {
@@ -85,10 +86,10 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>()
+                                                                       .BValue)
             {
-                if (GameObjects.Player.ManaPercent <
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
+                if (GameObjects.Player.ManaPercent < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;
@@ -106,17 +107,20 @@ namespace ExorAIO.Champions.Nunu
                         /// </summary>
                         if (
                             GameObjects.AllyHeroes.Any(
-                                a =>
-                                    !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
-                                    Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>()
-                                        .Value))
+                                                       a =>
+                                                           !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
+                                                               Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                                              .Value))
                         {
                             Vars.W.CastOnUnit(
-                                GameObjects.AllyHeroes.Where(
-                                    a =>
-                                        !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
-                                        Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()]
-                                            .GetValue<MenuBool>().Value).OrderBy(o => o.TotalAttackDamage).First());
+                                              GameObjects.AllyHeroes.Where(
+                                                                           a =>
+                                                                               !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
+                                                                                   Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()]
+                                                                                       .GetValue<MenuBool>()
+                                                                                       .Value)
+                                                         .OrderBy(o => o.TotalAttackDamage)
+                                                         .First());
                         }
 
                         /// <summary>

@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Evelynn
             Vars.W = new Spell(SpellSlot.W, 700f);
             Vars.E = new Spell(SpellSlot.E, GameObjects.Player.BoundingRadius + 225f);
             Vars.R = new Spell(SpellSlot.R, 650f);
-
             Vars.E.SetTargetted(0.25f, 1000f);
             Vars.R.SetSkillshot(0.25f, 250f, float.MaxValue, false, SkillshotType.SkillshotCircle);
         }

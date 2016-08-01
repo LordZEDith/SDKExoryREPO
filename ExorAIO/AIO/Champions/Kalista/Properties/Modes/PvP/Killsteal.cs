@@ -25,24 +25,31 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && !Bools.IsPerfectRendTarget(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && !Bools.IsPerfectRendTarget(t) && t.IsValidTarget(Vars.Q.Range)
+                                                          && !t.IsValidTarget(Vars.AARange)
+                                                          &&
+                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any() ||
-                        Vars.Q.GetPrediction(target)
-                            .CollisionObjects.Count(
-                                c =>
-                                    Targets.Minions.Contains(c) &&
-                                    c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
-                        Vars.Q.GetPrediction(target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                    if (!Vars.Q.GetPrediction(target)
+                             .CollisionObjects.Any() || Vars.Q.GetPrediction(target)
+                                                            .CollisionObjects.Count(
+                                                                                    c =>
+                                                                                        Targets.Minions.Contains(c)
+                                                                                            && c.Health
+                                                                                                < (float)
+                                                                                                    GameObjects.Player.GetSpellDamage(c, SpellSlot.Q))
+                                 ==
+                                 Vars.Q.GetPrediction(target)
+                                     .CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                     {
-                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target)
+                                        .UnitPosition);
                     }
                 }
             }
@@ -50,15 +57,16 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The KillSteal E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 if (
                     GameObjects.EnemyHeroes.Any(
-                        t =>
-                            Bools.IsPerfectRendTarget(t) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
+                                                t =>
+                                                    Bools.IsPerfectRendTarget(t) &&
+                                                        Vars.GetRealHealth(t) <
+                                                            (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                                                                (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
                 {
                     Vars.E.Cast();
                 }

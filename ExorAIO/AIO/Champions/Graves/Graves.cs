@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Graves
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Graves
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -103,7 +100,6 @@ namespace ExorAIO.Champions.Graves
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
@@ -120,8 +116,8 @@ namespace ExorAIO.Champions.Graves
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.W.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.W.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>()
+                                                                                                                    .Value)
             {
                 Vars.W.Cast(args.End);
             }

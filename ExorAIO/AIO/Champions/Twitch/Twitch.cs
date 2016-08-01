@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Twitch
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Twitch
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -103,7 +100,6 @@ namespace ExorAIO.Champions.Twitch
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
@@ -119,8 +115,9 @@ namespace ExorAIO.Champions.Twitch
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
         public static void OnCastSpell(Spellbook spellbook, SpellbookCastSpellEventArgs args)
         {
-            if (spellbook.Owner.IsMe && GameObjects.Player.Spellbook.GetSpell(args.Slot).Name.Equals("recall") &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (spellbook.Owner.IsMe && GameObjects.Player.Spellbook.GetSpell(args.Slot)
+                                                   .Name.Equals("recall") && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                                                                .Value)
             {
                 Vars.Q.Cast();
             }
@@ -138,10 +135,12 @@ namespace ExorAIO.Champions.Twitch
                 case OrbwalkingType.BeforeAttack:
                     if (!GameObjects.Player.IsUnderEnemyTurret() && GameObjects.Player.HasBuff("TwitchHideInShadows"))
                     {
-                        if (GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime - Game.Time >
-                            GameObjects.Player.GetBuff("TwitchHideInShadows").EndTime -
-                            GameObjects.Player.GetBuff("TwitchHideInShadows").StartTime -
-                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value / 1000f)
+                        if (GameObjects.Player.GetBuff("TwitchHideInShadows")
+                                       .EndTime - Game.Time > GameObjects.Player.GetBuff("TwitchHideInShadows")
+                                                                         .EndTime - GameObjects.Player.GetBuff("TwitchHideInShadows")
+                                                                                               .StartTime
+                                           - Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>()
+                                                                                      .Value / 1000f)
                         {
                             args.Process = false;
                         }

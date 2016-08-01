@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Draven
             Vars.W = new Spell(SpellSlot.W);
             Vars.E = new Spell(SpellSlot.E, 1050f);
             Vars.R = new Spell(SpellSlot.R, 1500f);
-
             Vars.E.SetSkillshot(0.25f, 130f, 1400f, false, SkillshotType.SkillshotLine);
             Vars.R.SetSkillshot(0.4f, 160f, 2000f, false, SkillshotType.SkillshotLine);
         }

@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Nunu
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Nunu
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -105,16 +102,17 @@ namespace ExorAIO.Champions.Nunu
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
+                                                                     .Value)
                             {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
                             }
                             break;
                     }
+
                     break;
             }
         }

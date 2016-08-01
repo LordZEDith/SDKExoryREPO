@@ -57,7 +57,6 @@ namespace ExorAIO.Champions.Nautilus
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -71,11 +70,9 @@ namespace ExorAIO.Champions.Nautilus
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -99,7 +96,6 @@ namespace ExorAIO.Champions.Nautilus
                     case OrbwalkingMode.Combo:
                         Logics.Weaving(sender, args);
                         break;
-
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         Logics.BuildingClear(sender, args);
@@ -127,16 +123,17 @@ namespace ExorAIO.Champions.Nautilus
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
+                                                                     .Value)
                             {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
                             }
                             break;
                     }
+
                     break;
             }
         }

@@ -22,8 +22,8 @@ namespace NabbActivator
             {
                 return;
             }
-
-            if (!Vars.Menu["potions"].GetValue<MenuBool>().Value)
+            if (!Vars.Menu["potions"].GetValue<MenuBool>()
+                                     .Value)
             {
                 return;
             }

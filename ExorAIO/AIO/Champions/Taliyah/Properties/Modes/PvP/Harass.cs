@@ -29,17 +29,18 @@ namespace ExorAIO.Champions.Taliyah
             ///     The Q Harass Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
+                                                  .BValue)
             {
-                if (Taliyah.TerrainObject != null &&
-                    Vars.Menu["spells"]["q"]["q2"]["harassfull"].GetValue<MenuBool>().Value)
+                if (Taliyah.TerrainObject != null && Vars.Menu["spells"]["q"]["q2"]["harassfull"].GetValue<MenuBool>()
+                                                                                                 .Value)
                 {
                     return;
                 }
 
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                .UnitPosition);
             }
         }
     }

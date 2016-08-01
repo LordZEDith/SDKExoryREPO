@@ -66,10 +66,8 @@ namespace ExorAIO.Champions.Jinx
                 {
                     Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 2, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.RMenu.Add(
-                        new MenuSeparator(
-                            "separator",
-                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(new MenuSeparator("separator",
+                        "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -80,16 +78,17 @@ namespace ExorAIO.Champions.Jinx
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(
-                                        target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
 
             /// <summary>
@@ -97,8 +96,7 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous", true);
             {
-                Vars.MiscMenu.Add(
-                    new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana", true));
+                Vars.MiscMenu.Add(new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana", true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

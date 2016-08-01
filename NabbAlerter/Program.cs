@@ -19,20 +19,18 @@ namespace NabbAlerter
             ///     Loads the Bootstrap.
             /// </summary>
             Bootstrap.Init();
-
             Events.OnLoad += (sender, eventArgs) =>
-            {
-                /// <summary>
-                ///     Loads the assembly.
-                /// </summary>
-                Alerter.OnLoad();
+                             {
+                                 /// <summary>
+                                 ///     Loads the assembly.
+                                 /// </summary>
+                                 Alerter.OnLoad();
 
-                /// <summary>
-                ///     Tells the player the assembly has been loaded.
-                /// </summary>
-                Game.PrintChat(
-                    "[SDK]<b><font color='#663096'>Nabb</font></b>Alerter: <font color='#663096'>Ultima</font> - Loaded!");
-            };
+                                 /// <summary>
+                                 ///     Tells the player the assembly has been loaded.
+                                 /// </summary>
+                                 Game.PrintChat("[SDK]<b><font color='#663096'>Nabb</font></b>Alerter: <font color='#663096'>Ultima</font> - Loaded!");
+                             };
         }
     }
 }

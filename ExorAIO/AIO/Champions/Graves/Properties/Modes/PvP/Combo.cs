@@ -28,25 +28,24 @@ namespace ExorAIO.Champions.Graves
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                                                                                   .Value)
             {
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
+                                .UnitPosition);
             }
 
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                !Targets.Target.IsValidTarget(Vars.AARange) &&
-                Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>()
+                                                   .Value)
             {
                 if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
                     GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)
-                        .CountEnemyHeroesInRange(1000f) < 3 &&
-                    Targets.Target.Distance(
-                        GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)) <
-                    Vars.AARange)
+                               .CountEnemyHeroesInRange(1000f) < 3 &&
+                    Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)) < Vars.AARange)
                 {
                     Vars.E.Cast(Game.CursorPos);
                 }
@@ -55,7 +54,8 @@ namespace ExorAIO.Champions.Graves
             /// <summary>
             ///     The R Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() && !Vars.Q.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && !Vars.Q.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                                                          .Value)
             {
                 Vars.R.CastIfWillHit(Targets.Target, 2);
             }

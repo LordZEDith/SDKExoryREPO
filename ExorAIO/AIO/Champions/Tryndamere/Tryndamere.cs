@@ -53,7 +53,6 @@ namespace ExorAIO.Champions.Tryndamere
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -67,7 +66,6 @@ namespace ExorAIO.Champions.Tryndamere
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;

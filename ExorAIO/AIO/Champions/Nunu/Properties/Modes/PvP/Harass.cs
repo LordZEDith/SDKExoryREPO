@@ -28,11 +28,10 @@ namespace ExorAIO.Champions.Nunu
             /// <summary>
             ///     The E Harass Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>()
+                                                                                                                    .BValue)
             {
-                if (GameObjects.Player.ManaPercent <
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                if (GameObjects.Player.ManaPercent < ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                     !GameObjects.Player.Buffs.Any(b => b.Name.Equals("visionary")))
                 {
                     return;

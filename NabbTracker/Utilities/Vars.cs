@@ -29,17 +29,31 @@ namespace NabbTracker
         /// <summary>
         ///     Gets the spellslots.
         /// </summary>
-        public static SpellSlot[] SpellSlots = { SpellSlot.Q, SpellSlot.W, SpellSlot.E, SpellSlot.R };
+        public static SpellSlot[] SpellSlots =
+        {
+            SpellSlot.Q,
+            SpellSlot.W,
+            SpellSlot.E,
+            SpellSlot.R
+        };
 
         /// <summary>
         ///     Gets the summoner spellslots.
         /// </summary>
-        public static SpellSlot[] SummonerSpellSlots = { SpellSlot.Summoner1, SpellSlot.Summoner2 };
+        public static SpellSlot[] SummonerSpellSlots =
+        {
+            SpellSlot.Summoner1,
+            SpellSlot.Summoner2
+        };
 
         /// <summary>
         ///     A list of the names of the champions who have a different healthbar type.
         /// </summary>
-        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
+        public static readonly List<string> SpecialChampions = new List<string>
+                                                               {
+                                                                   "Annie",
+                                                                   "Jhin"
+                                                               };
 
         /// <summary>
         ///     The Main Menu.
@@ -69,8 +83,7 @@ namespace NabbTracker
         /// <summary>
         ///     The Text fcnt.
         /// </summary>
-        public static Font DisplayTextFont { get; set; } = new Font(
-            Drawing.Direct3DDevice, new System.Drawing.Font("Tahoma", 8));
+        public static Font DisplayTextFont { get; set; } = new Font(Drawing.Direct3DDevice, new System.Drawing.Font("Tahoma", 8));
 
         /// <summary>
         ///     The Spells Healthbars X coordinate.
@@ -132,12 +145,21 @@ namespace NabbTracker
         {
             if (SpecialChampions.Contains(target.ChampionName))
             {
-                return Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -47 : -38;
+                return Menu["miscellaneous"]["name"].GetValue<MenuBool>()
+                                                    .Value
+                    ? -47
+                    : -38;
             }
 
             return target.IsMe
-                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -40 : -30
-                : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -33 : -22;
+                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>()
+                                               .Value
+                    ? -40
+                    : -30
+                : Menu["miscellaneous"]["name"].GetValue<MenuBool>()
+                                               .Value
+                    ? -33
+                    : -22;
         }
 
         /// <summary>
@@ -147,10 +169,14 @@ namespace NabbTracker
         {
             if (SpecialChampions.Contains(target.ChampionName))
             {
-                return target.IsMe ? 34 : 17;
+                return target.IsMe
+                    ? 34
+                    : 17;
             }
 
-            return target.IsMe ? 55 : 10;
+            return target.IsMe
+                ? 55
+                : 10;
         }
 
         /// <summary>
@@ -163,7 +189,9 @@ namespace NabbTracker
                 return 25;
             }
 
-            return target.IsMe ? 25 : 35;
+            return target.IsMe
+                ? 25
+                : 35;
         }
 
         /// <summary>
@@ -189,7 +217,9 @@ namespace NabbTracker
                 return -12;
             }
 
-            return target.IsMe ? -4 : 4;
+            return target.IsMe
+                ? -4
+                : 4;
         }
     }
 }

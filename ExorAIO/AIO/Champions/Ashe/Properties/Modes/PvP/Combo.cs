@@ -28,13 +28,12 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("asheqcastready") &&
-                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("asheqcastready") && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
+                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
                 Vars.Q.Cast();
             }
-
             if (!Targets.Target.IsValidTarget() || GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange + 20)))
             {
                 return;
@@ -44,11 +43,14 @@ namespace ExorAIO.Champions.Ashe
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() && !Invulnerable.Check(Targets.Target) && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
+                                                 .Value)
             {
-                if (!Vars.W.GetPrediction(Targets.Target).CollisionObjects.Any())
+                if (!Vars.W.GetPrediction(Targets.Target)
+                         .CollisionObjects.Any())
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
+                                    .UnitPosition);
                 }
             }
         }

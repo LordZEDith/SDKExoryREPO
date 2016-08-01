@@ -24,13 +24,14 @@ namespace ExorAIO.Champions.Warwick
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                                                          t.Health < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                     return;
@@ -40,14 +41,15 @@ namespace ExorAIO.Champions.Warwick
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>()
+                                                                         .Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            t.Health > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2 &&
-                            t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                                  t =>
+                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                                                          t.Health > (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2 &&
+                                                          t.Health < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

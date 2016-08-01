@@ -30,8 +30,8 @@ namespace ExorAIO.Champions.Draven
             ///     The Automatic Q Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.None &&
-                GameObjects.Player.GetBuffCount("dravenspinningattack") < 1 &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+                GameObjects.Player.GetBuffCount("dravenspinningattack") < 1 && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
+                                                                                                                  .Value)
             {
                 Vars.Q.Cast();
             }
@@ -39,26 +39,35 @@ namespace ExorAIO.Champions.Draven
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>()
+                                                                    .Value && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>()
+                                                                                                             .Active)
             {
                 if (
                     !GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                .GetValue<MenuBool>().Value))
+                                                 t =>
+                                                     !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                                                         Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                                             .GetValue<MenuBool>()
+                                                             .Value))
                 {
                     return;
                 }
 
                 Vars.R.Cast(
-                    Vars.R.GetPrediction(
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                    .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                            Vars.R.GetPrediction(
+                                                 GameObjects.EnemyHeroes.Where(
+                                                                               t =>
+                                                                                   !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                                                                                       Vars.Menu["spells"]["r"]["whitelist"][
+                                                                                                                             Targets.Target
+                                                                                                                                    .ChampionName
+                                                                                                                                    .ToLower()]
+                                                                                           .GetValue<MenuBool>()
+                                                                                           .Value)
+                                                            .OrderBy(o => o.Health)
+                                                            .First())
+                                .UnitPosition);
             }
         }
     }
