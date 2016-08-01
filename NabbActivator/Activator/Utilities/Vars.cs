@@ -111,7 +111,7 @@ namespace NabbActivator
         public static int GetSmiteDamage
             =>
                 GameObjects.Player.GetBuffCount(
-                    GameObjects.Player.Buffs.Where(s => s.Name.ToLower().Contains("smitedamagetracker")).First().Name);
+                    GameObjects.Player.Buffs.First(s => s.Name.ToLower().Contains("smitedamagetracker")).Name);
 
         /// <summary>
         ///     Gets the chilling smite's damage.

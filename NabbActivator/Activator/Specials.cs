@@ -2,6 +2,8 @@ using LeagueSharp;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 
+#pragma warning disable 1587
+
 namespace NabbActivator
 {
     /// <summary>

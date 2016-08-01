@@ -3,6 +3,8 @@ using LeagueSharp.SDK.Enumerations;
 using LeagueSharp.SDK.UI;
 using Menu = LeagueSharp.SDK.UI.Menu;
 
+#pragma warning disable 1587
+
 namespace NabbActivator
 {
     /// <summary>

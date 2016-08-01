@@ -1,6 +1,8 @@
 ﻿using LeagueSharp;
 using LeagueSharp.SDK;
 
+#pragma warning disable 1587
+
 namespace NabbActivator
 {
     /// <summary>
@@ -11,8 +13,7 @@ namespace NabbActivator
         /// <summary>
         ///     The entry point of the application.
         /// </summary>
-        /// <param name="args">The arguments.</param>
-        private static void Main(string[] args)
+        private static void Main()
         {
             /// <summary>
             ///     Loads the Bootstrap.

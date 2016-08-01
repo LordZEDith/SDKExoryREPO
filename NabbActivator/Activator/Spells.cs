@@ -5,6 +5,8 @@ using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
 
+#pragma warning disable 1587
+
 namespace NabbActivator
 {
     /// <summary>
@@ -34,10 +36,10 @@ namespace NabbActivator
                     /// </summary>
                     foreach (var minion in Targets.JungleMinions.Where(m => m.IsValidTarget(Vars.Smite.Range)))
                     {
-                        if (minion.Health >
-                            GameObjects.Player.GetBuffCount(
-                                GameObjects.Player.Buffs.FirstOrDefault(
-                                    b => b.Name.ToLower().Contains("smitedamagetracker")).Name))
+                        var buff =
+                            GameObjects.Player.Buffs.FirstOrDefault(
+                                b => b.Name.ToLower().Contains("smitedamagetracker"));
+                        if (buff != null && minion.Health > GameObjects.Player.GetBuffCount(buff.Name))
                         {
                             return;
                         }
@@ -186,7 +188,7 @@ namespace NabbActivator
                 /// </summary>
                 if (Vars.Menu["smite"]["misc"]["combo"].GetValue<MenuBool>().Value)
                 {
-                    if (Variables.Orbwalker.GetTarget() as Obj_AI_Hero != null)
+                    if (Variables.Orbwalker.GetTarget() is Obj_AI_Hero)
                     {
                         Vars.Smite.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Hero);
                     }
@@ -235,8 +237,8 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Exhaust.IsReady())
             {
-                foreach (var ally in
-                    GameObjects.AllyHeroes.Where(
+                if (
+                    GameObjects.AllyHeroes.Any(
                         a =>
                             a.Distance(Targets.Target) <= 650f &&
                             Health.GetPrediction(a, (int) (1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
