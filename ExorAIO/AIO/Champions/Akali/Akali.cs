@@ -61,7 +61,6 @@ namespace ExorAIO.Champions.Akali
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -75,11 +74,9 @@ namespace ExorAIO.Champions.Akali
                 case OrbwalkingMode.Combo:
                     Logics.Combo(args);
                     break;
-
                 case OrbwalkingMode.Hybrid:
                     Logics.Harass(args);
                     break;
-
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
@@ -106,25 +103,26 @@ namespace ExorAIO.Champions.Akali
                             Logics.Weaving(sender, args);
                             break;
                         }
+
                         switch (args.SData.Name)
                         {
                             case "AkaliMota":
-                                if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
-                                    !Targets.Target.IsValidTarget(Vars.AARange) &&
-                                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
-                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                        .GetValue<MenuBool>().Value)
+                                if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
+                                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
+                                                                     .Value
+                                    && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                                   .Value)
                                 {
-                                    if (!Targets.Target.IsUnderEnemyTurret() ||
-                                        !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
+                                    if (!Targets.Target.IsUnderEnemyTurret() || !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>()
+                                                                                                                   .Value)
                                     {
                                         Vars.R.CastOnUnit(Targets.Target);
                                     }
                                 }
                                 break;
                         }
-                        break;
 
+                        break;
                     case OrbwalkingMode.LaneClear:
                         Logics.JungleClear(sender, args);
                         break;
