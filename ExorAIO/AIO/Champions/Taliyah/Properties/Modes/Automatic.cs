@@ -45,11 +45,11 @@ namespace ExorAIO.Champions.Taliyah
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false)))
+                                !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition,
                                 target.IsFacing(GameObjects.Player) &&
-                                GameObjects.Player.Distance(target) < Vars.AARange/2
+                                    GameObjects.Player.Distance(target) < Vars.AARange/2
                                     ? GameObjects.Player.ServerPosition.Extend(target.ServerPosition,
                                                                                GameObjects.Player.Distance(target)*2)
                                     : GameObjects.Player.ServerPosition);
@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Taliyah
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.E.Cast(target.ServerPosition);
                 }

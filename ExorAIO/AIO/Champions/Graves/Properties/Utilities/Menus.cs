@@ -81,8 +81,7 @@ namespace ExorAIO.Champions.Graves
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                     $"Use against: {target.ChampionName}",
-                                                                     true));
+                                                                     $"Use against: {target.ChampionName}", true));
                             }
                         }
 

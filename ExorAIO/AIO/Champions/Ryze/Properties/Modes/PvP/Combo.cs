@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Ryze
                     /// </summary>
                     if (Vars.RyzeStacks != 1 ||
                         GameObjects.Player.HealthPercent >
-                        Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
+                            Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue ||
                         !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
                     {
                         if (Vars.Q.IsReady() &&

@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Lucian
                 if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
                     GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f).CountEnemyHeroesInRange(1000f) < 3 &&
                     Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f)) <
-                    Vars.AARange)
+                        Vars.AARange)
                 {
                     Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f));
                 }
@@ -70,7 +70,7 @@ namespace ExorAIO.Champions.Lucian
                                        GameObjects.EnemyHeroes.FirstOrDefault(
                                            t =>
                                                !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
-                                               t.IsValidTarget(Vars.Q2.Range - 50f))).UnitPosition)
+                                                   t.IsValidTarget(Vars.Q2.Range - 50f))).UnitPosition)
                        select minion)
                 {
                     Vars.Q.CastOnUnit(minion);

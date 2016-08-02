@@ -31,7 +31,8 @@ namespace ExorAIO.Champions.Lux
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.E.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                            (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
+                           .ToList();
 
         /// <summary>
         ///     The minions hit by the E missile.

@@ -37,7 +37,7 @@ namespace ExorAIO.Champions.Lucian
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                    Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(target);
                     }
@@ -47,8 +47,8 @@ namespace ExorAIO.Champions.Lucian
                     !GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
-                            t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     return;
                 }
@@ -75,9 +75,9 @@ namespace ExorAIO.Champions.Lucian
                                            GameObjects.EnemyHeroes.FirstOrDefault(
                                                t =>
                                                    !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
-                                                   t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                                                   Vars.GetRealHealth(t) <
-                                                   (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                       t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                                                       Vars.GetRealHealth(t) <
+                                                           (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                                            .UnitPosition)
                            select minion)
                     {
@@ -101,9 +101,9 @@ namespace ExorAIO.Champions.Lucian
                                            GameObjects.EnemyHeroes.FirstOrDefault(
                                                t =>
                                                    !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
-                                                   t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                                                   Vars.GetRealHealth(t) <
-                                                   (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                                       t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                                                       Vars.GetRealHealth(t) <
+                                                           (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                                            .UnitPosition)
                            select target)
                     {
@@ -122,7 +122,7 @@ namespace ExorAIO.Champions.Lucian
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) && !t.IsValidTarget(Vars.Q.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     if (!Vars.W.GetPrediction(target).CollisionObjects.Any())
                     {

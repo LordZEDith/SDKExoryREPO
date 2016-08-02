@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Karma
                 if (Vars.R.IsReady() &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue &&
                     Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue >
-                    GameObjects.Player.HealthPercent)
+                        GameObjects.Player.HealthPercent)
                 {
                     Vars.R.Cast();
                 }

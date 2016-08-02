@@ -32,8 +32,8 @@ namespace ExorAIO.Champions.Corki
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                t.IsValidTarget(Vars.Q.Range - 100f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
                     return;
@@ -50,10 +50,9 @@ namespace ExorAIO.Champions.Corki
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) <
-                            (float)
-                            GameObjects.Player.GetSpellDamage(t,
-                                                              SpellSlot.R,
+                                Vars.GetRealHealth(t) <
+                                    (float)
+                            GameObjects.Player.GetSpellDamage(t, SpellSlot.R,
                                                               ObjectManager.Player.HasBuff(
                                                                   "corkimissilebarragecounterbig")
                                                                   ? DamageStage.Empowered

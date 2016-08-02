@@ -59,8 +59,9 @@ namespace ExorAIO.Champions.Warwick
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !t.IsUnderEnemyTurret() && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
-                            Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
+                                Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                               .Value))
                 {
                     Vars.R.CastOnUnit(target);
                 }

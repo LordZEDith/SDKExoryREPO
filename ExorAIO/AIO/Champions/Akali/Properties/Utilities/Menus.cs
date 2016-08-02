@@ -69,8 +69,7 @@ namespace ExorAIO.Champions.Akali
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}",
-                                                                    true));
+                                                                    $"Use against: {target.ChampionName}", true));
                             }
                         }
 

@@ -50,9 +50,7 @@ namespace ExorAIO.Champions.Ashe
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Ammo >=
-                (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
-                    ? 2
-                    : 1) &&
+                    (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value ? 2 : 1) &&
                 Vars.Menu["spells"]["e"]["vision"].GetValue<MenuBool>().Value)
             {
                 if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
@@ -71,8 +69,8 @@ namespace ExorAIO.Champions.Ashe
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.Distance(t.GetWaypoints().Last()) < 1500 &&
-                                NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
-                                GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
+                                    NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                    GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
                     {
                         Vars.E.Cast(target.GetWaypoints().Last());
                     }
@@ -110,7 +108,7 @@ namespace ExorAIO.Champions.Ashe
                     !GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value))
                 {
                     return;
@@ -121,7 +119,7 @@ namespace ExorAIO.Champions.Ashe
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                                 .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }

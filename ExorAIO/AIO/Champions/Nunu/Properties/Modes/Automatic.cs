@@ -59,7 +59,7 @@ namespace ExorAIO.Champions.Nunu
                         Targets.JungleMinions.Where(
                             m =>
                                 m.IsValidTarget(Vars.Q.Range) &&
-                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                                    Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
                         Vars.Q.CastOnUnit(minion);
                     }
@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Nunu
             {
                 if (GameObjects.Player.MaxHealth >
                     GameObjects.Player.Health + (30 + 45*GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level) +
-                    GameObjects.Player.TotalMagicalDamage*0.75)
+                        GameObjects.Player.TotalMagicalDamage*0.75)
                 {
                     foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range)))
                     {
@@ -111,14 +111,14 @@ namespace ExorAIO.Champions.Nunu
                             GameObjects.AllyHeroes.Any(
                                 a =>
                                     !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
-                                    Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                   .Value))
+                                        Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()]
+                                    .GetValue<MenuBool>().Value))
                         {
                             Vars.W.CastOnUnit(
                                 GameObjects.AllyHeroes.Where(
                                     a =>
                                         !a.IsMe && a.IsValidTarget(Vars.W.Range, false) &&
-                                        Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()]
+                                            Vars.Menu["spells"]["w"]["whitelist"][a.ChampionName.ToLower()]
                                         .GetValue<MenuBool>().Value).OrderBy(o => o.TotalAttackDamage).First());
                         }
 

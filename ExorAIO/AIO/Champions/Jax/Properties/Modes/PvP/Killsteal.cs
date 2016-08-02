@@ -31,9 +31,9 @@ namespace ExorAIO.Champions.Jax
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                                Vars.GetRealHealth(t) <
+                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
+                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     if (Vars.W.IsReady() &&
                         Vars.GetRealHealth(target) > (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.Q))

@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Udyr
                 /// </summary>
                 if (Vars.E.IsReady() &&
                     GameObjects.Player.ManaPercent >=
-                    ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                        ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                     Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     var objAiMinion = Variables.Orbwalker.GetTarget() as Obj_AI_Minion;
@@ -67,7 +67,7 @@ namespace ExorAIO.Champions.Udyr
                     if (Vars.R.IsReady() &&
                         GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
                         GameObjects.Player.ManaPercent >=
-                        ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
+                            ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                         Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
                     {
                         Vars.R.Cast();
@@ -80,7 +80,7 @@ namespace ExorAIO.Champions.Udyr
                     /// </summary>
                     if (Vars.Q.IsReady() &&
                         GameObjects.Player.ManaPercent >=
-                        ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                            ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                         Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
                     {
                         Vars.Q.Cast();
@@ -92,12 +92,12 @@ namespace ExorAIO.Champions.Udyr
             ///     The LaneClear R Logic.
             /// </summary>
             else if (Targets.Minions.Any() &&
-                     Targets.Minions.Count >= 3)
+                Targets.Minions.Count >= 3)
             {
                 if (Vars.R.IsReady() &&
                     GameObjects.Player.GetBuffCount("UdyrPhoenixStance") != 3 &&
                     GameObjects.Player.ManaPercent >=
-                    ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
+                        ManaManager.GetNeededHealth(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                     Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.R.Cast();
@@ -123,7 +123,7 @@ namespace ExorAIO.Champions.Udyr
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
+                    ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
                 Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();

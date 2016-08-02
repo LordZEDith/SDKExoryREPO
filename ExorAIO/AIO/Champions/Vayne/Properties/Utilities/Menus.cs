@@ -56,8 +56,7 @@ namespace ExorAIO.Champions.Vayne
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Condemn Only: {target.ChampionName}",
-                                                                    true));
+                                                                    $"Condemn Only: {target.ChampionName}", true));
                             }
                         }
 
@@ -78,9 +77,7 @@ namespace ExorAIO.Champions.Vayne
                 Vars.MiscMenu.Add(new MenuBool("alwaysq", "Always Q after AA", true));
                 Vars.MiscMenu.Add(new MenuBool("wstacks", "Use Q only to proc 3rd W Ring"));
                 Vars.MiscMenu.Add(new MenuSlider("stealthtime",
-                                                 "Stay in stealth mode for at least x (ms) [1000 ms = 1 second]",
-                                                 0,
-                                                 0,
+                                                 "Stay in stealth mode for at least x (ms) [1000 ms = 1 second]", 0, 0,
                                                  1000));
             }
             Vars.Menu.Add(Vars.MiscMenu);

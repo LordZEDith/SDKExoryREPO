@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Lucian
                 !GameObjects.EnemyHeroes.Any(
                     t =>
                         !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) && t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                        Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                            Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
             {
                 return;
             }
@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Lucian
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["extended"]["mixed"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["extended"]["mixed"]) &&
                 Vars.Menu["spells"]["q"]["extended"]["mixed"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -56,8 +56,8 @@ namespace ExorAIO.Champions.Lucian
                                        GameObjects.EnemyHeroes.FirstOrDefault(
                                            t =>
                                                !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
-                                               t.IsValidTarget(Vars.Q2.Range - 50f) &&
-                                               Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()]
+                                                   t.IsValidTarget(Vars.Q2.Range - 50f) &&
+                                                   Vars.Menu["spells"]["q"]["whitelist"][t.ChampionName.ToLower()]
                                                .GetValue<MenuBool>().Value)).UnitPosition)
                        select minion)
                 {

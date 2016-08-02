@@ -139,7 +139,7 @@ namespace ExorAIO.Champions.Caitlyn
                                          .Any(
                                              m =>
                                                  m.Distance(args.EndPosition) < 200 &&
-                                                 m.CharData.BaseSkinName.Equals("caitlyntrap")))
+                                                     m.CharData.BaseSkinName.Equals("caitlyntrap")))
                         {
                             args.Process = false;
                         }

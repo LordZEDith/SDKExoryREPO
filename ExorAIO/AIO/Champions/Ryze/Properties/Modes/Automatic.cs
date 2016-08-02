@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Ryze
                 GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
                 Vars.Menu["miscellaneous"]["tear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast(Game.CursorPos);

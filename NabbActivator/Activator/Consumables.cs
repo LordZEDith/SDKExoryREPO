@@ -76,7 +76,7 @@ namespace NabbActivator
                     Items.UseItem(2032);
                 }
                 else if (!Bools.IsManaPotRunning() &&
-                         ObjectManager.Player.ManaPercent < Managers.MinManaPercent)
+                    ObjectManager.Player.ManaPercent < Managers.MinManaPercent)
                 {
                     Items.UseItem(2032);
                 }
@@ -93,7 +93,7 @@ namespace NabbActivator
                     Items.UseItem(2033);
                 }
                 else if (!Bools.IsManaPotRunning() &&
-                         ObjectManager.Player.ManaPercent < Managers.MinManaPercent)
+                    ObjectManager.Player.ManaPercent < Managers.MinManaPercent)
                 {
                     Items.UseItem(2033);
                 }

@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.KogMaw
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                t.IsValidTarget(Vars.Q.Range - 100f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
@@ -52,8 +52,8 @@ namespace ExorAIO.Champions.KogMaw
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.E.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                t.IsValidTarget(Vars.E.Range - 100f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                     return;
@@ -66,13 +66,13 @@ namespace ExorAIO.Champions.KogMaw
             if (Vars.R.IsReady() &&
                 Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuSliderButton>().SValue >
-                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+                    GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.W.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).CastPosition);
                 }

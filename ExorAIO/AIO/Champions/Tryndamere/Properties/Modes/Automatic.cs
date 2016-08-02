@@ -30,11 +30,11 @@ namespace ExorAIO.Champions.Tryndamere
             if (Vars.Q.IsReady())
             {
                 if ((GameObjects.Player.HealthPercent <=
-                     Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().SValue ||
-                     !Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().BValue) &&
+                    Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().SValue ||
+                    !Vars.Menu["spells"]["q"]["health"].GetValue<MenuSliderButton>().BValue) &&
                     (GameObjects.Player.ManaPercent >=
-                     Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().SValue ||
-                     !Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().BValue))
+                        Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().SValue ||
+                        !Vars.Menu["spells"]["q"]["fury"].GetValue<MenuSliderButton>().BValue))
                 {
                     Vars.Q.Cast();
                 }
@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Tryndamere
             {
                 if (GameObjects.Player.HealthPercent < 17 ||
                     Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <=
-                    GameObjects.Player.MaxHealth/5)
+                        GameObjects.Player.MaxHealth/5)
                 {
                     Vars.R.Cast();
                 }

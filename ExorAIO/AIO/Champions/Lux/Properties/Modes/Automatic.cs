@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Lux
                             GameObjects.EnemyHeroes.Any(
                                 t =>
                                     !Bools.IsImmobile(t) && !t.HasBuff("luxilluminatingfraulein") &&
-                                    t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
+                                        t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
                         {
                             Vars.E.Cast();
                         }
@@ -77,7 +77,7 @@ namespace ExorAIO.Champions.Lux
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {

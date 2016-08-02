@@ -34,13 +34,13 @@ namespace ExorAIO.Champions.Jhin
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !Vars.Cone.IsOutside((Vector2) t.ServerPosition) &&
-                            t.IsValidTarget(Vars.R.Range) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t,
-                                                                      SpellSlot.R,
-                                                                      Vars.ShotsCount == 3
-                                                                          ? DamageStage.Empowered
-                                                                          : DamageStage.Default)))
+                                t.IsValidTarget(Vars.R.Range) &&
+                                Vars.GetRealHealth(t) <
+                                    (float)
+                            GameObjects.Player.GetSpellDamage(t, SpellSlot.R,
+                                                              Vars.ShotsCount == 3
+                                                                  ? DamageStage.Empowered
+                                                                  : DamageStage.Default)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     return;
@@ -62,7 +62,7 @@ namespace ExorAIO.Champions.Jhin
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                     return;
@@ -79,9 +79,9 @@ namespace ExorAIO.Champions.Jhin
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.W.Range - 100f) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W, DamageStage.Empowered)))
+                                t.IsValidTarget(Vars.W.Range - 100f) &&
+                                Vars.GetRealHealth(t) <
+                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W, DamageStage.Empowered)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }

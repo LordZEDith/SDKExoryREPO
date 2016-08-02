@@ -57,8 +57,7 @@ namespace ExorAIO.Champions.Tristana
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use E on: {target.ChampionName}",
-                                                                    true));
+                                                                    $"Use E on: {target.ChampionName}", true));
                             }
                         }
 

@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Amumu
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget(Vars.E.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) &&
+                                !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.E.Cast();
                     return;
@@ -49,8 +49,8 @@ namespace ExorAIO.Champions.Amumu
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.Q.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
+                                !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (
                         !Vars.Q.GetPrediction(target)
@@ -73,8 +73,8 @@ namespace ExorAIO.Champions.Amumu
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget(Vars.R.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) &&
-                            !Invulnerable.Check(t, DamageType.Magical)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) &&
+                                !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     Vars.R.Cast();
                 }

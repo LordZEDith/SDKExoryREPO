@@ -31,30 +31,20 @@ namespace ExorAIO.Utilities
     {
         private const int CircleLineSegmentN = 22;
 
-        public static void DrawCircleOnMinimap(Vector3 center,
-                                               float radius,
-                                               Color color,
-                                               int thickness = 1,
+        public static void DrawCircleOnMinimap(Vector3 center, float radius, Color color, int thickness = 1,
                                                int quality = 254)
         {
             var pointList = new List<Vector3>();
-            for (var i = 0;
-                 i < quality;
-                 i++)
+            for (var i = 0; i < quality; i++)
             {
                 var angle = i*Math.PI*2/quality;
                 pointList.Add(new Vector3(center.X + radius*(float) Math.Cos(angle),
-                                          center.Y + radius*(float) Math.Sin(angle),
-                                          center.Z));
+                                          center.Y + radius*(float) Math.Sin(angle), center.Z));
             }
-            for (var i = 0;
-                 i < pointList.Count;
-                 i++)
+            for (var i = 0; i < pointList.Count; i++)
             {
                 var a = pointList[i];
-                var b = pointList[i == pointList.Count - 1
-                    ? 0
-                    : i + 1];
+                var b = pointList[i == pointList.Count - 1 ? 0 : i + 1];
                 var aonScreen = Drawing.WorldToMinimap(a);
                 var bonScreen = Drawing.WorldToMinimap(b);
                 Drawing.DrawLine(aonScreen.X, aonScreen.Y, bonScreen.X, bonScreen.Y, thickness, color);
@@ -106,9 +96,7 @@ namespace ExorAIO.Utilities
         public static Vector2 PositionAfter(this GamePath self, int t, int speed, int delay = 0)
         {
             var distance = Math.Max(0, t - delay)*speed/1000;
-            for (var i = 0;
-                 i <= self.Count - 2;
-                 i++)
+            for (var i = 0; i <= self.Count - 2; i++)
             {
                 var from = self[i];
                 var to = self[i + 1];
@@ -181,9 +169,7 @@ namespace ExorAIO.Utilities
                 var outRadius = overrideWidth > 0
                     ? overrideWidth
                     : (offset + Radius)/(float) Math.Cos(2*Math.PI/CircleLineSegmentN);
-                for (var i = 1;
-                     i <= CircleLineSegmentN;
-                     i++)
+                for (var i = 1; i <= CircleLineSegmentN; i++)
                 {
                     var angle = i*2*Math.PI/CircleLineSegmentN;
                     var point = new Vector2(Center.X + outRadius*(float) Math.Cos(angle),
@@ -223,13 +209,9 @@ namespace ExorAIO.Utilities
 
             public void Draw(Color color, int width = 1)
             {
-                for (var i = 0;
-                     i <= Points.Count - 1;
-                     i++)
+                for (var i = 0; i <= Points.Count - 1; i++)
                 {
-                    var nextIndex = Points.Count - 1 == i
-                        ? 0
-                        : i + 1;
+                    var nextIndex = Points.Count - 1 == i ? 0 : i + 1;
                     Util.DrawLineInWorld(Points[i].ToVector3(), Points[nextIndex].ToVector3(), width, color);
                 }
             }
@@ -261,8 +243,7 @@ namespace ExorAIO.Utilities
             /// <param name="start">The start.</param>
             /// <param name="end">The end.</param>
             /// <param name="width">The width.</param>
-            public Rectangle(Vector3 start, Vector3 end, float width)
-                : this(start.ToVector2(), end.ToVector2(), width) {}
+            public Rectangle(Vector3 start, Vector3 end, float width) : this(start.ToVector2(), end.ToVector2(), width) {}
 
             /// <summary>
             ///     Initializes a new instance of the <see cref="Rectangle" /> class.
@@ -302,18 +283,10 @@ namespace ExorAIO.Utilities
             public void UpdatePolygon(int offset = 0, float overrideWidth = -1)
             {
                 Points.Clear();
-                Points.Add(Start + (overrideWidth > 0
-                    ? overrideWidth
-                    : Width + offset)*Perpendicular - offset*Direction);
-                Points.Add(Start - (overrideWidth > 0
-                    ? overrideWidth
-                    : Width + offset)*Perpendicular - offset*Direction);
-                Points.Add(End - (overrideWidth > 0
-                    ? overrideWidth
-                    : Width + offset)*Perpendicular + offset*Direction);
-                Points.Add(End + (overrideWidth > 0
-                    ? overrideWidth
-                    : Width + offset)*Perpendicular + offset*Direction);
+                Points.Add(Start + (overrideWidth > 0 ? overrideWidth : Width + offset)*Perpendicular - offset*Direction);
+                Points.Add(Start - (overrideWidth > 0 ? overrideWidth : Width + offset)*Perpendicular - offset*Direction);
+                Points.Add(End - (overrideWidth > 0 ? overrideWidth : Width + offset)*Perpendicular + offset*Direction);
+                Points.Add(End + (overrideWidth > 0 ? overrideWidth : Width + offset)*Perpendicular + offset*Direction);
             }
         }
 
@@ -337,18 +310,14 @@ namespace ExorAIO.Utilities
                 var result = new Polygon();
                 var outRadius = (offset + Radius + RingRadius)/(float) Math.Cos(2*Math.PI/CircleLineSegmentN);
                 var innerRadius = Radius - RingRadius - offset;
-                for (var i = 0;
-                     i <= CircleLineSegmentN;
-                     i++)
+                for (var i = 0; i <= CircleLineSegmentN; i++)
                 {
                     var angle = i*2*Math.PI/CircleLineSegmentN;
                     var point = new Vector2(Center.X - outRadius*(float) Math.Cos(angle),
                                             Center.Y - outRadius*(float) Math.Sin(angle));
                     result.Add(point);
                 }
-                for (var i = 0;
-                     i <= CircleLineSegmentN;
-                     i++)
+                for (var i = 0; i <= CircleLineSegmentN; i++)
                 {
                     var angle = i*2*Math.PI/CircleLineSegmentN;
                     var point = new Vector2(Center.X + innerRadius*(float) Math.Cos(angle),
@@ -429,9 +398,7 @@ namespace ExorAIO.Utilities
                 var outRadius = (Radius + offset)/(float) Math.Cos(2*Math.PI/_quality);
                 Points.Add(Center);
                 var side1 = Direction.Rotated(-Angle*0.5f);
-                for (var i = 0;
-                     i <= _quality;
-                     i++)
+                for (var i = 0; i <= _quality; i++)
                 {
                     var cDirection = side1.Rotated(i*Angle/_quality).Normalized();
                     Points.Add(new Vector2(Center.X + outRadius*cDirection.X, Center.Y + outRadius*cDirection.Y));
@@ -448,9 +415,7 @@ namespace ExorAIO.Utilities
             /// <returns></returns>
             public Vector2 RotateLineFromPoint(Vector2 point1, Vector2 point2, float value, bool radian = true)
             {
-                var angle = !radian
-                    ? value*Math.PI/180
-                    : value;
+                var angle = !radian ? value*Math.PI/180 : value;
                 var line = Vector2.Subtract(point2, point1);
                 var newline = new Vector2
                               {

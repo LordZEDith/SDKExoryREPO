@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Karma
                 Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
                 GameObjects.Player.CountEnemyHeroesInRange(2000f) >= 2 &&
                 GameObjects.Player.CountAllyHeroesInRange(600f) >=
-                Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue + 1 &&
+                    Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue + 1 &&
                 Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.Cast();

@@ -32,9 +32,9 @@ namespace ExorAIO.Champions.Darius
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
+                                Vars.GetRealHealth(t) <
+                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R) +
+                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R, DamageStage.Buff)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Corki
             if (Vars.R.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.R.Range) &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["autoharass"]) &&
+                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["autoharass"]) &&
                 Vars.Menu["spells"]["r"]["autoharass"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {

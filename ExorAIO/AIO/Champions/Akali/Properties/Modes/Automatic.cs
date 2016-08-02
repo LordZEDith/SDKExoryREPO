@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Akali
             {
                 if (Bools.HasDeadlyMark() ||
                     Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping/2f)) <=
-                    GameObjects.Player.MaxHealth/4)
+                        GameObjects.Player.MaxHealth/4)
                 {
                     Vars.W.Cast(GameObjects.Player.ServerPosition);
                 }

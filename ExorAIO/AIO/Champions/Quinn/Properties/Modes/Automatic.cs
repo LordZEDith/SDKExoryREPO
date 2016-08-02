@@ -40,8 +40,8 @@ namespace ExorAIO.Champions.Quinn
                         GameObjects.EnemyHeroes.Any(
                             t =>
                                 t.Distance(t.GetWaypoints().Last()) < 1500 &&
-                                NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
-                                GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
+                                    NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                    GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
                     {
                         Vars.E.Cast();
                     }

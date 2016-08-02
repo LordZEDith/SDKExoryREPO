@@ -52,8 +52,8 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("jaxcounterstrike") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
-                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime -
-                            1 &&
+                                target.GetBuff("jaxcounterstrike").EndTime -
+                                    target.GetBuff("jaxcounterstrike").StartTime - 1 &&
                             Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"]
                                 .GetValue<MenuBool>().Value)
                         {
@@ -64,8 +64,8 @@ namespace ExorAIO.Champions.Sivir
                         if (target.HasBuff("kogmawicathiansurprise") &&
                             target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
                             target.GetBuff("kogmawicathiansurprise").EndTime - Game.Time >
-                            target.GetBuff("kogmawicathiansurprise").EndTime -
-                            target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
+                                target.GetBuff("kogmawicathiansurprise").EndTime -
+                                    target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
                             Vars.Menu["spells"]["e"]["whitelist"][
                                 $"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
                         {
@@ -144,9 +144,9 @@ namespace ExorAIO.Champions.Sivir
                                     if (
                                         Vars.Menu["spells"]["e"]["whitelist"][
                                             $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                        !Vars.Menu["spells"]["e"]["whitelist"][
-                                            $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
-                                            .GetValue<MenuBool>().Value)
+                                            !Vars.Menu["spells"]["e"]["whitelist"][
+                                                $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
+                                                .GetValue<MenuBool>().Value)
                                     {
                                         return;
                                     }
@@ -186,9 +186,9 @@ namespace ExorAIO.Champions.Sivir
                             if (
                                 Vars.Menu["spells"]["e"]["whitelist"][
                                     $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                !Vars.Menu["spells"]["e"]["whitelist"][
-                                    $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>()
-                                                                                                 .Value)
+                                    !Vars.Menu["spells"]["e"]["whitelist"][
+                                        $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>
+                                        ().Value)
                             {
                                 return;
                             }
@@ -210,30 +210,26 @@ namespace ExorAIO.Champions.Sivir
                                     switch (hero.ChampionName)
                                     {
                                         case "Caitlyn":
-                                            DelayAction.Add(1050,
-                                                            () =>
-                                                            {
-                                                                Vars.E.Cast();
-                                                            });
+                                            DelayAction.Add(1050, () =>
+                                            {
+                                                Vars.E.Cast();
+                                            });
                                             break;
                                         case "Nocturne":
-                                            DelayAction.Add(350,
-                                                            () =>
-                                                            {
-                                                                Vars.E.Cast();
-                                                            });
+                                            DelayAction.Add(350, () =>
+                                            {
+                                                Vars.E.Cast();
+                                            });
                                             break;
                                         case "Zed":
-                                            DelayAction.Add(200,
-                                                            () =>
-                                                            {
-                                                                Vars.E.Cast();
-                                                            });
+                                            DelayAction.Add(200, () =>
+                                            {
+                                                Vars.E.Cast();
+                                            });
                                             break;
                                         default:
                                             DelayAction.Add(
-                                                Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                                                () =>
+                                                Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
                                                 {
                                                     Vars.E.Cast();
                                                 });

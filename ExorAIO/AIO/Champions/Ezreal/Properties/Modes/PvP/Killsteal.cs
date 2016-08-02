@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Ezreal
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.Ezreal
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                     return;
@@ -69,8 +69,8 @@ namespace ExorAIO.Champions.Ezreal
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }

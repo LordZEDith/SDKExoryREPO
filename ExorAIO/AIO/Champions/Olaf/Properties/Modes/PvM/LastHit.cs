@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Olaf
                     Targets.Minions.Where(
                         m =>
                             m.IsValidTarget(Vars.E.Range) &&
-                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     if (minion.GetMinionType() == MinionTypes.Siege ||
                         minion.GetMinionType() == MinionTypes.Super)

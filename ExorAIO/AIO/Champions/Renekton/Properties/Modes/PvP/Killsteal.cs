@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Renekton
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast();
                 }

@@ -53,13 +53,14 @@ namespace ExorAIO.Champions.Sona
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(),
-                                                                    $"Use for: {ally.ChampionName}",
-                                                                    true));
+                                                                    $"Use for: {ally.ChampionName}", true));
                             }
                         }
+
                         Vars.EMenu.Add(Vars.WhiteListMenu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
                 /// <summary>
@@ -95,13 +96,14 @@ namespace ExorAIO.Champions.Sona
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                     $"Use against: {target.ChampionName}",
-                                                                     true));
+                                                                     $"Use against: {target.ChampionName}", true));
                             }
                         }
+
                         Vars.RMenu.Add(Vars.WhiteList2Menu);
                     }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
 

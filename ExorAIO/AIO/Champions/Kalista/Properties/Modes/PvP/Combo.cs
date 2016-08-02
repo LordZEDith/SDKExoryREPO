@@ -62,8 +62,9 @@ namespace ExorAIO.Champions.Kalista
                         .CollisionObjects.Count(
                             c =>
                                 Targets.Minions.Contains(c) &&
-                                c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
-                    Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                                    c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                        Vars.Q.GetPrediction(Targets.Target)
+                            .CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

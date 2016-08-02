@@ -27,11 +27,10 @@ namespace ExorAIO.Champions.Orianna
             if (Vars.Q.IsReady() &&
                 Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
                                 Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
@@ -44,11 +43,12 @@ namespace ExorAIO.Champions.Orianna
             if (Vars.W.IsReady() &&
                 Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.EnemyHeroes.Any(
-                    t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t) &&
-                        t.Distance(Orianna.BallPosition) < Vars.W.Range &&
-                        Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                if (
+                    GameObjects.EnemyHeroes.Any(
+                        t =>
+                            t.IsValidTarget() && !Invulnerable.Check(t) &&
+                                t.Distance(Orianna.BallPosition) < Vars.W.Range &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast();
                 }
@@ -64,9 +64,9 @@ namespace ExorAIO.Champions.Orianna
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget() && !Invulnerable.Check(t) &&
-                            t.Distance(Orianna.BallPosition) < Vars.R.Range &&
-                            Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                t.Distance(Orianna.BallPosition) < Vars.R.Range &&
+                                Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast();
                 }

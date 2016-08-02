@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Quinn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                t.IsValidTarget(Vars.Q.Range - 100f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                     {
@@ -51,9 +51,9 @@ namespace ExorAIO.Champions.Quinn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) <
-                            GameObjects.Player.GetAutoAttackDamage(t)*2 +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                Vars.GetRealHealth(t) <
+                                    GameObjects.Player.GetAutoAttackDamage(t)*2 +
+                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(target);
                 }

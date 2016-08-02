@@ -38,13 +38,12 @@ namespace ExorAIO.Champions.Vayne
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
-                            !Invulnerable.Check(t, DamageType.True, false) &&
-                            !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
-                            Vars.Menu["spells"]["e"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                !Invulnerable.Check(t, DamageType.True, false) &&
+                                !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
+                                Vars.Menu["spells"]["e"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                               .Value))
                 {
-                    for (var i = 1;
-                         i < 10;
-                         i++)
+                    for (var i = 1; i < 10; i++)
                     {
                         var vector = Vector3.Normalize(target.ServerPosition - GameObjects.Player.ServerPosition);
                         if ((target.ServerPosition + vector*(float) (i*42.5)).IsWall() &&

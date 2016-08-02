@@ -107,8 +107,7 @@ namespace NabbTracker
             Vars.SDXColor =
                 Color.FromBgra(
                     sdxConvert[
-                        SDXColor(color),
-                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index]);
+                        SDXColor(color), Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index]);
             return Vars.SDXColor;
         }
 
@@ -288,17 +287,11 @@ namespace NabbTracker
             Vars.SDColor =
                 System.Drawing.Color.FromArgb(
                     sdConvert[
-                        SDColor(color),
-                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
-                        0],
+                        SDColor(color), Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index, 0],
                     sdConvert[
-                        SDColor(color),
-                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
-                        1],
+                        SDColor(color), Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index, 1],
                     sdConvert[
-                        SDColor(color),
-                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
-                        2]);
+                        SDColor(color), Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index, 2]);
             return Vars.SDColor;
         }
     }

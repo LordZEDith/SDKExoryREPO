@@ -50,8 +50,9 @@ namespace ExorAIO.Champions.Jhin
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.HasBuff("jhinespotteddebuff") &&
-                            t.IsValidTarget(Vars.W.Range - 150f) &&
-                            Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                t.IsValidTarget(Vars.W.Range - 150f) &&
+                                Vars.Menu["spells"]["w"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                               .Value))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }

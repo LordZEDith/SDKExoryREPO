@@ -28,22 +28,21 @@ namespace ExorAIO.Champions.Cassiopeia
             if (Vars.E.IsReady() &&
                 Vars.Menu["spells"]["e"]["lasthit"].GetValue<MenuSliderButton>().BValue)
             {
-                DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                                () =>
-                                {
-                                    foreach (var minion in
-                                        Targets.Minions.Where(
-                                            m =>
-                                                Vars.GetRealHealth(m) <
-                                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                (m.HasBuffOfType(BuffType.Poison)
-                                                    ? (float)
-                                                GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
-                                                    : 0)))
-                                    {
-                                        Vars.E.CastOnUnit(minion);
-                                    }
-                                });
+                DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value, () =>
+                {
+                    foreach (var minion in
+                        Targets.Minions.Where(
+                            m =>
+                                Vars.GetRealHealth(m) <
+                                    (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                        (m.HasBuffOfType(BuffType.Poison)
+                                            ? (float)
+                                GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Empowered)
+                                            : 0)))
+                    {
+                        Vars.E.CastOnUnit(minion);
+                    }
+                });
             }
         }
     }

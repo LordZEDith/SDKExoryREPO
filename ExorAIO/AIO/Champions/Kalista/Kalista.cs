@@ -138,11 +138,10 @@ namespace ExorAIO.Champions.Kalista
                     if (Vars.E.IsReady() &&
                         Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
                         Vars.GetRealHealth(args.Target as Obj_AI_Minion) <
-                        (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
-                        (float)
-                            GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion,
-                                                              SpellSlot.E,
-                                                              DamageStage.Buff))
+                            (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
+                                (float)
+                                    GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E,
+                                                                      DamageStage.Buff))
                     {
                         Vars.E.Cast();
                     }

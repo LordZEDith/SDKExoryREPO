@@ -45,12 +45,8 @@ namespace ExorAIO.Champions.Lucian
                                 Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
                                 Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
                                 Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear",
-                                                                     "LaneClear / if Mana >= %",
-                                                                     50,
-                                                                     0,
-                                                                     99,
-                                                                     true));
+                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0,
+                                                                     99, true));
                             }
                             Vars.QMenu.Add(Vars.Q2Menu);
 
@@ -64,8 +60,7 @@ namespace ExorAIO.Champions.Lucian
                                 foreach (var target in GameObjects.EnemyHeroes)
                                 {
                                     Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                        $"Harass: {target.ChampionName}",
-                                                                        true));
+                                                                        $"Harass: {target.ChampionName}", true));
                                 }
                             }
 
@@ -108,14 +103,12 @@ namespace ExorAIO.Champions.Lucian
                                                      "Normal: This Logic will make you always dash at the maximum distance."));
                     Vars.EMenu.Add(new MenuSeparator("esep4",
                                                      "None: This Logic will prevent the assembly from using E automatically in combo."));
-                    Vars.EMenu.Add(new MenuList<string>("mode",
-                                                        "E Mode",
-                                                        new[]
-                                                        {
-                                                            "Exory",
-                                                            "Normal",
-                                                            "None"
-                                                        }));
+                    Vars.EMenu.Add(new MenuList<string>("mode", "E Mode", new[]
+                                                                          {
+                                                                              "Exory",
+                                                                              "Normal",
+                                                                              "None"
+                                                                          }));
                     Vars.EMenu.Add(new MenuBool("engager", "Engager", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));

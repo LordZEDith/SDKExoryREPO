@@ -63,8 +63,7 @@ namespace ExorAIO.Champions.Orianna
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(),
-                                                                    $"Use for: {ally.ChampionName}",
-                                                                    true));
+                                                                    $"Use for: {ally.ChampionName}", true));
                             }
                         }
 

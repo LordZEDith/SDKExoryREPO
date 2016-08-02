@@ -19,7 +19,6 @@ namespace ExorAIO.Champions.Orianna
             Vars.W = new Spell(SpellSlot.W, 250f);
             Vars.E = new Spell(SpellSlot.E, 1100f);
             Vars.R = new Spell(SpellSlot.R, 325f + GameObjects.Player.BoundingRadius);
-
             Vars.Q.SetSkillshot(0.35f, 175f, 1150f, false, SkillshotType.SkillshotLine);
         }
     }

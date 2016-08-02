@@ -63,9 +63,7 @@ namespace ExorAIO.Champions.Twitch
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
                 Vars.MiscMenu.Add(new MenuSlider("stealthtime",
-                                                 "Stay in stealth-mode for at least x (ms) [1000 ms = 1 second]",
-                                                 0,
-                                                 0,
+                                                 "Stay in stealth-mode for at least x (ms) [1000 ms = 1 second]", 0, 0,
                                                  8000));
             }
             Vars.Menu.Add(Vars.MiscMenu);

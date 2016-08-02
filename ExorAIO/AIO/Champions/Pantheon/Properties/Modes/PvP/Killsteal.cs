@@ -31,9 +31,9 @@ namespace ExorAIO.Champions.Pantheon
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) <
+                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) +
+                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.W.CastOnUnit(target);
                     return;
@@ -50,7 +50,7 @@ namespace ExorAIO.Champions.Pantheon
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                 }

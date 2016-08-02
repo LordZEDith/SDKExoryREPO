@@ -32,8 +32,8 @@ namespace ExorAIO.Champions.Sivir
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
-                            t.IsValidTarget(Vars.Q.Range - 100f) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2))
+                                t.IsValidTarget(Vars.Q.Range - 100f) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2))
                 {
                     Vars.Q.Cast(
                         Vars.Q.GetPrediction(target)

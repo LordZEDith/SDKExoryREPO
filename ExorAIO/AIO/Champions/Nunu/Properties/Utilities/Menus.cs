@@ -51,8 +51,7 @@ namespace ExorAIO.Champions.Nunu
                             foreach (var target in GameObjects.AllyHeroes.Where(h => !h.IsMe))
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use on: {target.ChampionName}",
-                                                                    true));
+                                                                    $"Use on: {target.ChampionName}", true));
                             }
                         }
 

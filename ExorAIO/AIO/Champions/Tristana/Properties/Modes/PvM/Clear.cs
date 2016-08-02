@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Tristana
                 /// </summary>
                 if (Targets.JungleMinions.Any() &&
                     GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                     Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.E.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Minion);
@@ -64,14 +64,14 @@ namespace ExorAIO.Champions.Tristana
                     /// </summary>
                     if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)) &&
                         GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
+                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
                         Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
                     {
                         foreach (var minion in
                             Targets.Minions.Where(
                                 m =>
                                     m.CountEnemyHeroesInRange(150f) > 0 &&
-                                    Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
+                                        Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)))
                         {
                             Vars.E.CastOnUnit(minion);
                         }
@@ -83,7 +83,7 @@ namespace ExorAIO.Champions.Tristana
                         /// </summary>
                         if (Targets.Minions.Any() &&
                             GameObjects.Player.ManaPercent >
-                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
+                                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                             Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                         {
                             if (
@@ -114,7 +114,7 @@ namespace ExorAIO.Champions.Tristana
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
+                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
                 Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Turret);

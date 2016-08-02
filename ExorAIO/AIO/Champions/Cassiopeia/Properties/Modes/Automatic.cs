@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Cassiopeia
                 Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
                 GameObjects.Player.CountEnemyHeroesInRange(1500) == 0 &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["miscellaneous"]["tear"]) &&
                 Vars.Menu["miscellaneous"]["tear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.Q.Range - 5f));
@@ -60,23 +60,20 @@ namespace ExorAIO.Champions.Cassiopeia
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            DelayAction.Add(1000,
-                            () =>
-                            {
-                                if (Vars.W.IsReady() &&
-                                    !Vars.Q.IsReady() &&
-                                    Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
-                                {
-                                    foreach (var target in
-                                        GameObjects.EnemyHeroes.Where(
-                                            t =>
-                                                Bools.IsImmobile(t) && !Invulnerable.Check(t) &&
-                                                t.IsValidTarget(Vars.W.Range)))
-                                    {
-                                        Vars.W.Cast(target.ServerPosition);
-                                    }
-                                }
-                            });
+            DelayAction.Add(1000, () =>
+            {
+                if (Vars.W.IsReady() &&
+                    !Vars.Q.IsReady() &&
+                    Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+                {
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
+                    {
+                        Vars.W.Cast(target.ServerPosition);
+                    }
+                }
+            });
         }
     }
 }

@@ -81,9 +81,10 @@ namespace ExorAIO.Champions.Jinx
                             /// </summary>
                             if (!GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)) &&
                                 GameObjects.EnemyHeroes.Any(
-                                    t2 => t2.IsValidTarget(Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid
-                                        ? Vars.Q.Range
-                                        : Vars.W.Range)))
+                                    t2 =>
+                                        t2.IsValidTarget(Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid
+                                            ? Vars.Q.Range
+                                            : Vars.W.Range)))
                             {
                                 Console.WriteLine("ExorAIO: Jinx - Combo/Hybrid - Enabled for Range Check.");
                                 Vars.Q.Cast();
@@ -131,8 +132,8 @@ namespace ExorAIO.Champions.Jinx
                                                        Targets.Minions.First(
                                                            m =>
                                                                Vars.GetRealHealth(m) <
-                                                               GameObjects.Player.GetAutoAttackDamage(m)*1.1)) < 250f) >=
-                                    3)
+                                                                   GameObjects.Player.GetAutoAttackDamage(m)*1.1)) <
+                                                       250f) >= 3)
                                 {
                                     Vars.Q.Cast();
 
@@ -199,13 +200,13 @@ namespace ExorAIO.Champions.Jinx
                                 Targets.Minions.Any(
                                     m =>
                                         !m.IsValidTarget(Vars.PowPow.Range) &&
-                                        m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
+                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
                             {
                                 if (
                                     !Targets.Minions.Any(
                                         m =>
                                             m.IsValidTarget(Vars.PowPow.Range) &&
-                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
+                                                m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                                 {
                                     Vars.Q.Cast();
 
@@ -321,13 +322,13 @@ namespace ExorAIO.Champions.Jinx
                             if ((!Items.HasItem(3085) || Targets.Minions.Count < 2) &&
                                 (!Targets.Minions.Any(
                                     m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)*1.1) ||
-                                 Targets.Minions.Count(
-                                     m2 =>
-                                         m2.Distance(
-                                             Targets.Minions.First(
-                                                 m =>
-                                                     Vars.GetRealHealth(m) <
-                                                     GameObjects.Player.GetAutoAttackDamage(m)*1.1)) < 250f) < 3))
+                                    Targets.Minions.Count(
+                                        m2 =>
+                                            m2.Distance(
+                                                Targets.Minions.First(
+                                                    m =>
+                                                        Vars.GetRealHealth(m) <
+                                                            GameObjects.Player.GetAutoAttackDamage(m)*1.1)) < 250f) < 3))
                             {
                                 Vars.Q.Cast();
 
@@ -383,7 +384,7 @@ namespace ExorAIO.Champions.Jinx
                                 !Targets.Minions.Any(
                                     m =>
                                         !m.IsValidTarget(Vars.PowPow.Range) &&
-                                        m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
+                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
                             {
                                 Vars.Q.Cast();
 
@@ -395,7 +396,7 @@ namespace ExorAIO.Champions.Jinx
                                 Targets.Minions.Any(
                                     m =>
                                         m.IsValidTarget(Vars.PowPow.Range) &&
-                                        m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
+                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                             {
                                 Vars.Q.Cast();
 
@@ -427,7 +428,7 @@ namespace ExorAIO.Champions.Jinx
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false)))
+                                !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.E.Cast(target.ServerPosition);
                 }
@@ -463,7 +464,7 @@ namespace ExorAIO.Champions.Jinx
                     !GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value))
                 {
                     return;
@@ -474,7 +475,7 @@ namespace ExorAIO.Champions.Jinx
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                                 .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }

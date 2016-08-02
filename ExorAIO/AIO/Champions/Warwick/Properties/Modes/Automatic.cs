@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Warwick
             {
                 if (GameObjects.Player.MaxHealth >
                     GameObjects.Player.Health +
-                    (float) GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q)*0.8)
+                        (float) GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q)*0.8)
                 {
                     Vars.Q.CastOnUnit(Targets.Minions.FirstOrDefault());
                 }

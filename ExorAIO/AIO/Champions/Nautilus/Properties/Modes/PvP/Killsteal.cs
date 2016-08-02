@@ -31,8 +31,8 @@ namespace ExorAIO.Champions.Nautilus
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                     {
@@ -52,8 +52,8 @@ namespace ExorAIO.Champions.Nautilus
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

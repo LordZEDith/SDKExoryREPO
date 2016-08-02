@@ -60,7 +60,7 @@ namespace ExorAIO.Champions.Renekton
                     Vars.R.Cast();
                 }
                 else if (GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range) >= 2 &&
-                         Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>().Value)
+                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuBool>().Value)
                 {
                     Vars.R.Cast();
                 }

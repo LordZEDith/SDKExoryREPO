@@ -24,7 +24,7 @@ namespace ExorAIO.Champions.Orianna
             /// </summary>
             if (Vars.R.IsReady() &&
                 GameObjects.EnemyHeroes.Count(t => t.IsValidTarget() && t.Distance(Orianna.BallPosition) < Vars.R.Range) >=
-                Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue &&
+                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.Cast();

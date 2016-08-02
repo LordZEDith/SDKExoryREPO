@@ -157,7 +157,6 @@ namespace ExorAIO.Champions.Orianna
                 {
                     Vars.Q.Cast(args.Sender.ServerPosition);
                 }
-
                 Vars.R.Cast();
             }
         }
@@ -174,7 +173,7 @@ namespace ExorAIO.Champions.Orianna
                 GameObjects.Jungle.Any(
                     m =>
                         m.CharData.BaseSkinName == sender.CharData.BaseSkinName &&
-                        GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
+                            GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
             {
                 if (sender.IsEnemy &&
                     args.Target != null &&

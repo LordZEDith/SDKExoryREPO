@@ -35,7 +35,7 @@ namespace NabbActivator
                     GameObjects.AllyHeroes.Any(
                         a =>
                             a.HasBuff("itemstarksbindingbufferproc") ||
-                            !a.IsDead && a.HasBuff("rallyingbanneraurafriend")))
+                                !a.IsDead && a.HasBuff("rallyingbanneraurafriend")))
                 {
                     return;
                 }
@@ -80,7 +80,7 @@ namespace NabbActivator
                     GameObjects.AllyHeroes.Where(
                         a =>
                             a.IsValidTarget(500f, false) &&
-                            Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/4))
+                                Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/4))
                 {
                     Items.UseItem(3401, ally);
                     return;
@@ -97,7 +97,7 @@ namespace NabbActivator
                     GameObjects.AllyHeroes.Count(
                         a =>
                             a.IsValidTarget(600f, false) &&
-                            Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/1.5) >= 3)
+                                Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/1.5) >= 3)
                 {
                     Items.UseItem(3190);
                     return;
@@ -164,8 +164,9 @@ namespace NabbActivator
                     GameObjects.EnemyHeroes.Count(
                         t =>
                             t.IsValidTarget(2000f) &&
-                            t.CountEnemyHeroesInRange(1500f) <=
-                            GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) > 1)
+                                t.CountEnemyHeroesInRange(1500f) <=
+                                    GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) -
+                                        1) > 1)
                 {
                     Items.UseItem(3059);
                     return;
@@ -183,9 +184,9 @@ namespace NabbActivator
                         GameObjects.EnemyHeroes.Count(
                             t =>
                                 t.IsValidTarget(2000f) &&
-                                t.CountEnemyHeroesInRange(1500f) <=
-                                GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) >
-                        1)
+                                    t.CountEnemyHeroesInRange(1500f) <=
+                                        GameObjects.Player.CountAllyHeroesInRange(1500f) +
+                                            t.CountAllyHeroesInRange(1500f) - 1) > 1)
                     {
                         Items.UseItem(3800);
                         return;

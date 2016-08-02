@@ -146,18 +146,12 @@ namespace NabbTracker
         {
             if (SpecialChampions.Contains(target.ChampionName))
             {
-                return Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
-                    ? -47
-                    : -38;
+                return Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -47 : -38;
             }
 
             return target.IsMe
-                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
-                    ? -40
-                    : -30
-                : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
-                    ? -33
-                    : -22;
+                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -40 : -30
+                : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -33 : -22;
         }
 
         /// <summary>
@@ -167,14 +161,10 @@ namespace NabbTracker
         {
             if (SpecialChampions.Contains(target.ChampionName))
             {
-                return target.IsMe
-                    ? 34
-                    : 17;
+                return target.IsMe ? 34 : 17;
             }
 
-            return target.IsMe
-                ? 55
-                : 10;
+            return target.IsMe ? 55 : 10;
         }
 
         /// <summary>
@@ -187,9 +177,7 @@ namespace NabbTracker
                 return 25;
             }
 
-            return target.IsMe
-                ? 25
-                : 35;
+            return target.IsMe ? 25 : 35;
         }
 
         /// <summary>
@@ -215,9 +203,7 @@ namespace NabbTracker
                 return -12;
             }
 
-            return target.IsMe
-                ? -4
-                : 4;
+            return target.IsMe ? -4 : 4;
         }
     }
 }

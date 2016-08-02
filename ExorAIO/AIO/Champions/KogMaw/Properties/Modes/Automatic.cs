@@ -61,16 +61,16 @@ namespace ExorAIO.Champions.KogMaw
             /// </summary>
             if (Vars.R.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
+                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().SValue >
-                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+                    GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.HealthPercent < 50 && !Invulnerable.Check(t) &&
-                            t.IsValidTarget(Vars.R.Range)))
+                                t.IsValidTarget(Vars.R.Range)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

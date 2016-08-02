@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Sona
                 /// </summary>
                 if (Targets.JungleMinions.Any() &&
                     GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                     Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast();
@@ -44,10 +44,10 @@ namespace ExorAIO.Champions.Sona
                 ///     The LaneClear Q Logic.
                 /// </summary>
                 else if (Targets.Minions.Any() &&
-                         GameObjects.Player.ManaPercent >
-                         ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
-                         Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
-                         Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Range).MinionsHit >= 3)
+                    GameObjects.Player.ManaPercent >
+                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                    Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
+                    Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Range).MinionsHit >= 3)
                 {
                     Vars.Q.Cast();
                 }

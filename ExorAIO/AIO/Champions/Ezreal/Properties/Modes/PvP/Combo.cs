@@ -35,8 +35,8 @@ namespace ExorAIO.Champions.Ezreal
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(2000f) && !Invulnerable.Check(t) &&
-                                Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                .Value))
+                                    Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                    .Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }
@@ -51,9 +51,9 @@ namespace ExorAIO.Champions.Ezreal
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 t.IsValidTarget(2000f) && Bools.IsImmobile(Targets.Target) &&
-                                !Invulnerable.Check(Targets.Target) &&
-                                Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                .Value))
+                                    !Invulnerable.Check(Targets.Target) &&
+                                    Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                                    .Value))
                     {
                         Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     }

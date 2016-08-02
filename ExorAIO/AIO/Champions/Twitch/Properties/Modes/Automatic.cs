@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Twitch
                         GameObjects.EnemyHeroes.Any(
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                                t.GetBuffCount("twitchdeadlyvenom") == 6))
+                                    t.GetBuffCount("twitchdeadlyvenom") == 6))
                     {
                         Vars.E.Cast();
                     }
@@ -56,9 +56,9 @@ namespace ExorAIO.Champions.Twitch
                         Targets.JungleMinions.Any(
                             m =>
                                 m.IsValidTarget(Vars.E.Range) &&
-                                m.Health <
-                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                                    m.Health <
+                                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }

@@ -32,9 +32,9 @@ namespace ExorAIO.Champions.Twitch
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                            Vars.GetRealHealth(t) <
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
-                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
+                                Vars.GetRealHealth(t) <
+                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E) +
+                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E, DamageStage.Buff)))
                 {
                     Vars.E.Cast();
                 }

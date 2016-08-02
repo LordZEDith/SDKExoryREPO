@@ -66,19 +66,18 @@ namespace ExorAIO.Champions.Taliyah
             if (obj.IsValid &&
                 obj.Name.Equals("Taliyah_Base_Q_aoe_bright.troy"))
             {
-                DelayAction.Add(500,
-                                () =>
-                                {
-                                    if (
-                                        !ObjectManager.Get<GameObject>()
-                                                      .Any(
-                                                          o =>
-                                                              o.IsAlly && o.Distance(GameObjects.Player) < 412.5f &&
-                                                              o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
-                                    {
-                                        TerrainObject = null;
-                                    }
-                                });
+                DelayAction.Add(500, () =>
+                {
+                    if (
+                        !ObjectManager.Get<GameObject>()
+                                      .Any(
+                                          o =>
+                                              o.IsAlly && o.Distance(GameObjects.Player) < 412.5f &&
+                                                  o.Name.Equals("Taliyah_Base_Q_aoe_bright.troy")))
+                    {
+                        TerrainObject = null;
+                    }
+                });
             }
         }
 
@@ -162,7 +161,7 @@ namespace ExorAIO.Champions.Taliyah
             {
                 Vars.W.Cast(args.Sender.ServerPosition,
                             args.Sender.IsFacing(GameObjects.Player) &&
-                            GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
+                                GameObjects.Player.Distance(args.Sender) < Vars.AARange/2
                                 ? GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
                                                                            GameObjects.Player.Distance(args.Sender)*2)
                                 : GameObjects.Player.ServerPosition);

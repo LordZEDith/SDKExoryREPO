@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.Graves
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false)))
+                                !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }
@@ -68,7 +68,7 @@ namespace ExorAIO.Champions.Graves
                     !GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value))
                 {
                     return;
@@ -79,7 +79,7 @@ namespace ExorAIO.Champions.Graves
                         GameObjects.EnemyHeroes.Where(
                             t =>
                                 !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                                 .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }

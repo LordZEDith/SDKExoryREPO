@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Akali
                 !Targets.Target.IsValidTarget(Vars.R.Range) &&
                 Targets.Target.IsValidTarget(Vars.R.Range*2) &&
                 GameObjects.Player.GetBuffCount("AkaliShadowDance") >=
-                Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().SValue &&
+                    Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["miscellaneous"]["gapclose"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in

@@ -40,11 +40,7 @@ namespace ExorAIO.Champions.Karma
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
-                    Vars.WMenu.Add(new MenuSliderButton("lifesaver",
-                                                        "Logical Lifesaver / If Health < x%",
-                                                        20,
-                                                        10,
-                                                        100,
+                    Vars.WMenu.Add(new MenuSliderButton("lifesaver", "Logical Lifesaver / If Health < x%", 20, 10, 100,
                                                         true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
@@ -67,8 +63,7 @@ namespace ExorAIO.Champions.Karma
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(),
-                                                                    $"Use for: {ally.ChampionName}",
-                                                                    true));
+                                                                    $"Use for: {ally.ChampionName}", true));
                             }
                         }
 

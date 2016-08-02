@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Lucian
             {
                 if (!Game.CursorPos.IsUnderEnemyTurret() ||
                     ((Obj_AI_Hero) args.Target).Health <
-                    GameObjects.Player.GetAutoAttackDamage((Obj_AI_Hero) args.Target)*2)
+                        GameObjects.Player.GetAutoAttackDamage((Obj_AI_Hero) args.Target)*2)
                 {
                     switch (Vars.Menu["spells"]["e"]["mode"].GetValue<MenuList>().Index)
                     {

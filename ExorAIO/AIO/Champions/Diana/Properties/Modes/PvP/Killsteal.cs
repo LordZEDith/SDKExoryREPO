@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Diana
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
                     return;
@@ -48,8 +48,8 @@ namespace ExorAIO.Champions.Diana
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.E.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
+                                !Invulnerable.Check(t, DamageType.Magical) &&
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
                 {
                     /*
                     if (!target.HasBuff("dianamoonlight") &&

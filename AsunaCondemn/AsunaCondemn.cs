@@ -68,16 +68,14 @@ namespace AsunaCondemn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false) &&
-                            !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
-                            GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(t.ServerPosition,
-                                                                                                 Vars.Flash.Range)) >
-                            GameObjects.Player.Distance(t) + t.BoundingRadius &&
-                            Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                                !Invulnerable.Check(t, DamageType.Magical, false) &&
+                                !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
+                                GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(t.ServerPosition,
+                                                                                                     Vars.Flash.Range)) >
+                                    GameObjects.Player.Distance(t) + t.BoundingRadius &&
+                                Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
-                    for (var i = 1;
-                         i < 10;
-                         i++)
+                    for (var i = 1; i < 10; i++)
                     {
                         var vector = Vector3.Normalize(target.ServerPosition - GameObjects.Player.ServerPosition);
                         if ((target.ServerPosition - vector*(float) (i*42.5)).IsWall() &&
@@ -118,12 +116,10 @@ namespace AsunaCondemn
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 GameObjects.Player.Distance(args.End) > GameObjects.Player.BoundingRadius &&
                 GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(args.End, Vars.Flash.Range)) >
-                GameObjects.Player.Distance(args.End) + args.Sender.BoundingRadius &&
+                    GameObjects.Player.Distance(args.End) + args.Sender.BoundingRadius &&
                 Vars.Menu["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                for (var i = 1;
-                     i < 10;
-                     i++)
+                for (var i = 1; i < 10; i++)
                 {
                     var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
                     if ((args.End - vector*(float) (i*42.5)).IsWall() &&

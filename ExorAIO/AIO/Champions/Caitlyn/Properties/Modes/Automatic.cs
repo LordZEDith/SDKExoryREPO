@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                            !Invulnerable.Check(t, DamageType.Magical, false)))
+                                !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }
@@ -53,7 +53,7 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            t.HasBuff("caitlynyordletrapsight")))
+                                t.HasBuff("caitlynyordletrapsight")))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -70,7 +70,7 @@ namespace ExorAIO.Champions.Caitlyn
                     !GameObjects.EnemyHeroes.Any(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value))
                 {
                     return;
@@ -80,7 +80,7 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
             }
         }

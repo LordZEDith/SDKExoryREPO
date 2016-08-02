@@ -73,10 +73,10 @@ namespace ExorAIO.Champions.KogMaw
                 Targets.Target.HealthPercent < 50 &&
                 Targets.Target.IsValidTarget(Vars.R.Range) &&
                 GameObjects.Player.Mana >
-                Vars.W.Instance.ManaCost + 50*(GameObjects.Player.GetBuffCount("kogmawlivingartillerycost") + 1) &&
+                    Vars.W.Instance.ManaCost + 50*(GameObjects.Player.GetBuffCount("kogmawlivingartillerycost") + 1) &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue >
-                GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
+                    GameObjects.Player.GetBuffCount("kogmawlivingartillerycost"))
             {
                 Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).CastPosition);
             }

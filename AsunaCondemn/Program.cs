@@ -20,25 +20,25 @@ namespace AsunaCondemn
             /// </summary>
             Bootstrap.Init();
             Events.OnLoad += (sender, eventArgs) =>
-                             {
-                                 if (!GameObjects.Player.ChampionName.Equals("Vayne"))
-                                 {
-                                     Game.PrintChat(
-                                         "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
-                                     return;
-                                 }
+            {
+                if (!GameObjects.Player.ChampionName.Equals("Vayne"))
+                {
+                    Game.PrintChat(
+                        "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
+                    return;
+                }
 
-                                 /// <summary>
-                                 ///     Loads the assembly.
-                                 /// </summary>
-                                 Condem.OnLoad();
+                /// <summary>
+                ///     Loads the assembly.
+                /// </summary>
+                Condem.OnLoad();
 
-                                 /// <summary>
-                                 ///     Tells the player the assembly has been loaded.
-                                 /// </summary>
-                                 Game.PrintChat(
-                                     "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
-                             };
+                /// <summary>
+                ///     Tells the player the assembly has been loaded.
+                /// </summary>
+                Game.PrintChat(
+                    "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
+            };
         }
     }
 }

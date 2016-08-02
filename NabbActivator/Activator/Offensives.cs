@@ -63,8 +63,9 @@ namespace NabbActivator
                     GameObjects.EnemyHeroes.Count(
                         t =>
                             t.IsValidTarget(4000f) &&
-                            t.CountEnemyHeroesInRange(1500f) <=
-                            GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) >= 1)
+                                t.CountEnemyHeroesInRange(1500f) <=
+                                    GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) -
+                                        1) >= 1)
                 {
                     Items.UseItem(3092);
                 }

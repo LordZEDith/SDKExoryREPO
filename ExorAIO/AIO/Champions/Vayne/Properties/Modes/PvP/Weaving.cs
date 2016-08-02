@@ -42,9 +42,9 @@ namespace ExorAIO.Champions.Vayne
                 {
                     if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange &&
                         GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f).CountEnemyHeroesInRange(1000f) <
-                        3 &&
+                            3 &&
                         Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f)) <
-                        Vars.AARange)
+                            Vars.AARange)
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }

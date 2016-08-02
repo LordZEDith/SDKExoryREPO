@@ -33,10 +33,10 @@ namespace ExorAIO.Champions.Tristana
                 {
                     if (Vars.GetRealHealth(target) <
                         (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.R) +
-                        (target.HasBuff("TristanaECharge")
-                            ? (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E) +
-                              (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E, DamageStage.Buff)
-                            : 0))
+                            (target.HasBuff("TristanaECharge")
+                                ? (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E) +
+                                    (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.E, DamageStage.Buff)
+                                : 0))
                     {
                         Vars.R.CastOnUnit(target);
                     }

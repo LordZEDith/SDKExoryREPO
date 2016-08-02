@@ -31,11 +31,10 @@ namespace ExorAIO.Champions.Diana
             if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
                 Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                DelayAction.Add((int) (100 + Game.Ping/2f),
-                                () =>
-                                {
-                                    GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
-                                });
+                DelayAction.Add((int) (100 + Game.Ping/2f), () =>
+                {
+                    GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
+                });
             }
 
             /// <summary>
@@ -62,7 +61,7 @@ namespace ExorAIO.Champions.Diana
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.CountEnemyHeroesInRange(Vars.E.Range) >=
-                Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue &&
+                    Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();

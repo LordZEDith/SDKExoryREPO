@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Corki
             if (Vars.R.IsReady() &&
                 Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
+                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
                 Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in
@@ -57,8 +57,7 @@ namespace ExorAIO.Champions.Corki
                 {
                     if (Vars.GetRealHealth(minion) <
                         (float)
-                            GameObjects.Player.GetSpellDamage(minion,
-                                                              SpellSlot.R,
+                            GameObjects.Player.GetSpellDamage(minion, SpellSlot.R,
                                                               ObjectManager.Player.HasBuff(
                                                                   "corkimissilebarragecounterbig")
                                                                   ? DamageStage.Empowered

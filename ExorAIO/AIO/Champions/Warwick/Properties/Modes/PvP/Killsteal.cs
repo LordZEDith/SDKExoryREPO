@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Warwick
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                            t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                     return;
@@ -48,8 +48,8 @@ namespace ExorAIO.Champions.Warwick
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                            t.Health > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2 &&
-                            t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                                t.Health > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)*2 &&
+                                t.Health < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);
                 }

@@ -134,7 +134,7 @@ namespace ExorAIO.Champions.Anivia
 
                         if (!Targets.RMinions.Any() ||
                             GameObjects.Player.ManaPercent <
-                            ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
+                                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
                         {
                             Vars.R.Cast();
                         }

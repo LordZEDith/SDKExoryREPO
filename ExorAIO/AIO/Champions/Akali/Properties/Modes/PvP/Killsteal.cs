@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Akali
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)*2))
                 {
                     Vars.R.CastOnUnit(target);
                     return;
@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Akali
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget(Vars.AARange) && !Invulnerable.Check(t, DamageType.Physical) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast();
                     return;
@@ -65,7 +65,7 @@ namespace ExorAIO.Champions.Akali
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical) &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                                Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                 }

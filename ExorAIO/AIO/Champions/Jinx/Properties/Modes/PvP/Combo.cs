@@ -30,12 +30,12 @@ namespace ExorAIO.Champions.Jinx
                 if (Vars.E.IsReady() &&
                     Targets.Target.IsValidTarget(Vars.E.Range) &&
                     Targets.Target.CountEnemyHeroesInRange(Vars.E.Width) >=
-                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue &&
+                        Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue &&
                     Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition,
                                                                          GameObjects.Player.Distance(Targets.Target) +
-                                                                         Targets.Target.BoundingRadius*2));
+                                                                             Targets.Target.BoundingRadius*2));
                 }
                 if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)))
                 {
@@ -68,8 +68,8 @@ namespace ExorAIO.Champions.Jinx
                     GameObjects.EnemyHeroes.Where(
                         t =>
                             t.IsValidTarget(Vars.W.Range) &&
-                            t.CountEnemyHeroesInRange(225f) >=
-                            Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue))
+                                t.CountEnemyHeroesInRange(225f) >=
+                                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

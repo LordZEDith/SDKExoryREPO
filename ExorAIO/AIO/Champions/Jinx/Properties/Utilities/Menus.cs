@@ -79,8 +79,7 @@ namespace ExorAIO.Champions.Jinx
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
                                 Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}",
-                                                                    true));
+                                                                    $"Use against: {target.ChampionName}", true));
                             }
                         }
 
@@ -98,8 +97,7 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous", true);
             {
-                Vars.MiscMenu.Add(new MenuBool("blockq",
-                                               "Disable/Block Manual PowPow->FishBones Casting when low Mana",
+                Vars.MiscMenu.Add(new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana",
                                                true));
             }
             Vars.Menu.Add(Vars.MiscMenu);

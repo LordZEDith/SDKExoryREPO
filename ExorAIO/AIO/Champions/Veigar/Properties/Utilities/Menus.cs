@@ -55,11 +55,7 @@ namespace ExorAIO.Champions.Veigar
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuSliderButton("enemies",
-                                                        "Automatic / if can hit >= than x Enemies",
-                                                        2,
-                                                        2,
-                                                        6,
+                    Vars.EMenu.Add(new MenuSliderButton("enemies", "Automatic / if can hit >= than x Enemies", 2, 2, 6,
                                                         true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);

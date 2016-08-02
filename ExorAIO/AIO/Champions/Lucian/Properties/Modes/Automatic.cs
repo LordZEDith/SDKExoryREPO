@@ -31,11 +31,10 @@ namespace ExorAIO.Champions.Lucian
             /// </summary>
             if (GameObjects.Player.HasBuff("LucianR"))
             {
-                DelayAction.Add((int) (100 + Game.Ping/2f),
-                                () =>
-                                {
-                                    GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
-                                });
+                DelayAction.Add((int) (100 + Game.Ping/2f), () =>
+                {
+                    GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
+                });
             }
 
             /// <summary>
@@ -55,7 +54,7 @@ namespace ExorAIO.Champions.Lucian
                     Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
                 }
                 else if (GameObjects.Player.HasBuff("LucianR") &&
-                         !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                    !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
                 {
                     Vars.R.Cast();
                 }

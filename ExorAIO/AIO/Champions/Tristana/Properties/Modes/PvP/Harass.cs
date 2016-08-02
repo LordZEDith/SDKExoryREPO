@@ -31,8 +31,9 @@ namespace ExorAIO.Champions.Tristana
             if (Vars.E.IsReady() &&
                 Targets.Target.IsValidTarget(Vars.E.Range) &&
                 GameObjects.Player.ManaPercent >
-                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().SValue +
-                (int) (GameObjects.Player.Spellbook.GetSpell(Vars.E.Slot).ManaCost/GameObjects.Player.MaxMana*100) &&
+                    Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().SValue +
+                        (int)
+                            (GameObjects.Player.Spellbook.GetSpell(Vars.E.Slot).ManaCost/GameObjects.Player.MaxMana*100) &&
                 Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue &&
                 Vars.Menu["spells"]["e"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {

@@ -90,7 +90,7 @@ namespace ExorAIO.Champions.Sona
                 GameObjects.Jungle.Any(
                     m =>
                         m.CharData.BaseSkinName == sender.CharData.BaseSkinName &&
-                        GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
+                            GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
             {
                 if (sender.IsEnemy &&
                     args.Target != null &&
@@ -122,7 +122,6 @@ namespace ExorAIO.Champions.Sona
             {
                 Vars.E.Cast();
             }
-
             if (Vars.R.IsReady() &&
                 args.Sender.IsMelee &&
                 GameObjects.Player.Distance(args.End) < Vars.R.Range - 50f &&
@@ -176,6 +175,7 @@ namespace ExorAIO.Champions.Sona
                             }
                             break;
                     }
+
                     break;
             }
         }

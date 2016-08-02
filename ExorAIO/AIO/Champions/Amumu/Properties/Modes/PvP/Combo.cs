@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Amumu
             /// </summary>
             if (Vars.R.IsReady() &&
                 GameObjects.Player.CountEnemyHeroesInRange(Vars.R.Range - 50f) >=
-                Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue &&
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue &&
                 Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.Cast();

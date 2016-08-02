@@ -44,12 +44,8 @@ namespace ExorAIO.Champions.MissFortune
                                 Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
                                 Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
                                 Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear",
-                                                                     "LaneClear / if Mana >= %",
-                                                                     50,
-                                                                     0,
-                                                                     99,
-                                                                     true));
+                                Vars.Q2Menu.Add(new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0,
+                                                                     99, true));
                                 Vars.Q2Menu.Add(new MenuSeparator("excseparator1", "Miscellaneous Exceptions List:"));
                                 Vars.Q2Menu.Add(new MenuBool("excombokill", "Combo: Only if Minion Killable"));
                                 Vars.Q2Menu.Add(new MenuBool("mixedkill", "Mixed: Only if Minion Killable"));
@@ -67,8 +63,7 @@ namespace ExorAIO.Champions.MissFortune
                                 foreach (var target in GameObjects.EnemyHeroes)
                                 {
                                     Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                        $"Harass: {target.ChampionName}",
-                                                                        true));
+                                                                        $"Harass: {target.ChampionName}", true));
                                 }
                             }
 

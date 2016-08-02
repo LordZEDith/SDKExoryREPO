@@ -26,8 +26,8 @@ namespace ExorAIO.Champions.Jhin
                 GameObjects.EnemyHeroes.Where(
                     t =>
                         t.IsValidTarget(Vars.R.Range) && GameObjects.Player.IsFacing(t) &&
-                        !Invulnerable.Check(t, DamageType.True, false) &&
-                        Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                            !Invulnerable.Check(t, DamageType.True, false) &&
+                            Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                            .ToList();
 
         /// <summary>
@@ -44,6 +44,7 @@ namespace ExorAIO.Champions.Jhin
                 GameObjects.Jungle.Where(
                     m =>
                         m.IsValidTarget(Vars.Q.Range) &&
-                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
+                            (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
+                           .ToList();
     }
 }

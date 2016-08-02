@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                 Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range)))
@@ -38,16 +38,17 @@ namespace ExorAIO.Champions.Ryze
                     if (minion.HasBuff("RyzeE") &&
                         Vars.GetRealHealth(minion) > (float) GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
                         Vars.GetRealHealth(minion) <
-                        (float) GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)*(1 + (minion.HasBuff("RyzeE")
-                            ? new double[]
-                              {
-                                  40,
-                                  55,
-                                  70,
-                                  85,
-                                  100
-                              }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1]/100
-                            : 0)))
+                            (float) GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)*
+                                (1 + (minion.HasBuff("RyzeE")
+                                    ? new double[]
+                                      {
+                                          40,
+                                          55,
+                                          70,
+                                          85,
+                                          100
+                                      }[GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level - 1]/100
+                                    : 0)))
                     {
                         Vars.Q.Cast(minion);
                     }
@@ -59,14 +60,14 @@ namespace ExorAIO.Champions.Ryze
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
+                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
                 Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in Targets.Minions.Where(m => m.IsValidTarget(Vars.E.Range)))
                 {
                     if (minion.HasBuff("RyzeE") ||
                         Vars.GetRealHealth(minion) < (float) GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
-                        Vars.GetRealHealth(minion) > (float) GameObjects.Player.GetAutoAttackDamage(minion))
+                            Vars.GetRealHealth(minion) > (float) GameObjects.Player.GetAutoAttackDamage(minion))
                     {
                         Vars.E.CastOnUnit(minion);
                         return;
@@ -87,7 +88,7 @@ namespace ExorAIO.Champions.Ryze
                         minion.IsValidTarget(Vars.E.Range) &&
                         !GameObjects.JungleSmall.Contains(minion) &&
                         GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                         Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                     {
                         Vars.E.CastOnUnit(minion);
@@ -102,7 +103,7 @@ namespace ExorAIO.Champions.Ryze
                         minion.IsValidTarget(Vars.Q.Range) &&
                         Vars.GetRealHealth(minion) > (float) GameObjects.Player.GetSpellDamage(minion, SpellSlot.E) &&
                         GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                            ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
                         Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                     {
                         Vars.Q.Cast(minion.ServerPosition);

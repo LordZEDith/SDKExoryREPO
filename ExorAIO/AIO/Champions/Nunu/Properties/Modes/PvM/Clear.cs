@@ -64,7 +64,7 @@ namespace ExorAIO.Champions.Nunu
                     Targets.Minions.Where(
                         m =>
                             m.IsValidTarget(Vars.E.Range) &&
-                            Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
+                                Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E)))
                 {
                     Vars.E.CastOnUnit(minion);
                 }

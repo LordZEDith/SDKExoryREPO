@@ -147,9 +147,7 @@ namespace ExorAIO.Champions.Vayne
                     Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>().Value &&
                     Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
-                    for (var i = 1;
-                         i < 10;
-                         i++)
+                    for (var i = 1; i < 10; i++)
                     {
                         var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
                         if ((args.End + vector*(float) (i*42.5)).IsWall() &&
@@ -201,8 +199,8 @@ namespace ExorAIO.Champions.Vayne
                         /// </summary>
                         if (GameObjects.Player.GetBuff("vaynetumblefade").EndTime - Game.Time >
                             GameObjects.Player.GetBuff("vaynetumblefade").EndTime -
-                            GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
-                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000f)
+                                GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
+                                Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000f)
                         {
                             args.Process = false;
                         }
@@ -211,7 +209,7 @@ namespace ExorAIO.Champions.Vayne
                         ///     The Automatic Stealth Logic.
                         /// </summary>
                         else if (GameObjects.Player.HasBuff("summonerexhaust") ||
-                                 GameObjects.Player.HasBuffOfType(BuffType.Blind))
+                            GameObjects.Player.HasBuffOfType(BuffType.Blind))
                         {
                             args.Process = false;
                         }
@@ -228,14 +226,14 @@ namespace ExorAIO.Champions.Vayne
                             GameObjects.EnemyHeroes.Any(
                                 t =>
                                     t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
-                                    t.NetworkId != hero.NetworkId))
+                                        t.NetworkId != hero.NetworkId))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
                                     t =>
                                         t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
-                                        t.NetworkId != hero.NetworkId)
+                                            t.NetworkId != hero.NetworkId)
                                            .OrderByDescending(
                                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                            .First();

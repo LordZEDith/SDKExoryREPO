@@ -94,38 +94,33 @@ namespace NabbAlerter
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
-                                        () =>
-                                        {
-                                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
-                                            {
-                                                return;
-                                            }
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000), () =>
+                        {
+                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
+                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                            {
+                                return;
+                            }
 
-                                            /// <summary>
-                                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
-                                            /// </summary>
-                                            switch (WeightedRandom.Next(1, 4))
-                                            {
-                                                case 1:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no ulti");
-                                                    break;
-                                                case 2:
-                                                    Game.Say(
-                                                        $"no ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                case 3:
-                                                    Game.Say(
-                                                        $"ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                default:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} ult");
-                                                    break;
-                                            }
-                                        });
+                            /// <summary>
+                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
+                            /// </summary>
+                            switch (WeightedRandom.Next(1, 4))
+                            {
+                                case 1:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no ulti");
+                                    break;
+                                case 2:
+                                    Game.Say($"no ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                case 3:
+                                    Game.Say($"ult {Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                default:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} ult");
+                                    break;
+                            }
+                        });
                     }
 
                     break;
@@ -140,41 +135,39 @@ namespace NabbAlerter
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
-                                        () =>
-                                        {
-                                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
-                                            {
-                                                return;
-                                            }
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000), () =>
+                        {
+                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
+                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                            {
+                                return;
+                            }
 
-                                            /// <summary>
-                                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
-                                            /// </summary>
-                                            switch (WeightedRandom.Next(1, 4))
-                                            {
-                                                case 1:
-                                                    Game.Say(
-                                                        $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                case 2:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
-                                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
-                                                    break;
-                                                case 3:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                default:
-                                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
-                                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
-                                                    break;
-                                            }
-                                        });
+                            /// <summary>
+                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
+                            /// </summary>
+                            switch (WeightedRandom.Next(1, 4))
+                            {
+                                case 1:
+                                    Game.Say(
+                                        $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
+                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                case 2:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
+                                    break;
+                                case 3:
+                                    Game.Say(
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())} " +
+                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                default:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[4].Name.ToLower())}");
+                                    break;
+                            }
+                        });
                     }
                     break;
                 case SpellSlot.Summoner2:
@@ -188,41 +181,39 @@ namespace NabbAlerter
                         /// <summary>
                         ///     Let's delay the alert by 5-10 seconds since we're not Sean Wrona.
                         /// </summary>
-                        DelayAction.Add(WeightedRandom.Next(5000, 10000),
-                                        () =>
-                                        {
-                                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
-                                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
-                                            {
-                                                return;
-                                            }
+                        DelayAction.Add(WeightedRandom.Next(5000, 10000), () =>
+                        {
+                            if (Vars.Menu["nocombo"].GetValue<MenuBool>().Value &&
+                                Vars.Menu["combokey"].GetValue<MenuKeyBind>().Active)
+                            {
+                                return;
+                            }
 
-                                            /// <summary>
-                                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
-                                            /// </summary>
-                                            switch (WeightedRandom.Next(1, 4))
-                                            {
-                                                case 1:
-                                                    Game.Say(
-                                                        $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                case 2:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
-                                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
-                                                    break;
-                                                case 3:
-                                                    Game.Say(
-                                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
-                                                        $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
-                                                    break;
-                                                default:
-                                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
-                                                             $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
-                                                    break;
-                                            }
-                                        });
+                            /// <summary>
+                            ///     Then we randomize the whole output (Structure/Names/SpellNames) to make it seem totally legit.
+                            /// </summary>
+                            switch (WeightedRandom.Next(1, 4))
+                            {
+                                case 1:
+                                    Game.Say(
+                                        $"no {Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
+                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                case 2:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} no " +
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
+                                    break;
+                                case 3:
+                                    Game.Say(
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())} " +
+                                            $"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())}");
+                                    break;
+                                default:
+                                    Game.Say($"{Vars.GetHumanName(objAiHero.ChampionName.ToLower())} " +
+                                        $"{Vars.GetHumanSpellName(objAiHero.Spellbook.Spells[5].Name.ToLower())}");
+                                    break;
+                            }
+                        });
                     }
                     break;
             }

@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Anivia
             if (Vars.R.IsReady() &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1 &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
+                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
                 Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -61,7 +61,7 @@ namespace ExorAIO.Champions.Anivia
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -87,16 +87,14 @@ namespace ExorAIO.Champions.Anivia
                         if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width*2 - 10f).MinionsHit >= 3 &&
                             !new Geometry.Rectangle(GameObjects.Player.ServerPosition,
                                                     GameObjects.Player.ServerPosition.Extend(
-                                                        Targets.Minions[0].ServerPosition,
-                                                        Vars.Q.Range),
+                                                        Targets.Minions[0].ServerPosition, Vars.Q.Range),
                                                     Vars.Q.Width*2 - 10f).IsOutside(
                                                         (Vector2)
                                                             Vars.Q.GetPrediction(
                                                                 GameObjects.EnemyHeroes.FirstOrDefault(
                                                                     t =>
                                                                         !Invulnerable.Check(t) &&
-                                                                        t.IsValidTarget(Vars.Q.Range)))
-                                                                .CastPosition))
+                                                                            t.IsValidTarget(Vars.Q.Range))).CastPosition))
                         {
                             Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width*2 - 10f).Position);
                         }

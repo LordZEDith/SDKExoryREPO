@@ -30,7 +30,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             if (Vars.Q.IsReady() &&
                 GameObjects.Player.HealthPercent >
-                ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                    ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
                 Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -77,7 +77,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.HealthPercent >
-                ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                    ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
                 Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
@@ -103,7 +103,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             if (Vars.E.IsReady() &&
                 GameObjects.Player.HealthPercent >
-                ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
+                    ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
                 Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();

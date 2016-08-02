@@ -33,13 +33,13 @@ namespace ExorAIO.Champions.Vayne
                 Targets.Target.IsValidTarget(Vars.Q.Range) &&
                 Targets.Target.CountEnemyHeroesInRange(700f) == 1 &&
                 GameObjects.Player.ManaPercent >
-                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
                 Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (
                     Targets.Target.Distance(GameObjects.Player.Position.Extend(Game.CursorPos,
                                                                                Vars.Q.Range - Vars.AARange)) <
-                    Vars.AARange)
+                        Vars.AARange)
                 {
                     Vars.Q.Cast(Game.CursorPos);
                 }
