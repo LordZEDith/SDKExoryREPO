@@ -61,7 +61,9 @@ namespace ExorAIO.Champions.Corki
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"AutoHarass: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
+                                                                    $"AutoHarass: {target.ChampionName}",
+                                                                    true));
                             }
                         }
 

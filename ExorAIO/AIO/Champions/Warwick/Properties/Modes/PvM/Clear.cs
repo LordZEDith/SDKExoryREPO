@@ -19,7 +19,8 @@ namespace ExorAIO.Champions.Warwick
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Clear(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
+            if (Bools.HasSheenBuff() ||
+                !(Variables.Orbwalker.GetTarget() as Obj_AI_Minion).IsValidTarget())
             {
                 return;
             }
@@ -27,10 +28,11 @@ namespace ExorAIO.Champions.Warwick
             /// <summary>
             ///     The W Clear Logic.
             /// </summary>
-            if (Vars.W.IsReady() && GameObjects.Player.IsWindingUp &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.W.IsReady() &&
+                GameObjects.Player.IsWindingUp &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.W.Cast();
             }
@@ -42,13 +44,16 @@ namespace ExorAIO.Champions.Warwick
             /// <summary>
             ///     The Q Clear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (GameObjects.Player.MaxHealth >
                     GameObjects.Player.Health +
-                        (float)GameObjects.Player.GetSpellDamage(Variables.Orbwalker.GetTarget() as Obj_AI_Minion, SpellSlot.Q) * 0.8)
+                    (float)
+                        GameObjects.Player.GetSpellDamage(Variables.Orbwalker.GetTarget() as Obj_AI_Minion, SpellSlot.Q)*
+                    0.8)
                 {
                     Vars.Q.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Minion);
                 }

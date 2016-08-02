@@ -90,22 +90,22 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) && !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
+            if (sender is Obj_AI_Hero ||
+                sender is Obj_AI_Turret)
             {
-                return;
-            }
-            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero)args.Target).IsAlly)
-            {
-                return;
-            }
-
-            if (Vars.E.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.E.Range, false) &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
-                                                   .Value
-                && Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                           .Value)
-            {
-                Vars.E.CastOnUnit((Obj_AI_Hero)args.Target);
+                if (sender.IsEnemy &&
+                    args.Target != null &&
+                    GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
+                {
+                    if (Vars.E.IsReady() &&
+                        ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.E.Range, false) &&
+                        Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
+                        Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
+                            .GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.CastOnUnit((Obj_AI_Hero) args.Target);
+                    }
+                }
             }
         }
 
@@ -116,11 +116,13 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && GameObjects.Player.Distance(args.End) < 750 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                                                                                        .Value)
+            if (Vars.E.IsReady() &&
+                GameObjects.Player.Distance(args.End) < 750 &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>()
-                                                                        .Value && GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
+                if (Vars.R.IsReady() &&
+                    Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
+                    GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
                 {
                     Vars.R.Cast();
                 }
@@ -147,10 +149,10 @@ namespace ExorAIO.Champions.Karma
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
-                                                                     .Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
                             {
-                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion &&
+                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }

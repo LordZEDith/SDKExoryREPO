@@ -20,7 +20,8 @@ namespace ExorAIO.Champions.Ezreal
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -28,18 +29,16 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
-                                                  .BValue
-                && Vars.Menu["spells"]["q"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                               .Value)
+            if (Vars.Q.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue &&
+                Vars.Menu["spells"]["q"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target)
-                         .CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
-                                    .UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                     return;
                 }
             }
@@ -47,13 +46,13 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The W Harass Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
-                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>()
-                                                  .BValue)
+            if (Vars.W.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.W.Range) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"]) &&
+                Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target)
-                                .UnitPosition);
+                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).UnitPosition);
             }
         }
     }

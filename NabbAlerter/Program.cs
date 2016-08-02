@@ -29,7 +29,8 @@ namespace NabbAlerter
                                  /// <summary>
                                  ///     Tells the player the assembly has been loaded.
                                  /// </summary>
-                                 Game.PrintChat("[SDK]<b><font color='#663096'>Nabb</font></b>Alerter: <font color='#663096'>Ultima</font> - Loaded!");
+                                 Game.PrintChat(
+                                     "[SDK]<b><font color='#663096'>Nabb</font></b>Alerter: <font color='#663096'>Ultima</font> - Loaded!");
                              };
         }
     }

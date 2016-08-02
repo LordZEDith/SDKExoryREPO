@@ -19,9 +19,9 @@ namespace NabbActivator
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Offensives(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || !Vars.Menu["offensives"].GetValue<MenuBool>()
-                                                                           .Value || !Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>()
-                                                                                                                .Active)
+            if (!Targets.Target.IsValidTarget() ||
+                !Vars.Menu["offensives"].GetValue<MenuBool>().Value ||
+                !Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active)
             {
                 return;
             }
@@ -29,7 +29,8 @@ namespace NabbActivator
             /// <summary>
             ///     The Bilgewater Cutlass Logic.
             /// </summary>
-            if (Items.CanUseItem(3144) && Targets.Target.IsValidTarget(550f))
+            if (Items.CanUseItem(3144) &&
+                Targets.Target.IsValidTarget(550f))
             {
                 Items.UseItem(3144, Targets.Target);
             }
@@ -37,7 +38,9 @@ namespace NabbActivator
             /// <summary>
             ///     The Blade of the Ruined King Logic.
             /// </summary>
-            if (Items.CanUseItem(3153) && Targets.Target.IsValidTarget(550f) && GameObjects.Player.HealthPercent <= 90)
+            if (Items.CanUseItem(3153) &&
+                Targets.Target.IsValidTarget(550f) &&
+                GameObjects.Player.HealthPercent <= 90)
             {
                 Items.UseItem(3153, Targets.Target);
             }
@@ -45,7 +48,8 @@ namespace NabbActivator
             /// <summary>
             ///     The Entropy Logic.
             /// </summary>     
-            if (Items.CanUseItem(3184) && GameObjects.Player.Spellbook.IsAutoAttacking)
+            if (Items.CanUseItem(3184) &&
+                GameObjects.Player.Spellbook.IsAutoAttacking)
             {
                 Items.UseItem(3184);
             }
@@ -57,13 +61,10 @@ namespace NabbActivator
             {
                 if (
                     GameObjects.EnemyHeroes.Count(
-                                                  t =>
-                                                      t.IsValidTarget(4000f) &&
-                                                          t.CountEnemyHeroesInRange(1500f)
-                                                              <= GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f)
-                                                                  - 1)
-                        >=
-                        1)
+                        t =>
+                            t.IsValidTarget(4000f) &&
+                            t.CountEnemyHeroesInRange(1500f) <=
+                            GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) >= 1)
                 {
                     Items.UseItem(3092);
                 }
@@ -72,7 +73,8 @@ namespace NabbActivator
             /// <summary>
             ///     The Hextech Gunblade Logic.
             /// </summary>
-            if (Items.CanUseItem(3146) && Targets.Target.IsValidTarget(700f))
+            if (Items.CanUseItem(3146) &&
+                Targets.Target.IsValidTarget(700f))
             {
                 Items.UseItem(3146, Targets.Target);
             }
@@ -82,7 +84,8 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3142))
             {
-                if (GameObjects.Player.Spellbook.IsAutoAttacking || GameObjects.Player.IsCastingInterruptableSpell())
+                if (GameObjects.Player.Spellbook.IsAutoAttacking ||
+                    GameObjects.Player.IsCastingInterruptableSpell())
                 {
                     Items.UseItem(3142);
                 }
@@ -91,7 +94,8 @@ namespace NabbActivator
             /// <summary>
             ///     The Hextech GLP-800 Logic.
             /// </summary>
-            if (Items.CanUseItem(3030) && Targets.Target.IsValidTarget(800f))
+            if (Items.CanUseItem(3030) &&
+                Targets.Target.IsValidTarget(800f))
             {
                 Items.UseItem(3030, Targets.Target.ServerPosition);
             }
@@ -100,7 +104,8 @@ namespace NabbActivator
             ///     The Hextech Protobelt Logic.
             /// </summary>
             if (Items.CanUseItem(3152) &&
-                Targets.Target.IsValidTarget(GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f))))
+                Targets.Target.IsValidTarget(
+                    GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f))))
             {
                 Items.UseItem(3152, GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f));
             }

@@ -57,7 +57,8 @@ namespace ExorAIO.Champions.Lucian
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-            if (GameObjects.Player.HasBuff("LucianR") || GameObjects.Player.HasBuff("LucianPassiveBuff"))
+            if (GameObjects.Player.HasBuff("LucianR") ||
+                GameObjects.Player.HasBuff("LucianPassiveBuff"))
             {
                 return;
             }
@@ -95,7 +96,9 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && !GameObjects.Player.HasBuff("LucianR") && AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe &&
+                !GameObjects.Player.HasBuff("LucianR") &&
+                AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -120,9 +123,11 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The <see cref="GameObjectPlayAnimationEventArgs" /> instance containing the event data.</param>
         public static void OnPlayAnimation(Obj_AI_Base sender, GameObjectPlayAnimationEventArgs args)
         {
-            if (sender.IsMe && Variables.Orbwalker.ActiveMode != OrbwalkingMode.None)
+            if (sender.IsMe &&
+                Variables.Orbwalker.ActiveMode != OrbwalkingMode.None)
             {
-                if (args.Animation.Equals("Spell1") || args.Animation.Equals("Spell2"))
+                if (args.Animation.Equals("Spell1") ||
+                    args.Animation.Equals("Spell2"))
                 {
                     GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
                 }
@@ -136,9 +141,11 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range) && args.SkillType == GapcloserType.Targeted &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                     .Value)
+            if (Vars.E.IsReady() &&
+                args.Sender.IsMelee &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                args.SkillType == GapcloserType.Targeted &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 if (args.Target.IsMe)
                 {

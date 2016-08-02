@@ -21,7 +21,8 @@ namespace ExorAIO.Champions.Kalista
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -29,28 +30,25 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
-                                                  .BValue)
+            if (Vars.Q.IsReady() &&
+                !Invulnerable.Check(Targets.Target) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target)
-                         .CollisionObjects.Any())
+                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
-                                    .UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
-                else if (Vars.Q.GetPrediction(Targets.Target)
-                             .CollisionObjects.Count(
-                                                     c =>
-                                                         Targets.Minions.Contains(c)
-                                                             && c.Health < (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q))
-                    ==
+                else if (
                     Vars.Q.GetPrediction(Targets.Target)
-                        .CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                        .CollisionObjects.Count(
+                            c =>
+                                Targets.Minions.Contains(c) &&
+                                c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
+                    Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target)
-                                    .UnitPosition);
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
             }
         }

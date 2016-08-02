@@ -51,9 +51,8 @@ namespace AsunaCondemn
             {
                 return;
             }
-            if (!Vars.Menu["enable"].GetValue<MenuBool>()
-                                    .Value || !Vars.Menu["keybind"].GetValue<MenuKeyBind>()
-                                                                   .Active)
+            if (!Vars.Menu["enable"].GetValue<MenuBool>().Value ||
+                !Vars.Menu["keybind"].GetValue<MenuKeyBind>().Active)
             {
                 return;
             }
@@ -61,33 +60,34 @@ namespace AsunaCondemn
             /// <summary>
             ///     The fixed Condem Logic Kappa.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Flash.IsReady() && !GameObjects.Player.IsDashing())
+            if (Vars.E.IsReady() &&
+                Vars.Flash.IsReady() &&
+                !GameObjects.Player.IsDashing())
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      !t.IsDashing() && t.IsValidTarget(Vars.E.Range)
-                                                          && !Invulnerable.Check(t, DamageType.Magical, false) &&
-                                                          !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
-                                                          GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(t.ServerPosition,
-                                                              Vars.Flash.Range)) >
-                                                              GameObjects.Player.Distance(t) + t.BoundingRadius
-                                                          && Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                             .Value))
+                        t =>
+                            !t.IsDashing() && t.IsValidTarget(Vars.E.Range) &&
+                            !Invulnerable.Check(t, DamageType.Magical, false) &&
+                            !t.IsValidTarget(GameObjects.Player.BoundingRadius) &&
+                            GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(t.ServerPosition,
+                                                                                                 Vars.Flash.Range)) >
+                            GameObjects.Player.Distance(t) + t.BoundingRadius &&
+                            Vars.Menu["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
                     for (var i = 1;
                          i < 10;
                          i++)
                     {
                         var vector = Vector3.Normalize(target.ServerPosition - GameObjects.Player.ServerPosition);
-                        if ((target.ServerPosition - vector * (float)(i * 42.5)).IsWall() && (Vars.E.GetPrediction(target)
-                                                                                                  .UnitPosition - vector * (float)(i * 42.5)).IsWall()
-                            && (target.ServerPosition - vector * (float)(i * 44.5)).IsWall() &&
-                            (Vars.E.GetPrediction(target)
-                                 .UnitPosition - vector * (float)(i * 44.5)).IsWall())
+                        if ((target.ServerPosition - vector*(float) (i*42.5)).IsWall() &&
+                            (Vars.E.GetPrediction(target).UnitPosition - vector*(float) (i*42.5)).IsWall() &&
+                            (target.ServerPosition - vector*(float) (i*44.5)).IsWall() &&
+                            (Vars.E.GetPrediction(target).UnitPosition - vector*(float) (i*44.5)).IsWall())
                         {
                             Vars.E.CastOnUnit(target);
-                            Vars.Flash.Cast(GameObjects.Player.ServerPosition.Extend(target.ServerPosition, Vars.Flash.Range));
+                            Vars.Flash.Cast(GameObjects.Player.ServerPosition.Extend(target.ServerPosition,
+                                                                                     Vars.Flash.Range));
                         }
                     }
                 }
@@ -101,10 +101,9 @@ namespace AsunaCondemn
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (!Vars.Menu["enable"].GetValue<MenuBool>()
-                                    .Value || !Vars.Menu["keybind"].GetValue<MenuKeyBind>()
-                                                                   .Active || !Vars.Menu["features"]["dashpred"].GetValue<MenuBool>()
-                                                                                                                .Value)
+            if (!Vars.Menu["enable"].GetValue<MenuBool>().Value ||
+                !Vars.Menu["keybind"].GetValue<MenuKeyBind>().Active ||
+                !Vars.Menu["features"]["dashpred"].GetValue<MenuBool>().Value)
             {
                 return;
             }
@@ -112,23 +111,27 @@ namespace AsunaCondemn
             /// <summary>
             ///     The Dash-Condemn Prediction Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Flash.IsReady() && !GameObjects.Player.IsDashing() && args.Sender.IsValidTarget(Vars.E.Range) &&
+            if (Vars.E.IsReady() &&
+                Vars.Flash.IsReady() &&
+                !GameObjects.Player.IsDashing() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
                 !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
                 GameObjects.Player.Distance(args.End) > GameObjects.Player.BoundingRadius &&
                 GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(args.End, Vars.Flash.Range)) >
-                    GameObjects.Player.Distance(args.End) + args.Sender.BoundingRadius &&
-                Vars.Menu["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                          .Value)
+                GameObjects.Player.Distance(args.End) + args.Sender.BoundingRadius &&
+                Vars.Menu["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
                 for (var i = 1;
                      i < 10;
                      i++)
                 {
                     var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
-                    if ((args.End - vector * (float)(i * 42.5)).IsWall() && (args.End - vector * (float)(i * 44.5)).IsWall())
+                    if ((args.End - vector*(float) (i*42.5)).IsWall() &&
+                        (args.End - vector*(float) (i*44.5)).IsWall())
                     {
                         Vars.E.CastOnUnit(args.Sender);
-                        Vars.Flash.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, Vars.Flash.Range));
+                        Vars.Flash.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
+                                                                                 Vars.Flash.Range));
                     }
                 }
             }

@@ -30,140 +30,162 @@ namespace ExorAIO.Champions.Vayne
                                   /// <summary>
                                   ///     Loads the E drawing.
                                   /// </summary>
-                                  if (Vars.E != null && Vars.E.IsReady() && Vars.Menu["drawings"]["epred"] != null &&
-                                      Vars.Menu["drawings"]["epred"].GetValue<MenuBool>()
-                                                                    .Value)
+                                  if (Vars.E != null &&
+                                      Vars.E.IsReady() &&
+                                      Vars.Menu["drawings"]["epred"] != null &&
+                                      Vars.Menu["drawings"]["epred"].GetValue<MenuBool>().Value)
                                   {
-                                      foreach (var target in GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.E.Range)))
+                                      foreach (
+                                          var target in
+                                              GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.E.Range)))
                                       {
                                           /// <summary>
                                           ///     The Position Line.
                                           /// </summary>
-                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position)
+                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position).X,
+                                                           Drawing.WorldToScreen(GameObjects.Player.Position).Y,
+                                                           Drawing.WorldToScreen(target.Position +
+                                                                                 Vector3.Normalize(target.Position -
+                                                                                                   GameObjects.Player
+                                                                                                              .Position)*
+                                                                                 420)
                                                                   .X,
-                                              Drawing.WorldToScreen(GameObjects.Player.Position)
-                                                     .Y,
-                                              Drawing.WorldToScreen(target.Position
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .X,
-                                              Drawing.WorldToScreen(target.Position
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              1,
-                                              (target.Position + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).IsWall()
-                                                  ? Color.Green
-                                                  : Color.Red);
+                                                           Drawing.WorldToScreen(target.Position +
+                                                                                 Vector3.Normalize(target.Position -
+                                                                                                   GameObjects.Player
+                                                                                                              .Position)*
+                                                                                 420)
+                                                                  .Y,
+                                                           1,
+                                                           (target.Position +
+                                                            Vector3.Normalize(target.Position -
+                                                                              GameObjects.Player.Position)*420)
+                                                               .IsWall()
+                                                               ? Color.Green
+                                                               : Color.Red);
 
                                           /// <summary>
                                           ///     The Angle-Check Position Line.
                                           /// </summary>
                                           Drawing.DrawLine(
-                                                           Drawing.WorldToScreen(target.Position
-                                                               + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                                  .X,
-                                              Drawing.WorldToScreen(target.Position
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              Drawing.WorldToScreen(target.Position
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                              Drawing.WorldToScreen(target.Position +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
                                                      .X,
-                                              Drawing.WorldToScreen(target.Position
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                              Drawing.WorldToScreen(target.Position +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
+                                                     .Y,
+                                              Drawing.WorldToScreen(target.Position +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
+                                                     .X,
+                                              Drawing.WorldToScreen(target.Position +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
                                                      .Y,
                                               1,
-                                              (target.Position + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).IsWall()
+                                              (target.Position +
+                                               Vector3.Normalize(target.Position - GameObjects.Player.Position)*440)
+                                                  .IsWall()
                                                   ? Color.Green
                                                   : Color.Red);
 
                                           /// <summary>
                                           ///     The Prediction Line.
                                           /// </summary>
-                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position)
+                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position).X,
+                                                           Drawing.WorldToScreen(GameObjects.Player.Position).Y,
+                                                           Drawing.WorldToScreen(
+                                                               Vars.E.GetPrediction(target).UnitPosition +
+                                                               Vector3.Normalize(target.Position -
+                                                                                 GameObjects.Player.Position)*420)
                                                                   .X,
-                                              Drawing.WorldToScreen(GameObjects.Player.Position)
-                                                     .Y,
-                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .X,
-                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              1,
-                                              (Vars.E.GetPrediction(target)
-                                                   .UnitPosition + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).IsWall()
-                                                  ? Color.Green
-                                                  : Color.Red);
+                                                           Drawing.WorldToScreen(
+                                                               Vars.E.GetPrediction(target).UnitPosition +
+                                                               Vector3.Normalize(target.Position -
+                                                                                 GameObjects.Player.Position)*420)
+                                                                  .Y,
+                                                           1,
+                                                           (Vars.E.GetPrediction(target).UnitPosition +
+                                                            Vector3.Normalize(target.Position -
+                                                                              GameObjects.Player.Position)*420).IsWall()
+                                                               ? Color.Green
+                                                               : Color.Red);
 
                                           /// <summary>
                                           ///     The Angle-Check Prediction Line.
                                           /// </summary>
-                                          Drawing.DrawLine(Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                                     .UnitPosition
-                                              + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                                  .X,
-                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                          Drawing.DrawLine(
+                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
                                                      .X,
-                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
+                                                     .Y,
+                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
+                                                     .X,
+                                              Drawing.WorldToScreen(Vars.E.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
                                                      .Y,
                                               1,
-                                              (Vars.E.GetPrediction(target)
-                                                   .UnitPosition + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).IsWall()
+                                              (Vars.E.GetPrediction(target).UnitPosition +
+                                               Vector3.Normalize(target.Position - GameObjects.Player.Position)*440)
+                                                  .IsWall()
                                                   ? Color.Green
                                                   : Color.Red);
 
                                           /// <summary>
                                           ///     The Prediction Assurance Line.
                                           /// </summary>
-                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position)
+                                          Drawing.DrawLine(Drawing.WorldToScreen(GameObjects.Player.Position).X,
+                                                           Drawing.WorldToScreen(GameObjects.Player.Position).Y,
+                                                           Drawing.WorldToScreen(
+                                                               Vars.E2.GetPrediction(target).UnitPosition +
+                                                               Vector3.Normalize(target.Position -
+                                                                                 GameObjects.Player.Position)*420)
                                                                   .X,
-                                              Drawing.WorldToScreen(GameObjects.Player.Position)
-                                                     .Y,
-                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .X,
-                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              1,
-                                              (Vars.E2.GetPrediction(target)
-                                                   .UnitPosition + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).IsWall()
-                                                  ? Color.Green
-                                                  : Color.Red);
+                                                           Drawing.WorldToScreen(
+                                                               Vars.E2.GetPrediction(target).UnitPosition +
+                                                               Vector3.Normalize(target.Position -
+                                                                                 GameObjects.Player.Position)*420)
+                                                                  .Y,
+                                                           1,
+                                                           (Vars.E2.GetPrediction(target).UnitPosition +
+                                                            Vector3.Normalize(target.Position -
+                                                                              GameObjects.Player.Position)*420).IsWall()
+                                                               ? Color.Green
+                                                               : Color.Red);
 
                                           /// <summary>
                                           ///     The Angle-Check Prediction Assurance Line.
                                           /// </summary>
-                                          Drawing.DrawLine(Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                                     .UnitPosition
-                                              + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                                  .X,
-                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420)
-                                                     .Y,
-                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                          Drawing.DrawLine(
+                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
                                                      .X,
-                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target)
-                                                                        .UnitPosition
-                                                  + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440)
+                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*420)
+                                                     .Y,
+                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
+                                                     .X,
+                                              Drawing.WorldToScreen(Vars.E2.GetPrediction(target).UnitPosition +
+                                                                    Vector3.Normalize(target.Position -
+                                                                                      GameObjects.Player.Position)*440)
                                                      .Y,
                                               1,
-                                              (Vars.E2.GetPrediction(target)
-                                                   .UnitPosition + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).IsWall()
+                                              (Vars.E2.GetPrediction(target).UnitPosition +
+                                               Vector3.Normalize(target.Position - GameObjects.Player.Position)*440)
+                                                  .IsWall()
                                                   ? Color.Green
                                                   : Color.Red);
                                       }

@@ -107,14 +107,15 @@ namespace ExorAIO.Champions.Akali
                         switch (args.SData.Name)
                         {
                             case "AkaliMota":
-                                if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
-                                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>()
-                                                                     .Value
-                                    && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                                   .Value)
+                                if (Vars.R.IsReady() &&
+                                    Targets.Target.IsValidTarget(Vars.R.Range) &&
+                                    !Targets.Target.IsValidTarget(Vars.AARange) &&
+                                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value &&
+                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                        .GetValue<MenuBool>().Value)
                                 {
-                                    if (!Targets.Target.IsUnderEnemyTurret() || !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>()
-                                                                                                                   .Value)
+                                    if (!Targets.Target.IsUnderEnemyTurret() ||
+                                        !Vars.Menu["miscellaneous"]["safe"].GetValue<MenuBool>().Value)
                                     {
                                         Vars.R.CastOnUnit(Targets.Target);
                                     }

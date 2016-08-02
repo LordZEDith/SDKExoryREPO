@@ -19,7 +19,8 @@ namespace ExorAIO.Champions.Sivir
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,15 +28,15 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>()
-                                                  .BValue)
+            if (Vars.Q.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.Q.Range) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
+                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast(Targets.Target.IsValidTarget(300f)
                     ? Targets.Target.ServerPosition
-                    : Vars.Q.GetPrediction(Targets.Target)
-                          .CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
+                    : Vars.Q.GetPrediction(Targets.Target).CastPosition.Extend(GameObjects.Player.ServerPosition, -140f));
             }
         }
     }

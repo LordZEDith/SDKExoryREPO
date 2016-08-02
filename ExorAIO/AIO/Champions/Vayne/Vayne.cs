@@ -93,7 +93,8 @@ namespace ExorAIO.Champions.Vayne
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe &&
+                AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -122,15 +123,17 @@ namespace ExorAIO.Champions.Vayne
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false))
             {
                 /// <summary>
                 ///     The Anti-GapCloser E Logic.
                 /// </summary>
                 if (args.Sender.IsMelee)
                 {
-                    if (args.IsDirectedToPlayer && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                                                        .Value)
+                    if (args.IsDirectedToPlayer &&
+                        Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
                     {
                         Vars.E.CastOnUnit(args.Sender);
                     }
@@ -139,18 +142,18 @@ namespace ExorAIO.Champions.Vayne
                 /// <summary>
                 ///     The Dash-Condemn Prediction Logic.
                 /// </summary>
-                if (!GameObjects.Player.IsDashing() && GameObjects.Player.Distance(args.End) > GameObjects.Player.BoundingRadius &&
-                    Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>()
-                                                        .Value
-                    && Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                .Value)
+                if (!GameObjects.Player.IsDashing() &&
+                    GameObjects.Player.Distance(args.End) > GameObjects.Player.BoundingRadius &&
+                    Vars.Menu["spells"]["e"]["dashpred"].GetValue<MenuBool>().Value &&
+                    Vars.Menu["spells"]["e"]["whitelist"][args.Sender.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 {
                     for (var i = 1;
                          i < 10;
                          i++)
                     {
                         var vector = Vector3.Normalize(args.End - GameObjects.Player.ServerPosition);
-                        if ((args.End + vector * (float)(i * 42.5)).IsWall() && (args.End + vector * (float)(i * 44.5)).IsWall())
+                        if ((args.End + vector*(float) (i*42.5)).IsWall() &&
+                            (args.End + vector*(float) (i*44.5)).IsWall())
                         {
                             Console.WriteLine("DASHPREDICTION CONDEMN!!1!11");
                             Vars.E.CastOnUnit(args.Sender);
@@ -167,9 +170,10 @@ namespace ExorAIO.Champions.Vayne
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>()
-                                                       .Value)
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(args.Sender);
             }
@@ -189,17 +193,16 @@ namespace ExorAIO.Champions.Vayne
                     /// <summary>
                     ///     The Automatic Stealth Logics.
                     /// </summary>
-                    if (!GameObjects.Player.IsUnderEnemyTurret() && GameObjects.Player.HasBuff("vaynetumblefade"))
+                    if (!GameObjects.Player.IsUnderEnemyTurret() &&
+                        GameObjects.Player.HasBuff("vaynetumblefade"))
                     {
                         /// <summary>
                         ///     The Automatic Stealth Logic.
                         /// </summary>
-                        if (GameObjects.Player.GetBuff("vaynetumblefade")
-                                       .EndTime - Game.Time > GameObjects.Player.GetBuff("vaynetumblefade")
-                                                                         .EndTime - GameObjects.Player.GetBuff("vaynetumblefade")
-                                                                                               .StartTime
-                                           - Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>()
-                                                                                      .Value / 1000f)
+                        if (GameObjects.Player.GetBuff("vaynetumblefade").EndTime - Game.Time >
+                            GameObjects.Player.GetBuff("vaynetumblefade").EndTime -
+                            GameObjects.Player.GetBuff("vaynetumblefade").StartTime -
+                            Vars.Menu["miscellaneous"]["stealthtime"].GetValue<MenuSlider>().Value/1000f)
                         {
                             args.Process = false;
                         }
@@ -207,7 +210,8 @@ namespace ExorAIO.Champions.Vayne
                         /// <summary>
                         ///     The Automatic Stealth Logic.
                         /// </summary>
-                        else if (GameObjects.Player.HasBuff("summonerexhaust") || GameObjects.Player.HasBuffOfType(BuffType.Blind))
+                        else if (GameObjects.Player.HasBuff("summonerexhaust") ||
+                                 GameObjects.Player.HasBuffOfType(BuffType.Blind))
                         {
                             args.Process = false;
                         }
@@ -217,22 +221,23 @@ namespace ExorAIO.Champions.Vayne
                     ///     The Target Forcing Logic (W Stacks).
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    if (hero != null &&
+                        Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero)*3)
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
-                                                        t =>
-                                                            t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2
-                                                                && t.NetworkId != hero.NetworkId))
+                                t =>
+                                    t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
+                                    t.NetworkId != hero.NetworkId))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
-                                                              t =>
-                                                                  t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2
-                                                                      && t.NetworkId != hero.NetworkId)
-                                           .OrderByDescending(o => Data.Get<ChampionPriorityData>()
-                                                                       .GetPriority(o.ChampionName))
+                                    t =>
+                                        t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2 &&
+                                        t.NetworkId != hero.NetworkId)
+                                           .OrderByDescending(
+                                               o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                            .First();
                             return;
                         }

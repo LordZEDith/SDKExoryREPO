@@ -61,7 +61,9 @@ namespace ExorAIO.Champions.Kalista
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Harass: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
+                                                                    $"Harass: {target.ChampionName}",
+                                                                    true));
                             }
                         }
 

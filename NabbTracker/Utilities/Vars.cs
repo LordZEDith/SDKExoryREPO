@@ -83,7 +83,8 @@ namespace NabbTracker
         /// <summary>
         ///     The Text fcnt.
         /// </summary>
-        public static Font DisplayTextFont { get; set; } = new Font(Drawing.Direct3DDevice, new System.Drawing.Font("Tahoma", 8));
+        public static Font DisplayTextFont { get; set; } = new Font(Drawing.Direct3DDevice,
+                                                                    new System.Drawing.Font("Tahoma", 8));
 
         /// <summary>
         ///     The Spells Healthbars X coordinate.
@@ -145,19 +146,16 @@ namespace NabbTracker
         {
             if (SpecialChampions.Contains(target.ChampionName))
             {
-                return Menu["miscellaneous"]["name"].GetValue<MenuBool>()
-                                                    .Value
+                return Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
                     ? -47
                     : -38;
             }
 
             return target.IsMe
-                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>()
-                                               .Value
+                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
                     ? -40
                     : -30
-                : Menu["miscellaneous"]["name"].GetValue<MenuBool>()
-                                               .Value
+                : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value
                     ? -33
                     : -22;
         }

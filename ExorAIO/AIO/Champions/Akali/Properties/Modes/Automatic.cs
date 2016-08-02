@@ -27,11 +27,12 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>()
-                                                                       .Value)
+            if (Vars.W.IsReady() &&
+                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (Bools.HasDeadlyMark() ||
-                    Health.GetPrediction(GameObjects.Player, (int)(750 + Game.Ping / 2f)) <= GameObjects.Player.MaxHealth / 4)
+                    Health.GetPrediction(GameObjects.Player, (int) (750 + Game.Ping/2f)) <=
+                    GameObjects.Player.MaxHealth/4)
                 {
                     Vars.W.Cast(GameObjects.Player.ServerPosition);
                 }

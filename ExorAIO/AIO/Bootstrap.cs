@@ -24,6 +24,7 @@ using ExorAIO.Champions.MissFortune;
 using ExorAIO.Champions.Nautilus;
 using ExorAIO.Champions.Nunu;
 using ExorAIO.Champions.Olaf;
+using ExorAIO.Champions.Orianna;
 using ExorAIO.Champions.Pantheon;
 using ExorAIO.Champions.Quinn;
 using ExorAIO.Champions.Renekton;
@@ -131,6 +132,9 @@ namespace ExorAIO.Core
                     break;
                 case "Olaf":
                     new Olaf().OnLoad();
+                    break;
+                case "Orianna":
+                    new Orianna().OnLoad();
                     break;
                 case "Pantheon":
                     new Pantheon().OnLoad();

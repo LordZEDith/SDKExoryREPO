@@ -90,7 +90,8 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe &&
+                AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -111,9 +112,10 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                     .Value)
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
             }
@@ -126,9 +128,10 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>()
-                                                       .Value)
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
             }

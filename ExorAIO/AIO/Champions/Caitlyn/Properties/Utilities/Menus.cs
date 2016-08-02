@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Caitlyn
                 {
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuSeparator("separator",
-                        "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                                                     "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -77,7 +77,9 @@ namespace ExorAIO.Champions.Caitlyn
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
+                                                                    $"Use against: {target.ChampionName}",
+                                                                    true));
                             }
                         }
 

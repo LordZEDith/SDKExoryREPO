@@ -89,15 +89,18 @@ namespace ExorAIO.Champions.KogMaw
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.Q.IsReady() && args.IsDirectedToPlayer && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.Q.Range) &&
-                Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>()
-                                                     .Value)
+            if (Vars.Q.IsReady() &&
+                args.IsDirectedToPlayer &&
+                !Invulnerable.Check(args.Sender) &&
+                args.Sender.IsValidTarget(Vars.Q.Range) &&
+                Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast(args.End);
             }
-            if (Vars.E.IsReady() && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.E.Range) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                     .Value)
+            if (Vars.E.IsReady() &&
+                !Invulnerable.Check(args.Sender) &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(args.End);
             }

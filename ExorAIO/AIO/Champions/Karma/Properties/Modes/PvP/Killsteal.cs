@@ -25,31 +25,27 @@ namespace ExorAIO.Champions.Karma
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
-                                                                         .Value)
+            if (Vars.Q.IsReady() &&
+                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      t.IsValidTarget(Vars.Q.Range - 100f) && !Invulnerable.Check(t, DamageType.Magical) &&
-                                                          Vars.GetRealHealth(t) <
-                                                              (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
-                                                                  (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>()
-                                                                                                                       .Value
-                                                                      ? (float)
-                                                                          GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.Empowered)
-                                                                      : 0)))
+                        t =>
+                            t.IsValidTarget(Vars.Q.Range - 100f) && !Invulnerable.Check(t, DamageType.Magical) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
+                            (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value
+                                ? (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.Empowered)
+                                : 0)))
                 {
-                    if (!Vars.Q.GetPrediction(target)
-                             .CollisionObjects.Any())
+                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
-                        if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>()
-                                                                                .Value)
+                        if (Vars.R.IsReady() &&
+                            Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value)
                         {
                             Vars.R.Cast();
                         }
-                        Vars.Q.Cast(Vars.Q.GetPrediction(target)
-                                        .UnitPosition);
+                        Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }
                 }
             }

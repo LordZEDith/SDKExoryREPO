@@ -87,7 +87,8 @@ namespace ExorAIO.Champions.Sivir
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe &&
+                AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
@@ -115,8 +116,8 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>()
-                                                                       .Value)
+            if (Vars.E.IsReady() &&
+                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
                 Logics.AutoShield(sender, args);
             }

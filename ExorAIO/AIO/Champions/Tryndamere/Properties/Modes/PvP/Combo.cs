@@ -19,7 +19,9 @@ namespace ExorAIO.Champions.Tryndamere
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() ||
+                !Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,9 +29,10 @@ namespace ExorAIO.Champions.Tryndamere
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range) && !Targets.Target.IsFacing(GameObjects.Player) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>()
-                                                 .Value)
+            if (Vars.W.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.W.Range) &&
+                !Targets.Target.IsFacing(GameObjects.Player) &&
+                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
             }
@@ -37,12 +40,12 @@ namespace ExorAIO.Champions.Tryndamere
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) && !Targets.Target.IsValidTarget(Vars.AARange) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>()
-                                                 .Value)
+            if (Vars.E.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
+                !Targets.Target.IsValidTarget(Vars.AARange) &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target)
-                                .UnitPosition);
+                Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
             }
         }
     }

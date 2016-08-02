@@ -83,9 +83,10 @@ namespace ExorAIO.Champions.Warwick
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>()
-                                                       .Value)
+            if (Vars.R.IsReady() &&
+                args.Sender.IsValidTarget(Vars.R.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.R.CastOnUnit(args.Sender);
             }

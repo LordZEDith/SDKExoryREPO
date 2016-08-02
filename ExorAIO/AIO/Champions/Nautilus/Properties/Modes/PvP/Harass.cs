@@ -19,7 +19,8 @@ namespace ExorAIO.Champions.Nautilus
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -27,10 +28,11 @@ namespace ExorAIO.Champions.Nautilus
             /// <summary>
             ///     The E Harass Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
-                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>()
-                                                  .BValue)
+            if (Vars.E.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.E.Range) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]) &&
+                Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
             }

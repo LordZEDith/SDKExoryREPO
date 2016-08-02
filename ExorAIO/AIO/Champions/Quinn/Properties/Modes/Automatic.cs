@@ -26,20 +26,22 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>()
-                                                                      .Value)
+            if (Vars.W.IsReady() &&
+                Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
             {
-                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None && GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
+                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
+                    GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
                 {
                     Vars.E.Cast();
                 }
                 else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
                 {
-                    if (GameObjects.EnemyHeroes.Any(t => t.Distance(t.GetWaypoints()
-                                                                     .Last()) < 1500 && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints()
-                                                                                                                        .Last(),
-                                                                         1) && GameObjects.Player.Distance(t.GetWaypoints()
-                                                                                                            .Last()) < Vars.W.Range))
+                    if (
+                        GameObjects.EnemyHeroes.Any(
+                            t =>
+                                t.Distance(t.GetWaypoints().Last()) < 1500 &&
+                                NavMesh.IsWallOfGrass((Vector3) t.GetWaypoints().Last(), 1) &&
+                                GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
                     {
                         Vars.E.Cast();
                     }
@@ -49,7 +51,9 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Automatic R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && GameObjects.Player.InFountain() && Vars.R.Instance.Name.Equals("QuinnR"))
+            if (Vars.R.IsReady() &&
+                GameObjects.Player.InFountain() &&
+                Vars.R.Instance.Name.Equals("QuinnR"))
             {
                 Vars.R.Cast();
             }

@@ -20,7 +20,8 @@ namespace ExorAIO.Champions.Corki
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() ||
+                Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -28,18 +29,16 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The R Harass Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range) &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["autoharass"]) &&
-                Vars.Menu["spells"]["r"]["autoharass"].GetValue<MenuSliderButton>()
-                                                      .BValue
-                && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                               .Value)
+            if (Vars.R.IsReady() &&
+                Targets.Target.IsValidTarget(Vars.R.Range) &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["autoharass"]) &&
+                Vars.Menu["spells"]["r"]["autoharass"].GetValue<MenuSliderButton>().BValue &&
+                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                if (!Vars.R.GetPrediction(Targets.Target)
-                         .CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                if (!Vars.R.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                 {
-                    Vars.R.Cast(Vars.R.GetPrediction(Targets.Target)
-                                    .UnitPosition);
+                    Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
                 }
             }
         }

@@ -30,11 +30,12 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>()
-                                                                       .Value)
+            if (Vars.Q.IsReady() &&
+                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
-                    GameObjects.EnemyHeroes.Where(t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                    GameObjects.EnemyHeroes.Where(
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -48,25 +49,25 @@ namespace ExorAIO.Champions.Sivir
                 switch (target.ChampionName)
                 {
                     case "Jax":
-                        if (target.HasBuff("jaxcounterstrike") && target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
-                            target.GetBuff("jaxcounterstrike")
-                                  .EndTime - Game.Time > target.GetBuff("jaxcounterstrike")
-                                                               .EndTime - target.GetBuff("jaxcounterstrike")
-                                                                                .StartTime - 1 &&
-                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"].GetValue<MenuBool>()
-                                                                                                                      .Value)
+                        if (target.HasBuff("jaxcounterstrike") &&
+                            target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
+                            target.GetBuff("jaxcounterstrike").EndTime - Game.Time >
+                            target.GetBuff("jaxcounterstrike").EndTime - target.GetBuff("jaxcounterstrike").StartTime -
+                            1 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"]
+                                .GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();
                         }
                         break;
                     case "KogMaw":
-                        if (target.HasBuff("kogmawicathiansurprise") && target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
-                            target.GetBuff("kogmawicathiansurprise")
-                                  .EndTime - Game.Time > target.GetBuff("kogmawicathiansurprise")
-                                                               .EndTime - target.GetBuff("kogmawicathiansurprise")
-                                                                                .StartTime - 4 &&
-                            Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>()
-                                                                                                                            .Value)
+                        if (target.HasBuff("kogmawicathiansurprise") &&
+                            target.IsValidTarget(355 + GameObjects.Player.BoundingRadius) &&
+                            target.GetBuff("kogmawicathiansurprise").EndTime - Game.Time >
+                            target.GetBuff("kogmawicathiansurprise").EndTime -
+                            target.GetBuff("kogmawicathiansurprise").StartTime - 4 &&
+                            Vars.Menu["spells"]["e"]["whitelist"][
+                                $"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
                         {
                             Vars.E.Cast();
                         }
@@ -82,7 +83,8 @@ namespace ExorAIO.Champions.Sivir
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void AutoShield(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender == null || !sender.IsEnemy)
+            if (sender == null ||
+                !sender.IsEnemy)
             {
                 return;
             }
@@ -99,17 +101,20 @@ namespace ExorAIO.Champions.Sivir
                     ///     Block Gangplank's Barrels.
                     /// </summary>
                     var hero = sender as Obj_AI_Hero;
-                    if (hero != null && hero.ChampionName.Equals("Gangplank"))
+                    if (hero != null &&
+                        hero.ChampionName.Equals("Gangplank"))
                     {
                         if (!(args.Target is Obj_AI_Minion))
                         {
                             return;
                         }
 
-                        if (AutoAttack.IsAutoAttack(args.SData.Name) || args.SData.Name.Equals("GangplankQProceed"))
+                        if (AutoAttack.IsAutoAttack(args.SData.Name) ||
+                            args.SData.Name.Equals("GangplankQProceed"))
                         {
-                            if (Math.Abs(((Obj_AI_Minion)args.Target).Health - 1) <= 0 && ((Obj_AI_Minion)args.Target).DistanceToPlayer() < 450 &&
-                                ((Obj_AI_Minion)args.Target).CharData.BaseSkinName.Equals("gangplankbarrel"))
+                            if (Math.Abs(((Obj_AI_Minion) args.Target).Health - 1) <= 0 &&
+                                ((Obj_AI_Minion) args.Target).DistanceToPlayer() < 450 &&
+                                ((Obj_AI_Minion) args.Target).CharData.BaseSkinName.Equals("gangplankbarrel"))
                             {
                                 Vars.E.Cast();
                             }
@@ -136,14 +141,17 @@ namespace ExorAIO.Champions.Sivir
                                     /// <summary>
                                     ///     Whitelist Block.
                                     /// </summary>
-                                    if (Vars.Menu["spells"]["e"]["whitelist"][$"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                        !Vars.Menu["spells"]["e"]["whitelist"][$"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
-                                            .GetValue<MenuBool>()
-                                            .Value)
+                                    if (
+                                        Vars.Menu["spells"]["e"]["whitelist"][
+                                            $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
+                                        !Vars.Menu["spells"]["e"]["whitelist"][
+                                            $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
+                                            .GetValue<MenuBool>().Value)
                                     {
                                         return;
                                     }
-                                    if (GameObjects.Player.HasBuff("udyrbearstuncheck") && hero.ChampionName.Equals("Udyr"))
+                                    if (GameObjects.Player.HasBuff("udyrbearstuncheck") &&
+                                        hero.ChampionName.Equals("Udyr"))
                                     {
                                         return;
                                     }
@@ -153,12 +161,11 @@ namespace ExorAIO.Champions.Sivir
                                 default:
                                     if (!hero.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)) ||
                                         Vars.Menu["spells"]["e"]["whitelist"][
-                                                                              $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
+                                            $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
                                             ] == null ||
                                         !Vars.Menu["spells"]["e"]["whitelist"][
-                                                                               $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
-                                            ].GetValue<MenuBool>()
-                                             .Value)
+                                            $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
+                                            ].GetValue<MenuBool>().Value)
                                     {
                                         return;
                                     }
@@ -176,24 +183,26 @@ namespace ExorAIO.Champions.Sivir
                             /// <summary>
                             ///     Whitelist Block.
                             /// </summary>
-                            if (Vars.Menu["spells"]["e"]["whitelist"][$"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
-                                !Vars.Menu["spells"]["e"]["whitelist"][$"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"]
-                                    .GetValue<MenuBool>()
-                                    .Value)
+                            if (
+                                Vars.Menu["spells"]["e"]["whitelist"][
+                                    $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"] == null ||
+                                !Vars.Menu["spells"]["e"]["whitelist"][
+                                    $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"].GetValue<MenuBool>()
+                                                                                                 .Value)
                             {
                                 return;
                             }
 
-                            switch (SpellDatabase.GetByName(args.SData.Name)
-                                                 .SpellType)
+                            switch (SpellDatabase.GetByName(args.SData.Name).SpellType)
                             {
                                 /// <summary>
                                 ///     Check for Targetted Spells.
                                 /// </summary>
                                 case SpellType.Targeted:
                                 case SpellType.TargetedMissile:
-                                    if (!args.Target.IsMe || !SpellDatabase.GetByName(args.SData.Name)
-                                                                           .CastType.Contains(CastType.EnemyChampions))
+                                    if (!args.Target.IsMe ||
+                                        !SpellDatabase.GetByName(args.SData.Name)
+                                                      .CastType.Contains(CastType.EnemyChampions))
                                     {
                                         return;
                                     }
@@ -202,28 +211,28 @@ namespace ExorAIO.Champions.Sivir
                                     {
                                         case "Caitlyn":
                                             DelayAction.Add(1050,
-                                                () =>
-                                                {
-                                                    Vars.E.Cast();
-                                                });
+                                                            () =>
+                                                            {
+                                                                Vars.E.Cast();
+                                                            });
                                             break;
                                         case "Nocturne":
                                             DelayAction.Add(350,
-                                                () =>
-                                                {
-                                                    Vars.E.Cast();
-                                                });
+                                                            () =>
+                                                            {
+                                                                Vars.E.Cast();
+                                                            });
                                             break;
                                         case "Zed":
                                             DelayAction.Add(200,
-                                                () =>
-                                                {
-                                                    Vars.E.Cast();
-                                                });
+                                                            () =>
+                                                            {
+                                                                Vars.E.Cast();
+                                                            });
                                             break;
                                         default:
-                                            DelayAction.Add(Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>()
-                                                                                             .Value,
+                                            DelayAction.Add(
+                                                Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
                                                 () =>
                                                 {
                                                     Vars.E.Cast();
@@ -254,7 +263,8 @@ namespace ExorAIO.Champions.Sivir
 
                     break;
                 case GameObjectType.obj_AI_Minion:
-                    if (args.Target == null || !args.Target.IsMe)
+                    if (args.Target == null ||
+                        !args.Target.IsMe)
                     {
                         return;
                     }
@@ -262,10 +272,10 @@ namespace ExorAIO.Champions.Sivir
                     /// <summary>
                     ///     Block Dragon/Baron/RiftHerald's AutoAttacks.
                     /// </summary>
-                    if (Vars.Menu["spells"]["e"]["whitelist"]["minions"].GetValue<MenuBool>()
-                                                                        .Value)
+                    if (Vars.Menu["spells"]["e"]["whitelist"]["minions"].GetValue<MenuBool>().Value)
                     {
-                        if (sender.CharData.BaseSkinName.Equals("SRU_Baron") || sender.CharData.BaseSkinName.Contains("SRU_Dragon") ||
+                        if (sender.CharData.BaseSkinName.Equals("SRU_Baron") ||
+                            sender.CharData.BaseSkinName.Contains("SRU_Dragon") ||
                             sender.CharData.BaseSkinName.Equals("SRU_RiftHerald"))
                         {
                             Vars.E.Cast();

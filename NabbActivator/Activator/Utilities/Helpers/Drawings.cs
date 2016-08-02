@@ -23,14 +23,16 @@ namespace NabbActivator
                                   /// <summary>
                                   ///     Loads the Smite drawing.
                                   /// </summary>
-                                  if (Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown
-                                      && Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>()
-                                                                   .Active)
+                                  if (Vars.Smite.IsReady() &&
+                                      Vars.Smite.Slot != SpellSlot.Unknown &&
+                                      Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
                                   {
-                                      if (Vars.Menu["smite"]["drawings"]["range"].GetValue<MenuBool>()
-                                                                                 .Value)
+                                      if (Vars.Menu["smite"]["drawings"]["range"].GetValue<MenuBool>().Value)
                                       {
-                                          Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Smite.Range, Color.Orange, 1);
+                                          Render.Circle.DrawCircle(GameObjects.Player.Position,
+                                                                   Vars.Smite.Range,
+                                                                   Color.Orange,
+                                                                   1);
                                       }
                                   }
                               };

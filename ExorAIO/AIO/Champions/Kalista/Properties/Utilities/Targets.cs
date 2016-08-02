@@ -20,8 +20,8 @@ namespace ExorAIO.Champions.Kalista
         /// <summary>
         ///     The minions target.
         /// </summary>
-        public static List<Obj_AI_Minion> Minions => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range))
-                                                                .ToList();
+        public static List<Obj_AI_Minion> Minions
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.E.Range)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -29,15 +29,13 @@ namespace ExorAIO.Champions.Kalista
         public static List<Obj_AI_Minion> JungleMinions
             =>
                 GameObjects.Jungle.Where(
-                                         m =>
-                                             m.IsValidTarget(Vars.E.Range)
-                                                 && (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab")))
-                           .ToList();
+                    m =>
+                        m.IsValidTarget(Vars.E.Range) &&
+                        (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The valid harassable heroes.
         /// </summary>
-        public static List<Obj_AI_Hero> Harass => GameObjects.EnemyHeroes.ToList()
-                                                             .FindAll(Bools.IsPerfectRendTarget);
+        public static List<Obj_AI_Hero> Harass => GameObjects.EnemyHeroes.ToList().FindAll(Bools.IsPerfectRendTarget);
     }
 }

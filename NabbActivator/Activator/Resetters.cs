@@ -20,14 +20,12 @@ namespace NabbActivator
         /// <param name="args">The args.</param>
         public static void Resetters(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!Vars.Menu["resetters"].GetValue<MenuBool>()
-                                       .Value)
+            if (!Vars.Menu["resetters"].GetValue<MenuBool>().Value)
             {
                 return;
             }
-            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>()
-                                           .Active && !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>()
-                                                                                     .Active)
+            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active &&
+                !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>().Active)
             {
                 return;
             }
@@ -37,7 +35,7 @@ namespace NabbActivator
             /// </summary>
             if (sender.IsMe)
             {
-                if ((!Vars.HasAnyReset && AutoAttack.IsAutoAttack(args.SData.Name)) ||
+                if (!Vars.HasAnyReset && AutoAttack.IsAutoAttack(args.SData.Name) ||
                     ObjectManager.Player.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
                 {
                     /// <summary>

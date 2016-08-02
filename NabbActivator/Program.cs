@@ -30,7 +30,7 @@ namespace NabbActivator
                                  ///     Tells the player the assembly has been loaded.
                                  /// </summary>
                                  Game.PrintChat(
-                                                "[SDK]<b><font color='#FF0000'>Nabb</font></b>Activator: <font color='#FF0000'>Ultima</font> - Loaded!");
+                                     "[SDK]<b><font color='#FF0000'>Nabb</font></b>Activator: <font color='#FF0000'>Ultima</font> - Loaded!");
                              };
         }
     }

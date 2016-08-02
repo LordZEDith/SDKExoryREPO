@@ -29,23 +29,26 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The LaneClear W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && !GameObjects.Player.HasBuff("TwitchFullAutomatic") &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.W.IsReady() &&
+                !GameObjects.Player.HasBuff("TwitchFullAutomatic") &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The W LaneClear Logic.
                 /// </summary>
-                if (Vars.W.GetCircularFarmLocation(Targets.Minions.Where(m => m.GetBuffCount("twitchdeadlyvenom") <= 4)
-                                                          .ToList(),
-                    Vars.W.Width)
+                if (
+                    Vars.W.GetCircularFarmLocation(
+                        Targets.Minions.Where(m => m.GetBuffCount("twitchdeadlyvenom") <= 4).ToList(),
+                        Vars.W.Width)
                         .MinionsHit >= 3)
                 {
-                    Vars.W.Cast(Vars.W.GetCircularFarmLocation(Targets.Minions.Where(m => m.GetBuffCount("twitchdeadlyvenom") <= 4)
-                                                                      .ToList(),
-                        Vars.W.Width)
-                                    .Position);
+                    Vars.W.Cast(
+                        Vars.W.GetCircularFarmLocation(
+                            Targets.Minions.Where(m => m.GetBuffCount("twitchdeadlyvenom") <= 4).ToList(),
+                            Vars.W.Width)
+                            .Position);
                 }
 
                 /// <summary>
@@ -62,18 +65,19 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The LaneClear E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Minions.Any() &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
-                Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>()
-                                                     .BValue)
+            if (Vars.E.IsReady() &&
+                Targets.Minions.Any() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
+                Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
                 if (
                     Targets.Minions.Count(
-                                          m =>
-                                              m.IsValidTarget(Vars.E.Range) &&
-                                                  m.Health <
-                                                      (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                          (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 3)
+                        m =>
+                            m.IsValidTarget(Vars.E.Range) &&
+                            m.Health <
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 3)
                 {
                     Vars.E.Cast();
                 }
@@ -96,10 +100,10 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The Q JungleClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
-                &&
-                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>()
-                                                       .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();
             }
@@ -112,7 +116,8 @@ namespace ExorAIO.Champions.Twitch
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
+                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
@@ -121,9 +126,10 @@ namespace ExorAIO.Champions.Twitch
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
-                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>()
-                                                     .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
+                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();
             }

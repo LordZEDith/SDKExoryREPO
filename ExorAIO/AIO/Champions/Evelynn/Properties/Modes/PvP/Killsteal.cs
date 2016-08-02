@@ -24,17 +24,16 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>()
-                                                                         .Value)
+            if (Vars.R.IsReady() &&
+                Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
-                    Vars.R.Cast(Vars.R.GetPrediction(target)
-                                    .CastPosition);
+                    Vars.R.Cast(Vars.R.GetPrediction(target).CastPosition);
                 }
             }
         }

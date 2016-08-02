@@ -41,8 +41,11 @@ namespace ExorAIO.Utilities
         ///     The default enemy HP bar offset.
         /// </summary>
         public static int XOffset = 10;
+
         public static int YOffset = 20;
+
         public static int Width = 103;
+
         public static int Height = 8;
 
         /// <summary>
@@ -73,7 +76,8 @@ namespace ExorAIO.Utilities
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Fire",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Fire",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -81,7 +85,8 @@ namespace ExorAIO.Utilities
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Water",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Water",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -89,7 +94,8 @@ namespace ExorAIO.Utilities
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Earth",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Earth",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -97,7 +103,8 @@ namespace ExorAIO.Utilities
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Elder",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Elder",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -223,20 +230,20 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static Geometry.Sector Cone
             =>
-                new Geometry.Sector(GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius * 3),
+                new Geometry.Sector(
+                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius*3),
                     End,
-                    55f * (float)Math.PI / 180f,
+                    55f*(float) Math.PI/180f,
                     R.Range);
 
         /// <summary>
         ///     The Q Stacks.
         /// </summary>
-        public static int RyzeStacks
-            => GameObjects.Player.HasBuff("ryzeqiconnocharge")
-                ? 0
-                : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
-                    ? 1
-                    : 2;
+        public static int RyzeStacks => GameObjects.Player.HasBuff("ryzeqiconnocharge")
+            ? 0
+            : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
+                ? 1
+                : 2;
 
         /// <summary>
         ///     Gets or sets the Q Spell.
@@ -282,8 +289,8 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the assembly menu.
         /// </summary>
         public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}",
-            $"[ExorAIO]: {GameObjects.Player.ChampionName}",
-            true);
+                                                         $"[ExorAIO]: {GameObjects.Player.ChampionName}",
+                                                         true);
 
         /// <summary>
         ///     Gets or sets the settings menu.
@@ -369,9 +376,10 @@ namespace ExorAIO.Utilities
             var hero = target as Obj_AI_Hero;
             if (hero != null)
             {
-                if (hero.ChampionName.Equals("Blitzcrank") && !hero.HasBuff("BlitzcrankManaBarrierCD"))
+                if (hero.ChampionName.Equals("Blitzcrank") &&
+                    !hero.HasBuff("BlitzcrankManaBarrierCD"))
                 {
-                    debuffer += hero.Mana / 2;
+                    debuffer += hero.Mana/2;
                 }
             }
             return target.Health + target.PhysicalShield + target.HPRegenRate + debuffer;
@@ -383,9 +391,13 @@ namespace ExorAIO.Utilities
         internal class JungleHpBarOffset
         {
             internal string BaseSkinName;
+
             internal int Height;
+
             internal int Width;
+
             internal int XOffset;
+
             internal int YOffset;
         }
     }

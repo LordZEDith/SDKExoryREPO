@@ -31,15 +31,21 @@ namespace ExorAIO.Utilities
     {
         private const int CircleLineSegmentN = 22;
 
-        public static void DrawCircleOnMinimap(Vector3 center, float radius, Color color, int thickness = 1, int quality = 254)
+        public static void DrawCircleOnMinimap(Vector3 center,
+                                               float radius,
+                                               Color color,
+                                               int thickness = 1,
+                                               int quality = 254)
         {
             var pointList = new List<Vector3>();
             for (var i = 0;
                  i < quality;
                  i++)
             {
-                var angle = i * Math.PI * 2 / quality;
-                pointList.Add(new Vector3(center.X + radius * (float)Math.Cos(angle), center.Y + radius * (float)Math.Sin(angle), center.Z));
+                var angle = i*Math.PI*2/quality;
+                pointList.Add(new Vector3(center.X + radius*(float) Math.Cos(angle),
+                                          center.Y + radius*(float) Math.Sin(angle),
+                                          center.Z));
             }
             for (var i = 0;
                  i < pointList.Count;
@@ -99,17 +105,17 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static Vector2 PositionAfter(this GamePath self, int t, int speed, int delay = 0)
         {
-            var distance = Math.Max(0, t - delay) * speed / 1000;
+            var distance = Math.Max(0, t - delay)*speed/1000;
             for (var i = 0;
                  i <= self.Count - 2;
                  i++)
             {
                 var from = self[i];
                 var to = self[i + 1];
-                var d = (int)to.Distance(from);
+                var d = (int) to.Distance(from);
                 if (d > distance)
                 {
-                    return from + distance * (to - from).Normalized();
+                    return from + distance*(to - from).Normalized();
                 }
 
                 distance -= d;
@@ -160,6 +166,7 @@ namespace ExorAIO.Utilities
         public class Circle
         {
             public Vector2 Center;
+
             public float Radius;
 
             public Circle(Vector2 center, float radius)
@@ -173,13 +180,14 @@ namespace ExorAIO.Utilities
                 var result = new Polygon();
                 var outRadius = overrideWidth > 0
                     ? overrideWidth
-                    : (offset + Radius) / (float)Math.Cos(2 * Math.PI / CircleLineSegmentN);
+                    : (offset + Radius)/(float) Math.Cos(2*Math.PI/CircleLineSegmentN);
                 for (var i = 1;
                      i <= CircleLineSegmentN;
                      i++)
                 {
-                    var angle = i * 2 * Math.PI / CircleLineSegmentN;
-                    var point = new Vector2(Center.X + outRadius * (float)Math.Cos(angle), Center.Y + outRadius * (float)Math.Sin(angle));
+                    var angle = i*2*Math.PI/CircleLineSegmentN;
+                    var point = new Vector2(Center.X + outRadius*(float) Math.Cos(angle),
+                                            Center.Y + outRadius*(float) Math.Sin(angle));
                     result.Add(point);
                 }
 
@@ -296,23 +304,25 @@ namespace ExorAIO.Utilities
                 Points.Clear();
                 Points.Add(Start + (overrideWidth > 0
                     ? overrideWidth
-                    : Width + offset) * Perpendicular - offset * Direction);
+                    : Width + offset)*Perpendicular - offset*Direction);
                 Points.Add(Start - (overrideWidth > 0
                     ? overrideWidth
-                    : Width + offset) * Perpendicular - offset * Direction);
+                    : Width + offset)*Perpendicular - offset*Direction);
                 Points.Add(End - (overrideWidth > 0
                     ? overrideWidth
-                    : Width + offset) * Perpendicular + offset * Direction);
+                    : Width + offset)*Perpendicular + offset*Direction);
                 Points.Add(End + (overrideWidth > 0
                     ? overrideWidth
-                    : Width + offset) * Perpendicular + offset * Direction);
+                    : Width + offset)*Perpendicular + offset*Direction);
             }
         }
 
         public class Ring
         {
             public Vector2 Center;
+
             public float Radius;
+
             public float RingRadius; //actually radius width.
 
             public Ring(Vector2 center, float radius, float ringRadius)
@@ -325,22 +335,24 @@ namespace ExorAIO.Utilities
             public Polygon ToPolygon(int offset = 0)
             {
                 var result = new Polygon();
-                var outRadius = (offset + Radius + RingRadius) / (float)Math.Cos(2 * Math.PI / CircleLineSegmentN);
+                var outRadius = (offset + Radius + RingRadius)/(float) Math.Cos(2*Math.PI/CircleLineSegmentN);
                 var innerRadius = Radius - RingRadius - offset;
                 for (var i = 0;
                      i <= CircleLineSegmentN;
                      i++)
                 {
-                    var angle = i * 2 * Math.PI / CircleLineSegmentN;
-                    var point = new Vector2(Center.X - outRadius * (float)Math.Cos(angle), Center.Y - outRadius * (float)Math.Sin(angle));
+                    var angle = i*2*Math.PI/CircleLineSegmentN;
+                    var point = new Vector2(Center.X - outRadius*(float) Math.Cos(angle),
+                                            Center.Y - outRadius*(float) Math.Sin(angle));
                     result.Add(point);
                 }
                 for (var i = 0;
                      i <= CircleLineSegmentN;
                      i++)
                 {
-                    var angle = i * 2 * Math.PI / CircleLineSegmentN;
-                    var point = new Vector2(Center.X + innerRadius * (float)Math.Cos(angle), Center.Y - innerRadius * (float)Math.Sin(angle));
+                    var angle = i*2*Math.PI/CircleLineSegmentN;
+                    var point = new Vector2(Center.X + innerRadius*(float) Math.Cos(angle),
+                                            Center.Y - innerRadius*(float) Math.Sin(angle));
                     result.Add(point);
                 }
 
@@ -414,16 +426,15 @@ namespace ExorAIO.Utilities
             public void UpdatePolygon(int offset = 0)
             {
                 Points.Clear();
-                var outRadius = (Radius + offset) / (float)Math.Cos(2 * Math.PI / _quality);
+                var outRadius = (Radius + offset)/(float) Math.Cos(2*Math.PI/_quality);
                 Points.Add(Center);
-                var side1 = Direction.Rotated(-Angle * 0.5f);
+                var side1 = Direction.Rotated(-Angle*0.5f);
                 for (var i = 0;
                      i <= _quality;
                      i++)
                 {
-                    var cDirection = side1.Rotated(i * Angle / _quality)
-                                          .Normalized();
-                    Points.Add(new Vector2(Center.X + outRadius * cDirection.X, Center.Y + outRadius * cDirection.Y));
+                    var cDirection = side1.Rotated(i*Angle/_quality).Normalized();
+                    Points.Add(new Vector2(Center.X + outRadius*cDirection.X, Center.Y + outRadius*cDirection.Y));
                 }
             }
 
@@ -438,13 +449,13 @@ namespace ExorAIO.Utilities
             public Vector2 RotateLineFromPoint(Vector2 point1, Vector2 point2, float value, bool radian = true)
             {
                 var angle = !radian
-                    ? value * Math.PI / 180
+                    ? value*Math.PI/180
                     : value;
                 var line = Vector2.Subtract(point2, point1);
                 var newline = new Vector2
                               {
-                                  X = (float)(line.X * Math.Cos(angle) - line.Y * Math.Sin(angle)),
-                                  Y = (float)(line.X * Math.Sin(angle) + line.Y * Math.Cos(angle))
+                                  X = (float) (line.X*Math.Cos(angle) - line.Y*Math.Sin(angle)),
+                                  Y = (float) (line.X*Math.Sin(angle) + line.Y*Math.Cos(angle))
                               };
                 return Vector2.Add(newline, point1);
             }

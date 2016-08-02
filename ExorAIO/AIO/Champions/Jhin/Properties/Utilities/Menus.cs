@@ -51,7 +51,9 @@ namespace ExorAIO.Champions.Jhin
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
+                                                                    $"Use against: {target.ChampionName}",
+                                                                    true));
                             }
                         }
 
@@ -88,7 +90,9 @@ namespace ExorAIO.Champions.Jhin
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(),
+                                                                     $"Use against: {target.ChampionName}",
+                                                                     true));
                             }
                         }
 

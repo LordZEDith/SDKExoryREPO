@@ -53,8 +53,10 @@ namespace ExorAIO.Champions.Sivir
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuSeparator("separator", "It has to be used in conjunction with Evade, else it will not shield Skillshots"));
-                    Vars.EMenu.Add(new MenuSeparator("separator2", "It is meant to shield what Evade doesn't support, like targetted spells."));
+                    Vars.EMenu.Add(new MenuSeparator("separator",
+                                                     "It has to be used in conjunction with Evade, else it will not shield Skillshots"));
+                    Vars.EMenu.Add(new MenuSeparator("separator2",
+                                                     "It is meant to shield what Evade doesn't support, like targetted spells."));
                     Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.EMenu.Add(new MenuSlider("delay", "E Delay (ms)", 0, 0, 250));
                     {
@@ -69,49 +71,56 @@ namespace ExorAIO.Champions.Sivir
                                 if (enemy.ChampionName.Equals("Alistar"))
                                 {
                                     Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.pulverize",
-                                        $"Shield: {enemy.ChampionName}'s Q",
-                                        true));
+                                                                        $"Shield: {enemy.ChampionName}'s Q",
+                                                                        true));
                                 }
                                 if (enemy.ChampionName.Equals("Braum"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride",
-                                        $"Shield: {enemy.ChampionName}'s Passive",
-                                        true));
+                                    Vars.WhiteListMenu.Add(
+                                        new MenuBool($"{enemy.ChampionName.ToLower()}.braumbasicattackpassiveoverride",
+                                                     $"Shield: {enemy.ChampionName}'s Passive",
+                                                     true));
                                 }
                                 if (enemy.ChampionName.Equals("Jax"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.jaxcounterstrike",
-                                        $"Shield: {enemy.ChampionName}'s E",
-                                        true));
+                                    Vars.WhiteListMenu.Add(
+                                        new MenuBool($"{enemy.ChampionName.ToLower()}.jaxcounterstrike",
+                                                     $"Shield: {enemy.ChampionName}'s E",
+                                                     true));
                                 }
                                 if (enemy.ChampionName.Equals("KogMaw"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.kogmawicathiansurprise",
-                                        $"Shield: {enemy.ChampionName}'s Passive",
-                                        true));
+                                    Vars.WhiteListMenu.Add(
+                                        new MenuBool($"{enemy.ChampionName.ToLower()}.kogmawicathiansurprise",
+                                                     $"Shield: {enemy.ChampionName}'s Passive",
+                                                     true));
                                 }
                                 if (enemy.ChampionName.Equals("Udyr"))
                                 {
-                                    Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.udyrbearattack",
-                                        $"Shield: {enemy.ChampionName}'s E",
-                                        true));
+                                    Vars.WhiteListMenu.Add(new MenuBool(
+                                                               $"{enemy.ChampionName.ToLower()}.udyrbearattack",
+                                                               $"Shield: {enemy.ChampionName}'s E",
+                                                               true));
                                 }
                                 foreach (var spell in
                                     SpellDatabase.Get()
                                                  .Where(
-                                                        s =>
-                                                            !s.SpellName.Equals("KatarinaE") && !s.SpellName.Equals("TalonCutthroat") &&
-                                                                s.ChampionName.Equals(enemy.ChampionName)))
+                                                     s =>
+                                                         !s.SpellName.Equals("KatarinaE") &&
+                                                         !s.SpellName.Equals("TalonCutthroat") &&
+                                                         s.ChampionName.Equals(enemy.ChampionName)))
                                 {
-                                    if ((enemy.IsMelee && spell.CastType.Contains(CastType.Activate) && spell.SpellType.HasFlag(SpellType.Activated)
-                                        &&
-                                        AutoAttack.IsAutoAttackReset(spell.SpellName)) ||
-                                        ((spell.SpellType.HasFlag(SpellType.Targeted) || spell.SpellType.HasFlag(SpellType.TargetedMissile)) &&
-                                            spell.CastType.Contains(CastType.EnemyChampions)))
+                                    if (enemy.IsMelee && spell.CastType.Contains(CastType.Activate) &&
+                                        spell.SpellType.HasFlag(SpellType.Activated) &&
+                                        AutoAttack.IsAutoAttackReset(spell.SpellName) ||
+                                        (spell.SpellType.HasFlag(SpellType.Targeted) ||
+                                         spell.SpellType.HasFlag(SpellType.TargetedMissile)) &&
+                                        spell.CastType.Contains(CastType.EnemyChampions))
                                     {
-                                        Vars.WhiteListMenu.Add(new MenuBool($"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}",
-                                            $"Shield: {enemy.ChampionName}'s {spell.Slot}",
-                                            true));
+                                        Vars.WhiteListMenu.Add(
+                                            new MenuBool($"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}",
+                                                         $"Shield: {enemy.ChampionName}'s {spell.Slot}",
+                                                         true));
                                     }
                                 }
                             }

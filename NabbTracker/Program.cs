@@ -29,7 +29,8 @@ namespace NabbTracker
                                  /// <summary>
                                  ///     Tells the player the assembly has been loaded.
                                  /// </summary>
-                                 Game.PrintChat("[SDK]<b><font color='#228B22'>Nabb</font></b>Tracker: <font color='#228B22'>Ultima</font> - Loaded!");
+                                 Game.PrintChat(
+                                     "[SDK]<b><font color='#228B22'>Nabb</font></b>Tracker: <font color='#228B22'>Ultima</font> - Loaded!");
                              };
         }
     }

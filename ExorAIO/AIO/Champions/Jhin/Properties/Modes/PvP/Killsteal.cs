@@ -26,25 +26,23 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The KillSteal R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.R.Instance.Name.Equals("JhinRShot") && Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>()
-                                                                                                                     .Value)
+            if (Vars.R.IsReady() &&
+                Vars.R.Instance.Name.Equals("JhinRShot") &&
+                Vars.Menu["spells"]["r"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      !Invulnerable.Check(t) && !Vars.Cone.IsOutside((Vector2)t.ServerPosition)
-                                                          && t.IsValidTarget(Vars.R.Range) &&
-                                                          Vars.GetRealHealth(t) <
-                                                              (float)
-                                                                  GameObjects.Player.GetSpellDamage(t,
+                        t =>
+                            !Invulnerable.Check(t) && !Vars.Cone.IsOutside((Vector2) t.ServerPosition) &&
+                            t.IsValidTarget(Vars.R.Range) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t,
                                                                       SpellSlot.R,
                                                                       Vars.ShotsCount == 3
                                                                           ? DamageStage.Empowered
-                                                                          : DamageStage.Default))
-                    )
+                                                                          : DamageStage.Default)))
                 {
-                    Vars.R.Cast(Vars.R.GetPrediction(target)
-                                    .UnitPosition);
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     return;
                 }
             }
@@ -57,14 +55,14 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>()
-                                                                         .Value)
+            if (Vars.Q.IsReady() &&
+                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                                          Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
+                        t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
+                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
                     return;
@@ -74,19 +72,18 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The KillSteal W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>()
-                                                                         .Value)
+            if (Vars.W.IsReady() &&
+                Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                                                  t =>
-                                                      !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) && t.IsValidTarget(Vars.W.Range - 100f)
-                                                          &&
-                                                          Vars.GetRealHealth(t)
-                                                              < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W, DamageStage.Empowered)))
+                        t =>
+                            !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) &&
+                            t.IsValidTarget(Vars.W.Range - 100f) &&
+                            Vars.GetRealHealth(t) <
+                            (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W, DamageStage.Empowered)))
                 {
-                    Vars.W.Cast(Vars.W.GetPrediction(target)
-                                    .UnitPosition);
+                    Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }
             }
         }

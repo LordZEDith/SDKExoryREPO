@@ -136,23 +136,26 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(sender is Obj_AI_Hero) && !(sender is Obj_AI_Turret) && !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
+            if (!(sender is Obj_AI_Hero) &&
+                !(sender is Obj_AI_Turret) &&
+                !Targets.JungleMinions.Contains(sender as Obj_AI_Minion))
             {
                 return;
             }
-            if (sender.IsAlly || !(args.Target is Obj_AI_Hero) || !((Obj_AI_Hero)args.Target).IsAlly)
+            if (sender.IsAlly ||
+                !(args.Target is Obj_AI_Hero) ||
+                !((Obj_AI_Hero) args.Target).IsAlly)
             {
                 return;
             }
 
-            if (Vars.W.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.W.Range, false) &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>()
-                                                   .Value
-                && Vars.Menu["spells"]["w"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                           .Value)
+            if (Vars.W.IsReady() &&
+                ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.W.Range, false) &&
+                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value &&
+                Vars.Menu["spells"]["w"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
+                    .GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Vars.W.GetPrediction((Obj_AI_Hero)args.Target)
-                                .UnitPosition);
+                Vars.W.Cast(Vars.W.GetPrediction((Obj_AI_Hero) args.Target).UnitPosition);
             }
         }
 
@@ -163,9 +166,11 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.Q.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.Q.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) && Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>()
-                                                                                                                    .Value)
+            if (Vars.Q.IsReady() &&
+                args.IsDirectedToPlayer &&
+                args.Sender.IsValidTarget(Vars.Q.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast(args.Sender.ServerPosition);
             }
@@ -186,15 +191,19 @@ namespace ExorAIO.Champions.Lux
                     ///     The Target Forcing Logic.
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    if (hero != null &&
+                        Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero)*3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein")))
+                        if (
+                            GameObjects.EnemyHeroes.Any(
+                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein")))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein"))
-                                           .OrderByDescending(o => Data.Get<ChampionPriorityData>()
-                                                                       .GetPriority(o.ChampionName))
+                                GameObjects.EnemyHeroes.Where(
+                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein"))
+                                           .OrderByDescending(
+                                               o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                            .First();
                             return;
                         }
@@ -210,10 +219,10 @@ namespace ExorAIO.Champions.Lux
                         case OrbwalkingMode.Hybrid:
                         case OrbwalkingMode.LastHit:
                         case OrbwalkingMode.LaneClear:
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>()
-                                                                     .Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
                             {
-                                if (args.Target is Obj_AI_Minion && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                if (args.Target is Obj_AI_Minion &&
+                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }

@@ -44,8 +44,7 @@ namespace NabbActivator
         /// </summary>
         public static SpellSlot GetSmiteSlot()
         {
-            foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(s => s.Name.ToLower()
-                                                                                    .Contains("smite")))
+            foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(s => s.Name.ToLower().Contains("smite")))
             {
                 return spell.Slot;
             }

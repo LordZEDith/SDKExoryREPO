@@ -104,9 +104,11 @@ namespace NabbTracker
                                      0xFF343434
                                  } // purple
                              };
-            Vars.SDXColor = Color.FromBgra(sdxConvert[SDXColor(color),
-                Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>()
-                                                                .Index]);
+            Vars.SDXColor =
+                Color.FromBgra(
+                    sdxConvert[
+                        SDXColor(color),
+                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index]);
             return Vars.SDXColor;
         }
 
@@ -283,18 +285,20 @@ namespace NabbTracker
                                     }
                                 } // purple
                             };
-            Vars.SDColor = System.Drawing.Color.FromArgb(sdConvert[SDColor(color),
-                Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>()
-                                                                .Index,
-                0],
-                sdConvert[SDColor(color),
-                    Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>()
-                                                                    .Index,
-                    1],
-                sdConvert[SDColor(color),
-                    Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>()
-                                                                    .Index,
-                    2]);
+            Vars.SDColor =
+                System.Drawing.Color.FromArgb(
+                    sdConvert[
+                        SDColor(color),
+                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
+                        0],
+                    sdConvert[
+                        SDColor(color),
+                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
+                        1],
+                    sdConvert[
+                        SDColor(color),
+                        Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
+                        2]);
             return Vars.SDColor;
         }
     }

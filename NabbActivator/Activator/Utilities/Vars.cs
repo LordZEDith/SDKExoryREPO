@@ -48,7 +48,8 @@ namespace NabbActivator
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Fire",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Fire",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -56,7 +57,8 @@ namespace NabbActivator
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Water",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Water",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -64,7 +66,8 @@ namespace NabbActivator
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Earth",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Earth",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -72,7 +75,8 @@ namespace NabbActivator
                                                                                      },
                                                                                      new JungleHpBarOffset
                                                                                      {
-                                                                                         BaseSkinName = "SRU_Dragon_Elder",
+                                                                                         BaseSkinName =
+                                                                                             "SRU_Dragon_Elder",
                                                                                          Width = 140,
                                                                                          Height = 4,
                                                                                          XOffset = 12,
@@ -152,24 +156,25 @@ namespace NabbActivator
         /// <summary>
         ///     Gets the ignite damage.
         /// </summary>
-        public static int GetIgniteDamage => 50 + 20 * GameObjects.Player.Level;
+        public static int GetIgniteDamage => 50 + 20*GameObjects.Player.Level;
 
         /// <summary>
         ///     Gets the normal smite's damage.
         /// </summary>
-        public static int GetSmiteDamage => GameObjects.Player.GetBuffCount(GameObjects.Player.Buffs.First(s => s.Name.ToLower()
-                                                                                                                 .Contains("smitedamagetracker"))
-                                                                                       .Name);
+        public static int GetSmiteDamage
+            =>
+                GameObjects.Player.GetBuffCount(
+                    GameObjects.Player.Buffs.First(s => s.Name.ToLower().Contains("smitedamagetracker")).Name);
 
         /// <summary>
         ///     Gets the chilling smite's damage.
         /// </summary>
-        public static int GetChillingSmiteDamage => 20 + 8 * GameObjects.Player.Level;
+        public static int GetChillingSmiteDamage => 20 + 8*GameObjects.Player.Level;
 
         /// <summary>
         ///     Gets the challenging smite's damage.
         /// </summary>
-        public static int GetChallengingSmiteDamage => 54 + 6 * GameObjects.Player.Level;
+        public static int GetChallengingSmiteDamage => 54 + 6*GameObjects.Player.Level;
 
         /// <summary>
         ///     Gets or sets the W Spell.
@@ -222,9 +227,13 @@ namespace NabbActivator
         internal class JungleHpBarOffset
         {
             internal string BaseSkinName;
+
             internal int Height;
+
             internal int Width;
+
             internal int XOffset;
+
             internal int YOffset;
         }
     }

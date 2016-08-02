@@ -27,18 +27,17 @@ namespace ExorAIO.Champions.Draven
             /// <summary>
             ///     The Clear E Logics.
             /// </summary>
-            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.E.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width)
-                        .MinionsHit >= 5)
+                if (Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 5)
                 {
-                    Vars.E.Cast(Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width)
-                                    .Position);
+                    Vars.E.Cast(Vars.E.GetLineFarmLocation(Targets.Minions, Vars.E.Width).Position);
                 }
 
                 /// <summary>

@@ -47,7 +47,8 @@ namespace NabbAlerter
                         {
                             if (Vars.NotIncludedChampions.Contains(target.ChampionName.ToLower()))
                             {
-                                Vars.HeroMenu.Add(new MenuSeparator("notincluded", $"You don't need to alert about {target.ChampionName}'s Ultimate."));
+                                Vars.HeroMenu.Add(new MenuSeparator("notincluded",
+                                                                    $"You don't need to alert about {target.ChampionName}'s Ultimate."));
                             }
                             else
                             {

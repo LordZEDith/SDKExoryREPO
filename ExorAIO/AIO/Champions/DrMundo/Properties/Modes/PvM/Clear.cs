@@ -28,9 +28,10 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The Q Clear Logics.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.HealthPercent > ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.HealthPercent >
+                ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The Q LaneClear Logic.
@@ -38,13 +39,12 @@ namespace ExorAIO.Champions.DrMundo
                 if (Targets.Minions.Any())
                 {
                     foreach (var minion in
-                        Targets.Minions.Where(m => Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                        Targets.Minions.Where(
+                            m => Vars.GetRealHealth(m) < (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
-                        if (!Vars.Q.GetPrediction(minion)
-                                 .CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                        if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                         {
-                            Vars.Q.Cast(Vars.Q.GetPrediction(minion)
-                                            .UnitPosition);
+                            Vars.Q.Cast(Vars.Q.GetPrediction(minion).UnitPosition);
                         }
                     }
                 }
@@ -76,9 +76,9 @@ namespace ExorAIO.Champions.DrMundo
             ///     The E JungleClear Logic.
             /// </summary>
             if (Vars.E.IsReady() &&
-                GameObjects.Player.HealthPercent > ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
-                Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>()
-                                                       .BValue)
+                GameObjects.Player.HealthPercent >
+                ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
+                Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
             }
@@ -91,7 +91,8 @@ namespace ExorAIO.Champions.DrMundo
         /// <param name="args">The args.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
+                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
@@ -100,10 +101,10 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The E BuildingClear Logic.
             /// </summary>
-            if (Vars.E.IsReady() && GameObjects.Player.HealthPercent > ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"])
-                &&
-                Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>()
-                                                     .BValue)
+            if (Vars.E.IsReady() &&
+                GameObjects.Player.HealthPercent >
+                ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["buildings"]) &&
+                Vars.Menu["spells"]["e"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
             }

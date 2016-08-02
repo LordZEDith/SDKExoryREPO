@@ -28,16 +28,20 @@ namespace ExorAIO.Champions.Kalista
             /// </summary>
             if (Vars.SoulBound == null)
             {
-                Vars.SoulBound = GameObjects.AllyHeroes.Find(a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Contains("kalistacoopstrikeally")));
+                Vars.SoulBound =
+                    GameObjects.AllyHeroes.Find(
+                        a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Contains("kalistacoopstrikeally")));
             }
             else
             {
                 /// <summary>
                 ///     The Automatic R Logic.
                 /// </summary>
-                if (Vars.R.IsReady() && Vars.SoulBound.HealthPercent < 10 && Vars.SoulBound.CountEnemyHeroesInRange(800f) > 0 &&
-                    Vars.SoulBound.IsValidTarget(Vars.R.Range, false) && Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>()
-                                                                                                              .Value)
+                if (Vars.R.IsReady() &&
+                    Vars.SoulBound.HealthPercent < 10 &&
+                    Vars.SoulBound.CountEnemyHeroesInRange(800f) > 0 &&
+                    Vars.SoulBound.IsValidTarget(Vars.R.Range, false) &&
+                    Vars.Menu["spells"]["r"]["lifesaver"].GetValue<MenuBool>().Value)
                 {
                     Vars.R.Cast();
                 }
@@ -46,20 +50,24 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && !GameObjects.Player.IsRecalling() && !GameObjects.Player.IsUnderEnemyTurret() &&
-                Variables.Orbwalker.ActiveMode == OrbwalkingMode.None && GameObjects.Player.CountEnemyHeroesInRange(1500f) == 0 &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>()
-                                                   .BValue)
+            if (Vars.W.IsReady() &&
+                !GameObjects.Player.IsRecalling() &&
+                !GameObjects.Player.IsUnderEnemyTurret() &&
+                Variables.Orbwalker.ActiveMode == OrbwalkingMode.None &&
+                GameObjects.Player.CountEnemyHeroesInRange(1500f) == 0 &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["logical"]) &&
+                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var loc in
-                    Vars.Locations.Where(l => GameObjects.Player.Distance(l) < Vars.W.Range && !ObjectManager.Get<Obj_AI_Minion>()
-                                                                                                             .Any(
-                                                                                                                  m =>
-                                                                                                                      m.Distance(l) < 1000f
-                                                                                                                          && m.CharData.BaseSkinName
-                                                                                                                              .Equals("kalistaspawn")))
-                    )
+                    Vars.Locations.Where(
+                        l =>
+                            GameObjects.Player.Distance(l) < Vars.W.Range &&
+                            !ObjectManager.Get<Obj_AI_Minion>()
+                                          .Any(
+                                              m =>
+                                                  m.Distance(l) < 1000f &&
+                                                  m.CharData.BaseSkinName.Equals("kalistaspawn"))))
                 {
                     Vars.W.Cast(loc);
                 }
@@ -73,9 +81,8 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The E Before death Logic.
                 /// </summary>
-                if (Health.GetPrediction(GameObjects.Player, (int)(1000 + Game.Ping / 2f)) <= 0 &&
-                    Vars.Menu["spells"]["e"]["ondeath"].GetValue<MenuBool>()
-                                                       .Value)
+                if (Health.GetPrediction(GameObjects.Player, (int) (1000 + Game.Ping/2f)) <= 0 &&
+                    Vars.Menu["spells"]["e"]["ondeath"].GetValue<MenuBool>().Value)
                 {
                     Vars.E.Cast();
                 }
@@ -83,27 +90,28 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The E Minion Harass Logic.
                 /// </summary>
-                if (GameObjects.EnemyHeroes.Any(Bools.IsPerfectRendTarget) && Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>()
-                                                                                                                .BValue &&
+                if (GameObjects.EnemyHeroes.Any(Bools.IsPerfectRendTarget) &&
+                    Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue &&
                     Targets.Minions.Any(
-                                        m =>
-                                            Bools.IsPerfectRendTarget(m) &&
-                                                Vars.GetRealHealth(m) <
-                                                    (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                        (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                        m =>
+                            Bools.IsPerfectRendTarget(m) &&
+                            Vars.GetRealHealth(m) <
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                 {
                     /// <summary>
                     ///     Check for Mana Manager if not in combo mode and the killable minion is only one, else do not use it.
                     /// </summary>
                     if (Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
                         Targets.Minions.Count(
-                                              m =>
-                                                  Bools.IsPerfectRendTarget(m) &&
-                                                      Vars.GetRealHealth(m) <
-                                                          (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                              (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
+                            m =>
+                                Bools.IsPerfectRendTarget(m) &&
+                                Vars.GetRealHealth(m) <
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
                     {
-                        if (GameObjects.Player.ManaPercent < ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
+                        if (GameObjects.Player.ManaPercent <
+                            ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
                         {
                             return;
                         }
@@ -114,15 +122,16 @@ namespace ExorAIO.Champions.Kalista
                     /// </summary>
                     if (GameObjects.EnemyHeroes.Count(Bools.IsPerfectRendTarget) == 1 &&
                         Targets.Minions.Count(
-                                              m =>
-                                                  Bools.IsPerfectRendTarget(m) &&
-                                                      Vars.GetRealHealth(m) <
-                                                          (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                              (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
+                            m =>
+                                Bools.IsPerfectRendTarget(m) &&
+                                Vars.GetRealHealth(m) <
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) == 1)
                     {
                         var hero = GameObjects.EnemyHeroes.FirstOrDefault(Bools.IsPerfectRendTarget);
-                        if (hero != null && !Vars.Menu["spells"]["e"]["whitelist"][hero.ChampionName.ToLower()].GetValue<MenuBool>()
-                                                                                                               .Value)
+                        if (hero != null &&
+                            !Vars.Menu["spells"]["e"]["whitelist"][hero.ChampionName.ToLower()].GetValue<MenuBool>()
+                                                                                               .Value)
                         {
                             return;
                         }
@@ -145,16 +154,15 @@ namespace ExorAIO.Champions.Kalista
                 /// <summary>
                 ///     The E JungleClear Logic.
                 /// </summary>
-                if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>()
-                                                           .Value)
+                if (Vars.Menu["spells"]["e"]["junglesteal"].GetValue<MenuBool>().Value)
                 {
                     if (
                         Targets.JungleMinions.Any(
-                                                  m =>
-                                                      Bools.IsPerfectRendTarget(m) &&
-                                                          m.Health <
-                                                              (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                                                  (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                            m =>
+                                Bools.IsPerfectRendTarget(m) &&
+                                m.Health <
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
+                                (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }

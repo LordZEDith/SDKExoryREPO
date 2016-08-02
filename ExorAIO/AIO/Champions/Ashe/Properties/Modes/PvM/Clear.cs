@@ -28,10 +28,12 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Items.HasItem(3085) && GameObjects.Player.HasBuff("AsheQCastReady") &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.Q.IsReady() &&
+                Items.HasItem(3085) &&
+                GameObjects.Player.HasBuff("AsheQCastReady") &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();
             }
@@ -39,9 +41,10 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Clear W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
-                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.W.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"]) &&
+                Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The LaneClear W Logic.
@@ -70,7 +73,8 @@ namespace ExorAIO.Champions.Ashe
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void BuildingClear(EventArgs args)
         {
-            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
+            if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) &&
+                !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret) &&
                 !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
             {
                 return;
@@ -79,10 +83,11 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("AsheQCastReady") &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
-                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>()
-                                                     .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.HasBuff("AsheQCastReady") &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"]) &&
+                Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.Cast();
             }

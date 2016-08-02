@@ -87,9 +87,10 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range) && !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>()
-                                                     .Value)
+            if (Vars.E.IsReady() &&
+                args.Sender.IsValidTarget(Vars.E.Range) &&
+                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
+                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(args.IsDirectedToPlayer
                     ? GameObjects.Player.ServerPosition
@@ -104,7 +105,8 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
         public static void OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
         {
-            if (sender.Owner.IsMe && args.Slot == SpellSlot.Q)
+            if (sender.Owner.IsMe &&
+                args.Slot == SpellSlot.Q)
             {
                 /// <summary>
                 ///     Initializes the action blocking process.

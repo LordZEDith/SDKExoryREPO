@@ -28,9 +28,10 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.Q.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
+                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The JungleClear Q Logic.
@@ -43,13 +44,12 @@ namespace ExorAIO.Champions.Caitlyn
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                else if (!GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
+                else if (
+                    !GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range + 100f)))
                 {
-                    if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
-                            .MinionsHit >= 3)
+                    if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
                     {
-                        Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width)
-                                        .Position);
+                        Vars.Q.Cast(Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).Position);
                     }
                 }
             }

@@ -28,10 +28,11 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The Q JungleClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.JungleMinions.Any() &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>()
-                                                       .BValue)
+            if (Vars.Q.IsReady() &&
+                Targets.JungleMinions.Any() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
+                Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.CastOnUnit(Targets.JungleMinions[0]);
             }
@@ -39,10 +40,11 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The E LaneClear Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3 &&
-                GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.E.IsReady() &&
+                Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3 &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
             }
@@ -64,9 +66,10 @@ namespace ExorAIO.Champions.Akali
             /// <summary>
             ///     The E JungleClear Logic.
             /// </summary>
-            if (Vars.E.IsReady() && GameObjects.Player.ManaPercent > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>()
-                                                 .BValue)
+            if (Vars.E.IsReady() &&
+                GameObjects.Player.ManaPercent >
+                ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
+                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
             }
