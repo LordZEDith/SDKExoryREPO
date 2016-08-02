@@ -52,6 +52,7 @@ namespace ExorAIO.Champions.Orianna
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     {
@@ -104,6 +105,7 @@ namespace ExorAIO.Champions.Orianna
             {
                 Vars.DrawingsMenu.Add(new MenuBool("q", "Q Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("ball", "Ball Position"));
                 Vars.DrawingsMenu.Add(new MenuBool("ballw", "Ball W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("ballr", "Ball R Range"));
             }

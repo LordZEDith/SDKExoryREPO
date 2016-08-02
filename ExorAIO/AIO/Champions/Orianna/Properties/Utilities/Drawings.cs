@@ -26,15 +26,19 @@ namespace ExorAIO.Champions.Orianna
 
             Drawing.OnDraw += delegate
             {
+                if (Vars.Menu["drawings"]["ball"].GetValue<MenuBool>().Value)
+                {
+                    Render.Circle.DrawCircle(Orianna.BallPosition, 100f, Color.Blue, 4);
+                }
                 if (Vars.W.IsReady() &&
                     Vars.Menu["drawings"]["ballw"].GetValue<MenuBool>().Value)
                 {
-                    Render.Circle.DrawCircle(Orianna.BallPosition, Vars.W.Range, Color.Blue);
+                    Render.Circle.DrawCircle(Orianna.BallPosition, Vars.W.Range, Color.Cyan);
                 }
                 if (Vars.R.IsReady() &&
                     Vars.Menu["drawings"]["ballr"].GetValue<MenuBool>().Value)
                 {
-                    Render.Circle.DrawCircle(Orianna.BallPosition, Vars.R.Range, Color.Black);
+                    Render.Circle.DrawCircle(Orianna.BallPosition, Vars.R.Range, Color.Red);
                 }
             };
         }

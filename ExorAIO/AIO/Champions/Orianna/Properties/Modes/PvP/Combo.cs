@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp.SDK;
 using LeagueSharp.SDK.UI;
 using LeagueSharp.SDK.Utils;
+using SharpDX;
+using Geometry = ExorAIO.Utilities.Geometry;
 
 #pragma warning disable 1587
 
@@ -44,6 +47,29 @@ namespace ExorAIO.Champions.Orianna
                 Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
+            }
+
+            /// <summary>
+            ///     The E Combo Logic.
+            /// </summary>
+            if (Vars.E.IsReady() &&
+                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            {
+                var polygon = new Geometry.Rectangle(GameObjects.Player.ServerPosition,
+                                                     GameObjects.Player.Position.Extend(Orianna.BallPosition,
+                                                                                        GameObjects.Player.Distance(
+                                                                                            Orianna.BallPosition)),
+                                                     Vars.Q.Width);
+                var objAiHero =
+                    GameObjects.EnemyHeroes.FirstOrDefault(
+                        t =>
+                            !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) &&
+                                t.IsValidTarget(Vars.Q2.Range - 50f));
+                if (objAiHero != null &&
+                    !polygon.IsOutside((Vector2) objAiHero.ServerPosition))
+                {
+                    Vars.E.Cast(GameObjects.Player);
+                }
             }
         }
     }

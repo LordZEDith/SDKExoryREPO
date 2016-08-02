@@ -65,7 +65,7 @@ namespace ExorAIO.Champions.Orianna
                         t =>
                             t.IsValidTarget() && !Invulnerable.Check(t) &&
                                 t.Distance(Orianna.BallPosition) < Vars.R.Range &&
-                                Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) &&
+                                Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)*2 &&
                                 Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast();
