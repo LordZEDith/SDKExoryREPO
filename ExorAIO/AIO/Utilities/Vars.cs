@@ -40,13 +40,13 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     The default enemy HP bar offset.
         /// </summary>
-        public static int XOffset = 10;
+        public static int sXOffset = 10;
 
-        public static int YOffset = 20;
+        public static int sYOffset = 20;
 
-        public static int Width = 103;
+        public static int sWidth = 103;
 
-        public static int Height = 8;
+        public static int sHeight = 8;
 
         /// <summary>
         ///     Gets all the important jungle locations.
@@ -231,19 +231,17 @@ namespace ExorAIO.Utilities
         public static Geometry.Sector Cone
             =>
                 new Geometry.Sector(
-                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius*3),
-                    End,
-                    55f*(float) Math.PI/180f,
-                    R.Range);
+                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius*3), End,
+                    55f*(float) Math.PI/180f, R.Range);
 
         /// <summary>
         ///     The Q Stacks.
         /// </summary>
-        public static int RyzeStacks => GameObjects.Player.HasBuff("ryzeqiconnocharge")
-            ? 0
-            : GameObjects.Player.HasBuff("ryzeqiconhalfcharge")
-                ? 1
-                : 2;
+        public static int RyzeStacks
+            =>
+                GameObjects.Player.HasBuff("ryzeqiconnocharge")
+                    ? 0
+                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge") ? 1 : 2;
 
         /// <summary>
         ///     Gets or sets the Q Spell.
@@ -289,8 +287,7 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the assembly menu.
         /// </summary>
         public static Menu Menu { get; set; } = new Menu($"aio.{GameObjects.Player.ChampionName.ToLower()}",
-                                                         $"[ExorAIO]: {GameObjects.Player.ChampionName}",
-                                                         true);
+                                                         $"[ExorAIO]: {GameObjects.Player.ChampionName}", true);
 
         /// <summary>
         ///     Gets or sets the settings menu.

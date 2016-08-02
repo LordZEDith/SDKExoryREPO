@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using ExorAIO.Utilities;
 using LeagueSharp;
 using LeagueSharp.SDK;
@@ -106,9 +105,7 @@ namespace ExorAIO.Champions.Cassiopeia
                             /// </summary>
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
-                                if ((Vars.Q.IsReady() ||
-                                    Vars.W.IsReady() ||
-                                    Vars.E.IsReady()) &&
+                                if ((Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady()) &&
                                     !Bools.HasSheenBuff())
                                 {
                                     args.Process = false;
