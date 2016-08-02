@@ -8,15 +8,15 @@ using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
-namespace ExorAIO.Champions.Karma
+namespace ExorAIO.Champions.Sona
 {
     /// <summary>
     ///     The champion class.
     /// </summary>
-    internal class Karma
+    internal class Sona
     {
         /// <summary>
-        ///     Loads Lux.
+        ///     Loads Sona.
         /// </summary>
         public void OnLoad()
         {
@@ -51,11 +51,6 @@ namespace ExorAIO.Champions.Karma
             {
                 return;
             }
-
-            /// <summary>
-            ///     Initializes the Automatic actions.
-            /// </summary>
-            Logics.Automatic(args);
 
             /// <summary>
             ///     Initializes the Killsteal events.
@@ -101,13 +96,13 @@ namespace ExorAIO.Champions.Karma
                     args.Target != null &&
                     GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
                 {
-                    if (Vars.E.IsReady() &&
-                        ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.E.Range, false) &&
+                    if (Vars.W.IsReady() &&
+                        ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.W.Range, false) &&
                         Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
                         Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
                             .GetValue<MenuBool>().Value)
                     {
-                        Vars.E.CastOnUnit((Obj_AI_Hero) args.Target);
+                        Vars.W.Cast();
                     }
                 }
             }
@@ -121,16 +116,34 @@ namespace ExorAIO.Champions.Karma
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() &&
-                GameObjects.Player.Distance(args.End) < 750 &&
+                args.Sender.IsMelee &&
+                GameObjects.Player.Distance(args.End) < Vars.AARange &&
                 Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                if (Vars.R.IsReady() &&
-                    Vars.Menu["spells"]["r"]["empe"].GetValue<MenuBool>().Value &&
-                    GameObjects.AllyHeroes.Count(a => a.IsValidTarget(600f, false)) >= 2)
-                {
-                    Vars.R.Cast();
-                }
                 Vars.E.Cast();
+            }
+
+            if (Vars.R.IsReady() &&
+                args.Sender.IsMelee &&
+                GameObjects.Player.Distance(args.End) < Vars.R.Range - 50f &&
+                Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.End);
+            }
+        }
+
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.R.IsReady() &&
+                args.Sender.IsValidTarget(Vars.R.Range) &&
+                Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.Sender.ServerPosition);
             }
         }
 

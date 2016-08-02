@@ -17,14 +17,7 @@ namespace ExorAIO.Champions.Orianna
     /// </summary>
     internal class Orianna
     {
-        public static Vector3 BallPosition =
-            ObjectManager.Get<Obj_AI_Minion>()
-                         .FirstOrDefault(m => (int) m.Health == 1 && m.CharData.BaseSkinName.Equals("oriannaball"))?
-                         .ServerPosition ?? (GameObjects.Player.HasBuff("orianaghostself")
-                             ? GameObjects.Player.ServerPosition
-                             : GameObjects.AllyHeroes.First(
-                                 a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")))
-                                         ?.ServerPosition ?? Vector3.Zero);
+        public static Vector3 BallPosition;
 
         /// <summary>
         ///     Loads Orianna.
@@ -50,6 +43,11 @@ namespace ExorAIO.Champions.Orianna
             ///     Initializes the drawings.
             /// </summary>
             Drawings.Initialize();
+
+            /// <summary>
+            ///     Initializes the ball drawings.
+            /// </summary>
+            BallDrawings.Initialize();
         }
 
         /// <summary>
@@ -63,6 +61,28 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
+            var ball =
+                ObjectManager.Get<Obj_AI_Minion>()
+                             .FirstOrDefault(m => (int) m.Health == 1 && m.CharData.BaseSkinName.Equals("oriannaball"));
+            if (ball != null)
+            {
+                BallPosition = ball.Position;
+            }
+            else
+            {
+                if (GameObjects.Player.HasBuff("orianaghostself"))
+                {
+                    BallPosition = GameObjects.Player.Position;
+                }
+                else
+                {
+                    var ball2 =
+                        GameObjects.AllyHeroes.FirstOrDefault(
+                            a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
+                    BallPosition = ball2?.Position ?? Vector3.Zero;
+                }
+            }
+
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>
@@ -72,11 +92,6 @@ namespace ExorAIO.Champions.Orianna
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-
-            if (GameObjects.Player.IsWindingUp)
-            {
-                return;
-            }
 
             /// <summary>
             ///     Initializes the orbwalkingmodes.
@@ -155,7 +170,11 @@ namespace ExorAIO.Champions.Orianna
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (sender is Obj_AI_Hero ||
-                sender is Obj_AI_Turret)
+                sender is Obj_AI_Turret ||
+                GameObjects.Jungle.Any(
+                    m =>
+                        m.CharData.BaseSkinName == sender.CharData.BaseSkinName &&
+                        GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
             {
                 if (sender.IsEnemy &&
                     args.Target != null &&
@@ -182,13 +201,9 @@ namespace ExorAIO.Champions.Orianna
         {
             if (sender.Owner.IsMe &&
                 args.Slot == SpellSlot.R &&
-                Vars.Menu["spells"]["miscellanoeus"]["blockr"].GetValue<MenuBool>().Value)
+                Vars.Menu["miscellaneous"]["blockr"].GetValue<MenuBool>().Value)
             {
-                var ballPosition =
-                    ObjectManager.Get<Obj_AI_Minion>()
-                                 .FirstOrDefault(o => o.CharData.BaseSkinName.Equals("oriannaball"))?.ServerPosition ??
-                    GameObjects.Player.ServerPosition;
-                if (!GameObjects.EnemyHeroes.Any(t => t.Distance(ballPosition) < Vars.R.Width))
+                if (!GameObjects.EnemyHeroes.Any(t => t.Distance(BallPosition) < Vars.R.Range))
                 {
                     args.Process = false;
                 }

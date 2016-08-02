@@ -44,11 +44,11 @@ namespace ExorAIO.Champions.Orianna
             if (Vars.W.IsReady() &&
                 Vars.Menu["spells"]["w"]["killsteal"].GetValue<MenuBool>().Value)
             {
-                if (
-                    GameObjects.EnemyHeroes.Any(
-                        t =>
-                            !Invulnerable.Check(t) && t.Distance(Orianna.BallPosition) < Vars.W.Range &&
-                            Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                if (GameObjects.EnemyHeroes.Any(
+                    t =>
+                        t.IsValidTarget() && !Invulnerable.Check(t) &&
+                        t.Distance(Orianna.BallPosition) < Vars.W.Range &&
+                        Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast();
                 }
@@ -64,7 +64,7 @@ namespace ExorAIO.Champions.Orianna
                     GameObjects.EnemyHeroes.Any(
                         t =>
                             t.IsValidTarget() && !Invulnerable.Check(t) &&
-                            t.Distance(Orianna.BallPosition) < Vars.R.Width &&
+                            t.Distance(Orianna.BallPosition) < Vars.R.Range &&
                             Vars.GetRealHealth(t) > (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W) &&
                             Vars.GetRealHealth(t) < (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {

@@ -104,9 +104,9 @@ namespace ExorAIO.Champions.Orianna
             Vars.DrawingsMenu = new Menu("drawings", "Drawings");
             {
                 Vars.DrawingsMenu.Add(new MenuBool("q", "Q Range"));
-                Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
-                Vars.DrawingsMenu.Add(new MenuBool("r", "R Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("ballw", "Ball W Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("ballr", "Ball R Range"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }

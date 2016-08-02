@@ -15,6 +15,7 @@ namespace ExorAIO.Champions.Orianna
         {
             Game.OnUpdate += Orianna.OnUpdate;
             Events.OnGapCloser += Orianna.OnGapCloser;
+            Spellbook.OnCastSpell += Orianna.OnCastSpell;
             Events.OnInterruptableTarget += Orianna.OnInterruptableTarget;
             Obj_AI_Base.OnProcessSpellCast += Orianna.OnProcessSpellCast;
         }

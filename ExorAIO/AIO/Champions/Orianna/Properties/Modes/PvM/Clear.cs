@@ -47,7 +47,10 @@ namespace ExorAIO.Champions.Orianna
                          GameObjects.Player.ManaPercent >
                          ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
                          Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
-                         Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.W.Range).MinionsHit >= 3)
+                         Vars.Q.GetCircularFarmLocation(Targets.Minions,
+                                                        Vars.W.IsReady()
+                                                            ? Vars.W.Range - 30f
+                                                            : Vars.Q.Width).MinionsHit >= 3)
                 {
                     Vars.Q.Cast(Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.W.Range).Position);
                 }
