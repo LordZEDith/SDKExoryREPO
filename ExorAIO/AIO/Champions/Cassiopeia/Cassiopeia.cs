@@ -106,38 +106,10 @@ namespace ExorAIO.Champions.Cassiopeia
                             /// </summary>
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
-                                if (Vars.Q.IsReady() ||
+                                if ((Vars.Q.IsReady() ||
                                     Vars.W.IsReady() ||
-                                    Vars.E.IsReady() ||
-                                    !Bools.HasSheenBuff() ||
-                                    GameObjects.Player.ManaPercent > 10)
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
-
-                            /// <summary>
-                            ///     The 'No AA if Q Ready' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["qfarmmode"].GetValue<MenuBool>().Value)
-                            {
-                                if (Vars.Q.IsReady())
-                                {
-                                    args.Process = false;
-                                }
-                            }
-
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
-                            else if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                    Vars.E.IsReady()) &&
+                                    !Bools.HasSheenBuff())
                                 {
                                     args.Process = false;
                                 }

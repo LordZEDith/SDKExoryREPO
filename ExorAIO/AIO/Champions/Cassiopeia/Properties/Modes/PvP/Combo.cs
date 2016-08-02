@@ -61,6 +61,7 @@ namespace ExorAIO.Champions.Cassiopeia
             {
                 Vars.R.Cast(Targets.RTargets[0].ServerPosition);
             }
+
             if (Targets.Target.HasBuffOfType(BuffType.Poison))
             {
                 return;
