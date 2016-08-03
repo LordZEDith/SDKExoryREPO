@@ -1,20 +1,26 @@
-using System.Linq;
-using System.Windows.Forms;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Nunu
 {
+    using System.Linq;
+    using System.Windows.Forms;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -50,8 +56,8 @@ namespace ExorAIO.Champions.Nunu
                         {
                             foreach (var target in GameObjects.AllyHeroes.Where(h => !h.IsMe))
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use on: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(target.ChampionName.ToLower(), $"Use on: {target.ChampionName}", true));
                             }
                         }
 
@@ -91,8 +97,10 @@ namespace ExorAIO.Champions.Nunu
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuSeparator("separator",
-                                                    "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
+                Vars.MiscMenu.Add(
+                    new MenuSeparator(
+                        "separator",
+                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
             }
             Vars.Menu.Add(Vars.MiscMenu);
@@ -109,5 +117,7 @@ namespace ExorAIO.Champions.Nunu
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

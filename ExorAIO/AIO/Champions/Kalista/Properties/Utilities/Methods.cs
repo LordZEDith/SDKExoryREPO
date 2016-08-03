@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Kalista
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     The methods.
         /// </summary>
@@ -16,5 +18,7 @@ namespace ExorAIO.Champions.Kalista
             Game.OnUpdate += Kalista.OnUpdate;
             Variables.Orbwalker.OnAction += Kalista.OnAction;
         }
+
+        #endregion
     }
 }

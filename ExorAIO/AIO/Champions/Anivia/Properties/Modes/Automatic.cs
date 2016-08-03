@@ -1,21 +1,26 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Anivia
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -30,10 +35,9 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Stacking Manager.
             /// </summary>
-            if (GameObjects.Player.InFountain() &&
-                Bools.HasTear(GameObjects.Player) &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1 &&
-                Vars.Menu["miscellaneous"]["tear"].GetValue<MenuBool>().Value)
+            if (GameObjects.Player.InFountain() && Bools.HasTear(GameObjects.Player)
+                && GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState == 1
+                && Vars.Menu["miscellaneous"]["tear"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast(Game.CursorPos);
             }
@@ -41,9 +45,8 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1 &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 1
+                && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
@@ -56,24 +59,24 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)))
                 {
-                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(target.ServerPosition,
-                                                                         GameObjects.Player.Distance(target) + 20f));
+                    Vars.W.Cast(
+                        GameObjects.Player.ServerPosition.Extend(
+                            target.ServerPosition,
+                            GameObjects.Player.Distance(target) + 20f));
                 }
             }
 
             /// <summary>
             ///     The Q Missile Manager.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Anivia.QMissile != null &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState != 1)
+            if (Vars.Q.IsReady() && Anivia.QMissile != null
+                && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -81,7 +84,7 @@ namespace ExorAIO.Champions.Anivia
                     ///     The Clear Q Explosion Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width * 2) > 0)
                         {
                             Vars.Q.Cast();
                         }
@@ -105,7 +108,7 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width*2) > 0)
+                        if (Anivia.QMissile.Position.CountEnemyHeroesInRange(Vars.Q.Width * 2) > 0)
                         {
                             Vars.Q.Cast();
                         }
@@ -116,10 +119,8 @@ namespace ExorAIO.Champions.Anivia
             /// <summary>
             ///     The R Missile Manager.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Anivia.RMissile != null &&
-                !GameObjects.Player.InFountain() &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState != 1)
+            if (Vars.R.IsReady() && Anivia.RMissile != null && !GameObjects.Player.InFountain()
+                && GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -132,9 +133,9 @@ namespace ExorAIO.Champions.Anivia
                             return;
                         }
 
-                        if (!Targets.RMinions.Any() ||
-                            GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
+                        if (!Targets.RMinions.Any()
+                            || GameObjects.Player.ManaPercent
+                            < ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]))
                         {
                             Vars.R.Cast();
                         }
@@ -157,5 +158,7 @@ namespace ExorAIO.Champions.Anivia
                 }
             }
         }
+
+        #endregion
     }
 }

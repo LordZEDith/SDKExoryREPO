@@ -1,18 +1,23 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Taliyah
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
@@ -32,12 +37,11 @@ namespace ExorAIO.Champions.Taliyah
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Targets.Minions.Any() &&
-                    Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3 &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"]) &&
-                    Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
-                    Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3)
+                if (Targets.Minions.Any() && Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
+                    && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue
+                    && Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3)
                 {
                     Vars.E.Cast(Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).Position);
                 }
@@ -45,10 +49,10 @@ namespace ExorAIO.Champions.Taliyah
                 /// <summary>
                 ///     The JungleClear E Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)) &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"]) &&
-                    Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                else if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range))
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
+                         && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.E.Cast(Targets.JungleMinions[0].ServerPosition);
                 }
@@ -62,13 +66,13 @@ namespace ExorAIO.Champions.Taliyah
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                if (Targets.Minions.Any() &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
-                    Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                if (Targets.Minions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                    && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if (Taliyah.TerrainObject != null &&
-                        Vars.Menu["spells"]["q"]["q2"]["laneclearfull"].GetValue<MenuBool>().Value)
+                    if (Taliyah.TerrainObject != null
+                        && Vars.Menu["spells"]["q"]["q2"]["laneclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;
                     }
@@ -86,13 +90,13 @@ namespace ExorAIO.Champions.Taliyah
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any() &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                    Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                else if (Targets.JungleMinions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                         && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if (Taliyah.TerrainObject != null &&
-                        Vars.Menu["spells"]["q"]["q2"]["jungleclearfull"].GetValue<MenuBool>().Value)
+                    if (Taliyah.TerrainObject != null
+                        && Vars.Menu["spells"]["q"]["q2"]["jungleclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;
                     }
@@ -101,5 +105,7 @@ namespace ExorAIO.Champions.Taliyah
                 }
             }
         }
+
+        #endregion
     }
 }

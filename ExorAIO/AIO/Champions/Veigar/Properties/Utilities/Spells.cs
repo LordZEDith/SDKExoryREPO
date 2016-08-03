@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Veigar
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spells class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Veigar
             Vars.W.SetSkillshot(1.25f, 112.5f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.E.SetSkillshot(0.5f, 375f, float.MaxValue, false, SkillshotType.SkillshotCircle);
         }
+
+        #endregion
     }
 }

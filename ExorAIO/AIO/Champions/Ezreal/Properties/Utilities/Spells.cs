@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Ezreal
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spells class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Ezreal
             Vars.W.SetSkillshot(0.25f, 80f, 1600f, false, SkillshotType.SkillshotLine);
             Vars.R.SetSkillshot(1.1f, 160f, 2000f, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

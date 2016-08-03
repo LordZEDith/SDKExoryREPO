@@ -1,18 +1,23 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Sona
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
@@ -32,10 +37,10 @@ namespace ExorAIO.Champions.Sona
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                if (Targets.JungleMinions.Any() &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"]) &&
-                    Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                if (Targets.JungleMinions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                    && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast();
                 }
@@ -43,15 +48,17 @@ namespace ExorAIO.Champions.Sona
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                else if (Targets.Minions.Any() &&
-                    GameObjects.Player.ManaPercent >
-                        ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"]) &&
-                    Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue &&
-                    Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Range).MinionsHit >= 3)
+                else if (Targets.Minions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                         && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue
+                         && Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Range).MinionsHit >= 3)
                 {
                     Vars.Q.Cast();
                 }
             }
         }
+
+        #endregion
     }
 }

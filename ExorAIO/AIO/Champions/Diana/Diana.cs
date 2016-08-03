@@ -1,44 +1,74 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Diana
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Diana
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Diana.
+        ///     Called on do-cast.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            {
+                /// <summary>
+                ///     Initializes the orbwalkingmodes.
+                /// </summary>
+                switch (Variables.Orbwalker.ActiveMode)
+                {
+                    case OrbwalkingMode.Combo:
+                        Logics.Weaving(sender, args);
+                        break;
+                }
+            }
+        }
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
+        /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast();
+            }
+        }
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
-
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast();
+            }
         }
 
         /// <summary>
@@ -84,57 +114,31 @@ namespace ExorAIO.Champions.Diana
         }
 
         /// <summary>
-        ///     Called on do-cast.
+        ///     Loads Diana.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
-        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        public void OnLoad()
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
-            {
-                /// <summary>
-                ///     Initializes the orbwalkingmodes.
-                /// </summary>
-                switch (Variables.Orbwalker.ActiveMode)
-                {
-                    case OrbwalkingMode.Combo:
-                        Logics.Weaving(sender, args);
-                        break;
-                }
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired on an incoming gapcloser.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast();
-            }
-        }
-
-        /// <summary>
-        ///     Called on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast();
-            }
-        }
+        #endregion
     }
 }

@@ -1,47 +1,123 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Quinn
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.Data;
+    using LeagueSharp.Data.DataTypes;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Quinn
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Quinn.
+        ///     Called on orbwalker action.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
+                    /// <summary>
+                    ///     Check for R Instance.
+                    /// </summary>
+                    if (Vars.R.Instance.Name.Equals("QuinnRFinale"))
+                    {
+                        args.Process = false;
+                    }
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
+                    /// <summary>
+                    ///     The Target Forcing Logic.
+                    /// </summary>
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    {
+                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw")))
+                        {
+                            args.Process = false;
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
+                            return;
+                        }
 
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+                        Variables.Orbwalker.ForceTarget = null;
+                    }
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     Called on do-cast.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            {
+                /// <summary>
+                ///     Initializes the orbwalkingmodes.
+                /// </summary>
+                switch (Variables.Orbwalker.ActiveMode)
+                {
+                    case OrbwalkingMode.Combo:
+                        Logics.Weaving(sender, args);
+                        break;
+                    case OrbwalkingMode.LaneClear:
+                        Logics.JungleClear(sender, args);
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.CastOnUnit(args.Sender);
+            }
+        }
+
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.CastOnUnit(args.Sender);
+            }
         }
 
         /// <summary>
@@ -54,9 +130,8 @@ namespace ExorAIO.Champions.Quinn
             {
                 return;
             }
-            if (GameObjects.Player.IsWindingUp ||
-                GameObjects.Player.IsRecalling() ||
-                Vars.R.Instance.Name.Equals("QuinnRFinale"))
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsRecalling()
+                || Vars.R.Instance.Name.Equals("QuinnRFinale"))
             {
                 return;
             }
@@ -89,104 +164,31 @@ namespace ExorAIO.Champions.Quinn
         }
 
         /// <summary>
-        ///     Called on do-cast.
+        ///     Loads Quinn.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
-        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        public void OnLoad()
         {
-            if (sender.IsMe &&
-                AutoAttack.IsAutoAttack(args.SData.Name))
-            {
-                /// <summary>
-                ///     Initializes the orbwalkingmodes.
-                /// </summary>
-                switch (Variables.Orbwalker.ActiveMode)
-                {
-                    case OrbwalkingMode.Combo:
-                        Logics.Weaving(sender, args);
-                        break;
-                    case OrbwalkingMode.LaneClear:
-                        Logics.JungleClear(sender, args);
-                        break;
-                }
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired on an incoming gapcloser.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.CastOnUnit(args.Sender);
-            }
-        }
-
-        /// <summary>
-        ///     Called on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.CastOnUnit(args.Sender);
-            }
-        }
-
-        /// <summary>
-        ///     Called on orbwalker action.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
-        {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-
-                    /// <summary>
-                    ///     Check for R Instance.
-                    /// </summary>
-                    if (Vars.R.Instance.Name.Equals("QuinnRFinale"))
-                    {
-                        args.Process = false;
-                    }
-
-                    /// <summary>
-                    ///     The Target Forcing Logic.
-                    /// </summary>
-                    var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null &&
-                        Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero)*3)
-                    {
-                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw")))
-                        {
-                            args.Process = false;
-                            Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw"))
-                                           .OrderByDescending(
-                                               o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                           .First();
-                            return;
-                        }
-
-                        Variables.Orbwalker.ForceTarget = null;
-                    }
-
-                    break;
-            }
-        }
+        #endregion
     }
 }

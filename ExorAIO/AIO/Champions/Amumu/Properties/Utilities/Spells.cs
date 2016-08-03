@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Amumu
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spells class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Amumu
             Vars.W.SetSkillshot(0f, 300f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(0.25f, 550f, float.MaxValue, false, SkillshotType.SkillshotCircle);
         }
+
+        #endregion
     }
 }

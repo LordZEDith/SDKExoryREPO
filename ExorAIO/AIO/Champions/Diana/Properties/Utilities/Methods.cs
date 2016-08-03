@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Diana
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the methods.
         /// </summary>
@@ -18,5 +20,7 @@ namespace ExorAIO.Champions.Diana
             Events.OnGapCloser += Diana.OnGapCloser;
             Events.OnInterruptableTarget += Diana.OnInterruptableTarget;
         }
+
+        #endregion
     }
 }

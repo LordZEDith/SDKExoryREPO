@@ -1,16 +1,20 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Akali
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the menus.
         /// </summary>
@@ -68,8 +72,11 @@ namespace ExorAIO.Champions.Akali
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use against: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -88,7 +95,8 @@ namespace ExorAIO.Champions.Akali
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
                 Vars.MiscMenu.Add(new MenuBool("safe", "Don't R into Turret", true));
-                Vars.MiscMenu.Add(new MenuSliderButton("gapclose", "Use R to Gapclose / If R Stacks >= x", 2, 2, 3, true));
+                Vars.MiscMenu.Add(
+                    new MenuSliderButton("gapclose", "Use R to Gapclose / If R Stacks >= x", 2, 2, 3, true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 
@@ -104,5 +112,7 @@ namespace ExorAIO.Champions.Akali
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

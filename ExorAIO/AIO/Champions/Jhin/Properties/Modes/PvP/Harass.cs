@@ -1,17 +1,22 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jhin
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -26,13 +31,15 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"]) &&
-                Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
+                && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.Q.CastOnUnit(Targets.Target);
             }
         }
+
+        #endregion
     }
 }

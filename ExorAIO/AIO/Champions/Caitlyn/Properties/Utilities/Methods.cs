@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Caitlyn
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the methods.
         /// </summary>
@@ -20,5 +22,7 @@ namespace ExorAIO.Champions.Caitlyn
             Obj_AI_Base.OnDoCast += Caitlyn.OnDoCast;
             Obj_AI_Base.OnProcessSpellCast += Caitlyn.OnProcessSpellCast;
         }
+
+        #endregion
     }
 }

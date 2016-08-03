@@ -1,19 +1,24 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jax
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -28,11 +33,9 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Automatic R Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.HealthPercent < 20 &&
-                    GameObjects.Player.CountEnemyHeroesInRange(750f) > 0)
+                if (GameObjects.Player.HealthPercent < 20 && GameObjects.Player.CountEnemyHeroesInRange(750f) > 0)
                 {
                     Vars.R.Cast();
                 }
@@ -45,9 +48,8 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && !GameObjects.Player.IsUnderEnemyTurret()
+                && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)))
                 {
@@ -55,5 +57,7 @@ namespace ExorAIO.Champions.Jax
                 }
             }
         }
+
+        #endregion
     }
 }

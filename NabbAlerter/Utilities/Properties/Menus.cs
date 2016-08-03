@@ -1,19 +1,24 @@
-using System.Linq;
-using System.Windows.Forms;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace NabbAlerter
 {
+    using System.Linq;
+    using System.Windows.Forms;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -47,8 +52,10 @@ namespace NabbAlerter
                         {
                             if (Vars.NotIncludedChampions.Contains(target.ChampionName.ToLower()))
                             {
-                                Vars.HeroMenu.Add(new MenuSeparator("notincluded",
-                                                                    $"You don't need to alert about {target.ChampionName}'s Ultimate."));
+                                Vars.HeroMenu.Add(
+                                    new MenuSeparator(
+                                        "notincluded",
+                                        $"You don't need to alert about {target.ChampionName}'s Ultimate."));
                             }
                             else
                             {
@@ -64,5 +71,7 @@ namespace NabbAlerter
 
             Vars.Menu.Attach();
         }
+
+        #endregion
     }
 }

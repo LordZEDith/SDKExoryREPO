@@ -1,44 +1,57 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Nunu
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Nunu
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Nunu.
+        ///     Called on orbwalker action.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Hybrid:
+                        case OrbwalkingMode.LastHit:
+                        case OrbwalkingMode.LaneClear:
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
+                            /// <summary>
+                            ///     The 'Support Mode' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            {
+                                if (args.Target is Obj_AI_Minion
+                                    && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                    }
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
-
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+                    break;
+            }
         }
 
         /// <summary>
@@ -84,37 +97,31 @@ namespace ExorAIO.Champions.Nunu
         }
 
         /// <summary>
-        ///     Called on orbwalker action.
+        ///     Loads Nunu.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        public void OnLoad()
         {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
 
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                    }
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
 
-                    break;
-            }
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
+
+        #endregion
     }
 }

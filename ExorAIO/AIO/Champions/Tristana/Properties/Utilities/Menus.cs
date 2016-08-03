@@ -1,16 +1,20 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Tristana
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -56,8 +60,11 @@ namespace ExorAIO.Champions.Tristana
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use E on: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use E on: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -90,5 +97,7 @@ namespace ExorAIO.Champions.Tristana
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

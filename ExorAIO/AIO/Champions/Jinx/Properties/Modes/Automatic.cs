@@ -1,21 +1,26 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jinx
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -66,9 +71,9 @@ namespace ExorAIO.Champions.Jinx
                             /// </summary>
                             else if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid)
                             {
-                                if (GameObjects.Player.ManaPercent <
-                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["harass"]) ||
-                                    !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+                                if (GameObjects.Player.ManaPercent
+                                    < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["harass"])
+                                    || !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
                                 {
                                     //Console.WriteLine("ExorAIO: Jinx - Hybrid - ManaManager or Option Block.");
                                     return;
@@ -79,10 +84,11 @@ namespace ExorAIO.Champions.Jinx
                             ///     Enable if:
                             ///     No hero in PowPow Range but 1 or more heroes in FishBones range. (Range Logic).
                             /// </summary>
-                            if (!GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)) &&
-                                GameObjects.EnemyHeroes.Any(
+                            if (!GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range))
+                                && GameObjects.EnemyHeroes.Any(
                                     t2 =>
-                                        t2.IsValidTarget(Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid
+                                    t2.IsValidTarget(
+                                        Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid
                                             ? Vars.Q.Range
                                             : Vars.W.Range)))
                             {
@@ -103,9 +109,9 @@ namespace ExorAIO.Champions.Jinx
                             ///     It respects the ManaManager Check, (Mana check),
                             ///     The Clear Option is enabled. (Option check).
                             /// </summary>
-                            if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]) ||
-                                !Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+                            if (GameObjects.Player.ManaPercent
+                                < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"])
+                                || !Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
                             {
                                 //Console.WriteLine("ExorAIO: Jinx - Clear - ManaManager or Option Block.");
                                 return;
@@ -116,24 +122,23 @@ namespace ExorAIO.Champions.Jinx
                             /// </summary>
                             if (
                                 Targets.Minions.Any(
-                                    m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
+                                    m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
                                 /// <summary>
                                 ///     Disable if:
                                 ///     The player has Runaan's Hurricane and there are more than 1 hittable Minions..
                                 ///     And there more than 2 killable minions in Q explosion range (Lane AoE Logic).
                                 /// </summary>
-                                if (Items.HasItem(3085) && Targets.Minions.Count > 1 ||
-                                    Targets.Minions.Where(
-                                        m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)*1.1)
+                                if (Items.HasItem(3085) && Targets.Minions.Count > 1
+                                    || Targets.Minions.Where(
+                                        m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)
                                            .Count(
                                                m2 =>
-                                                   m2.Distance(
-                                                       Targets.Minions.First(
-                                                           m =>
-                                                               Vars.GetRealHealth(m) <
-                                                                   GameObjects.Player.GetAutoAttackDamage(m)*1.1)) <
-                                                       250f) >= 3)
+                                               m2.Distance(
+                                                   Targets.Minions.First(
+                                                       m =>
+                                                       Vars.GetRealHealth(m)
+                                                       < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)) < 250f) >= 3)
                                 {
                                     Vars.Q.Cast();
 
@@ -184,9 +189,9 @@ namespace ExorAIO.Champions.Jinx
                             ///     It respects the ManaManager Check, (Mana check).
                             ///     The LastHit Option is enabled. (Option check).
                             /// </summary>
-                            if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]) ||
-                                !Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
+                            if (GameObjects.Player.ManaPercent
+                                < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"])
+                                || !Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue)
                             {
                                 //Console.WriteLine("ExorAIO: Jinx - LastHit - ManaManager or Option Block.");
                                 return;
@@ -199,14 +204,14 @@ namespace ExorAIO.Champions.Jinx
                             if (
                                 Targets.Minions.Any(
                                     m =>
-                                        !m.IsValidTarget(Vars.PowPow.Range) &&
-                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
+                                    !m.IsValidTarget(Vars.PowPow.Range)
+                                    && m.Health < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
                                 if (
                                     !Targets.Minions.Any(
                                         m =>
-                                            m.IsValidTarget(Vars.PowPow.Range) &&
-                                                m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
+                                        m.IsValidTarget(Vars.PowPow.Range)
+                                        && m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                                 {
                                     Vars.Q.Cast();
 
@@ -255,9 +260,9 @@ namespace ExorAIO.Champions.Jinx
                             /// </summary>
                             else if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.Hybrid)
                             {
-                                if (GameObjects.Player.ManaPercent <
-                                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["harass"]) ||
-                                    !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
+                                if (GameObjects.Player.ManaPercent
+                                    < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["harass"])
+                                    || !Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
                                 {
                                     Vars.Q.Cast();
 
@@ -270,16 +275,17 @@ namespace ExorAIO.Champions.Jinx
                             ///     Disable if:
                             ///     The target is not a hero. (Target check),
                             /// </summary>
-                            if (Variables.Orbwalker.GetTarget() is Obj_AI_Hero &&
-                                (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget())
+                            if (Variables.Orbwalker.GetTarget() is Obj_AI_Hero
+                                && (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget())
                             {
                                 /// <summary>
                                 ///     Disable if:
                                 ///     No enemies in explosion range from the target. (AOE Logic),
                                 ///     Any hero in PowPow Range. (Range Logic).
                                 /// </summary>
-                                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)) &&
-                                    (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).CountEnemyHeroesInRange(200f) < 2)
+                                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range))
+                                    && (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).CountEnemyHeroesInRange(200f)
+                                    < 2)
                                 {
                                     Vars.Q.Cast();
 
@@ -300,8 +306,8 @@ namespace ExorAIO.Champions.Jinx
                             ///     Doesn't respect the ManaManager Check, (Mana check).
                             ///     The Clear Option is disabled. (Option check).
                             /// </summary>
-                            if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
+                            if (GameObjects.Player.ManaPercent
+                                < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
                             {
                                 Vars.Q.Cast();
 
@@ -319,16 +325,16 @@ namespace ExorAIO.Champions.Jinx
                             ///     The player has no Runaan's Hurricane or there is only 1 hittable Minion..
                             ///     And there are no killable minions in Q explosion range or the number of killable minions is less than 3 (Lane AoE Logic).
                             /// </summary>
-                            if ((!Items.HasItem(3085) || Targets.Minions.Count < 2) &&
-                                (!Targets.Minions.Any(
-                                    m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m)*1.1) ||
-                                    Targets.Minions.Count(
+                            if ((!Items.HasItem(3085) || Targets.Minions.Count < 2)
+                                && (!Targets.Minions.Any(
+                                    m => Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1)
+                                    || Targets.Minions.Count(
                                         m2 =>
-                                            m2.Distance(
-                                                Targets.Minions.First(
-                                                    m =>
-                                                        Vars.GetRealHealth(m) <
-                                                            GameObjects.Player.GetAutoAttackDamage(m)*1.1)) < 250f) < 3))
+                                        m2.Distance(
+                                            Targets.Minions.First(
+                                                m =>
+                                                Vars.GetRealHealth(m) < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
+                                        < 250f) < 3))
                             {
                                 Vars.Q.Cast();
 
@@ -341,8 +347,8 @@ namespace ExorAIO.Champions.Jinx
                             ///     There is at least 1 monster in PowPow Range.. (Jungle Range Logic).
                             ///     .. And less than 1 monster in explosion range from the monster target (Jungle AoE Logic).
                             /// </summary>
-                            if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.PowPow.Range)) &&
-                                Targets.JungleMinions.Count(m2 => m2.Distance(Targets.JungleMinions[0]) < 250f) < 2)
+                            if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.PowPow.Range))
+                                && Targets.JungleMinions.Count(m2 => m2.Distance(Targets.JungleMinions[0]) < 250f) < 2)
                             {
                                 Vars.Q.Cast();
 
@@ -362,8 +368,8 @@ namespace ExorAIO.Champions.Jinx
                             ///     Doesn't respect the ManaManager Check, (Mana check).
                             ///     The LastHit Option is disabled. (Option check).
                             /// </summary>
-                            if (GameObjects.Player.ManaPercent <
-                                ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]))
+                            if (GameObjects.Player.ManaPercent
+                                < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]))
                             {
                                 Vars.Q.Cast();
 
@@ -383,8 +389,8 @@ namespace ExorAIO.Champions.Jinx
                             if (
                                 !Targets.Minions.Any(
                                     m =>
-                                        !m.IsValidTarget(Vars.PowPow.Range) &&
-                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)*1.1))
+                                    !m.IsValidTarget(Vars.PowPow.Range)
+                                    && m.Health < GameObjects.Player.GetAutoAttackDamage(m) * 1.1))
                             {
                                 Vars.Q.Cast();
 
@@ -395,8 +401,8 @@ namespace ExorAIO.Champions.Jinx
                             if (
                                 Targets.Minions.Any(
                                     m =>
-                                        m.IsValidTarget(Vars.PowPow.Range) &&
-                                            m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
+                                    m.IsValidTarget(Vars.PowPow.Range)
+                                    && m.Health < GameObjects.Player.GetAutoAttackDamage(m)))
                             {
                                 Vars.Q.Cast();
 
@@ -421,14 +427,13 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false)))
+                        Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range)
+                        && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.E.Cast(target.ServerPosition);
                 }
@@ -437,10 +442,9 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                !GameObjects.Player.IsUnderEnemyTurret() &&
-                GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3 &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret()
+                && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3
+                && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
@@ -456,16 +460,15 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
                 if (
                     !GameObjects.EnemyHeroes.Any(
                         t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                            .GetValue<MenuBool>().Value))
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value))
                 {
                     return;
                 }
@@ -474,9 +477,9 @@ namespace ExorAIO.Champions.Jinx
                     Vars.R.GetPrediction(
                         GameObjects.EnemyHeroes.Where(
                             t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                    Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                            && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
 
@@ -490,8 +493,7 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Q Switching Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["miscellaneous"]["blockq"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["miscellaneous"]["blockq"].GetValue<MenuBool>().Value)
             {
                 if (GameObjects.Player.HasBuff("JinxQ"))
                 {
@@ -502,12 +504,14 @@ namespace ExorAIO.Champions.Jinx
                 ///     Block if:
                 ///     It doesn't respect the ManaManager Check, (Mana check),
                 /// </summary>
-                if (GameObjects.Player.ManaPercent <
-                    ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
+                if (GameObjects.Player.ManaPercent
+                    < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["clear"]))
                 {
                     args.Process = false;
                 }
             }
         }
+
+        #endregion
     }
 }

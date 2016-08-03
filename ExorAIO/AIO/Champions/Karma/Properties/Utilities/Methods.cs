@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Karma
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -18,5 +20,7 @@ namespace ExorAIO.Champions.Karma
             Obj_AI_Base.OnProcessSpellCast += Karma.OnProcessSpellCast;
             Variables.Orbwalker.OnAction += Karma.OnAction;
         }
+
+        #endregion
     }
 }

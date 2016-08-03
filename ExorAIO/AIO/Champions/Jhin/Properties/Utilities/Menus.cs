@@ -1,16 +1,20 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jhin
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -51,8 +55,11 @@ namespace ExorAIO.Champions.Jhin
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use against: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -89,8 +96,11 @@ namespace ExorAIO.Champions.Jhin
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteList2Menu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                     $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteList2Menu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use against: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -116,5 +126,7 @@ namespace ExorAIO.Champions.Jhin
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

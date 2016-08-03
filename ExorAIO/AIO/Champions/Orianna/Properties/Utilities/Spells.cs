@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Orianna
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -21,5 +24,7 @@ namespace ExorAIO.Champions.Orianna
             Vars.R = new Spell(SpellSlot.R, 325f + GameObjects.Player.BoundingRadius);
             Vars.Q.SetSkillshot(0.35f, 175f, 1150f, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

@@ -1,18 +1,23 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Amumu
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
@@ -27,13 +32,13 @@ namespace ExorAIO.Champions.Amumu
             /// <summary>
             ///     The Q JungleGrab Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"]) &&
-                Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["junglegrab"])
+                && Vars.Menu["spells"]["q"]["junglegrab"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range)) &&
-                    !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
+                if (Targets.JungleMinions.Any(m => !m.IsValidTarget(Vars.E.Range))
+                    && !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
                     var minion = Targets.JungleMinions.FirstOrDefault(m => !m.IsValidTarget(Vars.E.Range));
                     if (minion != null)
@@ -46,10 +51,10 @@ namespace ExorAIO.Champions.Amumu
             /// <summary>
             ///     The E Clear Logics.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"])
+                && Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The E LaneClear Logic.
@@ -68,5 +73,7 @@ namespace ExorAIO.Champions.Amumu
                 }
             }
         }
+
+        #endregion
     }
 }

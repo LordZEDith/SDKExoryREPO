@@ -1,22 +1,27 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.Data.Enumerations;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Corki
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.Data.Enumerations;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -31,8 +36,7 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
@@ -45,23 +49,23 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The Automatic R LastHit Logics.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"]) &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.R.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"])
+                && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in
                     GameObjects.EnemyMinions.Where(m => m.IsValidTarget(Vars.R.Range) && !m.IsValidTarget(Vars.AARange))
                     )
                 {
-                    if (Vars.GetRealHealth(minion) <
-                        (float)
-                            GameObjects.Player.GetSpellDamage(minion, SpellSlot.R,
-                                                              ObjectManager.Player.HasBuff(
-                                                                  "corkimissilebarragecounterbig")
-                                                                  ? DamageStage.Empowered
-                                                                  : DamageStage.Default))
+                    if (Vars.GetRealHealth(minion)
+                        < (float)
+                          GameObjects.Player.GetSpellDamage(
+                              minion,
+                              SpellSlot.R,
+                              ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
+                                  ? DamageStage.Empowered
+                                  : DamageStage.Default))
                     {
                         if (!Vars.R.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
                         {
@@ -71,5 +75,7 @@ namespace ExorAIO.Champions.Corki
                 }
             }
         }
+
+        #endregion
     }
 }

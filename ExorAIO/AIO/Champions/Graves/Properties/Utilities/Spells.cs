@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Graves
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spells class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Graves
             Vars.W.SetSkillshot(0.25f, 250f, 1000f, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(0.25f, 100f, 2100f, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

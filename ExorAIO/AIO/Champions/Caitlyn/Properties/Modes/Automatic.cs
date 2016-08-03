@@ -1,20 +1,25 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Caitlyn
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -29,14 +34,13 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Automatic W Logic. 
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical, false)))
+                        Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range)
+                        && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }
@@ -45,15 +49,14 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) < 3 &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) < 3
+                && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                t.HasBuff("caitlynyordletrapsight")))
+                        Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
+                        && t.HasBuff("caitlynyordletrapsight")))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -62,16 +65,15 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value &&
-                Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
                 if (
                     !GameObjects.EnemyHeroes.Any(
                         t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                            .GetValue<MenuBool>().Value))
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value))
                 {
                     return;
                 }
@@ -79,10 +81,12 @@ namespace ExorAIO.Champions.Caitlyn
                 Vars.R.CastOnUnit(
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) &&
-                                Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                            .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
             }
         }
+
+        #endregion
     }
 }

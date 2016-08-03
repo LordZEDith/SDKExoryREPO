@@ -1,17 +1,22 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Olaf
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -21,12 +26,13 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The R Automatic Logic.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Bools.ShouldCleanse(GameObjects.Player) &&
-                Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Bools.ShouldCleanse(GameObjects.Player)
+                && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();
             }
         }
+
+        #endregion
     }
 }

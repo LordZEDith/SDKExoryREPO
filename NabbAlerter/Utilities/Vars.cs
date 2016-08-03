@@ -1,79 +1,67 @@
-using System.Collections.Generic;
-using LeagueSharp.SDK.UI;
-
 namespace NabbAlerter
 {
+    using System.Collections.Generic;
+
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The Vars class.
     /// </summary>
     internal class Vars
     {
-        /// <summary>
-        ///     A list containing the names of the champs whose ultimate is useless to track.
-        /// </summary>
-        public static readonly List<string> NotIncludedChampions = new List<string>
-                                                                   {
-                                                                       "akali",
-                                                                       "anivia",
-                                                                       "swain",
-                                                                       "jayce",
-                                                                       "nidalee",
-                                                                       "blitzcrank",
-                                                                       "chogath",
-                                                                       "corki",
-                                                                       "darius",
-                                                                       "diana",
-                                                                       "elise",
-                                                                       "karma",
-                                                                       "kassadin",
-                                                                       "khazix",
-                                                                       "kogmaw",
-                                                                       "leblanc",
-                                                                       "maokai",
-                                                                       "quinn",
-                                                                       "ryze",
-                                                                       "teemo",
-                                                                       "udyr",
-                                                                       "yasuo"
-                                                                   };
+        #region Static Fields
 
         /// <summary>
         ///     A list containing the names of the champs whose ultimate is useless to track.
         /// </summary>
         public static readonly List<string> ExChampions = new List<string>
-                                                          {
-                                                              "Ahri",
-                                                              "Annie",
-                                                              "Irelia",
-                                                              "Jhin",
-                                                              "Riven",
-                                                              "Shaco",
-                                                              "Zed"
-                                                          };
+                                                              {
+                                                                  "Ahri", "Annie", "Irelia", "Jhin", "Riven", "Shaco",
+                                                                  "Zed"
+                                                              };
+
+        /// <summary>
+        ///     A list containing the names of the champs whose ultimate is useless to track.
+        /// </summary>
+        public static readonly List<string> NotIncludedChampions = new List<string>
+                                                                       {
+                                                                           "akali", "anivia", "swain", "jayce",
+                                                                           "nidalee",
+                                                                           "blitzcrank", "chogath", "corki", "darius",
+                                                                           "diana", "elise", "karma", "kassadin",
+                                                                           "khazix",
+                                                                           "kogmaw", "leblanc", "maokai", "quinn",
+                                                                           "ryze",
+                                                                           "teemo", "udyr", "yasuo"
+                                                                       };
 
         /// <summary>
         ///     A list containing the names of the champs whose ultimate is useless to track.
         /// </summary>
         public static readonly List<string> RealSpells = new List<string>
-                                                         {
-                                                             "AhriTumble",
-                                                             "InfernalGuardian",
-                                                             "IreliaTranscendentBladesSpell",
-                                                             "JhinR",
-                                                             "RivenIzunaBlade",
-                                                             "HallucinateFull",
-                                                             "ZedR"
-                                                         };
+                                                             {
+                                                                 "AhriTumble", "InfernalGuardian",
+                                                                 "IreliaTranscendentBladesSpell", "JhinR",
+                                                                 "RivenIzunaBlade", "HallucinateFull", "ZedR"
+                                                             };
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     The Hero Menu.
+        /// </summary>
+        public static Menu HeroMenu { internal get; set; }
 
         /// <summary>
         ///     The Menu.
         /// </summary>
         public static Menu Menu { internal get; set; }
 
-        /// <summary>
-        ///     The Hero Menu.
-        /// </summary>
-        public static Menu HeroMenu { internal get; set; }
+        #endregion
+
+        #region Public Methods and Operators
 
         /// <summary>
         ///     Initializes the enemy names.
@@ -270,5 +258,7 @@ namespace NabbAlerter
 
             return str;
         }
+
+        #endregion
     }
 }

@@ -1,16 +1,20 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Darius
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -20,7 +24,9 @@ namespace ExorAIO.Champions.Darius
             Vars.W = new Spell(SpellSlot.W, Vars.AARange + 25f);
             Vars.E = new Spell(SpellSlot.E, 500f);
             Vars.R = new Spell(SpellSlot.R, 460f);
-            Vars.E.SetSkillshot(0.25f, (float) (80f*Math.PI/180), float.MaxValue, false, SkillshotType.SkillshotCone);
+            Vars.E.SetSkillshot(0.25f, (float)(80f * Math.PI / 180), float.MaxValue, false, SkillshotType.SkillshotCone);
         }
+
+        #endregion
     }
 }

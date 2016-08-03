@@ -1,44 +1,53 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Draven
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Draven
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Draven.
+        ///     Fired on an incoming gapcloser.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(Vars.E.GetPrediction(args.Sender).UnitPosition);
+            }
+        }
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
-
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(args.Sender.ServerPosition);
+            }
         }
 
         /// <summary>
@@ -84,35 +93,31 @@ namespace ExorAIO.Champions.Draven
         }
 
         /// <summary>
-        ///     Fired on an incoming gapcloser.
+        ///     Loads Draven.
         /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        public void OnLoad()
         {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(Vars.E.GetPrediction(args.Sender).UnitPosition);
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Called on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsValidTarget(Vars.E.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Physical, false) &&
-                Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(args.Sender.ServerPosition);
-            }
-        }
+        #endregion
     }
 }

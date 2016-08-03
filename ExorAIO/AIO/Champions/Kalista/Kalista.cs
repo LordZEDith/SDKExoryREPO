@@ -1,12 +1,3 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.Data;
-using LeagueSharp.Data.DataTypes;
-using LeagueSharp.Data.Enumerations;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
 
 #pragma warning disable 1587
 
@@ -14,11 +5,119 @@ using LeagueSharp.SDK.Enumerations;
 
 namespace ExorAIO.Champions.Kalista
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.Data;
+    using LeagueSharp.Data.DataTypes;
+    using LeagueSharp.Data.Enumerations;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Kalista
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     Called on orbwalker action.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        {
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+
+                    /// <summary>
+                    ///     The Target Forcing Logic.
+                    /// </summary>
+                    var hero = args.Target as Obj_AI_Hero;
+                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    {
+                        foreach (var t1 in GameObjects.EnemyHeroes)
+                        {
+                            if (t1.IsValidTarget(Vars.AARange) && t1.HasBuff("kalistacoopstrikemarkally"))
+                            {
+                                Variables.Orbwalker.ForceTarget =
+                                    GameObjects.EnemyHeroes.Where(
+                                        t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
+                                        .OrderByDescending(
+                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                        .First();
+                                return;
+                            }
+                        }
+
+                        Variables.Orbwalker.ForceTarget = null;
+                    }
+
+                    break;
+                case OrbwalkingType.NonKillableMinion:
+
+                    /// <summary>
+                    ///     The E against Non-Killable Minions Logic.
+                    /// </summary>
+                    if (Vars.E.IsReady() && Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion)
+                        && Vars.GetRealHealth(args.Target as Obj_AI_Minion)
+                        < (float)GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E)
+                        + (float)
+                          GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E, DamageStage.Buff))
+                    {
+                        Vars.E.Cast();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     Fired when the game is updated.
+        /// </summary>
+        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
+        public static void OnUpdate(EventArgs args)
+        {
+            if (GameObjects.Player.IsDead)
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     Initializes the Automatic actions.
+            /// </summary>
+            Logics.Automatic(args);
+
+            /// <summary>
+            ///     Initializes the Killsteal events.
+            /// </summary>
+            Logics.Killsteal(args);
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsDashing())
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     Initializes the orbwalkingmodes.
+            /// </summary>
+            switch (Variables.Orbwalker.ActiveMode)
+            {
+                case OrbwalkingMode.Combo:
+                    Logics.Combo(args);
+                    break;
+                case OrbwalkingMode.Hybrid:
+                    Logics.Harass(args);
+                    break;
+                case OrbwalkingMode.LaneClear:
+                    Logics.Clear(args);
+                    break;
+            }
+        }
+
         /// <summary>
         ///     Loads Kalista.
         /// </summary>
@@ -50,103 +149,6 @@ namespace ExorAIO.Champions.Kalista
             Healthbars.Initialize();
         }
 
-        /// <summary>
-        ///     Fired when the game is updated.
-        /// </summary>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void OnUpdate(EventArgs args)
-        {
-            if (GameObjects.Player.IsDead)
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     Initializes the Automatic actions.
-            /// </summary>
-            Logics.Automatic(args);
-
-            /// <summary>
-            ///     Initializes the Killsteal events.
-            /// </summary>
-            Logics.Killsteal(args);
-            if (GameObjects.Player.IsWindingUp ||
-                GameObjects.Player.IsDashing())
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     Initializes the orbwalkingmodes.
-            /// </summary>
-            switch (Variables.Orbwalker.ActiveMode)
-            {
-                case OrbwalkingMode.Combo:
-                    Logics.Combo(args);
-                    break;
-                case OrbwalkingMode.Hybrid:
-                    Logics.Harass(args);
-                    break;
-                case OrbwalkingMode.LaneClear:
-                    Logics.Clear(args);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     Called on orbwalker action.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
-        {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-
-                    /// <summary>
-                    ///     The Target Forcing Logic.
-                    /// </summary>
-                    var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null &&
-                        Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero)*3)
-                    {
-                        foreach (var t1 in GameObjects.EnemyHeroes)
-                        {
-                            if (t1.IsValidTarget(Vars.AARange) &&
-                                t1.HasBuff("kalistacoopstrikemarkally"))
-                            {
-                                Variables.Orbwalker.ForceTarget =
-                                    GameObjects.EnemyHeroes.Where(
-                                        t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
-                                               .OrderByDescending(
-                                                   o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                               .First();
-                                return;
-                            }
-                        }
-
-                        Variables.Orbwalker.ForceTarget = null;
-                    }
-
-                    break;
-                case OrbwalkingType.NonKillableMinion:
-
-                    /// <summary>
-                    ///     The E against Non-Killable Minions Logic.
-                    /// </summary>
-                    if (Vars.E.IsReady() &&
-                        Bools.IsPerfectRendTarget(args.Target as Obj_AI_Minion) &&
-                        Vars.GetRealHealth(args.Target as Obj_AI_Minion) <
-                            (float) GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E) +
-                                (float)
-                                    GameObjects.Player.GetSpellDamage(args.Target as Obj_AI_Minion, SpellSlot.E,
-                                                                      DamageStage.Buff))
-                    {
-                        Vars.E.Cast();
-                    }
-                    break;
-            }
-        }
+        #endregion
     }
 }

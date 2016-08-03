@@ -1,25 +1,24 @@
-using System.Collections.Generic;
-using LeagueSharp;
-using LeagueSharp.SDK.UI;
-using SharpDX;
-using SharpDX.Direct3D9;
-
 namespace NabbTracker
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK.UI;
+
+    using Font = SharpDX.Direct3D9.Font;
+
     /// <summary>
     ///     The Vars class.
     /// </summary>
     internal class Vars
     {
-        /// <summary>
-        ///     Gets the Color.
-        /// </summary>
-        public static Color SDXColor = Color.Black;
+        #region Static Fields
 
         /// <summary>
-        ///     Gets the Color.
+        ///     A list of the names of the champions who have a different healthbar type.
         /// </summary>
-        public static System.Drawing.Color SDColor = System.Drawing.Color.Black;
+        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
 
         /// <summary>
         ///     Gets the SummonerSpell name.
@@ -27,53 +26,28 @@ namespace NabbTracker
         public static string GetSummonerSpellName;
 
         /// <summary>
+        ///     Gets the Color.
+        /// </summary>
+        public static Color SDColor = Color.Black;
+
+        /// <summary>
+        ///     Gets the Color.
+        /// </summary>
+        public static SharpDX.Color SDXColor = SharpDX.Color.Black;
+
+        /// <summary>
         ///     Gets the spellslots.
         /// </summary>
-        public static SpellSlot[] SpellSlots =
-        {
-            SpellSlot.Q,
-            SpellSlot.W,
-            SpellSlot.E,
-            SpellSlot.R
-        };
+        public static SpellSlot[] SpellSlots = { SpellSlot.Q, SpellSlot.W, SpellSlot.E, SpellSlot.R };
 
         /// <summary>
         ///     Gets the summoner spellslots.
         /// </summary>
-        public static SpellSlot[] SummonerSpellSlots =
-        {
-            SpellSlot.Summoner1,
-            SpellSlot.Summoner2
-        };
+        public static SpellSlot[] SummonerSpellSlots = { SpellSlot.Summoner1, SpellSlot.Summoner2 };
 
-        /// <summary>
-        ///     A list of the names of the champions who have a different healthbar type.
-        /// </summary>
-        public static readonly List<string> SpecialChampions = new List<string>
-                                                               {
-                                                                   "Annie",
-                                                                   "Jhin"
-                                                               };
+        #endregion
 
-        /// <summary>
-        ///     The Main Menu.
-        /// </summary>
-        public static Menu Menu { internal get; set; }
-
-        /// <summary>
-        ///     The SpellTracker Menu.
-        /// </summary>
-        public static Menu SpellTrackerMenu { internal get; set; }
-
-        /// <summary>
-        ///     The ExpTracker Menu.
-        /// </summary>
-        public static Menu ExpTrackerMenu { internal get; set; }
-
-        /// <summary>
-        ///     The Miscellaneous Menu.
-        /// </summary>
-        public static Menu MiscMenu { internal get; set; }
+        #region Public Properties
 
         /// <summary>
         ///     The Colorblind Menu.
@@ -83,18 +57,34 @@ namespace NabbTracker
         /// <summary>
         ///     The Text fcnt.
         /// </summary>
-        public static Font DisplayTextFont { get; set; } = new Font(Drawing.Direct3DDevice,
-                                                                    new System.Drawing.Font("Tahoma", 8));
+        public static Font DisplayTextFont { get; set; } = new Font(
+            Drawing.Direct3DDevice,
+            new System.Drawing.Font("Tahoma", 8));
 
         /// <summary>
-        ///     The Spells Healthbars X coordinate.
+        ///     The ExpTracker Menu.
         /// </summary>
-        public static int SpellX { internal get; set; }
+        public static Menu ExpTrackerMenu { internal get; set; }
 
         /// <summary>
-        ///     The Spells Healthbars Y coordinate.
+        ///     The Exp Healthbars X coordinate.
         /// </summary>
-        public static int SpellY { internal get; set; }
+        public static int ExpX { internal get; set; }
+
+        /// <summary>
+        ///     The Exp Healthbars Y coordinate.
+        /// </summary>
+        public static int ExpY { internal get; set; }
+
+        /// <summary>
+        ///     The Main Menu.
+        /// </summary>
+        public static Menu Menu { internal get; set; }
+
+        /// <summary>
+        ///     The Miscellaneous Menu.
+        /// </summary>
+        public static Menu MiscMenu { internal get; set; }
 
         /// <summary>
         ///     The SpellLevel X coordinate.
@@ -107,6 +97,21 @@ namespace NabbTracker
         public static int SpellLevelY { internal get; set; }
 
         /// <summary>
+        ///     The SpellTracker Menu.
+        /// </summary>
+        public static Menu SpellTrackerMenu { internal get; set; }
+
+        /// <summary>
+        ///     The Spells Healthbars X coordinate.
+        /// </summary>
+        public static int SpellX { internal get; set; }
+
+        /// <summary>
+        ///     The Spells Healthbars Y coordinate.
+        /// </summary>
+        public static int SpellY { internal get; set; }
+
+        /// <summary>
         ///     The SummonerSpells Healthbar X coordinate.
         /// </summary>
         public static int SummonerSpellX { internal get; set; }
@@ -116,15 +121,9 @@ namespace NabbTracker
         /// </summary>
         public static int SummonerSpellY { internal get; set; }
 
-        /// <summary>
-        ///     The Exp Healthbars X coordinate.
-        /// </summary>
-        public static int ExpX { internal get; set; }
+        #endregion
 
-        /// <summary>
-        ///     The Exp Healthbars Y coordinate.
-        /// </summary>
-        public static int ExpY { internal get; set; }
+        #region Public Methods and Operators
 
         /// <summary>
         ///     The Exp Healthbars X coordinate adjustment.
@@ -150,8 +149,8 @@ namespace NabbTracker
             }
 
             return target.IsMe
-                ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -40 : -30
-                : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -33 : -22;
+                       ? Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -40 : -30
+                       : Menu["miscellaneous"]["name"].GetValue<MenuBool>().Value ? -33 : -22;
         }
 
         /// <summary>
@@ -205,5 +204,7 @@ namespace NabbTracker
 
             return target.IsMe ? -4 : 4;
         }
+
+        #endregion
     }
 }

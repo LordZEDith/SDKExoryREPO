@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Kalista
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The settings class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -21,5 +24,7 @@ namespace ExorAIO.Champions.Kalista
             Vars.R = new Spell(SpellSlot.R, 1100f);
             Vars.Q.SetSkillshot(0.25f, 40f, 2400f, true, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

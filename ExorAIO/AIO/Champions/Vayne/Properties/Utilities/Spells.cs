@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Vayne
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Vayne
             Vars.E.SetSkillshot(0.45f, 50f, 1000f, false, SkillshotType.SkillshotLine);
             Vars.E2.SetSkillshot(0.60f, 50f, 1000f, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

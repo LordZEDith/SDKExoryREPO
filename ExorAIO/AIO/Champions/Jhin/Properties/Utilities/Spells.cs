@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Jhin
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The settings class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Jhin
             Vars.E.SetSkillshot(1f, 260f, 1000f, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(0.25f, 80f, 5000f, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

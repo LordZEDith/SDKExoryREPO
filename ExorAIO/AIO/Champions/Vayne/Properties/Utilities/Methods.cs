@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Vayne
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -19,5 +21,7 @@ namespace ExorAIO.Champions.Vayne
             Events.OnInterruptableTarget += Vayne.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Vayne.OnAction;
         }
+
+        #endregion
     }
 }

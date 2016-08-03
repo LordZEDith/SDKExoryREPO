@@ -1,18 +1,22 @@
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace NabbActivator
 {
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The activator class.
     /// </summary>
     internal partial class Activator
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called on do-cast.
         /// </summary>
@@ -24,8 +28,8 @@ namespace NabbActivator
             {
                 return;
             }
-            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active &&
-                !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>().Active)
+            if (!Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active
+                && !Vars.Menu["keys"]["laneclear"].GetValue<MenuKeyBind>().Active)
             {
                 return;
             }
@@ -35,8 +39,8 @@ namespace NabbActivator
             /// </summary>
             if (sender.IsMe)
             {
-                if (!Vars.HasAnyReset && AutoAttack.IsAutoAttack(args.SData.Name) ||
-                    ObjectManager.Player.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
+                if (!Vars.HasAnyReset && AutoAttack.IsAutoAttack(args.SData.Name)
+                    || ObjectManager.Player.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
                 {
                     /// <summary>
                     ///     The Tiamat Melee Only logic.
@@ -64,5 +68,7 @@ namespace NabbActivator
                 }
             }
         }
+
+        #endregion
     }
 }

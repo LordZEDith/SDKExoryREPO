@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Anivia
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the spells.
         /// </summary>
@@ -23,5 +26,7 @@ namespace ExorAIO.Champions.Anivia
             Vars.W.SetSkillshot(0.25f, 100f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(0.25f, 150f, 1600f, false, SkillshotType.SkillshotCircle);
         }
+
+        #endregion
     }
 }

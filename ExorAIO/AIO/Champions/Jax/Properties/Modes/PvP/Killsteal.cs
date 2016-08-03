@@ -1,20 +1,25 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jax
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -24,19 +29,18 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The KillSteal Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["killsteal"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange) &&
-                                Vars.GetRealHealth(t) <
-                                    (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) +
-                                        (float) GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)
+                        && Vars.GetRealHealth(t)
+                        < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
+                        + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
-                    if (Vars.W.IsReady() &&
-                        Vars.GetRealHealth(target) > (float) GameObjects.Player.GetSpellDamage(target, SpellSlot.Q))
+                    if (Vars.W.IsReady()
+                        && Vars.GetRealHealth(target) > (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.Q))
                     {
                         Vars.W.Cast();
                     }
@@ -44,5 +48,7 @@ namespace ExorAIO.Champions.Jax
                 }
             }
         }
+
+        #endregion
     }
 }

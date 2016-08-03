@@ -1,40 +1,94 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Ryze
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Ryze
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Ryze.
+        ///     Called on orbwalker action.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Combo:
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
+                            /// <summary>
+                            ///     The 'No AA in Combo' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
+                            {
+                                if (Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady() || !Bools.HasSheenBuff()
+                                    || GameObjects.Player.ManaPercent > 10)
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                        case OrbwalkingMode.Hybrid:
+                        case OrbwalkingMode.LastHit:
+                        case OrbwalkingMode.LaneClear:
 
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+                            /// <summary>
+                            ///     The 'Support Mode' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            {
+                                if (args.Target is Obj_AI_Minion
+                                    && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                    }
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (GameObjects.Player.HealthPercent
+                <= Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue
+                && Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
+            {
+                return;
+            }
+
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.W.CastOnUnit(args.Sender);
+            }
         }
 
         /// <summary>
@@ -85,77 +139,26 @@ namespace ExorAIO.Champions.Ryze
         }
 
         /// <summary>
-        ///     Fired on an incoming gapcloser.
+        ///     Loads Ryze.
         /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        public void OnLoad()
         {
-            if (GameObjects.Player.HealthPercent <=
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue &&
-                Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)
-            {
-                return;
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
 
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical, false) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.CastOnUnit(args.Sender);
-            }
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Called on orbwalker action.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
-        {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Combo:
-
-                            /// <summary>
-                            ///     The 'No AA in Combo' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
-                            {
-                                if (Vars.Q.IsReady() ||
-                                    Vars.W.IsReady() ||
-                                    Vars.E.IsReady() ||
-                                    !Bools.HasSheenBuff() ||
-                                    GameObjects.Player.ManaPercent > 10)
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
-
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                    }
-
-                    break;
-            }
-        }
+        #endregion
     }
 }

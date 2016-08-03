@@ -1,18 +1,23 @@
-using System.Windows.Forms;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace AsunaCondemn
 {
+    using System.Windows.Forms;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The settings class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -42,8 +47,8 @@ namespace AsunaCondemn
                 {
                     foreach (var target in GameObjects.EnemyHeroes)
                     {
-                        Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                            $"Use against: {target.ChampionName}", true));
+                        Vars.WhiteListMenu.Add(
+                            new MenuBool(target.ChampionName.ToLower(), $"Use against: {target.ChampionName}", true));
                     }
                 }
 
@@ -61,5 +66,7 @@ namespace AsunaCondemn
 
             Vars.Menu.Attach();
         }
+
+        #endregion
     }
 }

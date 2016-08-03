@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Pantheon
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -17,5 +19,7 @@ namespace ExorAIO.Champions.Pantheon
             Events.OnInterruptableTarget += Pantheon.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Pantheon.OnAction;
         }
+
+        #endregion
     }
 }

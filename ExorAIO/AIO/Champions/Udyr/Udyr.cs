@@ -1,17 +1,48 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Udyr
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Udyr
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     Fired when the game is updated.
+        /// </summary>
+        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
+        public static void OnUpdate(EventArgs args)
+        {
+            if (GameObjects.Player.IsDead || GameObjects.Player.IsWindingUp)
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     Initializes the orbwalkingmodes.
+            /// </summary>
+            switch (Variables.Orbwalker.ActiveMode)
+            {
+                case OrbwalkingMode.Combo:
+                    Logics.Combo(args);
+                    break;
+                case OrbwalkingMode.LaneClear:
+                    Logics.Clear(args);
+                    Logics.BuildingClear(args);
+                    break;
+            }
+        }
+
         /// <summary>
         ///     Loads Udyr.
         /// </summary>
@@ -38,31 +69,6 @@ namespace ExorAIO.Champions.Udyr
             Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired when the game is updated.
-        /// </summary>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void OnUpdate(EventArgs args)
-        {
-            if (GameObjects.Player.IsDead ||
-                GameObjects.Player.IsWindingUp)
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     Initializes the orbwalkingmodes.
-            /// </summary>
-            switch (Variables.Orbwalker.ActiveMode)
-            {
-                case OrbwalkingMode.Combo:
-                    Logics.Combo(args);
-                    break;
-                case OrbwalkingMode.LaneClear:
-                    Logics.Clear(args);
-                    Logics.BuildingClear(args);
-                    break;
-            }
-        }
+        #endregion
     }
 }

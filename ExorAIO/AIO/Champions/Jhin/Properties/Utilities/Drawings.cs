@@ -1,20 +1,27 @@
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using SharpDX;
-using Color = System.Drawing.Color;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jhin
 {
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
+    using SharpDX;
+
+    using Color = System.Drawing.Color;
+
     /// <summary>
     ///     The prediction drawings class.
     /// </summary>
     internal class ConeDrawings
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Loads the range drawings.
         /// </summary>
@@ -26,19 +33,21 @@ namespace ExorAIO.Champions.Jhin
             }
 
             Drawing.OnDraw += delegate
-            {
-                /// <summary>
-                ///     Loads the R Cone drawing.
-                /// </summary>
-                if (Vars.End != Vector3.Zero &&
-                    Vars.R.Instance.Name.Equals("JhinRShot") &&
-                    Vars.Menu["drawings"]["rc"].GetValue<MenuBool>().Value)
                 {
-                    Vars.Cone.Draw(GameObjects.EnemyHeroes.Any(t => !Vars.Cone.IsOutside((Vector2) t.ServerPosition))
-                        ? Color.Green
-                        : Color.Red);
-                }
-            };
+                    /// <summary>
+                    ///     Loads the R Cone drawing.
+                    /// </summary>
+                    if (Vars.End != Vector3.Zero && Vars.R.Instance.Name.Equals("JhinRShot")
+                        && Vars.Menu["drawings"]["rc"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.Cone.Draw(
+                            GameObjects.EnemyHeroes.Any(t => !Vars.Cone.IsOutside((Vector2)t.ServerPosition))
+                                ? Color.Green
+                                : Color.Red);
+                    }
+                };
         }
+
+        #endregion
     }
 }

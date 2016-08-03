@@ -1,14 +1,17 @@
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace NabbTracker
 {
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Builds the general Menu.
         /// </summary>
@@ -54,14 +57,11 @@ namespace NabbTracker
                     Vars.ColorblindMenu = new Menu("colorblind", "Colorblind Menu");
                     {
                         Vars.ColorblindMenu.Add(new MenuSeparator("separator", "Select your colorblind mode."));
-                        Vars.ColorblindMenu.Add(new MenuList<string>("mode", "Colorblind Mode", new[]
-                                                                                                {
-                                                                                                    "Normal",
-                                                                                                    "Deuteranopia",
-                                                                                                    "Protanopia",
-                                                                                                    "Tritanopia",
-                                                                                                    "Achromatopsia"
-                                                                                                }));
+                        Vars.ColorblindMenu.Add(
+                            new MenuList<string>(
+                                "mode",
+                                "Colorblind Mode",
+                                new[] { "Normal", "Deuteranopia", "Protanopia", "Tritanopia", "Achromatopsia" }));
                     }
                     Vars.MiscMenu.Add(Vars.ColorblindMenu);
                 }
@@ -69,5 +69,7 @@ namespace NabbTracker
             }
             Vars.Menu.Attach();
         }
+
+        #endregion
     }
 }

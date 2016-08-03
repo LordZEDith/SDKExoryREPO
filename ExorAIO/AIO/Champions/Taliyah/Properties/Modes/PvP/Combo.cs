@@ -1,29 +1,33 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Taliyah
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() ||
-                !Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
+                || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -31,16 +35,17 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     The E->W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition,
-                            Targets.Target.IsFacing(GameObjects.Player) &&
-                                GameObjects.Player.Distance(Targets.Target) < Vars.AARange/2
-                                ? GameObjects.Player.ServerPosition.Extend(Targets.Target.ServerPosition,
-                                                                           GameObjects.Player.Distance(Targets.Target)*2)
-                                : GameObjects.Player.ServerPosition);
+                Vars.W.Cast(
+                    Vars.W.GetPrediction(Targets.Target).CastPosition,
+                    Targets.Target.IsFacing(GameObjects.Player)
+                    && GameObjects.Player.Distance(Targets.Target) < Vars.AARange / 2
+                        ? GameObjects.Player.ServerPosition.Extend(
+                            Targets.Target.ServerPosition,
+                            GameObjects.Player.Distance(Targets.Target) * 2)
+                        : GameObjects.Player.ServerPosition);
             }
             if (Vars.W.IsReady())
             {
@@ -50,9 +55,8 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
+                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Targets.Target.ServerPosition);
             }
@@ -60,13 +64,11 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !Vars.E.IsReady() &&
-                Targets.Target.IsValidTarget(Vars.Q.Range - 50f) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && !Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 50f)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Taliyah.TerrainObject != null &&
-                    Vars.Menu["spells"]["q"]["q2"]["combofull"].GetValue<MenuBool>().Value)
+                if (Taliyah.TerrainObject != null
+                    && Vars.Menu["spells"]["q"]["q2"]["combofull"].GetValue<MenuBool>().Value)
                 {
                     return;
                 }
@@ -77,5 +79,7 @@ namespace ExorAIO.Champions.Taliyah
                 }
             }
         }
+
+        #endregion
     }
 }

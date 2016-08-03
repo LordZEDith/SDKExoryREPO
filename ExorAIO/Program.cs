@@ -1,11 +1,14 @@
-﻿using LeagueSharp.SDK;
-
+﻿
 #pragma warning disable 1587
 
 namespace ExorAIO
 {
+    using LeagueSharp.SDK;
+
     internal class Program
     {
+        #region Methods
+
         /// <summary>
         ///     The entry point of the application.
         /// </summary>
@@ -16,12 +19,14 @@ namespace ExorAIO
             /// </summary>
             Bootstrap.Init();
             Events.OnLoad += (sender, eventArgs) =>
-            {
-                /// <summary>
-                ///     Loads the AIO.
-                /// </summary>
-                AIO.OnLoad();
-            };
+                {
+                    /// <summary>
+                    ///     Loads the AIO.
+                    /// </summary>
+                    AIO.OnLoad();
+                };
         }
+
+        #endregion
     }
 }

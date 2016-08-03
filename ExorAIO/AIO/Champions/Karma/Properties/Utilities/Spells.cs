@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Karma
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -21,5 +24,7 @@ namespace ExorAIO.Champions.Karma
             Vars.R = new Spell(SpellSlot.R);
             Vars.Q.SetSkillshot(0.25f, 60f, 1700f, true, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

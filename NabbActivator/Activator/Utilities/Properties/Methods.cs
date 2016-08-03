@@ -1,12 +1,14 @@
-using LeagueSharp;
-
 namespace NabbActivator
 {
+    using LeagueSharp;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -15,5 +17,7 @@ namespace NabbActivator
             Game.OnUpdate += Index.OnUpdate;
             Obj_AI_Base.OnDoCast += Index.OnDoCast;
         }
+
+        #endregion
     }
 }

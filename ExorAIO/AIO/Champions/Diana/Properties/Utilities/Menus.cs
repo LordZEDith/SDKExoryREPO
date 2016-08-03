@@ -1,19 +1,25 @@
-using System.Windows.Forms;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Diana
 {
+    using System.Windows.Forms;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the menus.
         /// </summary>
@@ -78,8 +84,11 @@ namespace ExorAIO.Champions.Diana
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use against: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -118,5 +127,7 @@ namespace ExorAIO.Champions.Diana
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

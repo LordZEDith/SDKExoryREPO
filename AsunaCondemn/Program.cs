@@ -1,15 +1,18 @@
-﻿using LeagueSharp;
-using LeagueSharp.SDK;
-
+﻿
 #pragma warning disable 1587
 
 namespace AsunaCondemn
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The application class.
     /// </summary>
     internal class Program
     {
+        #region Methods
+
         /// <summary>
         ///     The entry point of the application.
         /// </summary>
@@ -20,25 +23,27 @@ namespace AsunaCondemn
             /// </summary>
             Bootstrap.Init();
             Events.OnLoad += (sender, eventArgs) =>
-            {
-                if (!GameObjects.Player.ChampionName.Equals("Vayne"))
                 {
+                    if (!GameObjects.Player.ChampionName.Equals("Vayne"))
+                    {
+                        Game.PrintChat(
+                            "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
+                        return;
+                    }
+
+                    /// <summary>
+                    ///     Loads the assembly.
+                    /// </summary>
+                    Condem.OnLoad();
+
+                    /// <summary>
+                    ///     Tells the player the assembly has been loaded.
+                    /// </summary>
                     Game.PrintChat(
-                        "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Not Loaded: Vayne not Found.</font>");
-                    return;
-                }
-
-                /// <summary>
-                ///     Loads the assembly.
-                /// </summary>
-                Condem.OnLoad();
-
-                /// <summary>
-                ///     Tells the player the assembly has been loaded.
-                /// </summary>
-                Game.PrintChat(
-                    "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
-            };
+                        "[SDK]<b><font color='#009aff'>Asuna</font></b>Condemn: <font color='#009aff'>Ultima</font> - Loaded!");
+                };
         }
+
+        #endregion
     }
 }

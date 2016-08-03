@@ -1,17 +1,22 @@
-using System.Windows.Forms;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace NabbActivator
 {
+    using System.Windows.Forms;
+
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menus.
         /// </summary>
@@ -81,5 +86,7 @@ namespace NabbActivator
             }
             Vars.Menu.Attach();
         }
+
+        #endregion
     }
 }

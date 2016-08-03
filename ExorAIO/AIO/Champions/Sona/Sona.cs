@@ -1,44 +1,117 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Sona
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Sona
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Sona.
+        ///     Called on orbwalker action.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Hybrid:
+                        case OrbwalkingMode.LastHit:
+                        case OrbwalkingMode.LaneClear:
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
+                            /// <summary>
+                            ///     The 'Support Mode' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            {
+                                if (args.Target is Obj_AI_Minion
+                                    && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                    }
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
+                    break;
+            }
+        }
 
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+        /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.AARange
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast();
+            }
+            if (Vars.R.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.R.Range - 50f
+                && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.End);
+            }
+        }
+
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range)
+                && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.Sender.ServerPosition);
+            }
+        }
+
+        /// <summary>
+        ///     Called when a <see cref="AttackableUnit" /> takes/gives damage.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (sender is Obj_AI_Hero || sender is Obj_AI_Turret
+                || GameObjects.Jungle.Any(
+                    m =>
+                    m.CharData.BaseSkinName == sender.CharData.BaseSkinName
+                    && GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
+            {
+                if (sender.IsEnemy && args.Target != null
+                    && GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
+                {
+                    if (Vars.W.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.W.Range, false)
+                        && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                        && Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value)
+                    {
+                        Vars.W.Cast();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -79,105 +152,31 @@ namespace ExorAIO.Champions.Sona
         }
 
         /// <summary>
-        ///     Called when a <see cref="AttackableUnit" /> takes/gives damage.
+        ///     Loads Sona.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
-        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        public void OnLoad()
         {
-            if (sender is Obj_AI_Hero ||
-                sender is Obj_AI_Turret ||
-                GameObjects.Jungle.Any(
-                    m =>
-                        m.CharData.BaseSkinName == sender.CharData.BaseSkinName &&
-                            GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
-            {
-                if (sender.IsEnemy &&
-                    args.Target != null &&
-                    GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
-                {
-                    if (Vars.W.IsReady() &&
-                        ((Obj_AI_Hero) args.Target).IsValidTarget(Vars.W.Range, false) &&
-                        Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value &&
-                        Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero) args.Target).ChampionName.ToLower()]
-                            .GetValue<MenuBool>().Value)
-                    {
-                        Vars.W.Cast();
-                    }
-                }
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired on an incoming gapcloser.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
-        {
-            if (Vars.E.IsReady() &&
-                args.Sender.IsMelee &&
-                GameObjects.Player.Distance(args.End) < Vars.AARange &&
-                Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast();
-            }
-            if (Vars.R.IsReady() &&
-                args.Sender.IsMelee &&
-                GameObjects.Player.Distance(args.End) < Vars.R.Range - 50f &&
-                Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast(args.End);
-            }
-        }
-
-        /// <summary>
-        ///     Called on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.R.IsReady() &&
-                args.Sender.IsValidTarget(Vars.R.Range) &&
-                Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast(args.Sender.ServerPosition);
-            }
-        }
-
-        /// <summary>
-        ///     Called on orbwalker action.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
-        {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
-
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
-                                if (args.Target is Obj_AI_Minion &&
-                                    GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                    }
-
-                    break;
-            }
-        }
+        #endregion
     }
 }

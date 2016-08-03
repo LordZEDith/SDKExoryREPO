@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Lux
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -20,5 +22,7 @@ namespace ExorAIO.Champions.Lux
             Obj_AI_Base.OnProcessSpellCast += Lux.OnProcessSpellCast;
             Variables.Orbwalker.OnAction += Lux.OnAction;
         }
+
+        #endregion
     }
 }

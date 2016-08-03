@@ -1,44 +1,94 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Cassiopeia
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Cassiopeia
     {
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Loads Cassiopeia.
+        ///     Called on orbwalker action.
         /// </summary>
-        public void OnLoad()
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Combo:
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
+                            /// <summary>
+                            ///     The 'No AA in Combo' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
+                            {
+                                if ((Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady()) && !Bools.HasSheenBuff())
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                    }
 
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
+                    break;
+            }
+        }
 
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
+        /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (!args.Sender.IsMelee || Invulnerable.Check(args.Sender, DamageType.Magical))
+            {
+                return;
+            }
+
+            if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && args.Sender.IsFacing(GameObjects.Player)
+                && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.Start);
+            }
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
+                && GameObjects.Player.Distance(args.End) > 500
+                && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.W.Cast(args.End);
+            }
+        }
+
+        /// <summary>
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && args.Sender.IsFacing(GameObjects.Player)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical)
+                && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast(args.Sender.ServerPosition);
+            }
         }
 
         /// <summary>
@@ -87,81 +137,31 @@ namespace ExorAIO.Champions.Cassiopeia
         }
 
         /// <summary>
-        ///     Called on orbwalker action.
+        ///     Loads Cassiopeia.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        public void OnLoad()
         {
-            switch (args.Type)
-            {
-                case OrbwalkingType.BeforeAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Combo:
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
 
-                            /// <summary>
-                            ///     The 'No AA in Combo' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
-                            {
-                                if ((Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady()) &&
-                                    !Bools.HasSheenBuff())
-                                {
-                                    args.Process = false;
-                                }
-                            }
-                            break;
-                    }
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
 
-                    break;
-            }
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired on an incoming gapcloser.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
-        {
-            if (!args.Sender.IsMelee ||
-                Invulnerable.Check(args.Sender, DamageType.Magical))
-            {
-                return;
-            }
-
-            if (Vars.R.IsReady() &&
-                args.Sender.IsValidTarget(Vars.R.Range) &&
-                args.Sender.IsFacing(GameObjects.Player) &&
-                Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast(args.Start);
-            }
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
-                GameObjects.Player.Distance(args.End) > 500 &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.Cast(args.End);
-            }
-        }
-
-        /// <summary>
-        ///     Called on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.R.IsReady() &&
-                args.Sender.IsValidTarget(Vars.R.Range) &&
-                args.Sender.IsFacing(GameObjects.Player) &&
-                !Invulnerable.Check(args.Sender, DamageType.Magical) &&
-                Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast(args.Sender.ServerPosition);
-            }
-        }
+        #endregion
     }
 }

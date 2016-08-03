@@ -1,21 +1,26 @@
-using System.Collections.Generic;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Utils;
-
 namespace ExorAIO.Champions.Jinx
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The targets class.
     /// </summary>
     internal class Targets
     {
+        #region Public Properties
+
         /// <summary>
-        ///     The main hero target.
+        ///     The jungle minion targets.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.R.Range, DamageType.Physical);
+        public static List<Obj_AI_Minion> JungleMinions
+            => GameObjects.Jungle.Where(m => m.IsValidTarget(Vars.Q.Range)).ToList();
 
         /// <summary>
         ///     The minions target.
@@ -24,9 +29,10 @@ namespace ExorAIO.Champions.Jinx
             => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.Q.Range)).ToList();
 
         /// <summary>
-        ///     The jungle minion targets.
+        ///     The main hero target.
         /// </summary>
-        public static List<Obj_AI_Minion> JungleMinions
-            => GameObjects.Jungle.Where(m => m.IsValidTarget(Vars.Q.Range)).ToList();
+        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.R.Range, DamageType.Physical);
+
+        #endregion
     }
 }

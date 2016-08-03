@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Tristana
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -18,5 +20,7 @@ namespace ExorAIO.Champions.Tristana
             Obj_AI_Base.OnBuffAdd += Tristana.OnBuffAdd;
             Variables.Orbwalker.OnAction += Tristana.OnAction;
         }
+
+        #endregion
     }
 }

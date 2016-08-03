@@ -1,54 +1,57 @@
-using ExorAIO.Champions.Akali;
-using ExorAIO.Champions.Amumu;
-using ExorAIO.Champions.Anivia;
-using ExorAIO.Champions.Ashe;
-using ExorAIO.Champions.Caitlyn;
-using ExorAIO.Champions.Cassiopeia;
-using ExorAIO.Champions.Corki;
-using ExorAIO.Champions.Darius;
-using ExorAIO.Champions.Diana;
-using ExorAIO.Champions.Draven;
-using ExorAIO.Champions.DrMundo;
-using ExorAIO.Champions.Evelynn;
-using ExorAIO.Champions.Ezreal;
-using ExorAIO.Champions.Graves;
-using ExorAIO.Champions.Jax;
-using ExorAIO.Champions.Jhin;
-using ExorAIO.Champions.Jinx;
-using ExorAIO.Champions.Kalista;
-using ExorAIO.Champions.Karma;
-using ExorAIO.Champions.KogMaw;
-using ExorAIO.Champions.Lucian;
-using ExorAIO.Champions.Lux;
-using ExorAIO.Champions.MissFortune;
-using ExorAIO.Champions.Nautilus;
-using ExorAIO.Champions.Nunu;
-using ExorAIO.Champions.Olaf;
-using ExorAIO.Champions.Orianna;
-using ExorAIO.Champions.Pantheon;
-using ExorAIO.Champions.Quinn;
-using ExorAIO.Champions.Renekton;
-using ExorAIO.Champions.Ryze;
-using ExorAIO.Champions.Sivir;
-using ExorAIO.Champions.Sona;
-using ExorAIO.Champions.Taliyah;
-using ExorAIO.Champions.Tristana;
-using ExorAIO.Champions.Tryndamere;
-using ExorAIO.Champions.Twitch;
-using ExorAIO.Champions.Udyr;
-using ExorAIO.Champions.Vayne;
-using ExorAIO.Champions.Veigar;
-using ExorAIO.Champions.Warwick;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Core
 {
+    using ExorAIO.Champions.Akali;
+    using ExorAIO.Champions.Amumu;
+    using ExorAIO.Champions.Anivia;
+    using ExorAIO.Champions.Ashe;
+    using ExorAIO.Champions.Caitlyn;
+    using ExorAIO.Champions.Cassiopeia;
+    using ExorAIO.Champions.Corki;
+    using ExorAIO.Champions.Darius;
+    using ExorAIO.Champions.Diana;
+    using ExorAIO.Champions.Draven;
+    using ExorAIO.Champions.DrMundo;
+    using ExorAIO.Champions.Evelynn;
+    using ExorAIO.Champions.Ezreal;
+    using ExorAIO.Champions.Graves;
+    using ExorAIO.Champions.Jax;
+    using ExorAIO.Champions.Jhin;
+    using ExorAIO.Champions.Jinx;
+    using ExorAIO.Champions.Kalista;
+    using ExorAIO.Champions.Karma;
+    using ExorAIO.Champions.KogMaw;
+    using ExorAIO.Champions.Lucian;
+    using ExorAIO.Champions.Lux;
+    using ExorAIO.Champions.MissFortune;
+    using ExorAIO.Champions.Nautilus;
+    using ExorAIO.Champions.Nunu;
+    using ExorAIO.Champions.Olaf;
+    using ExorAIO.Champions.Orianna;
+    using ExorAIO.Champions.Pantheon;
+    using ExorAIO.Champions.Quinn;
+    using ExorAIO.Champions.Renekton;
+    using ExorAIO.Champions.Ryze;
+    using ExorAIO.Champions.Sivir;
+    using ExorAIO.Champions.Sona;
+    using ExorAIO.Champions.Taliyah;
+    using ExorAIO.Champions.Tristana;
+    using ExorAIO.Champions.Tryndamere;
+    using ExorAIO.Champions.Twitch;
+    using ExorAIO.Champions.Udyr;
+    using ExorAIO.Champions.Vayne;
+    using ExorAIO.Champions.Veigar;
+    using ExorAIO.Champions.Warwick;
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The bootstrap class.
     /// </summary>
     internal class Bootstrap
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Tries to load the champion which is being currently played.
         /// </summary>
@@ -184,5 +187,7 @@ namespace ExorAIO.Core
                     break;
             }
         }
+
+        #endregion
     }
 }

@@ -1,21 +1,26 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.Data.Enumerations;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Twitch
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.Data.Enumerations;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -40,8 +45,8 @@ namespace ExorAIO.Champions.Twitch
                     if (
                         GameObjects.EnemyHeroes.Any(
                             t =>
-                                !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) &&
-                                    t.GetBuffCount("twitchdeadlyvenom") == 6))
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)
+                            && t.GetBuffCount("twitchdeadlyvenom") == 6))
                     {
                         Vars.E.Cast();
                     }
@@ -55,15 +60,17 @@ namespace ExorAIO.Champions.Twitch
                     if (
                         Targets.JungleMinions.Any(
                             m =>
-                                m.IsValidTarget(Vars.E.Range) &&
-                                    m.Health <
-                                        (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E) +
-                                            (float) GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
+                            m.IsValidTarget(Vars.E.Range)
+                            && m.Health
+                            < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)
+                            + (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))
                     {
                         Vars.E.Cast();
                     }
                 }
             }
         }
+
+        #endregion
     }
 }

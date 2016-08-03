@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Jhin
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     The methods.
         /// </summary>
@@ -19,5 +21,7 @@ namespace ExorAIO.Champions.Jhin
             Obj_AI_Base.OnProcessSpellCast += Jhin.OnProcessSpellCast;
             Variables.Orbwalker.OnAction += Jhin.OnAction;
         }
+
+        #endregion
     }
 }

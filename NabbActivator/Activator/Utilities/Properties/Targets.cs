@@ -1,20 +1,24 @@
-using System.Collections.Generic;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Utils;
-
 namespace NabbActivator
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The targets class.
     /// </summary>
     internal class Targets
     {
+        #region Public Properties
+
         /// <summary>
-        ///     The main enemy target.
+        ///     The jungle minion targets.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(1200f, DamageType.Magical);
+        public static List<Obj_AI_Minion> JungleMinions
+            => GameObjects.Jungle.Where(m => m.IsValidTarget(500f) && !GameObjects.JungleSmall.Contains(m)).ToList();
 
         /// <summary>
         ///     The jungle minion targets.
@@ -26,9 +30,10 @@ namespace NabbActivator
             => GameObjects.AllyMinions.Where(m => m.IsMinion() && m.IsValidTarget(750f, false)).ToList();
 
         /// <summary>
-        ///     The jungle minion targets.
+        ///     The main enemy target.
         /// </summary>
-        public static List<Obj_AI_Minion> JungleMinions
-            => GameObjects.Jungle.Where(m => m.IsValidTarget(500f) && !GameObjects.JungleSmall.Contains(m)).ToList();
+        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(1200f, DamageType.Magical);
+
+        #endregion
     }
 }

@@ -1,20 +1,25 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Kalista
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -24,16 +29,15 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     Orbwalk on minions.
             /// </summary>
-            if (Items.HasItem(3085) &&
-                Targets.Minions.Any(m => m.IsValidTarget(Vars.AARange)) &&
-                !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange)) &&
-                Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
+            if (Items.HasItem(3085) && Targets.Minions.Any(m => m.IsValidTarget(Vars.AARange))
+                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange))
+                && Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
             {
-                ObjectManager.Player.IssueOrder(GameObjectOrder.AttackUnit,
-                                                Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
+                ObjectManager.Player.IssueOrder(
+                    GameObjectOrder.AttackUnit,
+                    Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
             }
-            if (!Targets.Target.IsValidTarget() ||
-                Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -49,9 +53,8 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                !Invulnerable.Check(Targets.Target) &&
-                Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && !Invulnerable.Check(Targets.Target)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
@@ -61,14 +64,15 @@ namespace ExorAIO.Champions.Kalista
                     Vars.Q.GetPrediction(Targets.Target)
                         .CollisionObjects.Count(
                             c =>
-                                Targets.Minions.Contains(c) &&
-                                    c.Health < (float) GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)) ==
-                        Vars.Q.GetPrediction(Targets.Target)
-                            .CollisionObjects.Count(c => Targets.Minions.Contains(c)))
+                            Targets.Minions.Contains(c)
+                            && c.Health < (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q))
+                    == Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Count(c => Targets.Minions.Contains(c)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }
             }
         }
+
+        #endregion
     }
 }

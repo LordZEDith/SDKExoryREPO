@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Lucian
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     The methods.
         /// </summary>
@@ -19,5 +21,7 @@ namespace ExorAIO.Champions.Lucian
             Obj_AI_Base.OnPlayAnimation += Lucian.OnPlayAnimation;
             Variables.Orbwalker.OnAction += Lucian.OnAction;
         }
+
+        #endregion
     }
 }

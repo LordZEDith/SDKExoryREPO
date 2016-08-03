@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Quinn
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -19,5 +21,7 @@ namespace ExorAIO.Champions.Quinn
             Events.OnInterruptableTarget += Quinn.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Quinn.OnAction;
         }
+
+        #endregion
     }
 }

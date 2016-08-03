@@ -1,19 +1,25 @@
-using System.Windows.Forms;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using Menu = LeagueSharp.SDK.UI.Menu;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Jinx
 {
+    using System.Windows.Forms;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
+    using Menu = LeagueSharp.SDK.UI.Menu;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -66,8 +72,10 @@ namespace ExorAIO.Champions.Jinx
                 {
                     Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 2, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.RMenu.Add(new MenuSeparator("separator",
-                                                     "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(
+                        new MenuSeparator(
+                            "separator",
+                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
@@ -78,8 +86,11 @@ namespace ExorAIO.Champions.Jinx
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(target.ChampionName.ToLower(),
-                                                                    $"Use against: {target.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Use against: {target.ChampionName}",
+                                        true));
                             }
                         }
 
@@ -97,8 +108,8 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous", true);
             {
-                Vars.MiscMenu.Add(new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana",
-                                               true));
+                Vars.MiscMenu.Add(
+                    new MenuBool("blockq", "Disable/Block Manual PowPow->FishBones Casting when low Mana", true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 
@@ -113,5 +124,7 @@ namespace ExorAIO.Champions.Jinx
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

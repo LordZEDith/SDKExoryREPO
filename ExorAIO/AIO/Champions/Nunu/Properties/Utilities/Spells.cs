@@ -1,14 +1,17 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Nunu
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The spells class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -19,5 +22,7 @@ namespace ExorAIO.Champions.Nunu
             Vars.E = new Spell(SpellSlot.E, 550f);
             Vars.R = new Spell(SpellSlot.R, 650f);
         }
+
+        #endregion
     }
 }

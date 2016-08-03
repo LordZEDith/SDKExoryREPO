@@ -1,18 +1,23 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.MissFortune
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -27,12 +32,11 @@ namespace ExorAIO.Champions.MissFortune
             /// <summary>
             ///     The Semi-Automatic R Management.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value)
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value)
             {
-                if (Targets.Target.IsValidTarget(Vars.E.IsReady() ? Vars.E.Range : Vars.R.Range) &&
-                    !GameObjects.Player.HasBuff("missfortunebulletsound") &&
-                    Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                if (Targets.Target.IsValidTarget(Vars.E.IsReady() ? Vars.E.Range : Vars.R.Range)
+                    && !GameObjects.Player.HasBuff("missfortunebulletsound")
+                    && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
                 {
                     if (Vars.E.IsReady())
                     {
@@ -40,12 +44,14 @@ namespace ExorAIO.Champions.MissFortune
                     }
                     Vars.R.Cast(Targets.Target.ServerPosition);
                 }
-                else if (GameObjects.Player.HasBuff("missfortunebulletsound") &&
-                    !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                else if (GameObjects.Player.HasBuff("missfortunebulletsound")
+                         && !Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
                 {
                     Variables.Orbwalker.Move(Game.CursorPos);
                 }
             }
         }
+
+        #endregion
     }
 }

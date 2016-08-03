@@ -1,15 +1,37 @@
-﻿using System;
-using LeagueSharp;
-
+﻿
 #pragma warning disable 1587
 
 namespace NabbActivator
 {
+    using System;
+
+    using LeagueSharp;
+
     /// <summary>
     ///     The main class.
     /// </summary>
     internal class Index
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     Called on do-cast.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            /// <summary>
+            ///     Loads the special items logics.
+            /// </summary>
+            Activator.Specials(sender, args);
+
+            /// <summary>
+            ///     Loads the resetter-items logics.
+            /// </summary>
+            Activator.Resetters(sender, args);
+        }
+
         /// <summary>
         ///     Loads the Activator.
         /// </summary>
@@ -88,22 +110,6 @@ namespace NabbActivator
             Activator.Consumables(args);
         }
 
-        /// <summary>
-        ///     Called on do-cast.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
-        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            /// <summary>
-            ///     Loads the special items logics.
-            /// </summary>
-            Activator.Specials(sender, args);
-
-            /// <summary>
-            ///     Loads the resetter-items logics.
-            /// </summary>
-            Activator.Resetters(sender, args);
-        }
+        #endregion
     }
 }

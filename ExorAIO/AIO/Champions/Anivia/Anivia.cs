@@ -1,19 +1,24 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Anivia
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Anivia
     {
+        #region Static Fields
+
         /// <summary>
         ///     Defines the missile object for the Q.
         /// </summary>
@@ -24,31 +29,9 @@ namespace ExorAIO.Champions.Anivia
         /// </summary>
         public static GameObject RMissile;
 
-        /// <summary>
-        ///     Loads Anivia.
-        /// </summary>
-        public void OnLoad()
-        {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
+        #endregion
 
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
-
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
-        }
+        #region Public Methods and Operators
 
         /// <summary>
         ///     Called when an object gets created by the game.
@@ -105,6 +88,47 @@ namespace ExorAIO.Champions.Anivia
         }
 
         /// <summary>
+        ///     Fired on an incoming gapcloser.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        {
+            if (Vars.W.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.W.Cast(
+                    GameObjects.Player.ServerPosition.Extend(
+                        args.Sender.ServerPosition,
+                        GameObjects.Player.BoundingRadius));
+            }
+        }
+
+        /// <summary>
+        ///     Fired on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                if (
+                    GameObjects.Player.Distance(
+                        GameObjects.Player.ServerPosition.Extend(
+                            args.Sender.ServerPosition,
+                            GameObjects.Player.Distance(args.Sender) + 20f)) < Vars.W.Range)
+                {
+                    Vars.W.Cast(
+                        GameObjects.Player.ServerPosition.Extend(
+                            args.Sender.ServerPosition,
+                            GameObjects.Player.Distance(args.Sender) + 20f));
+                }
+            }
+        }
+
+        /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
@@ -147,43 +171,31 @@ namespace ExorAIO.Champions.Anivia
         }
 
         /// <summary>
-        ///     Fired on an incoming gapcloser.
+        ///     Loads Anivia.
         /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
-        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
+        public void OnLoad()
         {
-            if (Vars.W.IsReady() &&
-                args.IsDirectedToPlayer &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
-                                                                     GameObjects.Player.BoundingRadius));
-            }
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
         }
 
-        /// <summary>
-        ///     Fired on interruptable spell.
-        /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
-        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
-        {
-            if (Vars.W.IsReady() &&
-                args.Sender.IsValidTarget(Vars.W.Range) &&
-                Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                if (
-                    GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
-                                                                                         GameObjects.Player.Distance(
-                                                                                             args.Sender) + 20f)) <
-                        Vars.W.Range)
-                {
-                    Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition,
-                                                                         GameObjects.Player.Distance(args.Sender) + 20f));
-                }
-            }
-        }
+        #endregion
     }
 }

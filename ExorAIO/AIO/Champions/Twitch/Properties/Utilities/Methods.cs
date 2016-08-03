@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Twitch
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     The methods.
         /// </summary>
@@ -18,5 +20,7 @@ namespace ExorAIO.Champions.Twitch
             Spellbook.OnCastSpell += Twitch.OnCastSpell;
             Variables.Orbwalker.OnAction += Twitch.OnAction;
         }
+
+        #endregion
     }
 }

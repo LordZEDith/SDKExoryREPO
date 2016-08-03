@@ -1,12 +1,14 @@
-using LeagueSharp;
-
 namespace ExorAIO.Champions.Evelynn
 {
+    using LeagueSharp;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -14,5 +16,7 @@ namespace ExorAIO.Champions.Evelynn
         {
             Game.OnUpdate += Evelynn.OnUpdate;
         }
+
+        #endregion
     }
 }

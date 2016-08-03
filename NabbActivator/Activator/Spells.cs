@@ -1,79 +1,81 @@
-using System;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace NabbActivator
 {
+    using System;
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The activator class.
     /// </summary>
     internal partial class Activator
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Loads the smite.
         /// </summary>
         public static void SmiteInit()
         {
             Drawing.OnDraw += delegate
-            {
-                /// <summary>
-                ///     The Smite Logics.
-                /// </summary>
-                if (Vars.Smite != null &&
-                    Vars.Smite.IsReady() &&
-                    Vars.Smite.Slot != SpellSlot.Unknown)
                 {
-                    if (!Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
-                    {
-                        return;
-                    }
-
                     /// <summary>
-                    ///     The Jungle Smite Logic.
+                    ///     The Smite Logics.
                     /// </summary>
-                    foreach (var minion in
-                        Targets.JungleMinions.Where(m => m.IsValidTarget(Vars.Smite.Range)))
+                    if (Vars.Smite != null && Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown)
                     {
-                        var buff =
-                            GameObjects.Player.Buffs.FirstOrDefault(b => b.Name.ToLower().Contains("smitedamagetracker"));
-                        if (buff != null &&
-                            minion.Health > GameObjects.Player.GetBuffCount(buff.Name))
+                        if (!Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
                         {
                             return;
                         }
 
-                        if (Vars.Menu["smite"]["misc"]["limit"].GetValue<MenuBool>().Value)
+                        /// <summary>
+                        ///     The Jungle Smite Logic.
+                        /// </summary>
+                        foreach (var minion in
+                            Targets.JungleMinions.Where(m => m.IsValidTarget(Vars.Smite.Range)))
                         {
-                            if (!minion.CharData.BaseSkinName.Equals("SRU_Baron") &&
-                                !minion.CharData.BaseSkinName.Equals("SRU_RiftHerald") &&
-                                !minion.CharData.BaseSkinName.Contains("SRU_Dragon"))
+                            var buff =
+                                GameObjects.Player.Buffs.FirstOrDefault(
+                                    b => b.Name.ToLower().Contains("smitedamagetracker"));
+                            if (buff != null && minion.Health > GameObjects.Player.GetBuffCount(buff.Name))
                             {
                                 return;
                             }
-                        }
 
-                        if (Vars.Menu["smite"]["misc"]["stacks"].GetValue<MenuBool>().Value)
-                        {
-                            if (GameObjects.Player.Spellbook.GetSpell(Vars.Smite.Slot).Ammo == 1)
+                            if (Vars.Menu["smite"]["misc"]["limit"].GetValue<MenuBool>().Value)
                             {
-                                if (!minion.CharData.BaseSkinName.Equals("SRU_Baron") &&
-                                    !minion.CharData.BaseSkinName.Equals("SRU_RiftHerald") &&
-                                    !minion.CharData.BaseSkinName.Contains("SRU_Dragon"))
+                                if (!minion.CharData.BaseSkinName.Equals("SRU_Baron")
+                                    && !minion.CharData.BaseSkinName.Equals("SRU_RiftHerald")
+                                    && !minion.CharData.BaseSkinName.Contains("SRU_Dragon"))
                                 {
                                     return;
                                 }
                             }
-                        }
 
-                        Vars.Smite.CastOnUnit(minion);
+                            if (Vars.Menu["smite"]["misc"]["stacks"].GetValue<MenuBool>().Value)
+                            {
+                                if (GameObjects.Player.Spellbook.GetSpell(Vars.Smite.Slot).Ammo == 1)
+                                {
+                                    if (!minion.CharData.BaseSkinName.Equals("SRU_Baron")
+                                        && !minion.CharData.BaseSkinName.Equals("SRU_RiftHerald")
+                                        && !minion.CharData.BaseSkinName.Contains("SRU_Dragon"))
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+
+                            Vars.Smite.CastOnUnit(minion);
+                        }
                     }
-                }
-            };
+                };
         }
 
         /// <summary>
@@ -92,14 +94,11 @@ namespace NabbActivator
             /// </summary>
             if (GameObjects.Player.ChampionName.Equals("Gangplank"))
             {
-                if (Vars.W != null &&
-                    Vars.W.IsReady() &&
-                    Bools.ShouldCleanse(GameObjects.Player))
+                if (Vars.W != null && Vars.W.IsReady() && Bools.ShouldCleanse(GameObjects.Player))
                 {
-                    DelayAction.Add(Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        Vars.W.Cast();
-                    });
+                    DelayAction.Add(
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
+                        () => { Vars.W.Cast(); });
                 }
             }
 
@@ -110,10 +109,9 @@ namespace NabbActivator
             {
                 if (Bools.ShouldCleanse(GameObjects.Player))
                 {
-                    DelayAction.Add(Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue, () =>
-                    {
-                        GameObjects.Player.Spellbook.CastSpell(SpellSlots.Cleanse);
-                    });
+                    DelayAction.Add(
+                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
+                        () => { GameObjects.Player.Spellbook.CastSpell(SpellSlots.Cleanse); });
                 }
             }
 
@@ -135,8 +133,8 @@ namespace NabbActivator
             {
                 foreach (var target in GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(600f)))
                 {
-                    if (Vars.GetIgniteDamage > target.Health ||
-                        Health.GetPrediction(target, (int) (1000 + Game.Ping/2f)) <= 0)
+                    if (Vars.GetIgniteDamage > target.Health
+                        || Health.GetPrediction(target, (int)(1000 + Game.Ping / 2f)) <= 0)
                     {
                         GameObjects.Player.Spellbook.CastSpell(SpellSlots.Ignite, target);
                     }
@@ -148,9 +146,9 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Barrier.IsReady())
             {
-                if (GameObjects.Player.CountEnemyHeroesInRange(700f) > 0 &&
-                    Health.GetPrediction(GameObjects.Player, (int) (1000 + Game.Ping/2f)) <=
-                        GameObjects.Player.MaxHealth/6)
+                if (GameObjects.Player.CountEnemyHeroesInRange(700f) > 0
+                    && Health.GetPrediction(GameObjects.Player, (int)(1000 + Game.Ping / 2f))
+                    <= GameObjects.Player.MaxHealth / 6)
                 {
                     GameObjects.Player.Spellbook.CastSpell(SpellSlots.Barrier);
                     return;
@@ -162,9 +160,9 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Heal.IsReady())
             {
-                if (GameObjects.Player.CountEnemyHeroesInRange(850f) > 0 &&
-                    Health.GetPrediction(GameObjects.Player, (int) (1000 + Game.Ping/2f)) <=
-                        GameObjects.Player.MaxHealth/6)
+                if (GameObjects.Player.CountEnemyHeroesInRange(850f) > 0
+                    && Health.GetPrediction(GameObjects.Player, (int)(1000 + Game.Ping / 2f))
+                    <= GameObjects.Player.MaxHealth / 6)
                 {
                     GameObjects.Player.Spellbook.CastSpell(SpellSlots.Heal);
                 }
@@ -173,8 +171,8 @@ namespace NabbActivator
                     foreach (var ally in
                         GameObjects.AllyHeroes.Where(
                             a =>
-                                a.IsValidTarget(850f, false) && a.CountEnemyHeroesInRange(850f) > 0 &&
-                                    Health.GetPrediction(a, (int) (1000 + Game.Ping/2f)) <= a.MaxHealth/6))
+                            a.IsValidTarget(850f, false) && a.CountEnemyHeroesInRange(850f) > 0
+                            && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
                     {
                         GameObjects.Player.Spellbook.CastSpell(SpellSlots.Heal, ally);
                     }
@@ -184,8 +182,7 @@ namespace NabbActivator
             /// <summary>
             ///     The Smite Logics.
             /// </summary>
-            if (Vars.Smite.IsReady() &&
-                Vars.Smite.Slot != SpellSlot.Unknown)
+            if (Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown)
             {
                 if (!Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
                 {
@@ -208,8 +205,8 @@ namespace NabbActivator
                 /// </summary>
                 if (Vars.Menu["smite"]["misc"]["killsteal"].GetValue<MenuBool>().Value)
                 {
-                    if (GameObjects.Player.HasBuff("smitedamagetrackerstalker") ||
-                        GameObjects.Player.HasBuff("smitedamagetrackerskirmisher"))
+                    if (GameObjects.Player.HasBuff("smitedamagetrackerstalker")
+                        || GameObjects.Player.HasBuff("smitedamagetrackerskirmisher"))
                     {
                         if (Vars.Menu["smite"]["misc"]["stacks"].GetValue<MenuBool>().Value)
                         {
@@ -221,13 +218,13 @@ namespace NabbActivator
 
                         foreach (var target in GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.Smite.Range)))
                         {
-                            if (Vars.GetChallengingSmiteDamage > target.Health &&
-                                GameObjects.Player.HasBuff("smitedamagetrackerstalker"))
+                            if (Vars.GetChallengingSmiteDamage > target.Health
+                                && GameObjects.Player.HasBuff("smitedamagetrackerstalker"))
                             {
                                 Vars.Smite.CastOnUnit(target);
                             }
-                            else if (Vars.GetChallengingSmiteDamage > target.Health &&
-                                GameObjects.Player.HasBuff("smitedamagetrackerskirmisher"))
+                            else if (Vars.GetChallengingSmiteDamage > target.Health
+                                     && GameObjects.Player.HasBuff("smitedamagetrackerskirmisher"))
                             {
                                 Vars.Smite.CastOnUnit(target);
                             }
@@ -249,12 +246,14 @@ namespace NabbActivator
                 if (
                     GameObjects.AllyHeroes.Any(
                         a =>
-                            a.Distance(Targets.Target) <= 650f &&
-                                Health.GetPrediction(a, (int) (1000 + Game.Ping/2f)) <= a.MaxHealth/6))
+                        a.Distance(Targets.Target) <= 650f
+                        && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
                 {
                     GameObjects.Player.Spellbook.CastSpell(SpellSlots.Exhaust, Targets.Target);
                 }
             }
         }
+
+        #endregion
     }
 }

@@ -1,42 +1,21 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Corki
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Corki
     {
-        /// <summary>
-        ///     Loads Corki.
-        /// </summary>
-        public void OnLoad()
-        {
-            /// <summary>
-            ///     Initializes the menus.
-            /// </summary>
-            Menus.Initialize();
-
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
-            ///     Initializes the methods.
-            /// </summary>
-            Methods.Initialize();
-
-            /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            Drawings.Initialize();
-        }
+        #region Public Methods and Operators
 
         /// <summary>
         ///     Fired when the game is updated.
@@ -79,5 +58,33 @@ namespace ExorAIO.Champions.Corki
                     break;
             }
         }
+
+        /// <summary>
+        ///     Loads Corki.
+        /// </summary>
+        public void OnLoad()
+        {
+            /// <summary>
+            ///     Initializes the menus.
+            /// </summary>
+            Menus.Initialize();
+
+            /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the methods.
+            /// </summary>
+            Methods.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            Drawings.Initialize();
+        }
+
+        #endregion
     }
 }

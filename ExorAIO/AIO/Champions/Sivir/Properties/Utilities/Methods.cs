@@ -1,12 +1,14 @@
-using LeagueSharp;
-
 namespace ExorAIO.Champions.Sivir
 {
+    using LeagueSharp;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the methods.
         /// </summary>
@@ -16,5 +18,7 @@ namespace ExorAIO.Champions.Sivir
             Obj_AI_Base.OnDoCast += Sivir.OnDoCast;
             Obj_AI_Base.OnProcessSpellCast += Sivir.OnProcessSpellCast;
         }
+
+        #endregion
     }
 }

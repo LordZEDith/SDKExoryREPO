@@ -1,21 +1,26 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Lux
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -30,9 +35,8 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The E Missile Manager.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                Lux.EMissile != null &&
-                GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1)
+            if (Vars.E.IsReady() && Lux.EMissile != null
+                && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).ToggleState != 1)
             {
                 switch (Variables.Orbwalker.ActiveMode)
                 {
@@ -43,8 +47,8 @@ namespace ExorAIO.Champions.Lux
                         if (
                             GameObjects.EnemyHeroes.Any(
                                 t =>
-                                    !Bools.IsImmobile(t) && !t.HasBuff("luxilluminatingfraulein") &&
-                                        t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
+                                !Bools.IsImmobile(t) && !t.HasBuff("luxilluminatingfraulein")
+                                && t.Distance(Lux.EMissile.Position) < Vars.E.Width - 10f))
                         {
                             Vars.E.Cast();
                         }
@@ -54,8 +58,7 @@ namespace ExorAIO.Champions.Lux
                     ///     The E Clear Logic.
                     /// </summary>
                     case OrbwalkingMode.LaneClear:
-                        if (Targets.EMinions.Any() &&
-                            Targets.EMinions.Count >= 3)
+                        if (Targets.EMinions.Any() && Targets.EMinions.Count >= 3)
                         {
                             Vars.E.Cast();
                         }
@@ -70,14 +73,13 @@ namespace ExorAIO.Champions.Lux
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                            Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range) &&
-                                !Invulnerable.Check(t, DamageType.Magical)))
+                        Bools.IsImmobile(t) && t.IsValidTarget(Vars.Q.Range)
+                        && !Invulnerable.Check(t, DamageType.Magical)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
@@ -86,5 +88,7 @@ namespace ExorAIO.Champions.Lux
                 }
             }
         }
+
+        #endregion
     }
 }

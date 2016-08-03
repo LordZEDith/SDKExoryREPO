@@ -1,18 +1,23 @@
-using System;
-using System.Linq;
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Corki
 {
+    using System;
+    using System.Linq;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
@@ -27,13 +32,12 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The Clear E Logics.
             /// </summary>
-            if (Vars.E.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"]) &&
-                Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"])
+                && Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Minions.Count >= 3 ||
-                    Targets.JungleMinions.Any())
+                if (Targets.Minions.Count >= 3 || Targets.JungleMinions.Any())
                 {
                     Vars.E.Cast();
                 }
@@ -42,10 +46,10 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"]) &&
-                Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
+                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The LaneClear Q Logic.
@@ -68,10 +72,10 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The Clear R Logics.
             /// </summary>
-            if (Vars.R.IsReady() &&
-                GameObjects.Player.ManaPercent >
-                    ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"]) &&
-                Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.R.IsReady()
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["clear"])
+                && Vars.Menu["spells"]["r"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The LaneClear R Logic.
@@ -90,5 +94,7 @@ namespace ExorAIO.Champions.Corki
                 }
             }
         }
+
+        #endregion
     }
 }

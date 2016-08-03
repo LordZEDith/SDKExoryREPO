@@ -1,12 +1,14 @@
-using LeagueSharp;
-
 namespace NabbAlerter
 {
+    using LeagueSharp;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Initializes the methods.
         /// </summary>
@@ -14,5 +16,7 @@ namespace NabbAlerter
         {
             Obj_AI_Base.OnProcessSpellCast += Alerter.OnProcessSpellCast;
         }
+
+        #endregion
     }
 }

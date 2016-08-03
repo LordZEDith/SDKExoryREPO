@@ -1,13 +1,15 @@
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Jinx
 {
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The methods class.
     /// </summary>
     internal class Methods
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     The methods.
         /// </summary>
@@ -17,5 +19,7 @@ namespace ExorAIO.Champions.Jinx
             Spellbook.OnCastSpell += Jinx.OnCastSpell;
             Events.OnGapCloser += Jinx.OnGapCloser;
         }
+
+        #endregion
     }
 }

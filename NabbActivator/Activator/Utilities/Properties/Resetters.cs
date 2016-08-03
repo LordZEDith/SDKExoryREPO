@@ -1,14 +1,17 @@
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK.Utils;
-
 namespace NabbActivator
 {
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The resetters class.
     /// </summary>
     internal class Resetters
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the resetter slots.
         /// </summary>
@@ -19,5 +22,7 @@ namespace NabbActivator
                 Vars.HasAnyReset = true;
             }
         }
+
+        #endregion
     }
 }

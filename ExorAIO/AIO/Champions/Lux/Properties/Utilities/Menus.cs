@@ -1,16 +1,20 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Lux
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -48,8 +52,8 @@ namespace ExorAIO.Champions.Lux
                         {
                             foreach (var ally in GameObjects.AllyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(new MenuBool(ally.ChampionName.ToLower(),
-                                                                    $"Use for: {ally.ChampionName}", true));
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
                             }
                         }
 
@@ -89,8 +93,10 @@ namespace ExorAIO.Champions.Lux
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuSeparator("separator",
-                                                    "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
+                Vars.MiscMenu.Add(
+                    new MenuSeparator(
+                        "separator",
+                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
                 Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
             }
             Vars.Menu.Add(Vars.MiscMenu);
@@ -107,5 +113,7 @@ namespace ExorAIO.Champions.Lux
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

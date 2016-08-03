@@ -1,18 +1,23 @@
-using System;
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Evelynn
 {
+    using System;
+
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
     internal partial class Logics
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -27,12 +32,13 @@ namespace ExorAIO.Champions.Evelynn
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() &&
-                GameObjects.Player.HasBuffOfType(BuffType.Slow) &&
-                Vars.Menu["spells"]["w"]["auto"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && GameObjects.Player.HasBuffOfType(BuffType.Slow)
+                && Vars.Menu["spells"]["w"]["auto"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
             }
         }
+
+        #endregion
     }
 }

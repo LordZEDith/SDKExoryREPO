@@ -1,15 +1,19 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.Twitch
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -62,9 +66,13 @@ namespace ExorAIO.Champions.Twitch
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(new MenuSlider("stealthtime",
-                                                 "Stay in stealth-mode for at least x (ms) [1000 ms = 1 second]", 0, 0,
-                                                 8000));
+                Vars.MiscMenu.Add(
+                    new MenuSlider(
+                        "stealthtime",
+                        "Stay in stealth-mode for at least x (ms) [1000 ms = 1 second]",
+                        0,
+                        0,
+                        8000));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 
@@ -79,5 +87,7 @@ namespace ExorAIO.Champions.Twitch
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }

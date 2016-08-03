@@ -1,14 +1,17 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace ExorAIO.Champions.Tristana
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -19,5 +22,7 @@ namespace ExorAIO.Champions.Tristana
             Vars.E = new Spell(SpellSlot.E, Vars.AARange);
             Vars.R = new Spell(SpellSlot.R, Vars.AARange);
         }
+
+        #endregion
     }
 }

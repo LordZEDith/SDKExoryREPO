@@ -1,15 +1,18 @@
-using ExorAIO.Utilities;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-
 namespace ExorAIO.Champions.Lux
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+
     /// <summary>
     ///     The spell class.
     /// </summary>
     internal class Spells
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the spells.
         /// </summary>
@@ -24,5 +27,7 @@ namespace ExorAIO.Champions.Lux
             Vars.E.SetSkillshot(0.75f, 275f, 1300f, false, SkillshotType.SkillshotCircle);
             Vars.R.SetSkillshot(1f, 190f, float.MaxValue, false, SkillshotType.SkillshotLine);
         }
+
+        #endregion
     }
 }

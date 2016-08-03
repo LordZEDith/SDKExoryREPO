@@ -1,23 +1,21 @@
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK;
-
 namespace NabbActivator
 {
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+
     /// <summary>
     ///     The spellslots.
     /// </summary>
     internal class SpellSlots
     {
-        /// <summary>
-        ///     Gets the Heal SpellSlot.
-        /// </summary>
-        public static SpellSlot Heal => ObjectManager.Player.GetSpellSlot("SummonerHeal");
+        #region Public Properties
 
         /// <summary>
-        ///     Gets the Ignite SpellSlot.
+        ///     Gets the Barrier SpellSlot.
         /// </summary>
-        public static SpellSlot Ignite => ObjectManager.Player.GetSpellSlot("SummonerDot");
+        public static SpellSlot Barrier => ObjectManager.Player.GetSpellSlot("SummonerBarrier");
 
         /// <summary>
         ///     Gets the Clarity SpellSlot.
@@ -35,9 +33,18 @@ namespace NabbActivator
         public static SpellSlot Exhaust => ObjectManager.Player.GetSpellSlot("SummonerExhaust");
 
         /// <summary>
-        ///     Gets the Barrier SpellSlot.
+        ///     Gets the Heal SpellSlot.
         /// </summary>
-        public static SpellSlot Barrier => ObjectManager.Player.GetSpellSlot("SummonerBarrier");
+        public static SpellSlot Heal => ObjectManager.Player.GetSpellSlot("SummonerHeal");
+
+        /// <summary>
+        ///     Gets the Ignite SpellSlot.
+        /// </summary>
+        public static SpellSlot Ignite => ObjectManager.Player.GetSpellSlot("SummonerDot");
+
+        #endregion
+
+        #region Public Methods and Operators
 
         /// <summary>
         ///     Gets the Barrier SpellSlot.
@@ -51,5 +58,7 @@ namespace NabbActivator
 
             return SpellSlot.Unknown;
         }
+
+        #endregion
     }
 }

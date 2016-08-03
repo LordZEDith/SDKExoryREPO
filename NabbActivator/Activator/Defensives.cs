@@ -1,20 +1,24 @@
-using System;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.SDK;
-using LeagueSharp.SDK.Enumerations;
-using LeagueSharp.SDK.UI;
-using LeagueSharp.SDK.Utils;
 
 #pragma warning disable 1587
 
 namespace NabbActivator
 {
+    using System;
+    using System.Linq;
+
+    using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
+
     /// <summary>
     ///     The activator class.
     /// </summary>
     internal partial class Activator
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Called when the game updates itself.
         /// </summary>
@@ -34,8 +38,7 @@ namespace NabbActivator
                 if (
                     GameObjects.AllyHeroes.Any(
                         a =>
-                            a.HasBuff("itemstarksbindingbufferproc") ||
-                                !a.IsDead && a.HasBuff("rallyingbanneraurafriend")))
+                        a.HasBuff("itemstarksbindingbufferproc") || !a.IsDead && a.HasBuff("rallyingbanneraurafriend")))
                 {
                     return;
                 }
@@ -79,8 +82,8 @@ namespace NabbActivator
                 foreach (var ally in
                     GameObjects.AllyHeroes.Where(
                         a =>
-                            a.IsValidTarget(500f, false) &&
-                                Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/4))
+                        a.IsValidTarget(500f, false)
+                        && Health.GetPrediction(a, (int)(250 + Game.Ping / 2f)) <= a.MaxHealth / 4))
                 {
                     Items.UseItem(3401, ally);
                     return;
@@ -90,14 +93,13 @@ namespace NabbActivator
             /// <summary>
             ///     The Locket of the Iron Solari Logic.
             /// </summary>
-            if (Items.CanUseItem(3190) &&
-                !Items.CanUseItem(3401))
+            if (Items.CanUseItem(3190) && !Items.CanUseItem(3401))
             {
                 if (
                     GameObjects.AllyHeroes.Count(
                         a =>
-                            a.IsValidTarget(600f, false) &&
-                                Health.GetPrediction(a, (int) (250 + Game.Ping/2f)) <= a.MaxHealth/1.5) >= 3)
+                        a.IsValidTarget(600f, false)
+                        && Health.GetPrediction(a, (int)(250 + Game.Ping / 2f)) <= a.MaxHealth / 1.5) >= 3)
                 {
                     Items.UseItem(3190);
                     return;
@@ -109,8 +111,8 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3157))
             {
-                if (Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <=
-                    GameObjects.Player.MaxHealth/4)
+                if (Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping / 2f))
+                    <= GameObjects.Player.MaxHealth / 4)
                 {
                     Items.UseItem(3157);
                     return;
@@ -122,8 +124,8 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3090))
             {
-                if (Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <=
-                    GameObjects.Player.MaxHealth/4)
+                if (Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping / 2f))
+                    <= GameObjects.Player.MaxHealth / 4)
                 {
                     Items.UseItem(3090);
                     return;
@@ -135,8 +137,8 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3040))
             {
-                if (Health.GetPrediction(GameObjects.Player, (int) (250 + Game.Ping/2f)) <=
-                    GameObjects.Player.MaxHealth/4)
+                if (Health.GetPrediction(GameObjects.Player, (int)(250 + Game.Ping / 2f))
+                    <= GameObjects.Player.MaxHealth / 4)
                 {
                     Items.UseItem(3040);
                     return;
@@ -163,10 +165,9 @@ namespace NabbActivator
                 if (
                     GameObjects.EnemyHeroes.Count(
                         t =>
-                            t.IsValidTarget(2000f) &&
-                                t.CountEnemyHeroesInRange(1500f) <=
-                                    GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) -
-                                        1) > 1)
+                        t.IsValidTarget(2000f)
+                        && t.CountEnemyHeroesInRange(1500f)
+                        <= GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1) > 1)
                 {
                     Items.UseItem(3059);
                     return;
@@ -183,10 +184,10 @@ namespace NabbActivator
                     if (
                         GameObjects.EnemyHeroes.Count(
                             t =>
-                                t.IsValidTarget(2000f) &&
-                                    t.CountEnemyHeroesInRange(1500f) <=
-                                        GameObjects.Player.CountAllyHeroesInRange(1500f) +
-                                            t.CountAllyHeroesInRange(1500f) - 1) > 1)
+                            t.IsValidTarget(2000f)
+                            && t.CountEnemyHeroesInRange(1500f)
+                            <= GameObjects.Player.CountAllyHeroesInRange(1500f) + t.CountAllyHeroesInRange(1500f) - 1)
+                        > 1)
                     {
                         Items.UseItem(3800);
                         return;
@@ -214,5 +215,7 @@ namespace NabbActivator
                 }
             }
         }
+
+        #endregion
     }
 }

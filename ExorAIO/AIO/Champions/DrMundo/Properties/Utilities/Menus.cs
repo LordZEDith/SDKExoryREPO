@@ -1,15 +1,19 @@
-using ExorAIO.Utilities;
-using LeagueSharp.SDK.UI;
 
 #pragma warning disable 1587
 
 namespace ExorAIO.Champions.DrMundo
 {
+    using ExorAIO.Utilities;
+
+    using LeagueSharp.SDK.UI;
+
     /// <summary>
     ///     The menu class.
     /// </summary>
     internal class Menus
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Sets the menu.
         /// </summary>
@@ -50,7 +54,8 @@ namespace ExorAIO.Champions.DrMundo
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / If Health >= x%", 50, 0, 99, true));
-                    Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / If Health >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(
+                        new MenuSliderButton("jungleclear", "JungleClear / If Health >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 
@@ -76,5 +81,7 @@ namespace ExorAIO.Champions.DrMundo
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }
+
+        #endregion
     }
 }
