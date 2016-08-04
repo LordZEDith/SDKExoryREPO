@@ -14,7 +14,7 @@ namespace AsunaCondemn
         /// <summary>
         ///     Gets the Player's real AutoAttack-Range.
         /// </summary>
-        public static float AARange => GameObjects.Player.GetRealAutoAttackRange();
+        public static float AaRange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
         ///     Gets or sets the Drawings menu.

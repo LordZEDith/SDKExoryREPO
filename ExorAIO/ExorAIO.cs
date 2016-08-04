@@ -13,7 +13,7 @@ namespace ExorAIO
     /// <summary>
     ///     The AIO class.
     /// </summary>
-    internal class AIO
+    internal class Aio
     {
         #region Public Methods and Operators
 

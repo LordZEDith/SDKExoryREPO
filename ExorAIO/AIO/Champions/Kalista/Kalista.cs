@@ -41,7 +41,9 @@ namespace ExorAIO.Champions.Kalista
                     var hero = args.Target as Obj_AI_Hero;
                     if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(t1 => t1.IsValidTarget(Vars.AaRange) && t1.HasBuff("kalistacoopstrikemarkally")))
+                        if (
+                            GameObjects.EnemyHeroes.Any(
+                                t1 => t1.IsValidTarget(Vars.AaRange) && t1.HasBuff("kalistacoopstrikemarkally")))
                         {
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
@@ -91,10 +93,8 @@ namespace ExorAIO.Champions.Kalista
                     && (h is Obj_AI_Hero || Vars.JungleList.Contains(h.CharData.BaseSkinName)))
                 .ToList()
                 .ForEach(
-                    unit =>
-                        {
-                            Console.WriteLine(unit.CharData.BaseSkinName);
-                        });
+                    unit => { Console.WriteLine(unit.CharData.BaseSkinName); });
+
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>

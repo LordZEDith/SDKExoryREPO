@@ -23,7 +23,7 @@ namespace ExorAIO
                     /// <summary>
                     ///     Loads the AIO.
                     /// </summary>
-                    AIO.OnLoad();
+                    Aio.OnLoad();
                 };
         }
 

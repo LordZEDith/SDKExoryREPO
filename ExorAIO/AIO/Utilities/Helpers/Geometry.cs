@@ -19,6 +19,7 @@ namespace ExorAIO.Utilities
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using ClipperLib;
 
@@ -121,7 +122,7 @@ namespace ExorAIO.Utilities
             return self[self.Count - 1];
         }
 
-        public static Vector3 SwitchYZ(this Vector3 v)
+        public static Vector3 SwitchYz(this Vector3 v)
         {
             return new Vector3(v.X, v.Z, v.Y);
         }
@@ -150,13 +151,7 @@ namespace ExorAIO.Utilities
         //Clipper
         public static List<Polygon> ToPolygons(this Paths v)
         {
-            var result = new List<Polygon>();
-            foreach (var path in v)
-            {
-                result.Add(path.ToPolygon());
-            }
-
-            return result;
+            return v.Select(path => path.ToPolygon()).ToList();
         }
 
         #endregion
@@ -251,10 +246,7 @@ namespace ExorAIO.Utilities
             public Path ToClipperPath()
             {
                 var result = new Path(this.Points.Count);
-                foreach (var point in this.Points)
-                {
-                    result.Add(new IntPoint(point.X, point.Y));
-                }
+                result.AddRange(this.Points.Select(point => new IntPoint(point.X, point.Y)));
 
                 return result;
             }
@@ -446,7 +438,7 @@ namespace ExorAIO.Utilities
             /// <summary>
             ///     The quality
             /// </summary>
-            private readonly int _quality;
+            private readonly int quality;
 
             #endregion
 
@@ -479,7 +471,7 @@ namespace ExorAIO.Utilities
                 this.Direction = (direction - center).Normalized();
                 this.Angle = angle;
                 this.Radius = radius;
-                this._quality = quality;
+                this.quality = quality;
                 this.UpdatePolygon();
             }
 
@@ -514,12 +506,12 @@ namespace ExorAIO.Utilities
             public void UpdatePolygon(int offset = 0)
             {
                 this.Points.Clear();
-                var outRadius = (this.Radius + offset) / (float)Math.Cos(2 * Math.PI / this._quality);
+                var outRadius = (this.Radius + offset) / (float)Math.Cos(2 * Math.PI / this.quality);
                 this.Points.Add(this.Center);
                 var side1 = this.Direction.Rotated(-this.Angle * 0.5f);
-                for (var i = 0; i <= this._quality; i++)
+                for (var i = 0; i <= this.quality; i++)
                 {
-                    var cDirection = side1.Rotated(i * this.Angle / this._quality).Normalized();
+                    var cDirection = side1.Rotated(i * this.Angle / this.quality).Normalized();
                     this.Points.Add(
                         new Vector2(this.Center.X + outRadius * cDirection.X, this.Center.Y + outRadius * cDirection.Y));
                 }

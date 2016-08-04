@@ -52,14 +52,14 @@ namespace ExorAIO.Champions.Kalista
                                                     ? mobOffset?.Width ?? Vars.SWidth
                                                     : Vars.SWidth;
                                     var height = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                    ? mobOffset?.Height ?? Vars.SHeight
-                                                    : Vars.SHeight;
+                                                     ? mobOffset?.Height ?? Vars.SHeight
+                                                     : Vars.SHeight;
                                     var xOffset = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                    ? mobOffset?.XOffset ?? Vars.SxOffset((Obj_AI_Hero)unit)
-                                                    : Vars.SxOffset((Obj_AI_Hero)unit);
+                                                      ? mobOffset?.XOffset ?? Vars.SxOffset((Obj_AI_Hero)unit)
+                                                      : Vars.SxOffset((Obj_AI_Hero)unit);
                                     var yOffset = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                    ? mobOffset?.YOffset ?? Vars.SyOffset((Obj_AI_Hero)unit)
-                                                    : Vars.SyOffset((Obj_AI_Hero)unit);
+                                                      ? mobOffset?.YOffset ?? Vars.SyOffset((Obj_AI_Hero)unit)
+                                                      : Vars.SyOffset((Obj_AI_Hero)unit);
                                     var barPos = unit.HPBarPosition;
                                     {
                                         barPos.X += xOffset;
@@ -68,28 +68,28 @@ namespace ExorAIO.Champions.Kalista
                                     var drawEndXPos = barPos.X + width * (unit.HealthPercent / 100);
                                     var drawStartXPos = barPos.X
                                                         + (Vars.GetRealHealth(unit)
-                                                            > (float)
-                                                                GameObjects.Player.GetSpellDamage(
-                                                                    unit,
-                                                                    SpellSlot.E)
-                                                            + (float)
-                                                                GameObjects.Player.GetSpellDamage(
-                                                                    unit,
-                                                                    SpellSlot.E,
-                                                                    DamageStage.Buff)
-                                                                ? width
-                                                                    * ((Vars.GetRealHealth(unit)
-                                                                        - ((float)
+                                                           > (float)
+                                                             GameObjects.Player.GetSpellDamage(
+                                                                 unit,
+                                                                 SpellSlot.E)
+                                                           + (float)
+                                                             GameObjects.Player.GetSpellDamage(
+                                                                 unit,
+                                                                 SpellSlot.E,
+                                                                 DamageStage.Buff)
+                                                               ? width
+                                                                 * ((Vars.GetRealHealth(unit)
+                                                                     - ((float)
                                                                         GameObjects.Player.GetSpellDamage(
                                                                             unit,
                                                                             SpellSlot.E)
                                                                         + (float)
-                                                                            GameObjects.Player.GetSpellDamage(
-                                                                                unit,
-                                                                                SpellSlot.E,
-                                                                                DamageStage.Buff)))
+                                                                          GameObjects.Player.GetSpellDamage(
+                                                                              unit,
+                                                                              SpellSlot.E,
+                                                                              DamageStage.Buff)))
                                                                     / unit.MaxHealth * 100 / 100)
-                                                                : 0);
+                                                               : 0);
                                     Drawing.DrawLine(
                                         drawStartXPos,
                                         barPos.Y,
@@ -99,7 +99,7 @@ namespace ExorAIO.Champions.Kalista
                                         Vars.GetRealHealth(unit)
                                         < (float)GameObjects.Player.GetSpellDamage(unit, SpellSlot.E)
                                         + (float)
-                                            GameObjects.Player.GetSpellDamage(unit, SpellSlot.E, DamageStage.Buff)
+                                          GameObjects.Player.GetSpellDamage(unit, SpellSlot.E, DamageStage.Buff)
                                             ? Color.Blue
                                             : Color.Orange);
                                     Drawing.DrawLine(

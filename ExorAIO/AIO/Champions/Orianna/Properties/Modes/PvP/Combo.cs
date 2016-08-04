@@ -66,10 +66,10 @@ namespace ExorAIO.Champions.Orianna
                 var objAiHero =
                     GameObjects.EnemyHeroes.FirstOrDefault(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.Q.Range) && t.IsValidTarget(Vars.Q2.Range - 50f));
-                if (objAiHero != null && !polygon.IsOutside((Vector2)objAiHero.ServerPosition))
+                        t.IsValidTarget() && !Invulnerable.Check(t) && !polygon.IsOutside((Vector2)t.ServerPosition));
+                if (objAiHero != null)
                 {
-                    Vars.E.Cast(GameObjects.Player);
+                    Vars.E.CastOnUnit(GameObjects.Player);
                 }
             }
         }

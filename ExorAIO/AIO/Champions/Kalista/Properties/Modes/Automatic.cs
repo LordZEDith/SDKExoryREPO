@@ -139,12 +139,11 @@ namespace ExorAIO.Champions.Kalista
                     /// <summary>
                     ///     Check for invulnerability through all the harassable targets.
                     /// </summary>
-                    foreach (var target in GameObjects.EnemyHeroes.Where(Bools.IsPerfectRendTarget))
+                    if (
+                        GameObjects.EnemyHeroes.Where(Bools.IsPerfectRendTarget)
+                            .Any(target => Invulnerable.Check(target)))
                     {
-                        if (Invulnerable.Check(target, DamageType.True, false))
-                        {
-                            return;
-                        }
+                        return;
                     }
 
                     Vars.E.Cast();

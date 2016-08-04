@@ -21,11 +21,6 @@ namespace ExorAIO.Utilities
         #region Static Fields
 
         /// <summary>
-        ///     A list of the names of the champions who have a different healthbar type.
-        /// </summary>
-        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
-
-        /// <summary>
         ///     A list of the names of the champions who cast Invalid Snares.
         /// </summary>
         public static readonly List<string> InvalidSnareCasters = new List<string> { "Leona", "Zyra", "Lissandra" };
@@ -38,6 +33,11 @@ namespace ExorAIO.Utilities
                                                                          "Amumu", "LeeSin", "Alistar", "Hecarim",
                                                                          "Blitzcrank"
                                                                      };
+
+        /// <summary>
+        ///     A list of the names of the champions who have a different healthbar type.
+        /// </summary>
+        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
 
         /// <summary>
         ///     The last tick.
@@ -55,16 +55,6 @@ namespace ExorAIO.Utilities
         public static int SHeight = 8;
 
         public static int SWidth = 103;
-
-        public static int SxOffset(Obj_AI_Hero target)
-        {
-            return SpecialChampions.Contains(target.ChampionName) ? 2 : 10;
-        }
-
-        public static int SyOffset(Obj_AI_Hero target)
-        {
-            return SpecialChampions.Contains(target.ChampionName) ? 11: 20;
-        }
 
         /// <summary>
         ///     The jungle HP bar offset list.
@@ -386,6 +376,16 @@ namespace ExorAIO.Utilities
                 }
             }
             return target.Health + target.PhysicalShield + target.HPRegenRate + debuffer;
+        }
+
+        public static int SxOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 1 : 10;
+        }
+
+        public static int SyOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 3 : 20;
         }
 
         #endregion
