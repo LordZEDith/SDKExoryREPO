@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Vayne
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)
+                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange)
                         && t.CountEnemyHeroesInRange(700f) <= 2
                         && Vars.GetRealHealth(t)
                         < GameObjects.Player.GetAutoAttackDamage(t)

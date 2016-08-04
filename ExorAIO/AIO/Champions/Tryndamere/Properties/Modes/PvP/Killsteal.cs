@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Tryndamere
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(Vars.AARange)
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(Vars.AaRange)
                         && Vars.GetRealHealth(t)
                         < GameObjects.Player.GetAutoAttackDamage(t) * 3
                         + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))

@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Quinn
         public static void Combo(EventArgs args)
         {
             if (Bools.HasSheenBuff() || Targets.Target.HasBuff("quinnw") || Invulnerable.Check(Targets.Target)
-                || Targets.Target.IsValidTarget(Vars.AARange))
+                || Targets.Target.IsValidTarget(Vars.AaRange))
             {
                 return;
             }

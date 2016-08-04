@@ -41,18 +41,15 @@ namespace ExorAIO.Champions.Kalista
                     var hero = args.Target as Obj_AI_Hero;
                     if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        foreach (var t1 in GameObjects.EnemyHeroes)
+                        if (GameObjects.EnemyHeroes.Any(t1 => t1.IsValidTarget(Vars.AaRange) && t1.HasBuff("kalistacoopstrikemarkally")))
                         {
-                            if (t1.IsValidTarget(Vars.AARange) && t1.HasBuff("kalistacoopstrikemarkally"))
-                            {
-                                Variables.Orbwalker.ForceTarget =
-                                    GameObjects.EnemyHeroes.Where(
-                                        t => t.IsValidTarget(Vars.AARange) && t.HasBuff("kalistacoopstrikemarkally"))
-                                        .OrderByDescending(
-                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                        .First();
-                                return;
-                            }
+                            Variables.Orbwalker.ForceTarget =
+                                GameObjects.EnemyHeroes.Where(
+                                    t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
+                                    .OrderByDescending(
+                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                                    .First();
+                            return;
                         }
 
                         Variables.Orbwalker.ForceTarget = null;
@@ -87,6 +84,17 @@ namespace ExorAIO.Champions.Kalista
                 return;
             }
 
+            ObjectManager.Get<Obj_AI_Base>()
+                .Where(
+                    h =>
+                    h.IsValidTarget() && Bools.IsPerfectRendTarget(h)
+                    && (h is Obj_AI_Hero || Vars.JungleList.Contains(h.CharData.BaseSkinName)))
+                .ToList()
+                .ForEach(
+                    unit =>
+                        {
+                            Console.WriteLine(unit.CharData.BaseSkinName);
+                        });
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>

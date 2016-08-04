@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Corki
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) && t.IsValidTarget(Vars.Q.Range - 100f)
+                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AaRange) && t.IsValidTarget(Vars.Q.Range - 100f)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.Corki
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AARange)
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AaRange)
                         && Vars.GetRealHealth(t)
                         < (float)
                           GameObjects.Player.GetSpellDamage(

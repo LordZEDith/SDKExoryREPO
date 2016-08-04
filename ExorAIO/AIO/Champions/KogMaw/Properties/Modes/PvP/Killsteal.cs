@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.KogMaw
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) && t.IsValidTarget(Vars.Q.Range - 100f)
+                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AaRange) && t.IsValidTarget(Vars.Q.Range - 100f)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
@@ -53,7 +53,7 @@ namespace ExorAIO.Champions.KogMaw
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AARange) && t.IsValidTarget(Vars.E.Range - 100f)
+                        !Invulnerable.Check(t) && !t.IsValidTarget(Vars.AaRange) && t.IsValidTarget(Vars.E.Range - 100f)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);

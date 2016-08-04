@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Pantheon
 
             if (Bools.HasSheenBuff())
             {
-                if (Targets.Target.IsValidTarget(Vars.AARange))
+                if (Targets.Target.IsValidTarget(Vars.AaRange))
                 {
                     return;
                 }
@@ -53,7 +53,7 @@ namespace ExorAIO.Champions.Pantheon
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (!Targets.Target.IsValidTarget(Vars.AARange)
+                if (!Targets.Target.IsValidTarget(Vars.AaRange)
                     || GameObjects.Player.GetBuffCount("pantheonpassivecounter") < 3)
                 {
                     Vars.W.CastOnUnit(Targets.Target);

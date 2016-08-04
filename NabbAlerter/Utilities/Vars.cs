@@ -180,6 +180,7 @@ namespace NabbAlerter
                     str = "sej";
                     break;
                 case "shyvana":
+                case "shyvanadragon":
                     str = "shyv";
                     break;
                 case "tahmkench":

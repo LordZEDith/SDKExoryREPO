@@ -33,7 +33,7 @@ namespace ExorAIO.Champions.Olaf
             /// <summary>
             ///     The Combo W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.AARange)
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.AaRange)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();

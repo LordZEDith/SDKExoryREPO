@@ -71,14 +71,14 @@ namespace ExorAIO.Champions.Vayne
                         if (
                             GameObjects.EnemyHeroes.Any(
                                 t =>
-                                t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2
+                                t.IsValidTarget(Vars.AaRange) && t.GetBuffCount("vaynesilvereddebuff") == 2
                                 && t.NetworkId != hero.NetworkId))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
                                     t =>
-                                    t.IsValidTarget(Vars.AARange) && t.GetBuffCount("vaynesilvereddebuff") == 2
+                                    t.IsValidTarget(Vars.AaRange) && t.GetBuffCount("vaynesilvereddebuff") == 2
                                     && t.NetworkId != hero.NetworkId)
                                     .OrderByDescending(
                                         o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))

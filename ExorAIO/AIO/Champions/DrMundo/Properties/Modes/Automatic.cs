@@ -37,7 +37,7 @@ namespace ExorAIO.Champions.DrMundo
                 foreach (var minion in
                     GameObjects.EnemyMinions.Where(
                         m =>
-                        m.IsValidTarget(Vars.Q.Range) && !m.IsValidTarget(Vars.AARange)
+                        m.IsValidTarget(Vars.Q.Range) && !m.IsValidTarget(Vars.AaRange)
                         && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))

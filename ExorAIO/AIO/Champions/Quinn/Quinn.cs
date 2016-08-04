@@ -48,11 +48,11 @@ namespace ExorAIO.Champions.Quinn
                     var hero = args.Target as Obj_AI_Hero;
                     if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw")))
+                        if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw")))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AARange) && t.HasBuff("quinnw"))
+                                GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"))
                                     .OrderByDescending(
                                         o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                     .First();

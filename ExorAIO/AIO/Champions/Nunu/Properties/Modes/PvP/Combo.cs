@@ -31,7 +31,7 @@ namespace ExorAIO.Champions.Nunu
 
             if (Bools.HasSheenBuff())
             {
-                if (Targets.Target.IsValidTarget(Vars.AARange))
+                if (Targets.Target.IsValidTarget(Vars.AaRange))
                 {
                     return;
                 }

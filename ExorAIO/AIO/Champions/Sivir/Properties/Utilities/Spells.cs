@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Sivir
         public static void Initialize()
         {
             Vars.Q = new Spell(SpellSlot.Q, 1100f); // Test - Original Range: 1200f.
-            Vars.W = new Spell(SpellSlot.W, Vars.AARange);
+            Vars.W = new Spell(SpellSlot.W, Vars.AaRange);
             Vars.E = new Spell(SpellSlot.E);
             Vars.Q.SetSkillshot(0.25f, 90f, 1350f, false, SkillshotType.SkillshotLine);
         }

@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Ryze
             {
                 return;
             }
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AARange))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange))
             {
                 return;
             }

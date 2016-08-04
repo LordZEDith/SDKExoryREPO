@@ -61,7 +61,7 @@ namespace ExorAIO.Champions.Ezreal
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any() && !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.AARange)))
+                else if (Targets.JungleMinions.Any() && !Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.AaRange)))
                 {
                     Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
                 }

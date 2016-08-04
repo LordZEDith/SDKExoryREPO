@@ -84,7 +84,7 @@ namespace ExorAIO.Champions.Cassiopeia
                         ///     The W Combo Logic.
                         /// </summary>
                         if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
-                            && !Targets.Target.IsValidTarget(Vars.AARange)
+                            && !Targets.Target.IsValidTarget(Vars.AaRange)
                             && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                         {
                             Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);

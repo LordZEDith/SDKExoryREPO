@@ -34,13 +34,13 @@ namespace ExorAIO.Champions.Lucian
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
-                && !Targets.Target.IsValidTarget(Vars.AARange)
+                && !Targets.Target.IsValidTarget(Vars.AaRange)
                 && Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange
+                if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AaRange
                     && GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f).CountEnemyHeroesInRange(1000f) < 3
                     && Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f))
-                    < Vars.AARange)
+                    < Vars.AaRange)
                 {
                     Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f));
                 }

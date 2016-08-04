@@ -43,15 +43,15 @@ namespace ExorAIO.Champions.Graves
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
-                && !Targets.Target.IsValidTarget(Vars.AARange)
+                && !Targets.Target.IsValidTarget(Vars.AaRange)
                 && Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AARange
-                    && GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange)
+                if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AaRange
+                    && GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AaRange)
                            .CountEnemyHeroesInRange(1000f) < 3
                     && Targets.Target.Distance(
-                        GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AARange))
-                    < Vars.AARange)
+                        GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range - Vars.AaRange))
+                    < Vars.AaRange)
                 {
                     Vars.E.Cast(Game.CursorPos);
                 }

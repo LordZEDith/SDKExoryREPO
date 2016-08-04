@@ -23,14 +23,14 @@ namespace ExorAIO.Champions.Draven
             =>
                 GameObjects.Jungle.Where(
                     m =>
-                    m.IsValidTarget(Vars.AARange)
+                    m.IsValidTarget(Vars.AaRange)
                     && (!GameObjects.JungleSmall.Contains(m) || m.CharData.BaseSkinName.Equals("Sru_Crab"))).ToList();
 
         /// <summary>
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.AARange)).ToList();
+            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(Vars.AaRange)).ToList();
 
         /// <summary>
         ///     The main hero target.

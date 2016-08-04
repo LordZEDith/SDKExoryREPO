@@ -61,7 +61,7 @@ namespace ExorAIO.Champions.Sona
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.AARange
+            if (Vars.E.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.AaRange
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();

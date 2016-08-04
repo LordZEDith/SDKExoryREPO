@@ -29,13 +29,13 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     Orbwalk on minions.
             /// </summary>
-            if (Items.HasItem(3085) && Targets.Minions.Any(m => m.IsValidTarget(Vars.AARange))
-                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AARange))
+            if (Items.HasItem(3085) && Targets.Minions.Any(m => m.IsValidTarget(Vars.AaRange))
+                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
                 && Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
             {
                 ObjectManager.Player.IssueOrder(
                     GameObjectOrder.AttackUnit,
-                    Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AARange)));
+                    Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AaRange)));
             }
             if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Kalista
 
             if (Bools.HasSheenBuff())
             {
-                if (Targets.Target.IsValidTarget(Vars.AARange))
+                if (Targets.Target.IsValidTarget(Vars.AaRange))
                 {
                     return;
                 }

@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Lucian
                             Vars.E.Cast(
                                 GameObjects.Player.ServerPosition.Extend(
                                     Game.CursorPos,
-                                    GameObjects.Player.Distance(Game.CursorPos) < Vars.AARange
+                                    GameObjects.Player.Distance(Game.CursorPos) < Vars.AaRange
                                         ? GameObjects.Player.BoundingRadius
                                         : 475f));
                             break;

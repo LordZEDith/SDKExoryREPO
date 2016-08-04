@@ -29,12 +29,12 @@ namespace NabbTracker
                                      { 0xFF90EE90, 0xFFD3C594, 0xFFEDD893, 0xFF9ADCE2, 0xFFC7C7C7 }, // lightgreen
                                      { 0xFF800080, 0xFF23377D, 0xFF011981, 0xFF71170F, 0xFF343434 } // purple
                                  };
-            Vars.SDXColor =
+            Vars.SdxColor =
                 Color.FromBgra(
                     sdxConvert[
-                        SDXColor(color),
+                        SdxColor(color),
                         Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index]);
-            return Vars.SDXColor;
+            return Vars.SdxColor;
         }
 
         /// <summary>
@@ -70,27 +70,27 @@ namespace NabbTracker
 
                                     // purple
                                 };
-            Vars.SDColor =
+            Vars.SdColor =
                 System.Drawing.Color.FromArgb(
                     sdConvert[
-                        SDColor(color),
+                        SdColor(color),
                         Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
                         0],
                     sdConvert[
-                        SDColor(color),
+                        SdColor(color),
                         Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
                         1],
                     sdConvert[
-                        SDColor(color),
+                        SdColor(color),
                         Vars.Menu["miscellaneous"]["colorblind"]["mode"].GetValue<MenuList>().Index,
                         2]);
-            return Vars.SDColor;
+            return Vars.SdColor;
         }
 
         /// <summary>
         ///     The System.Drawing.Color type table.
         /// </summary>
-        public static int SDColor(System.Drawing.Color color)
+        public static int SdColor(System.Drawing.Color color)
         {
             if (color == System.Drawing.Color.Gray) return 0;
             if (color == System.Drawing.Color.Yellow) return 1;
@@ -105,7 +105,7 @@ namespace NabbTracker
         /// <summary>
         ///     The SharpDX.Color type table.
         /// </summary>
-        public static int SDXColor(Color color)
+        public static int SdxColor(Color color)
         {
             if (color == Color.Gray) return 0;
             if (color == Color.Yellow) return 1;

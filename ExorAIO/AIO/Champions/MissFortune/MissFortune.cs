@@ -49,13 +49,13 @@ namespace ExorAIO.Champions.MissFortune
                         {
                             if (
                                 GameObjects.EnemyHeroes.Any(
-                                    t => t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
+                                    t => t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
                             {
                                 args.Process = false;
                                 Variables.Orbwalker.ForceTarget =
                                     GameObjects.EnemyHeroes.Where(
                                         t =>
-                                        t.IsValidTarget(Vars.AARange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
+                                        t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
                                         .OrderByDescending(
                                             o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                         .First();

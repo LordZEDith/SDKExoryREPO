@@ -41,11 +41,11 @@ namespace ExorAIO.Champions.Tristana
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
-                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("TristanaECharge")))
+                                t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("TristanaECharge")))
                         {
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
-                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("TristanaECharge"))
+                                    t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("TristanaECharge"))
                                     .OrderByDescending(
                                         o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                     .First();

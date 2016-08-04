@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Ezreal
             /// <summary>
             ///     The R Logics.
             /// </summary>
-            if (Vars.R.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.AARange) == 0)
+            if (Vars.R.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.AaRange) == 0)
             {
                 /// <summary>
                 ///     The R Combo Logic.

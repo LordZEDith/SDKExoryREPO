@@ -21,6 +21,11 @@ namespace ExorAIO.Utilities
         #region Static Fields
 
         /// <summary>
+        ///     A list of the names of the champions who have a different healthbar type.
+        /// </summary>
+        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
+
+        /// <summary>
         ///     A list of the names of the champions who cast Invalid Snares.
         /// </summary>
         public static readonly List<string> InvalidSnareCasters = new List<string> { "Leona", "Zyra", "Lissandra" };
@@ -44,16 +49,22 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static AttackableUnit PassiveTarget = null;
 
-        public static int sHeight = 8;
-
-        public static int sWidth = 103;
-
         /// <summary>
-        ///     The default enemy HP bar offset.
+        ///     The default enemy HP bar offsets.
         /// </summary>
-        public static int sXOffset = 10;
+        public static int SHeight = 8;
 
-        public static int sYOffset = 20;
+        public static int SWidth = 103;
+
+        public static int SxOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 2 : 10;
+        }
+
+        public static int SyOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 11: 20;
+        }
 
         /// <summary>
         ///     The jungle HP bar offset list.
@@ -206,7 +217,7 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     Gets the Player's real AutoAttack-Range.
         /// </summary>
-        public static float AARange => GameObjects.Player.GetRealAutoAttackRange();
+        public static float AaRange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
         ///     The args End.

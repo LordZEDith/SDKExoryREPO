@@ -40,7 +40,7 @@ namespace ExorAIO.Champions.MissFortune
                     GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget(
-                            Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value ? Vars.R.Range : Vars.AARange)))
+                            Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value ? Vars.R.Range : Vars.AaRange)))
                 {
                     Vars.W.Cast();
                 }

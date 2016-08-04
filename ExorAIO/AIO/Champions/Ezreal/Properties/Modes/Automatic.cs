@@ -43,7 +43,7 @@ namespace ExorAIO.Champions.Ezreal
                 foreach (var minion in
                     Targets.Minions.Where(
                         m =>
-                        !m.IsValidTarget(Vars.AARange)
+                        !m.IsValidTarget(Vars.AaRange)
                         && Vars.GetRealHealth(m) > GameObjects.Player.GetAutoAttackDamage(m)
                         && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
                         .OrderBy(o => o.MaxHealth))

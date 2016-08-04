@@ -28,12 +28,12 @@ namespace NabbTracker
         /// <summary>
         ///     Gets the Color.
         /// </summary>
-        public static Color SDColor = Color.Black;
+        public static Color SdColor = Color.Black;
 
         /// <summary>
         ///     Gets the Color.
         /// </summary>
-        public static SharpDX.Color SDXColor = SharpDX.Color.Black;
+        public static SharpDX.Color SdxColor = SharpDX.Color.Black;
 
         /// <summary>
         ///     Gets the spellslots.
@@ -130,12 +130,7 @@ namespace NabbTracker
         /// </summary>
         public static int ExpXAdjustment(Obj_AI_Hero target)
         {
-            if (SpecialChampions.Contains(target.ChampionName))
-            {
-                return 77;
-            }
-
-            return 85;
+            return SpecialChampions.Contains(target.ChampionName) ? 77 : 85;
         }
 
         /// <summary>

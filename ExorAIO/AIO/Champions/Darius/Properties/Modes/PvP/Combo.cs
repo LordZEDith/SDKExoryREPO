@@ -33,7 +33,7 @@ namespace ExorAIO.Champions.Darius
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
-                && !Targets.Target.IsValidTarget(Vars.AARange)
+                && !Targets.Target.IsValidTarget(Vars.AaRange)
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);

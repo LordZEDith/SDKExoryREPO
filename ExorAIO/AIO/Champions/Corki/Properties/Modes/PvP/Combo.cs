@@ -33,7 +33,7 @@ namespace ExorAIO.Champions.Corki
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.AARange)
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.AaRange)
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();

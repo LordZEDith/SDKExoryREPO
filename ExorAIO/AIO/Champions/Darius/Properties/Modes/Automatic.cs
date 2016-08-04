@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Darius
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
-                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AARange)))
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange)))
                 {
                     Vars.Q.Cast();
                 }

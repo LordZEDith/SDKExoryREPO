@@ -19,8 +19,8 @@ namespace ExorAIO.Champions.Tristana
         {
             Vars.Q = new Spell(SpellSlot.Q);
             Vars.W = new Spell(SpellSlot.W, 900f);
-            Vars.E = new Spell(SpellSlot.E, Vars.AARange);
-            Vars.R = new Spell(SpellSlot.R, Vars.AARange);
+            Vars.E = new Spell(SpellSlot.E, Vars.AaRange);
+            Vars.R = new Spell(SpellSlot.R, Vars.AaRange);
         }
 
         #endregion

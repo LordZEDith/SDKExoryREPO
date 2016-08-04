@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AARange))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange))
             {
                 return;
             }
@@ -39,7 +39,7 @@ namespace ExorAIO.Champions.Diana
             {
                 Vars.W.Cast();
             }
-            if (!Targets.Target.IsValidTarget() || Targets.Target.IsValidTarget(Vars.AARange)
+            if (!Targets.Target.IsValidTarget() || Targets.Target.IsValidTarget(Vars.AaRange)
                 || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
@@ -148,7 +148,7 @@ namespace ExorAIO.Champions.Diana
             /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
-            if (Vars.E.IsReady() && !Targets.Target.IsValidTarget(Vars.AARange)
+            if (Vars.E.IsReady() && !Targets.Target.IsValidTarget(Vars.AaRange)
                 && Targets.Target.IsValidTarget(Vars.E.Range - 25)
                 && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
             {

@@ -51,12 +51,12 @@ namespace ExorAIO.Champions.Lux
                     {
                         if (
                             GameObjects.EnemyHeroes.Any(
-                                t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein")))
+                                t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein")))
                         {
                             args.Process = false;
                             Variables.Orbwalker.ForceTarget =
                                 GameObjects.EnemyHeroes.Where(
-                                    t => t.IsValidTarget(Vars.AARange) && t.HasBuff("luxilluminatingfraulein"))
+                                    t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein"))
                                     .OrderByDescending(
                                         o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                                     .First();

@@ -54,7 +54,7 @@ namespace ExorAIO.Champions.Taliyah
                 {
                     Vars.W.Cast(
                         target.ServerPosition,
-                        target.IsFacing(GameObjects.Player) && GameObjects.Player.Distance(target) < Vars.AARange / 2
+                        target.IsFacing(GameObjects.Player) && GameObjects.Player.Distance(target) < Vars.AaRange / 2
                             ? GameObjects.Player.ServerPosition.Extend(
                                 target.ServerPosition,
                                 GameObjects.Player.Distance(target) * 2)
