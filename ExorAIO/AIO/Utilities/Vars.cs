@@ -50,10 +50,13 @@ namespace ExorAIO.Utilities
         public static AttackableUnit PassiveTarget = null;
 
         /// <summary>
-        ///     The default enemy HP bar offsets.
+        ///     The default enemy HP bar height offset.
         /// </summary>
         public static int SHeight = 8;
 
+        /// <summary>
+        ///     The default enemy HP bar width offset.
+        /// </summary>
         public static int SWidth = 103;
 
         /// <summary>
@@ -378,11 +381,17 @@ namespace ExorAIO.Utilities
             return target.Health + target.PhysicalShield + target.HPRegenRate + debuffer;
         }
 
+        /// <summary>
+        ///     The default enemy HP bar x offset.
+        /// </summary>
         public static int SxOffset(Obj_AI_Hero target)
         {
             return SpecialChampions.Contains(target.ChampionName) ? 1 : 10;
         }
 
+        /// <summary>
+        ///     The default enemy HP bar y offset.
+        /// </summary>
         public static int SyOffset(Obj_AI_Hero target)
         {
             return SpecialChampions.Contains(target.ChampionName) ? 3 : 20;
