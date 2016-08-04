@@ -35,7 +35,8 @@ namespace ExorAIO.Champions.Jhin
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && GameObjects.Player.HasBuff("JhinPassiveReload")
+                && (GameObjects.Player.HasBuff("JhinPassiveReload")
+                || !Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);

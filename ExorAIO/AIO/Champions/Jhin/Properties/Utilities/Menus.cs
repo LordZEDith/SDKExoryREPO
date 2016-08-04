@@ -32,9 +32,12 @@ namespace ExorAIO.Champions.Jhin
                 {
                     Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuSliderButton("lasthit", "LastHit / if Mana >= x%", 0, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("lasthit", "Auto-LastHit / if Mana >= x%", 0, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSeparator("separator", "Miscellaneous Exceptions List:"));
+                    Vars.QMenu.Add(new MenuBool("reloadcombo", "Combo: Only if Reloading"));
+                    Vars.QMenu.Add(new MenuBool("reloadclear", "Clear: Only if Reloading"));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 

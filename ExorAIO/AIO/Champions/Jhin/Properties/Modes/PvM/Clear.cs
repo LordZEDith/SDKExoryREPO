@@ -56,21 +56,21 @@ namespace ExorAIO.Champions.Jhin
             if (Vars.Q.IsReady()
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
+                && (GameObjects.Player.HasBuff("JhinPassiveReload")
+                || !Vars.Menu["spells"]["q"]["reloadclear"].GetValue<MenuBool>().Value)
                 && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                if (Targets.Minions.Any() && Targets.Minions.Count >= 3)
+                if (Targets.Minions.Any())
                 {
-                    if (
-                        Targets.Minions.Where(m => m.IsValidTarget(Vars.Q.Range))
-                            .Sum(
-                                s =>
-                                (int)(Vars.GetRealHealth(s) / (float)GameObjects.Player.GetSpellDamage(s, SpellSlot.Q)))
-                        >= 3)
+                    foreach (var minion in Targets.Minions.Where(
+                        m =>
+                        m.IsValidTarget(Vars.Q.Range) && Targets.Minions.Count(m2 => m2.Distance(m) < 350f) >= 3
+                        && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
-                        Vars.Q.CastOnUnit(Targets.Minions.OrderBy(Vars.GetRealHealth).First());
+                        Vars.Q.CastOnUnit(minion);
                     }
                 }
 

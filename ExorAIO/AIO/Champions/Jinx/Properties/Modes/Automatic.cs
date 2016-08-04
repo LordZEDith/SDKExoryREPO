@@ -92,7 +92,7 @@ namespace ExorAIO.Champions.Jinx
                                             ? Vars.Q.Range
                                             : Vars.W.Range)))
                             {
-                                Console.WriteLine("ExorAIO: Jinx - Combo/Hybrid - Enabled for Range Check.");
+                                //Console.WriteLine("ExorAIO: Jinx - Combo/Hybrid - Enabled for Range Check.");
                                 Vars.Q.Cast();
                                 return;
                             }

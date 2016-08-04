@@ -38,6 +38,17 @@ namespace ExorAIO.Champions.MissFortune
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["extended"]["mixed"])
                 && Vars.Menu["spells"]["q"]["extended"]["mixed"].GetValue<MenuSliderButton>().BValue)
             {
+                var passiveMultiplier = GameObjects.Player.Level < 4
+                                            ? 0.25
+                                            : GameObjects.Player.Level < 7
+                                                  ? 0.3
+                                                  : GameObjects.Player.Level < 9
+                                                        ? 0.35
+                                                        : GameObjects.Player.Level < 11
+                                                              ? 0.4
+                                                              : GameObjects.Player.Level < 13
+                                                                    ? 0.45
+                                                                    : 0.5;
                 /// <summary>
                 ///     Through enemy minions.
                 /// </summary>
@@ -48,7 +59,9 @@ namespace ExorAIO.Champions.MissFortune
                             m =>
                             m.IsValidTarget(Vars.Q.Range)
                             && (!Vars.Menu["spells"]["q"]["extended"]["mixedkill"].GetValue<MenuBool>().Value
-                                || m.Health < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
+                                || Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q) + (Vars.PassiveTarget.IsValidTarget() && m.NetworkId != Vars.PassiveTarget.NetworkId
+                                    ? GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                    : 0)))
                     let polygon =
                         new Geometry.Sector(
                         (Vector2)minion.ServerPosition,
