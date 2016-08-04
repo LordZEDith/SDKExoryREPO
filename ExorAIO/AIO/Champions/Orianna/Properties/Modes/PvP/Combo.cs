@@ -62,7 +62,10 @@ namespace ExorAIO.Champions.Orianna
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.E.IsReady()
+                && GameObjects.Player.Mana - Vars.E.Instance.ManaCost
+                > Vars.Q.Instance.ManaCost + Vars.W.Instance.ManaCost
+                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 foreach (
                     var ally in
