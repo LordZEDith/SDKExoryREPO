@@ -36,33 +36,33 @@ namespace NabbTracker
                                 || e.IsAlly && !e.IsMe && Vars.Menu["spelltracker"]["allies"].GetValue<MenuBool>().Value))
                         )
                     {
-                        for (var Spell = 0; Spell < Vars.SpellSlots.Length; Spell++)
+                        for (var spell = 0; spell < Vars.SpellSlots.Length; spell++)
                         {
-                            Vars.SpellX = (int)unit.HPBarPosition.X + Vars.SpellXAdjustment(unit) + Spell * 25;
+                            Vars.SpellX = (int)unit.HPBarPosition.X + Vars.SpellXAdjustment(unit) + spell * 25;
                             Vars.SpellY = (int)unit.HPBarPosition.Y + Vars.SpellYAdjustment(unit);
                             Vars.DisplayTextFont.DrawText(
                                 null,
-                                unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time > 0
-                                    ? $"{unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time + 1:0}"
-                                    : Vars.SpellSlots[Spell].ToString(),
+                                unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).CooldownExpires - Game.Time > 0
+                                    ? $"{unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).CooldownExpires - Game.Time + 1:0}"
+                                    : Vars.SpellSlots[spell].ToString(),
                                 Vars.SpellX,
                                 Vars.SpellY,
-                                unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).Level < 1
+                                unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).Level < 1
                                     ? Colors.Convert(Color.Gray)
-                                    : unit.Spellbook.GetSpell(Vars.SpellSlots[Spell])
+                                    : unit.Spellbook.GetSpell(Vars.SpellSlots[spell])
                                           .SData.ManaCostArray.MaxOrDefault(value => value) > unit.Mana
                                           ? Colors.Convert(Color.Cyan)
-                                          : unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires - Game.Time
+                                          : unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).CooldownExpires - Game.Time
                                             > 0
-                                            && unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires
+                                            && unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).CooldownExpires
                                             - Game.Time <= 4
                                                 ? Colors.Convert(Color.Yellow)
-                                                : unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).CooldownExpires
+                                                : unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).CooldownExpires
                                                   - Game.Time > 4
                                                       ? Colors.Convert(Color.Red)
                                                       : Colors.Convert(Color.LightGreen));
                             for (var level = 0;
-                                 level <= unit.Spellbook.GetSpell(Vars.SpellSlots[Spell]).Level - 1;
+                                 level <= unit.Spellbook.GetSpell(Vars.SpellSlots[spell]).Level - 1;
                                  level++)
                             {
                                 Vars.SpellLevelX = Vars.SpellX + level * 3 - 4;
@@ -75,12 +75,12 @@ namespace NabbTracker
                                     Color.White);
                             }
                         }
-                        for (var SummonerSpell = 0; SummonerSpell < Vars.SummonerSpellSlots.Length; SummonerSpell++)
+                        for (var summonerSpell = 0; summonerSpell < Vars.SummonerSpellSlots.Length; summonerSpell++)
                         {
                             Vars.SummonerSpellX = (int)unit.HPBarPosition.X + Vars.SummonerSpellXAdjustment(unit)
-                                                  + SummonerSpell * 88;
+                                                  + summonerSpell * 88;
                             Vars.SummonerSpellY = (int)unit.HPBarPosition.Y + Vars.SummonerSpellYAdjustment(unit);
-                            switch (unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).Name.ToLower())
+                            switch (unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[summonerSpell]).Name.ToLower())
                             {
                                 case "summonerflash":
                                     Vars.GetSummonerSpellName = "Flash";
@@ -125,14 +125,14 @@ namespace NabbTracker
 
                             Vars.DisplayTextFont.DrawText(
                                 null,
-                                unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires
+                                unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[summonerSpell]).CooldownExpires
                                 - Game.Time > 0
                                     ? Vars.GetSummonerSpellName + ":"
-                                      + $"{unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires - Game.Time + 1:0}"
+                                      + $"{unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[summonerSpell]).CooldownExpires - Game.Time + 1:0}"
                                     : Vars.GetSummonerSpellName + ": UP ",
                                 Vars.SummonerSpellX,
                                 Vars.SummonerSpellY,
-                                unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[SummonerSpell]).CooldownExpires
+                                unit.Spellbook.GetSpell(Vars.SummonerSpellSlots[summonerSpell]).CooldownExpires
                                 - Game.Time > 0
                                     ? Colors.Convert(Color.Red)
                                     : Colors.Convert(Color.Yellow));
