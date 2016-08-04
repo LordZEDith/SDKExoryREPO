@@ -45,7 +45,7 @@ namespace NabbActivator
             /// <summary>
             ///     Initializes the spells.
             /// </summary>
-            ISpells.Initialize();
+            Spells.Initialize();
 
             /// <summary>
             ///     Initializes the methods.

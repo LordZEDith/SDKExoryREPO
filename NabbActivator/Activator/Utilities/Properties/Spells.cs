@@ -6,7 +6,7 @@ namespace NabbActivator
     /// <summary>
     ///     The spells class.
     /// </summary>
-    internal class ISpells
+    internal class Spells
     {
         #region Public Methods and Operators
 
