@@ -8,8 +8,11 @@ namespace ExorAIO.Champions.Orianna
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
+
+    using SharpDX;
 
     /// <summary>
     ///     The logics class.
@@ -24,12 +27,30 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
+            var ball =
+                ObjectManager.Get<Obj_AI_Minion>()
+                    .FirstOrDefault(m => (int)m.Health == 1 && m.CharData.BaseSkinName.Equals("oriannaball"));
+            var ball3 =
+                GameObjects.AllyHeroes.FirstOrDefault(
+                    a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
+
+            Orianna.BallPosition = ball?.Position ?? (GameObjects.Player.HasBuff("orianaghostself")
+                                                          ? GameObjects.Player.ServerPosition
+                                                          : ball3?.Position);
+
+            if (Orianna.BallPosition == null)
+            {
+                return;
+            }
+
             /// <summary>
             ///     The R Automatic Logic.
             /// </summary>
             if (Vars.R.IsReady()
                 && GameObjects.EnemyHeroes.Count(
-                    t => t.IsValidTarget() && t.Distance(Orianna.BallPosition) < Vars.R.Range)
+                    t =>
+                    t.IsValidTarget()
+                    && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range)
                 >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {

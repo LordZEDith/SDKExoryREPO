@@ -13,6 +13,8 @@ namespace ExorAIO.Champions.Orianna
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
+    using SharpDX;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
@@ -41,6 +43,11 @@ namespace ExorAIO.Champions.Orianna
                 }
             }
 
+            if (Orianna.BallPosition == null)
+            {
+                return;
+            }
+
             /// <summary>
             ///     The KillSteal W Logic.
             /// </summary>
@@ -49,7 +56,8 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t) && t.Distance(Orianna.BallPosition) < Vars.W.Range
+                        t.IsValidTarget() && !Invulnerable.Check(t)
+                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast();
@@ -64,7 +72,8 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t) && t.Distance(Orianna.BallPosition) < Vars.R.Range
+                        t.IsValidTarget() && !Invulnerable.Check(t)
+                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
                         && Vars.GetRealHealth(t) > (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W) * 2
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {

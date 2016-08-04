@@ -8,6 +8,7 @@ namespace ExorAIO.Champions.Orianna
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -43,10 +44,16 @@ namespace ExorAIO.Champions.Orianna
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
             }
 
+            if (Orianna.BallPosition == null)
+            {
+                return;
+            }
+
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.Distance(Orianna.BallPosition) < Vars.W.Range
+            if (Vars.W.IsReady()
+                && Targets.Target.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
@@ -57,19 +64,26 @@ namespace ExorAIO.Champions.Orianna
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                var polygon = new Geometry.Rectangle(
-                    GameObjects.Player.ServerPosition,
-                    GameObjects.Player.Position.Extend(
-                        Orianna.BallPosition,
-                        GameObjects.Player.Distance(Orianna.BallPosition)),
-                    Vars.Q.Width);
-                var objAiHero =
-                    GameObjects.EnemyHeroes.FirstOrDefault(
-                        t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t) && !polygon.IsOutside((Vector2)t.ServerPosition));
-                if (objAiHero != null)
+                foreach (
+                    var ally in
+                        GameObjects.AllyHeroes.OrderBy(o => o.Health).Where(t => t.IsValidTarget(Vars.E.Range, false)))
                 {
-                    Vars.E.CastOnUnit(GameObjects.Player);
+                    var polygon = new Geometry.Rectangle(
+                        ally.ServerPosition,
+                        ally.ServerPosition.Extend(
+                            (Vector2)Orianna.BallPosition,
+                            ally.Distance((Vector2)Orianna.BallPosition)),
+                        Vars.Q.Width);
+
+                    var objAiHero =
+                        GameObjects.EnemyHeroes.FirstOrDefault(
+                            t =>
+                            t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical)
+                            && !polygon.IsOutside((Vector2)t.ServerPosition));
+                    if (objAiHero != null)
+                    {
+                        Vars.E.CastOnUnit(ally);
+                    }
                 }
             }
         }

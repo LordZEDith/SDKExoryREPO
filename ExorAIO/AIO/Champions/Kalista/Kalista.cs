@@ -86,15 +86,6 @@ namespace ExorAIO.Champions.Kalista
                 return;
             }
 
-            ObjectManager.Get<Obj_AI_Base>()
-                .Where(
-                    h =>
-                    h.IsValidTarget() && Bools.IsPerfectRendTarget(h)
-                    && (h is Obj_AI_Hero || Vars.JungleList.Contains(h.CharData.BaseSkinName)))
-                .ToList()
-                .ForEach(
-                    unit => { Console.WriteLine(unit.CharData.BaseSkinName); });
-
             /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>

@@ -23,7 +23,7 @@ namespace ExorAIO.Champions.Orianna
     {
         #region Static Fields
 
-        public static Vector3 BallPosition;
+        public static Vector3? BallPosition = Vector3.Zero;
 
         #endregion
 
@@ -36,10 +36,17 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
         public static void OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
         {
+            if (BallPosition == null)
+            {
+                return;
+            }
+
             if (sender.Owner.IsMe && args.Slot == SpellSlot.R
                 && Vars.Menu["miscellaneous"]["blockr"].GetValue<MenuBool>().Value)
             {
-                if (!GameObjects.EnemyHeroes.Any(t => t.Distance(BallPosition) < Vars.R.Range))
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t => t.Distance((Vector2)BallPosition) < Vars.R.Range))
                 {
                     args.Process = false;
                 }
@@ -63,10 +70,15 @@ namespace ExorAIO.Champions.Orianna
                 Vars.E.CastOnUnit(GameObjects.Player);
             }
 
+            if (BallPosition == null)
+            {
+                return;
+            }
+
             /// <summary>
             ///     The Anti-Gapcloser R.
             /// </summary>
-            if (Vars.R.IsReady() && BallPosition.Distance(args.End) < Vars.R.Width
+            if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.End) < Vars.R.Width
                 && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -81,10 +93,16 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
+            if (BallPosition == null)
+            {
+                return;
+            }
+
             if (Vars.R.IsReady() && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                if (Vars.Q.IsReady() && BallPosition.Distance(args.Sender.ServerPosition) > Vars.R.Range)
+                if (Vars.Q.IsReady()
+                    && ((Vector2)BallPosition).Distance(args.Sender.ServerPosition) > Vars.R.Range)
                 {
                     Vars.Q.Cast(args.Sender.ServerPosition);
                 }
@@ -128,28 +146,6 @@ namespace ExorAIO.Champions.Orianna
             if (GameObjects.Player.IsDead)
             {
                 return;
-            }
-
-            var ball =
-                ObjectManager.Get<Obj_AI_Minion>()
-                    .FirstOrDefault(m => (int)m.Health == 1 && m.CharData.BaseSkinName.Equals("oriannaball"));
-            if (ball != null)
-            {
-                BallPosition = ball.Position;
-            }
-            else
-            {
-                if (GameObjects.Player.HasBuff("orianaghostself"))
-                {
-                    BallPosition = GameObjects.Player.Position;
-                }
-                else
-                {
-                    var ball2 =
-                        GameObjects.AllyHeroes.FirstOrDefault(
-                            a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
-                    BallPosition = ball2?.Position ?? Vector3.Zero;
-                }
             }
 
             /// <summary>

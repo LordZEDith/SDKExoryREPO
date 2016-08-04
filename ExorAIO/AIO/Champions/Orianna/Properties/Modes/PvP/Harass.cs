@@ -11,6 +11,8 @@ namespace ExorAIO.Champions.Orianna
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
+    using SharpDX;
+
     /// <summary>
     ///     The logics class.
     /// </summary>
@@ -40,10 +42,16 @@ namespace ExorAIO.Champions.Orianna
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
             }
 
+            if (Orianna.BallPosition == null)
+            {
+                return;
+            }
+
             /// <summary>
             ///     The Harass W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.Distance(Orianna.BallPosition) < Vars.W.Range
+            if (Vars.W.IsReady()
+                && Targets.Target.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"])
                 && Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
