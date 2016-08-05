@@ -88,7 +88,28 @@ namespace ExorAIO.Champions.Orianna
                     Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser"));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                     Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit x enemies", 2, 1, 5, true));
+                    {
+                        /// <summary>
+                        ///     Sets the menu for the R Whitelist.
+                        /// </summary>
+                        Vars.WhiteListMenu = new Menu("whitelist", "Shockwave: Whitelist Menu");
+                        {
+                            Vars.WhiteListMenu.Add(
+                                new MenuSeparator("separator", "Note: The Whitelist only works for the Combo option."));
+                            foreach (var target in GameObjects.EnemyHeroes)
+                            {
+                                Vars.WhiteListMenu.Add(
+                                    new MenuBool(
+                                        target.ChampionName.ToLower(),
+                                        $"Ult only: {target.ChampionName}",
+                                        true));
+                            }
+                        }
+
+                        Vars.RMenu.Add(Vars.WhiteListMenu);
+                    }
                 }
+
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
 

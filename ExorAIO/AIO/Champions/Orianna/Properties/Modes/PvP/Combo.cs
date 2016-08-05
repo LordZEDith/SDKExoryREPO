@@ -104,7 +104,8 @@ namespace ExorAIO.Champions.Orianna
                     t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
                     && Vars.GetRealHealth(t)
                     < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)
-                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2)
+                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2
+                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                 && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();
