@@ -20,10 +20,11 @@ namespace ExorAIO.Champions.Ashe
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Fired when the game is updated.
+        ///     Called on do-cast.
         /// </summary>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void BuildingClear(EventArgs args)
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret)
                 && !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
@@ -34,7 +35,8 @@ namespace ExorAIO.Champions.Ashe
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("AsheQCastReady")
+            if (Vars.Q.IsReady()
+                && GameObjects.Player.HasBuff("asheqcastready")
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["buildings"])
                 && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)

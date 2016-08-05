@@ -16,6 +16,7 @@ namespace ExorAIO.Champions.Ashe
         public static void Initialize()
         {
             Game.OnUpdate += Ashe.OnUpdate;
+            Obj_AI_Base.OnDoCast += Ashe.OnDoCast;
             Events.OnGapCloser += Ashe.OnGapCloser;
             Events.OnInterruptableTarget += Ashe.OnInterruptableTarget;
         }

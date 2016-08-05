@@ -1,6 +1,14 @@
+
+#pragma warning disable 1587
+
 namespace ExorAIO.Champions.Ashe
 {
+    using ExorAIO.Utilities;
+
     using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The logics class.
@@ -16,6 +24,19 @@ namespace ExorAIO.Champions.Ashe
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero)args.Target))
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     The Q Combo Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("asheqcastready")
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.Q.Cast();
+            }
         }
 
         #endregion

@@ -25,7 +25,8 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Targets.Target.HasBuff("quinnw") || Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Targets.Target.HasBuff("quinnw")
+                || Invulnerable.Check(Targets.Target))
             {
                 return;
             }

@@ -22,6 +22,30 @@ namespace ExorAIO.Champions.Ashe
         #region Public Methods and Operators
 
         /// <summary>
+        ///     Called on do-cast.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            {
+                /// <summary>
+                ///     Initializes the orbwalkingmodes.
+                /// </summary>
+                switch (Variables.Orbwalker.ActiveMode)
+                {
+                    case OrbwalkingMode.Combo:
+                        Logics.Weaving(sender, args);
+                        break;
+                    case OrbwalkingMode.LaneClear:
+                        Logics.BuildingClear(sender, args);
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         ///     Fired on an incoming gapcloser.
         /// </summary>
         /// <param name="sender">The object.</param>
@@ -92,7 +116,6 @@ namespace ExorAIO.Champions.Ashe
                     break;
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
-                    Logics.BuildingClear(args);
                     break;
             }
         }

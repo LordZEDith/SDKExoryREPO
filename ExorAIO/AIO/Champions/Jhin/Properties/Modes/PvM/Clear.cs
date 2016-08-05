@@ -57,7 +57,7 @@ namespace ExorAIO.Champions.Jhin
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
                 && (GameObjects.Player.HasBuff("JhinPassiveReload")
-                || !Vars.Menu["spells"]["q"]["reloadclear"].GetValue<MenuBool>().Value)
+                    || !Vars.Menu["spells"]["q"]["reloadclear"].GetValue<MenuBool>().Value)
                 && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>

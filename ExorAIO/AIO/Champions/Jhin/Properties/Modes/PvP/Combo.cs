@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && (GameObjects.Player.HasBuff("JhinPassiveReload")
-                || !Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
+                    || !Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);
