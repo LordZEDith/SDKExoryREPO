@@ -35,25 +35,32 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
-            /// <summary>
-            ///     The Combo Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
-            }
-
             if (Orianna.BallPosition == null)
             {
                 return;
             }
 
             /// <summary>
+            ///     The Combo Q Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            {
+                if (Vars.E.IsReady() &&
+                    Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)
+                    > ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition))
+                {
+                    Vars.E.Cast(GameObjects.Player);
+                }
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+            }
+
+            /// <summary>
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady()
-                && Targets.Target.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
+                && GameObjects.EnemyHeroes.Any(t => t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
@@ -88,6 +95,21 @@ namespace ExorAIO.Champions.Orianna
                         Vars.E.CastOnUnit(ally);
                     }
                 }
+            }
+
+            /// <summary>
+            ///     The Combo R Logic.
+            /// </summary>
+            if (Vars.R.IsReady()
+                && GameObjects.EnemyHeroes.Any(
+                    t =>
+                    t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
+                    && Vars.GetRealHealth(t)
+                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)
+                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2)
+                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast();
             }
         }
 

@@ -83,6 +83,7 @@ namespace ExorAIO.Champions.Orianna
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal"));
                     Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser"));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));

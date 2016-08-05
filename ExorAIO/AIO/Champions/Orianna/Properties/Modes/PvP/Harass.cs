@@ -4,6 +4,7 @@
 namespace ExorAIO.Champions.Orianna
 {
     using System;
+    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -51,7 +52,7 @@ namespace ExorAIO.Champions.Orianna
             ///     The Harass W Logic.
             /// </summary>
             if (Vars.W.IsReady()
-                && Targets.Target.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
+                && GameObjects.EnemyHeroes.Any(t => t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"])
                 && Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
