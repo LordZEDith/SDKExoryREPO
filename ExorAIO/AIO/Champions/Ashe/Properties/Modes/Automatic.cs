@@ -67,7 +67,7 @@ namespace ExorAIO.Champions.Ashe
                             .OrderBy(d2 => GameObjects.Player.Distance(d2))
                             .FirstOrDefault());
                 }
-                else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
+                else
                 {
                     foreach (var target in
                         GameObjects.EnemyHeroes.Where(

@@ -87,7 +87,7 @@ namespace ExorAIO.Champions.Orianna
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal"));
                     Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser"));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit x enemies", 2, 1, 5, true));
+                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 2, 1, 5, true));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.

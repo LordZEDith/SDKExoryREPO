@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Orianna
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
+                        !Invulnerable.Check(t, DamageType.Magical) && t.IsValidTarget(Vars.Q.Range)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).CastPosition);
@@ -56,7 +56,7 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t)
+                        t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical)
                         && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
@@ -72,7 +72,7 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t)
+                        t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical)
                         && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
                         && Vars.GetRealHealth(t) > (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W) * 2
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))

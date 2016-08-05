@@ -37,18 +37,19 @@ namespace ExorAIO.Champions.Quinn
                 if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None
                     && GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
                 {
-                    Vars.E.Cast();
+                    Vars.W.Cast();
                 }
-                else if (!NavMesh.IsWallOfGrass(GameObjects.Player.ServerPosition, 1))
+                else
                 {
                     if (
                         GameObjects.EnemyHeroes.Any(
                             t =>
                             t.Distance(t.GetWaypoints().Last()) < 1500
                             && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1)
+                            && GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000
                             && GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
                     {
-                        Vars.E.Cast();
+                        Vars.W.Cast();
                     }
                 }
             }

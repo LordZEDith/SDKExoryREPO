@@ -30,8 +30,26 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Orianna.BallPosition == null || Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
-                || Invulnerable.Check(Targets.Target))
+            if (Orianna.BallPosition == null || Invulnerable.Check(Targets.Target))
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     The W Combo Logic.
+            /// </summary>
+            if (Vars.W.IsReady()
+                && GameObjects.EnemyHeroes.Any(
+                    t =>
+                    !Invulnerable.Check(Targets.Target, DamageType.Magical)
+                    && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.W.Cast();
+            }
+
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange) || !Targets.Target.IsValidTarget()
+                || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -52,16 +70,6 @@ namespace ExorAIO.Champions.Orianna
                     Vars.E.Cast(GameObjects.Player);
                 }
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
-            }
-
-            /// <summary>
-            ///     The W Combo Logic.
-            /// </summary>
-            if (Vars.W.IsReady()
-                && GameObjects.EnemyHeroes.Any(t => t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
-                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.Cast();
             }
 
             /// <summary>
