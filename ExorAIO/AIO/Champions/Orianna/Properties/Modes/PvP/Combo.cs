@@ -30,12 +30,8 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
-            {
-                return;
-            }
-
-            if (Orianna.BallPosition == null)
+            if (Orianna.BallPosition == null || Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
+                || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -48,6 +44,8 @@ namespace ExorAIO.Champions.Orianna
             {
                 if (Vars.E.IsReady() &&
                     Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
+                    > Vars.AaRange
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)
                     > ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition))
                 {

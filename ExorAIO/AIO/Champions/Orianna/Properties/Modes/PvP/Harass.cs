@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (Orianna.BallPosition == null || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -40,12 +40,16 @@ namespace ExorAIO.Champions.Orianna
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
+                if (Vars.E.IsReady() &&
+                    Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
+                    > Vars.AaRange
+                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)
+                    > ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition))
+                {
+                    Vars.E.Cast(GameObjects.Player);
+                }
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
-            }
-
-            if (Orianna.BallPosition == null)
-            {
-                return;
             }
 
             /// <summary>
