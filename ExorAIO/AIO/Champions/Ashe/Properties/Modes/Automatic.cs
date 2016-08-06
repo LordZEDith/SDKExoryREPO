@@ -72,9 +72,8 @@ namespace ExorAIO.Champions.Ashe
                     foreach (var target in
                         GameObjects.EnemyHeroes.Where(
                             t =>
-                            t.Distance(t.GetWaypoints().Last()) < 1500
-                            && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1)
-                            && GameObjects.Player.Distance(t.GetWaypoints().Last()) > 1000))
+                            t != null && t.Distance(t.GetWaypoints().Last()) < 1500
+                            && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1)))
                     {
                         Vars.E.Cast(target.GetWaypoints().Last());
                     }
