@@ -39,33 +39,25 @@ namespace ExorAIO.Champions.MissFortune
                 case OrbwalkingType.BeforeAttack:
 
                     /// <summary>
-                    ///     The Target Switching Logic (Passive Stacks).
+                    ///     The Target Forcing Logic.
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && hero.NetworkId == Vars.PassiveTarget.NetworkId
+                    var bestTarget =
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
+                            .OrderByDescending(
+                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
+                    if (hero != null && bestTarget != null
+                        && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3
+                        && hero.NetworkId == Vars.PassiveTarget.NetworkId
                         && Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
-                        if (Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
-                        {
-                            if (
-                                GameObjects.EnemyHeroes.Any(
-                                    t => t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId))
-                            {
-                                args.Process = false;
-                                Variables.Orbwalker.ForceTarget =
-                                    GameObjects.EnemyHeroes.Where(
-                                        t =>
-                                        t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
-                                        .OrderByDescending(
-                                            o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                        .First();
-                                return;
-                            }
-
-                            Variables.Orbwalker.ForceTarget = null;
-                        }
+                        args.Process = false;
+                        Variables.Orbwalker.ForceTarget = bestTarget;
+                        return;
                     }
 
+                    Variables.Orbwalker.ForceTarget = null;
                     break;
             }
         }
@@ -102,8 +94,6 @@ namespace ExorAIO.Champions.MissFortune
                     switch (args.SData.Name)
                     {
                         case "MissFortuneRicochetShot":
-
-                            //case "MissFortuneRicochetShotMissile":
                             Vars.PassiveTarget = args.Target as AttackableUnit;
                             break;
                     }

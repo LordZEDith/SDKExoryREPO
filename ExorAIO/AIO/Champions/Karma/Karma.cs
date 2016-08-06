@@ -30,24 +30,24 @@ namespace ExorAIO.Champions.Karma
             switch (args.Type)
             {
                 case OrbwalkingType.BeforeAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
 
-                            /// <summary>
-                            ///     The 'Support Mode' Logic.
-                            /// </summary>
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
+                    /// <summary>
+                    ///     The 'Support Mode' Logic.
+                    /// </summary>
+                    if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                    {
+                        switch (Variables.Orbwalker.ActiveMode)
+                        {
+                            case OrbwalkingMode.Hybrid:
+                            case OrbwalkingMode.LastHit:
+                            case OrbwalkingMode.LaneClear:
                                 if (args.Target is Obj_AI_Minion
                                     && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
-                            }
-                            break;
+                                break;
+                        }
                     }
 
                     break;
@@ -86,6 +86,11 @@ namespace ExorAIO.Champions.Karma
                     m.CharData.BaseSkinName == sender.CharData.BaseSkinName
                     && GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
             {
+                if (args.SData.Name.Equals("GangplankE"))
+                {
+                    return;
+                }
+
                 if (sender.IsEnemy && args.Target != null
                     && GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
                 {

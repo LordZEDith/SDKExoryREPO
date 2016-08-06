@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Ashe
                     Vars.RMenu.Add(
                         new MenuSeparator(
                             "separator",
-                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                            "The Semi-Automatic R will automatically ult the lowest on health, whitelisted and non-invulnerable enemy in range."));
                     Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {

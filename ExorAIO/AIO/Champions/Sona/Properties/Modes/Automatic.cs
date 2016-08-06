@@ -57,8 +57,8 @@ namespace ExorAIO.Champions.Sona
                     Vars.R.GetPrediction(
                         GameObjects.EnemyHeroes.Where(
                             t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
+                            t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                            && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()]
                                    .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }

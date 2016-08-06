@@ -1,7 +1,7 @@
 
 #pragma warning disable 1587
 
-namespace ExorAIO.Champions.Sivir
+namespace ExorAIO.Champions.Nocturne
 {
     using System;
     using System.Linq;
@@ -28,20 +28,6 @@ namespace ExorAIO.Champions.Sivir
         public static void Automatic(EventArgs args)
         {
             /// <summary>
-            ///     The Automatic Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && !Bools.HasSheenBuff()
-                && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
-                {
-                    Vars.Q.Cast(target.ServerPosition);
-                }
-            }
-
-            /// <summary>
             ///     Block Special AoE.
             /// </summary>
             foreach (var target in GameObjects.EnemyHeroes)
@@ -57,7 +43,7 @@ namespace ExorAIO.Champions.Sivir
                             && Vars.Menu["spells"]["e"]["whitelist"][$"{target.ChampionName.ToLower()}.jaxcounterstrike"
                                    ].GetValue<MenuBool>().Value)
                         {
-                            Vars.E.Cast();
+                            Vars.W.Cast();
                         }
                         break;
                     case "KogMaw":
@@ -69,10 +55,27 @@ namespace ExorAIO.Champions.Sivir
                             && Vars.Menu["spells"]["e"]["whitelist"][
                                 $"{target.ChampionName.ToLower()}.kogmawicathiansurprise"].GetValue<MenuBool>().Value)
                         {
-                            Vars.E.Cast();
+                            Vars.W.Cast();
                         }
                         break;
                 }
+            }
+
+            /// <summary>
+            ///     The Semi-Automatic R Management.
+            /// </summary>
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active
+                && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
+                       .Value)
+            {
+                Vars.R.Cast();
+                Vars.R.CastOnUnit(
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
             }
         }
 
@@ -113,7 +116,7 @@ namespace ExorAIO.Champions.Sivir
                                 && ((Obj_AI_Minion)args.Target).DistanceToPlayer() < 450
                                 && ((Obj_AI_Minion)args.Target).CharData.BaseSkinName.Equals("gangplankbarrel"))
                             {
-                                Vars.E.Cast();
+                                Vars.W.Cast();
                             }
                         }
                     }
@@ -153,7 +156,7 @@ namespace ExorAIO.Champions.Sivir
                                         return;
                                     }
 
-                                    Vars.E.Cast();
+                                    Vars.W.Cast();
                                     break;
                                 default:
                                     if (!hero.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name))
@@ -167,7 +170,7 @@ namespace ExorAIO.Champions.Sivir
                                         return;
                                     }
 
-                                    Vars.E.Cast();
+                                    Vars.W.Cast();
                                     break;
                             }
                         }
@@ -207,18 +210,18 @@ namespace ExorAIO.Champions.Sivir
                                     switch (hero.ChampionName)
                                     {
                                         case "Caitlyn":
-                                            DelayAction.Add(1050, () => { Vars.E.Cast(); });
+                                            DelayAction.Add(1050, () => { Vars.W.Cast(); });
                                             break;
                                         case "Nocturne":
-                                            DelayAction.Add(350, () => { Vars.E.Cast(); });
+                                            DelayAction.Add(350, () => { Vars.W.Cast(); });
                                             break;
                                         case "Zed":
-                                            DelayAction.Add(200, () => { Vars.E.Cast(); });
+                                            DelayAction.Add(200, () => { Vars.W.Cast(); });
                                             break;
                                         default:
                                             DelayAction.Add(
                                                 Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                                                () => { Vars.E.Cast(); });
+                                                () => { Vars.W.Cast(); });
                                             break;
                                     }
 
@@ -233,7 +236,7 @@ namespace ExorAIO.Champions.Sivir
                                         case "Alistar":
                                             if (hero.DistanceToPlayer() < 355 + GameObjects.Player.BoundingRadius)
                                             {
-                                                Vars.E.Cast();
+                                                Vars.W.Cast();
                                             }
                                             break;
                                     }
@@ -259,7 +262,7 @@ namespace ExorAIO.Champions.Sivir
                             || sender.CharData.BaseSkinName.Contains("SRU_Dragon")
                             || sender.CharData.BaseSkinName.Equals("SRU_RiftHerald"))
                         {
-                            Vars.E.Cast();
+                            Vars.W.Cast();
                         }
                     }
                     break;

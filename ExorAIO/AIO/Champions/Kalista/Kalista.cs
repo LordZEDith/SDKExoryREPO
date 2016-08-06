@@ -39,25 +39,21 @@ namespace ExorAIO.Champions.Kalista
                     ///     The Target Forcing Logic.
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    var bestTarget =
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
+                            .OrderByDescending(
+                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
+                    if (hero != null && bestTarget != null
+                        && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        if (
-                            GameObjects.EnemyHeroes.Any(
-                                t1 => t1.IsValidTarget(Vars.AaRange) && t1.HasBuff("kalistacoopstrikemarkally")))
-                        {
-                            Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(
-                                    t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
-                                    .OrderByDescending(
-                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                    .First();
-                            return;
-                        }
-
-                        Variables.Orbwalker.ForceTarget = null;
+                        Variables.Orbwalker.ForceTarget = bestTarget;
+                        return;
                     }
 
+                    Variables.Orbwalker.ForceTarget = null;
                     break;
+
                 case OrbwalkingType.NonKillableMinion:
 
                     /// <summary>

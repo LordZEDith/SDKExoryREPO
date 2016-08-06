@@ -60,9 +60,6 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            /// <summary>
-            ///     The Anti-Gapcloser E.
-            /// </summary>
             if (Vars.E.IsReady() && args.Sender.IsMelee && args.IsDirectedToPlayer
                 && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
@@ -75,9 +72,6 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
-            /// <summary>
-            ///     The Anti-Gapcloser R.
-            /// </summary>
             if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.End) < Vars.R.Width
                 && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
@@ -123,6 +117,11 @@ namespace ExorAIO.Champions.Orianna
                     m.CharData.BaseSkinName == sender.CharData.BaseSkinName
                     && GameObjects.JungleSmall.All(m2 => m2.CharData.BaseSkinName != sender.CharData.BaseSkinName)))
             {
+                if (args.SData.Name.Equals("GangplankE"))
+                {
+                    return;
+                }
+
                 if (sender.IsEnemy && args.Target != null
                     && GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
                 {

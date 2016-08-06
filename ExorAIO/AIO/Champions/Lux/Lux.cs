@@ -44,47 +44,42 @@ namespace ExorAIO.Champions.Lux
                 case OrbwalkingType.BeforeAttack:
 
                     /// <summary>
-                    ///     The Target Forcing Logic.
-                    /// </summary>
-                    var hero = args.Target as Obj_AI_Hero;
-                    if (hero != null && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
-                    {
-                        if (
-                            GameObjects.EnemyHeroes.Any(
-                                t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein")))
-                        {
-                            args.Process = false;
-                            Variables.Orbwalker.ForceTarget =
-                                GameObjects.EnemyHeroes.Where(
-                                    t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein"))
-                                    .OrderByDescending(
-                                        o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
-                                    .First();
-                            return;
-                        }
-
-                        Variables.Orbwalker.ForceTarget = null;
-                    }
-
-                    /// <summary>
                     ///     The 'Support Mode' Logic.
                     /// </summary>
-                    switch (Variables.Orbwalker.ActiveMode)
+                    if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
                     {
-                        case OrbwalkingMode.Hybrid:
-                        case OrbwalkingMode.LastHit:
-                        case OrbwalkingMode.LaneClear:
-                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                            {
+                        switch (Variables.Orbwalker.ActiveMode)
+                        {
+                            case OrbwalkingMode.Hybrid:
+                            case OrbwalkingMode.LastHit:
+                            case OrbwalkingMode.LaneClear:
                                 if (args.Target is Obj_AI_Minion
                                     && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
                                 {
                                     args.Process = false;
                                 }
-                            }
-                            break;
+                                break;
+                        }
                     }
 
+                    /// <summary>
+                    ///     The Target Forcing Logic.
+                    /// </summary>
+                    var hero = args.Target as Obj_AI_Hero;
+                    var bestTarget =
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein"))
+                            .OrderByDescending(
+                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
+                    if (hero != null && bestTarget != null
+                        && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
+                    {
+                        args.Process = false;
+                        Variables.Orbwalker.ForceTarget = bestTarget;
+                        return;
+                    }
+
+                    Variables.Orbwalker.ForceTarget = null;
                     break;
             }
         }

@@ -73,6 +73,23 @@ namespace ExorAIO.Champions.Orianna
             }
 
             /// <summary>
+            ///     The Combo R Logic.
+            /// </summary>
+            if (Vars.R.IsReady()
+                && GameObjects.EnemyHeroes.Any(
+                    t =>
+                    t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 25f
+                    && Vars.GetRealHealth(t)
+                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)
+                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2
+                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast();
+                return;
+            }
+
+            /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady()
@@ -101,22 +118,6 @@ namespace ExorAIO.Champions.Orianna
                         Vars.E.CastOnUnit(ally);
                     }
                 }
-            }
-
-            /// <summary>
-            ///     The Combo R Logic.
-            /// </summary>
-            if (Vars.R.IsReady()
-                && GameObjects.EnemyHeroes.Any(
-                    t =>
-                    t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
-                    && Vars.GetRealHealth(t)
-                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)
-                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2
-                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
-                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast();
             }
         }
 

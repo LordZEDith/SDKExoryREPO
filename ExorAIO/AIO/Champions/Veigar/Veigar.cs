@@ -65,7 +65,7 @@ namespace ExorAIO.Champions.Veigar
                             /// <summary>
                             ///     The 'Support Mode' Logic.
                             /// </summary>
-                            else if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
+                            if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
                             {
                                 if (args.Target is Obj_AI_Minion
                                     && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))

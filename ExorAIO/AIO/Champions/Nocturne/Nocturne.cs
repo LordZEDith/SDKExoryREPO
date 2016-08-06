@@ -1,10 +1,9 @@
 
 #pragma warning disable 1587
 
-namespace ExorAIO.Champions.Nautilus
+namespace ExorAIO.Champions.Nocturne
 {
     using System;
-    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -17,66 +16,53 @@ namespace ExorAIO.Champions.Nautilus
     /// <summary>
     ///     The champion class.
     /// </summary>
-    internal class Nautilus
+    internal class Nocturne
     {
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Called on orbwalker action.
+        ///     Fired on an incoming gapcloser.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
+        public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            switch (args.Type)
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                case OrbwalkingType.BeforeAttack:
-
-                    /// <summary>
-                    ///     The 'Support Mode' Logic.
-                    /// </summary>
-                    if (Vars.Menu["miscellaneous"]["support"].GetValue<MenuBool>().Value)
-                    {
-                        switch (Variables.Orbwalker.ActiveMode)
-                        {
-                            case OrbwalkingMode.Hybrid:
-                            case OrbwalkingMode.LastHit:
-                            case OrbwalkingMode.LaneClear:
-                                if (args.Target is Obj_AI_Minion
-                                    && GameObjects.AllyHeroes.Any(a => a.Distance(GameObjects.Player) < 2500))
-                                {
-                                    args.Process = false;
-                                }
-                                break;
-                        }
-                    }
-
-                    break;
+                Vars.E.CastOnUnit(args.Sender);
             }
         }
 
         /// <summary>
-        ///     Called on do-cast.
+        ///     Called on interruptable spell.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
+        public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
+        {
+            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.CastOnUnit(args.Sender);
+            }
+        }
+
+        /// <summary>
+        ///     Called while processing spellcast operations.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
-        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            /// <summary>
+            ///     The Automatic W Logic.
+            /// </summary>
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
             {
-                /// <summary>
-                ///     Initializes the orbwalkingmodes.
-                /// </summary>
-                switch (Variables.Orbwalker.ActiveMode)
-                {
-                    case OrbwalkingMode.Combo:
-                        Logics.Weaving(sender, args);
-                        break;
-                    case OrbwalkingMode.LaneClear:
-                        Logics.JungleClear(sender, args);
-                        Logics.BuildingClear(sender, args);
-                        break;
-                }
+                Logics.AutoShield(sender, args);
             }
         }
 
@@ -90,6 +76,16 @@ namespace ExorAIO.Champions.Nautilus
             {
                 return;
             }
+
+            /// <summary>
+            ///     Updates the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the automatic events.
+            /// </summary>
+            Logics.Automatic(args);
 
             /// <summary>
             ///     Initializes the Killsteal events.
@@ -126,11 +122,6 @@ namespace ExorAIO.Champions.Nautilus
             ///     Initializes the menus.
             /// </summary>
             Menus.Initialize();
-
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
 
             /// <summary>
             ///     Initializes the methods.

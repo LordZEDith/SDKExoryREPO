@@ -73,7 +73,7 @@ namespace ExorAIO.Champions.Orianna
                     GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical)
-                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range
+                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 25f
                         && Vars.GetRealHealth(t) > (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W) * 2
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {

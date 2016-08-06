@@ -24,6 +24,7 @@ namespace ExorAIO.Core
     using ExorAIO.Champions.Lux;
     using ExorAIO.Champions.MissFortune;
     using ExorAIO.Champions.Nautilus;
+    using ExorAIO.Champions.Nocturne;
     using ExorAIO.Champions.Nunu;
     using ExorAIO.Champions.Olaf;
     using ExorAIO.Champions.Orianna;
@@ -130,6 +131,9 @@ namespace ExorAIO.Core
                     break;
                 case "Nautilus":
                     new Nautilus().OnLoad();
+                    break;
+                case "Nocturne":
+                    new Nocturne().OnLoad();
                     break;
                 case "Nunu":
                     new Nunu().OnLoad();
