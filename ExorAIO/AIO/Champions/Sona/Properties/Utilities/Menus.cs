@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Sona
                             }
                         }
 
-                        Vars.EMenu.Add(Vars.WhiteListMenu);
+                        Vars.WMenu.Add(Vars.WhiteListMenu);
                     }
                 }
 

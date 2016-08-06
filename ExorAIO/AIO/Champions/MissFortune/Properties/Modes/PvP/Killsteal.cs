@@ -51,6 +51,18 @@ namespace ExorAIO.Champions.MissFortune
                     }
                 }
 
+                var passiveMultiplier = GameObjects.Player.Level < 4
+                                            ? 0.25
+                                            : GameObjects.Player.Level < 7
+                                                  ? 0.3
+                                                  : GameObjects.Player.Level < 9
+                                                        ? 0.35
+                                                        : GameObjects.Player.Level < 11
+                                                              ? 0.4
+                                                              : GameObjects.Player.Level < 13
+                                                                    ? 0.45
+                                                                    : 0.5;
+
                 /// <summary>
                 ///     Extended Q KillSteal Logic.
                 /// </summary>
@@ -75,12 +87,20 @@ namespace ExorAIO.Champions.MissFortune
                                    t =>
                                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
                                    && Vars.GetRealHealth(t)
-                                   < (Vars.GetRealHealth(minion)
+                                   < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
+                                   + GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                   + (Vars.GetRealHealth(minion)
                                       < (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)
-                                          ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
+                                      + (Vars.PassiveTarget == null
+                                         || Vars.PassiveTarget != null
+                                         && minion.NetworkId != Vars.PassiveTarget.NetworkId
+                                             ? GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                             : 0)
+                                          ? (float)
+                                            GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
+                                            / 2
                                           : 0)
-                                   + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
-                                   && (Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId
+                                   && (Vars.PassiveTarget != null && t.NetworkId == Vars.PassiveTarget.NetworkId
                                        || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                            where target != null
                            where
@@ -114,11 +134,8 @@ namespace ExorAIO.Champions.MissFortune
                                    t =>
                                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
                                    && Vars.GetRealHealth(t)
-                                   < (Vars.GetRealHealth(target)
-                                      < (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.Q)
-                                          ? (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
-                                          : 0)
-                                   + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
+                                   < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
+                                   + GameObjects.Player.TotalAttackDamage * passiveMultiplier
                                    && (Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId
                                        || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                            where target2 != null
