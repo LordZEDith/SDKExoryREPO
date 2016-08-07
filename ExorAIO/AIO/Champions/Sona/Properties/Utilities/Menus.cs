@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Sona
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.EMenu.Add(new MenuSliderButton("engager", "Engager / If allies around >= x", 3, 1, 5, true));
+                    Vars.EMenu.Add(new MenuSliderButton("engager", "Engager / If allies around >= x", 3, 0, 5, true));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 

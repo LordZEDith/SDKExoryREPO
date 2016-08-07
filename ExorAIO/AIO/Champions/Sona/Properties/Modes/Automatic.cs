@@ -29,7 +29,8 @@ namespace ExorAIO.Champions.Sona
             ///     The Engager E Logic.
             /// </summary>
             if (Vars.E.IsReady()
-                && GameObjects.Player.CountAllyHeroesInRange(1500f)
+                && GameObjects.Player.CountEnemyHeroesInRange(1500f) > 0
+                && GameObjects.Player.CountAllyHeroesInRange(Vars.E.Range)
                 >= Vars.Menu["spells"]["e"]["engager"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["engager"].GetValue<MenuSliderButton>().BValue)
             {

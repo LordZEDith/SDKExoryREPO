@@ -29,7 +29,7 @@ namespace ExorAIO.Utilities
         public static bool HasSheenBuff()
             =>
                 GameObjects.Player.HasBuff("sheen") || GameObjects.Player.HasBuff("LichBane")
-                || GameObjects.Player.HasBuff("dianaarcready") || GameObjects.Player.HasBuff("ItemFrozenFist");
+                || GameObjects.Player.HasBuff("dianaarcready") || GameObjects.Player.HasBuff("ItemFrozenFist") || GameObjects.Player.HasBuff("sonapassiveattack");
 
         /// <summary>
         ///     Gets a value indicating whether a determined champion has a stackable item.

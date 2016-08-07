@@ -104,8 +104,8 @@ namespace ExorAIO.Champions.Sona
                     && GameObjects.AllyHeroes.Any(a => a.NetworkId == args.Target.NetworkId))
                 {
                     if (Vars.W.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.W.Range, false)
-                        && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
-                        && Vars.Menu["spells"]["e"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()]
+                        && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value
+                        && Vars.Menu["spells"]["w"]["whitelist"][((Obj_AI_Hero)args.Target).ChampionName.ToLower()]
                                .GetValue<MenuBool>().Value)
                     {
                         Vars.W.Cast();
