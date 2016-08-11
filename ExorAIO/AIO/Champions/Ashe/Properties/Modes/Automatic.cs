@@ -10,7 +10,6 @@ namespace ExorAIO.Champions.Ashe
 
     using LeagueSharp;
     using LeagueSharp.SDK;
-    using LeagueSharp.SDK.Enumerations;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
@@ -58,25 +57,13 @@ namespace ExorAIO.Champions.Ashe
                 >= (Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value ? 2 : 1)
                 && Vars.Menu["spells"]["e"]["vision"].GetValue<MenuBool>().Value)
             {
-                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None
-                    && GameObjects.Player.CountEnemyHeroesInRange(1000f) == 0 && GameObjects.EnemyHeroes.Any()
-                    && GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.Distance(t.GetWaypoints().LastOrDefault()) < 1500
+                        && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().LastOrDefault(), 1)))
                 {
-                    Vars.E.Cast(
-                        Vars.Locations.Where(d => GameObjects.Player.Distance(d) > 1500f)
-                            .OrderBy(d2 => GameObjects.Player.Distance(d2))
-                            .FirstOrDefault());
-                }
-                else
-                {
-                    foreach (var target in
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            t != null && t.Distance(t.GetWaypoints().Last()) < 1500
-                            && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1)))
-                    {
-                        Vars.E.Cast(target.GetWaypoints().Last());
-                    }
+                    Vars.E.Cast(target.GetWaypoints().LastOrDefault());
                 }
             }
 

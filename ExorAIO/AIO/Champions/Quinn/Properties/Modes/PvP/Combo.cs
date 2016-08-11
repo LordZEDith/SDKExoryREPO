@@ -41,6 +41,7 @@ namespace ExorAIO.Champions.Quinn
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                    return;
                 }
             }
 

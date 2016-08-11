@@ -10,7 +10,6 @@ namespace ExorAIO.Champions.Quinn
 
     using LeagueSharp;
     using LeagueSharp.SDK;
-    using LeagueSharp.SDK.Enumerations;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
@@ -32,25 +31,14 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
-            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
+            if (Vars.W.IsReady() && GameObjects.EnemyHeroes.Any(
+                t =>
+                t.Distance(t.GetWaypoints().LastOrDefault()) < 1500
+                && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().LastOrDefault(), 1)
+                && GameObjects.Player.Distance(t.GetWaypoints().LastOrDefault()) < Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["vision"].GetValue<MenuBool>().Value)
             {
-                if (Variables.Orbwalker.ActiveMode == OrbwalkingMode.None
-                    && GameObjects.EnemyHeroes.Count(x => !x.IsDead && !x.IsVisible) >= 3)
-                {
-                    Vars.W.Cast();
-                }
-                else
-                {
-                    if (
-                        GameObjects.EnemyHeroes.Any(
-                            t =>
-                            t != null && t.Distance(t.GetWaypoints().Last()) < 1500
-                            && NavMesh.IsWallOfGrass((Vector3)t.GetWaypoints().Last(), 1)
-                            && GameObjects.Player.Distance(t.GetWaypoints().Last()) < Vars.W.Range))
-                    {
-                        Vars.W.Cast();
-                    }
-                }
+                Vars.W.Cast();
             }
 
             /// <summary>

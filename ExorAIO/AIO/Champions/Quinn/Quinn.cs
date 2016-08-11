@@ -123,8 +123,7 @@ namespace ExorAIO.Champions.Quinn
             {
                 return;
             }
-            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsRecalling()
-                || Vars.R.Instance.Name.Equals("QuinnRFinale"))
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.IsRecalling())
             {
                 return;
             }
