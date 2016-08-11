@@ -42,11 +42,11 @@ namespace ExorAIO.Champions.Jhin
             {
                 if (
                     GameObjects.EnemyHeroes.Any(
-                        t => t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2)t.ServerPosition)))
+                        t => t.IsValidTarget(Vars.R.Range) && !Jhin.Cone.IsOutside((Vector2)t.ServerPosition)))
                 {
                     foreach (var target in
                         GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2)t.ServerPosition)))
+                            t => t.IsValidTarget(Vars.R.Range) && !Jhin.Cone.IsOutside((Vector2)t.ServerPosition)))
                     {
                         if (Vars.Menu["spells"]["r"]["nearmouse"].GetValue<MenuBool>().Value)
                         {
@@ -54,7 +54,7 @@ namespace ExorAIO.Champions.Jhin
                                 Vars.R.GetPrediction(
                                     GameObjects.EnemyHeroes.Where(
                                         t =>
-                                        t.IsValidTarget(Vars.R.Range) && !Vars.Cone.IsOutside((Vector2)t.ServerPosition))
+                                        t.IsValidTarget(Vars.R.Range) && !Jhin.Cone.IsOutside((Vector2)t.ServerPosition))
                                         .OrderBy(o => o.Distance(Game.CursorPos))
                                         .First()).UnitPosition);
                             return;

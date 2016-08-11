@@ -59,8 +59,8 @@ namespace ExorAIO.Champions.MissFortune
                             && (!Vars.Menu["spells"]["q"]["extended"]["excombokill"].GetValue<MenuBool>().Value
                                 || Vars.GetRealHealth(m)
                                 < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)
-                                + (Vars.PassiveTarget == null
-                                   || Vars.PassiveTarget != null && m.NetworkId != Vars.PassiveTarget.NetworkId
+                                + (MissFortune.PassiveTarget == null
+                                   || m.NetworkId != MissFortune.PassiveTarget?.NetworkId
                                        ? GameObjects.Player.TotalAttackDamage * passiveMultiplier
                                        : 0)))
                     let polygon =
@@ -74,7 +74,7 @@ namespace ExorAIO.Champions.MissFortune
                         GameObjects.EnemyHeroes.FirstOrDefault(
                             t =>
                             !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
-                            && (Vars.PassiveTarget != null && t.NetworkId == Vars.PassiveTarget.NetworkId
+                            && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                 || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                     where target != null
                     where

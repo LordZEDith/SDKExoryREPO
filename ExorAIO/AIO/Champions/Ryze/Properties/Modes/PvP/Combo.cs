@@ -37,7 +37,7 @@ namespace ExorAIO.Champions.Ryze
             /// <summary>
             ///     Dynamic Combo Logic.
             /// </summary>
-            switch (Vars.RyzeStacks)
+            switch (Ryze.Stacks)
             {
                 case 0:
                 case 1:
@@ -45,7 +45,7 @@ namespace ExorAIO.Champions.Ryze
                     /// <summary>
                     ///     The Q Combo Logic.
                     /// </summary>
-                    if (Vars.RyzeStacks != 1
+                    if (Ryze.Stacks != 1
                         || GameObjects.Player.HealthPercent
                         > Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().SValue
                         || !Vars.Menu["spells"]["q"]["shield"].GetValue<MenuSliderButton>().BValue)

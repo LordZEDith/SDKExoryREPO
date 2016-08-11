@@ -3,7 +3,6 @@
 
 namespace ExorAIO.Utilities
 {
-    using System;
     using System.Collections.Generic;
 
     using LeagueSharp;
@@ -43,11 +42,6 @@ namespace ExorAIO.Utilities
         ///     The last tick.
         /// </summary>
         public static int LastTick = 0;
-
-        /// <summary>
-        ///     The last target.
-        /// </summary>
-        public static AttackableUnit PassiveTarget = null;
 
         /// <summary>
         ///     The default enemy HP bar height offset.
@@ -213,17 +207,6 @@ namespace ExorAIO.Utilities
         public static float AaRange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
-        ///     The args End.
-        /// </summary>
-        public static Geometry.Sector Cone
-            =>
-                new Geometry.Sector(
-                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius * 3),
-                    End,
-                    55f * (float)Math.PI / 180f,
-                    R.Range);
-
-        /// <summary>
         ///     Gets or sets the Drawings menu.
         /// </summary>
         public static Menu DrawingsMenu { get; set; }
@@ -242,11 +225,6 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the E Spell menu.
         /// </summary>
         public static Menu EMenu { get; set; }
-
-        /// <summary>
-        ///     The args End.
-        /// </summary>
-        public static Vector3 End { get; set; } = Vector3.Zero;
 
         /// <summary>
         ///     Gets or sets the loaded champion.
@@ -305,20 +283,6 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the R Spell menu.
         /// </summary>
         public static Menu RMenu { get; set; }
-
-        /// <summary>
-        ///     The Q Stacks.
-        /// </summary>
-        public static int RyzeStacks
-            =>
-                GameObjects.Player.HasBuff("ryzeqiconnocharge")
-                    ? 0
-                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge") ? 1 : 2;
-
-        /// <returns>
-        ///     The Jhin's shot count.
-        /// </returns>
-        public static int ShotsCount { get; set; }
 
         /// <summary>
         ///     Gets or sets the Soulbound.

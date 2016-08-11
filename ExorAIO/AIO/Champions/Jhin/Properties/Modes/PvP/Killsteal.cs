@@ -38,14 +38,14 @@ namespace ExorAIO.Champions.Jhin
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !Vars.Cone.IsOutside((Vector2)t.ServerPosition)
+                        !Invulnerable.Check(t) && !Jhin.Cone.IsOutside((Vector2)t.ServerPosition)
                         && t.IsValidTarget(Vars.R.Range)
                         && Vars.GetRealHealth(t)
                         < (float)
                           GameObjects.Player.GetSpellDamage(
                               t,
                               SpellSlot.R,
-                              Vars.ShotsCount == 3 ? DamageStage.Empowered : DamageStage.Default)))
+                              Jhin.ShotsCount == 3 ? DamageStage.Empowered : DamageStage.Default)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                     return;

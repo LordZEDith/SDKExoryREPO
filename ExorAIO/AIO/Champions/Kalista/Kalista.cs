@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Kalista
                             t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
                             .OrderByDescending(
                                 o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
-                    if (hero != null && bestTarget != null
+                    if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
                         Variables.Orbwalker.ForceTarget = bestTarget;

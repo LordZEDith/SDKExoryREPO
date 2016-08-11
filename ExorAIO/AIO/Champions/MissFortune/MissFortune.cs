@@ -21,6 +21,15 @@ namespace ExorAIO.Champions.MissFortune
     /// </summary>
     internal class MissFortune
     {
+        #region Static Fields
+
+        /// <summary>
+        ///     The last target.
+        /// </summary>
+        public static AttackableUnit PassiveTarget;
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -31,7 +40,7 @@ namespace ExorAIO.Champions.MissFortune
         public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
             /// <summary>
-            ///     Stop attack commands while channeling R.
+            ///     Stop attack and movement commands while channeling R.
             /// </summary>
             args.Process = !GameObjects.Player.HasBuff("missfortunebulletsound");
             switch (args.Type)
@@ -44,15 +53,14 @@ namespace ExorAIO.Champions.MissFortune
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(Vars.AaRange) && t.NetworkId != Vars.PassiveTarget.NetworkId)
+                            t => t.IsValidTarget(Vars.AaRange))
                             .OrderByDescending(
                                 o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
-                    if (hero != null && bestTarget != null
+                    if (hero != null && bestTarget?.NetworkId != PassiveTarget?.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3
-                        && hero.NetworkId == Vars.PassiveTarget.NetworkId
+                        && hero.NetworkId == PassiveTarget?.NetworkId
                         && Vars.Menu["miscellaneous"]["passive"].GetValue<MenuBool>().Value)
                     {
-                        args.Process = false;
                         Variables.Orbwalker.ForceTarget = bestTarget;
                         return;
                     }
@@ -87,14 +95,14 @@ namespace ExorAIO.Champions.MissFortune
                             break;
                     }
 
-                    Vars.PassiveTarget = args.Target as AttackableUnit;
+                    PassiveTarget = args.Target as AttackableUnit;
                 }
                 else
                 {
                     switch (args.SData.Name)
                     {
                         case "MissFortuneRicochetShot":
-                            Vars.PassiveTarget = args.Target as AttackableUnit;
+                            PassiveTarget = args.Target as AttackableUnit;
                             break;
                     }
                 }

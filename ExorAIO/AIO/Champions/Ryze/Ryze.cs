@@ -19,6 +19,19 @@ namespace ExorAIO.Champions.Ryze
     /// </summary>
     internal class Ryze
     {
+        #region Public Properties
+
+        /// <summary>
+        ///     The Q Stacks.
+        /// </summary>
+        public static int Stacks
+            =>
+                GameObjects.Player.HasBuff("ryzeqiconnocharge")
+                    ? 0
+                    : GameObjects.Player.HasBuff("ryzeqiconhalfcharge") ? 1 : 2;
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>

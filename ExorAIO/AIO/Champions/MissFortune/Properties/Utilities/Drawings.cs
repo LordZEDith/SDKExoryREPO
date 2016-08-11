@@ -40,11 +40,12 @@ namespace ExorAIO.Champions.MissFortune
                     /// <summary>
                     ///     Loads the Passive Target drawing.
                     /// </summary>
-                    if (Vars.PassiveTarget.IsValidTarget() && Vars.Menu["drawings"]["p"].GetValue<MenuBool>().Value)
+                    if (MissFortune.PassiveTarget.IsValidTarget()
+                        && Vars.Menu["drawings"]["p"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(
-                            Vars.PassiveTarget.Position,
-                            Vars.PassiveTarget.BoundingRadius,
+                            MissFortune.PassiveTarget.Position,
+                            MissFortune.PassiveTarget.BoundingRadius,
                             Color.LightGreen,
                             1);
                     }
@@ -69,8 +70,7 @@ namespace ExorAIO.Champions.MissFortune
                                 GameObjects.EnemyHeroes.FirstOrDefault(
                                     t =>
                                     !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
-                                    && (Vars.PassiveTarget.IsValidTarget()
-                                        && t.NetworkId == Vars.PassiveTarget.NetworkId
+                                    && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                         || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))));
                             if (target != null)
                             {

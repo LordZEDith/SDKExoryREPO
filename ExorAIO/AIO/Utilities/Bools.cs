@@ -29,7 +29,8 @@ namespace ExorAIO.Utilities
         public static bool HasSheenBuff()
             =>
                 GameObjects.Player.HasBuff("sheen") || GameObjects.Player.HasBuff("LichBane")
-                || GameObjects.Player.HasBuff("dianaarcready") || GameObjects.Player.HasBuff("ItemFrozenFist") || GameObjects.Player.HasBuff("sonapassiveattack");
+                || GameObjects.Player.HasBuff("dianaarcready") || GameObjects.Player.HasBuff("ItemFrozenFist")
+                || GameObjects.Player.HasBuff("sonapassiveattack");
 
         /// <summary>
         ///     Gets a value indicating whether a determined champion has a stackable item.
@@ -63,28 +64,15 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static bool IsPerfectRendTarget(Obj_AI_Base target)
         {
-            if (target is Obj_AI_Minion)
+            var hero = target as Obj_AI_Hero;
+            if (hero != null && Invulnerable.Check(hero))
             {
-                if (target.IsValidTarget(Vars.E.Range) && target.HasBuff("kalistaexpungemarker"))
-                {
-                    return true;
-                }
-            }
-            else if (target is Obj_AI_Hero)
-            {
-                if (target.IsValidTarget(Vars.E.Range) && target.HasBuff("kalistaexpungemarker")
-                    && !Invulnerable.Check((Obj_AI_Hero)target))
-                {
-                    return true;
-                }
+                return false;
             }
 
-            return false;
+            return target.IsValidTarget(Vars.E.Range) && target.HasBuff("kalistaexpungemarker");
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether the target has protection or not.
-        /// </summary>
         /// <summary>
         ///     Gets a value indicating whether a determined root is worth cleansing.
         /// </summary>
@@ -97,7 +85,7 @@ namespace ExorAIO.Utilities
         }
 
         /// <summary>
-        ///     Gets a value indicating whether a determined Stun is worth cleansing.
+        ///     Gets a value indicating whether a determined stun is worth cleansing.
         /// </summary>
         public static bool IsValidStun(Obj_AI_Hero target)
         {

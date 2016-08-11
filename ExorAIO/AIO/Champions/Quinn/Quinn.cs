@@ -9,8 +9,6 @@ namespace ExorAIO.Champions.Quinn
     using ExorAIO.Utilities;
 
     using LeagueSharp;
-    using LeagueSharp.Data;
-    using LeagueSharp.Data.DataTypes;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
     using LeagueSharp.SDK.UI;
@@ -47,14 +45,13 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
-                        GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw")).OrderByDescending(
-                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
-                    if (hero != null && bestTarget != null
+                        GameObjects.EnemyHeroes.FirstOrDefault(
+                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"));
+                    if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        args.Process = false;
                         Variables.Orbwalker.ForceTarget = bestTarget;
+                        return;
                     }
 
                     Variables.Orbwalker.ForceTarget = null;

@@ -91,16 +91,15 @@ namespace ExorAIO.Champions.MissFortune
                                    + GameObjects.Player.TotalAttackDamage * passiveMultiplier
                                    + (Vars.GetRealHealth(minion)
                                       < (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)
-                                      + (Vars.PassiveTarget == null
-                                         || Vars.PassiveTarget != null
-                                         && minion.NetworkId != Vars.PassiveTarget.NetworkId
+                                      + (MissFortune.PassiveTarget == null
+                                         || minion.NetworkId != MissFortune.PassiveTarget?.NetworkId
                                              ? GameObjects.Player.TotalAttackDamage * passiveMultiplier
                                              : 0)
                                           ? (float)
                                             GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
                                             / 2
                                           : 0)
-                                   && (Vars.PassiveTarget != null && t.NetworkId == Vars.PassiveTarget.NetworkId
+                                   && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                        || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                            where target != null
                            where
@@ -136,7 +135,7 @@ namespace ExorAIO.Champions.MissFortune
                                    && Vars.GetRealHealth(t)
                                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
                                    + GameObjects.Player.TotalAttackDamage * passiveMultiplier
-                                   && (Vars.PassiveTarget.IsValidTarget() && t.NetworkId == Vars.PassiveTarget.NetworkId
+                                   && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                        || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                            where target2 != null
                            where

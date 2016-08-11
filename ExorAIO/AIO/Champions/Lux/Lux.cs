@@ -71,10 +71,9 @@ namespace ExorAIO.Champions.Lux
                             t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("luxilluminatingfraulein"))
                             .OrderByDescending(
                                 o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
-                    if (hero != null && bestTarget != null
+                    if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
-                        args.Process = false;
                         Variables.Orbwalker.ForceTarget = bestTarget;
                         return;
                     }

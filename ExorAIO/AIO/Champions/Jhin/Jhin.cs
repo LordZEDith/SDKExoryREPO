@@ -13,11 +13,44 @@ namespace ExorAIO.Champions.Jhin
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
+    using SharpDX;
+
+    using Geometry = ExorAIO.Utilities.Geometry;
+
     /// <summary>
     ///     The champion class.
     /// </summary>
     internal class Jhin
     {
+        #region Static Fields
+
+        /// <summary>
+        ///     The args End.
+        /// </summary>
+        public static Vector3 End = Vector3.Zero;
+
+        /// <returns>
+        ///     The Jhin's shot count.
+        /// </returns>
+        public static int ShotsCount;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     The args End.
+        /// </summary>
+        public static Geometry.Sector Cone
+            =>
+                new Geometry.Sector(
+                    GameObjects.Player.ServerPosition.Extend(End, -GameObjects.Player.BoundingRadius * 3),
+                    End,
+                    55f * (float)Math.PI / 180f,
+                    Vars.R.Range);
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -85,12 +118,12 @@ namespace ExorAIO.Champions.Jhin
             {
                 if (args.SData.Name.Equals("JhinR"))
                 {
-                    Vars.ShotsCount = 0;
-                    Vars.End = args.End;
+                    ShotsCount = 0;
+                    End = args.End;
                 }
                 else if (args.SData.Name.Equals("JhinRShot"))
                 {
-                    Vars.ShotsCount++;
+                    ShotsCount++;
                 }
             }
         }
