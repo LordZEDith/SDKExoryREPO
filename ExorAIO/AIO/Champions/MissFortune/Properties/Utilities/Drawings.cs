@@ -56,16 +56,18 @@ namespace ExorAIO.Champions.MissFortune
                     if (Vars.Q.IsReady() && Vars.Menu["drawings"]["qc"].GetValue<MenuBool>().Value)
                     {
                         foreach (var obj in
-                            ObjectManager.Get<Obj_AI_Base>().Where(m => m.IsValidTarget(Vars.Q.Range)))
+                            ObjectManager.Get<Obj_AI_Base>()
+                                .Where(m => !(m is Obj_AI_Turret) && m.IsValidTarget(Vars.Q.Range)))
                         {
-                            var polygon = new Geometry.Sector(
-                                (Vector2)obj.ServerPosition,
-                                (Vector2)
-                                obj.ServerPosition.Extend(
-                                    GameObjects.Player.ServerPosition,
-                                    -(Vars.Q2.Range - Vars.Q.Range)),
-                                40f * (float)Math.PI / 180f,
-                                Vars.Q2.Range - Vars.Q.Range - 50f);
+                            var polygon =
+                                new Geometry.Sector(
+                                    (Vector2)obj.ServerPosition,
+                                    (Vector2)
+                                    obj.ServerPosition.Extend(
+                                        GameObjects.Player.ServerPosition,
+                                        -(Vars.Q2.Range - Vars.Q.Range)),
+                                    40f * (float)Math.PI / 180f,
+                                    Vars.Q2.Range - Vars.Q.Range - 50f);
                             var target =
                                 GameObjects.EnemyHeroes.FirstOrDefault(
                                     t =>
