@@ -28,6 +28,11 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
+            if (GameObjects.Player.IsCastingInterruptableSpell())
+            {
+                return;
+            }
+
             /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
