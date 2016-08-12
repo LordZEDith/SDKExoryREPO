@@ -9,6 +9,8 @@ namespace ExorAIO.Champions.Quinn
     using ExorAIO.Utilities;
 
     using LeagueSharp;
+    using LeagueSharp.Data;
+    using LeagueSharp.Data.DataTypes;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
     using LeagueSharp.SDK.UI;
@@ -45,8 +47,10 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
-                        GameObjects.EnemyHeroes.FirstOrDefault(
-                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"));
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"))
+                            .OrderByDescending(
+                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
@@ -91,7 +95,7 @@ namespace ExorAIO.Champions.Quinn
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
             if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
-                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && !Invulnerable.Check(args.Sender, DamageType.True, false)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(args.Sender);
@@ -106,7 +110,7 @@ namespace ExorAIO.Champions.Quinn
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
             if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
-                && !Invulnerable.Check(args.Sender, DamageType.Physical, false)
+                && !Invulnerable.Check(args.Sender, DamageType.True, false)
                 && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(args.Sender);

@@ -52,4 +52,3 @@ C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\bin\Debug\
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.csprojResolveAssemblyReference.cache
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.exe
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.pdb
-C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\bin\Debug\clipper_library.pdb

@@ -25,9 +25,20 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Targets.Target.HasBuff("quinnw")
+            if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange)) || !Targets.Target.IsValidTarget()
+                || Targets.Target.HasBuff("quinnw")
                 || Invulnerable.Check(Targets.Target))
             {
+                return;
+            }
+
+            /// <summary>
+            ///     The Combo E Logic.
+            /// </summary>
+            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
+                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.CastOnUnit(Targets.Target);
                 return;
             }
 
@@ -41,17 +52,7 @@ namespace ExorAIO.Champions.Quinn
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                    return;
                 }
-            }
-
-            /// <summary>
-            ///     The Combo E Logic.
-            /// </summary>
-            if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
-                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.CastOnUnit(Targets.Target);
             }
         }
 
