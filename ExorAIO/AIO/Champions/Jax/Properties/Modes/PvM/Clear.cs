@@ -95,7 +95,7 @@ namespace ExorAIO.Champions.Jax
         public static void Clear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion)
-                || !Targets.Minions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
+                || !Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;
             }

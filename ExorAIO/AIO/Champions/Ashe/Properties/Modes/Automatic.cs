@@ -71,34 +71,19 @@ namespace ExorAIO.Champions.Ashe
             ///     The E -> R Combo Logics.
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active
-                && !Invulnerable.Check(Targets.Target, DamageType.Magical, false)
-                && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                       .Value)
-            {
-                if (!Vars.R.GetPrediction(Targets.Target).CollisionObjects.Any())
-                {
-                    if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
-                    {
-                        Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
-                    }
-                    Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
-                }
-            }
-
-            /// <summary>
-            ///     The Semi-Automatic R Management.
-            /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                Vars.R.Cast(
-                    Vars.R.GetPrediction(
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
-                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                var target = GameObjects.EnemyHeroes.Where(
+                    t =>
+                    t != null && !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
+                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First();
+                if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                {
+                    Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
+                }
+
+                Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
             }
         }
 
