@@ -20,6 +20,7 @@ namespace ExorAIO.Champions.Quinn
             Events.OnGapCloser += Quinn.OnGapCloser;
             Events.OnInterruptableTarget += Quinn.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Quinn.OnAction;
+            Obj_AI_Base.OnProcessSpellCast += Quinn.OnProcessSpellCast;
         }
 
         #endregion

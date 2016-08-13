@@ -118,6 +118,22 @@ namespace ExorAIO.Champions.Quinn
         }
 
         /// <summary>
+        ///     Called while processing spellcast operations.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            /// <summary>
+            ///     The E Reset.
+            /// </summary>
+            if (sender.IsMe && args.Slot == SpellSlot.E)
+            {
+                Variables.Orbwalker.ResetSwingTimer();
+            }
+        }
+
+        /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>

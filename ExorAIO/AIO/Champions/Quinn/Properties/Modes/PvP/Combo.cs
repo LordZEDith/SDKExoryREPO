@@ -45,7 +45,7 @@ namespace ExorAIO.Champions.Quinn
             /// <summary>
             ///     The Combo Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 100f)
                 && !Vars.R.Instance.Name.Equals("QuinnRFinale")
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {

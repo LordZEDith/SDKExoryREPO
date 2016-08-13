@@ -75,10 +75,10 @@ namespace ExorAIO.Champions.Ashe
             {
                 var target = GameObjects.EnemyHeroes.Where(
                     t =>
-                    t != null && !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
+                    !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
                     && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
-                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First();
-                if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                if (Vars.E.IsReady() && target != null && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
                 {
                     Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
                 }
