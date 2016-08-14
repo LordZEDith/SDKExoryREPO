@@ -40,25 +40,25 @@ namespace ExorAIO.Champions.MissFortune
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     {
+                        /// <summary>
+                        ///     Sets the Extended Q menu.
+                        /// </summary>
+                        Vars.Q2Menu = new Menu("extended", "Use Extended Q in:", true);
+                        {
+                            Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
+                            Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
+                            Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
+                            Vars.Q2Menu.Add(
+                                new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0, 99, true));
+                            Vars.Q2Menu.Add(new MenuSeparator("excseparator1", "Miscellaneous Exceptions List:"));
+                            Vars.Q2Menu.Add(new MenuBool("excombokill", "Combo: Only if Minion Killable"));
+                            Vars.Q2Menu.Add(new MenuBool("mixedkill", "Mixed: Only if Minion Killable"));
+                            Vars.Q2Menu.Add(new MenuBool("exlaneclearkill", "LaneClear: Only if Minion Killable"));
+                        }
+                        Vars.QMenu.Add(Vars.Q2Menu);
+
                         if (GameObjects.EnemyHeroes.Any())
                         {
-                            /// <summary>
-                            ///     Sets the Extended Q menu.
-                            /// </summary>
-                            Vars.Q2Menu = new Menu("extended", "Use Extended Q in:", true);
-                            {
-                                Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
-                                Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
-                                Vars.Q2Menu.Add(
-                                    new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0, 99, true));
-                                Vars.Q2Menu.Add(new MenuSeparator("excseparator1", "Miscellaneous Exceptions List:"));
-                                Vars.Q2Menu.Add(new MenuBool("excombokill", "Combo: Only if Minion Killable"));
-                                Vars.Q2Menu.Add(new MenuBool("mixedkill", "Mixed: Only if Minion Killable"));
-                                Vars.Q2Menu.Add(new MenuBool("exlaneclearkill", "LaneClear: Only if Minion Killable"));
-                            }
-                            Vars.QMenu.Add(Vars.Q2Menu);
-
                             /// <summary>
                             ///     Sets the Whitelist menu for the Q.
                             /// </summary>

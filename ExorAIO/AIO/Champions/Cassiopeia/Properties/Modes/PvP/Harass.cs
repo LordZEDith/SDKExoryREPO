@@ -4,6 +4,7 @@
 namespace ExorAIO.Champions.Cassiopeia
 {
     using System;
+    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -25,6 +26,32 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
+            {
+                return;
+            }
+
+            /// <summary>
+            ///     The E Combo Logic.
+            /// </summary>
+            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue
+                && GameObjects.Player.ManaPercent
+                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
+            {
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.IsValidTarget(Vars.E.Range)
+                        && (t.HasBuffOfType(BuffType.Poison)
+                            || !Vars.Menu["spells"]["e"]["harasspoison"].GetValue<MenuBool>().Value)
+                        && !Invulnerable.Check(t, DamageType.Magical)))
+                {
+                    DelayAction.Add(
+                        Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
+                        () => { Vars.E.CastOnUnit(target); });
+                }
+            }
+
             if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;

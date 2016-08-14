@@ -74,7 +74,7 @@ namespace ExorAIO.Champions.Sivir
                         /// </summary>
                         Vars.WhiteListMenu = new Menu("whitelist", "Shield: Whitelist Menu", true);
                         {
-                            Vars.WhiteListMenu.Add(new MenuBool("minions", "Shield: Dragon/Baron Attacks", true));
+                            Vars.WhiteListMenu.Add(new MenuBool("minions", "Shield: Dragon's Attacks", true));
                             foreach (var enemy in GameObjects.EnemyHeroes)
                             {
                                 if (enemy.ChampionName.Equals("Alistar"))

@@ -96,30 +96,31 @@ namespace ExorAIO.Champions.Sivir
                         return;
                     }
 
-                    /// <summary>
-                    ///     Block Gangplank's Barrels.
-                    /// </summary>
                     var hero = sender as Obj_AI_Hero;
-                    if (hero != null && hero.ChampionName.Equals("Gangplank"))
-                    {
-                        if (!(args.Target is Obj_AI_Minion))
-                        {
-                            return;
-                        }
-
-                        if (AutoAttack.IsAutoAttack(args.SData.Name) || args.SData.Name.Equals("GangplankQProceed"))
-                        {
-                            if (Math.Abs(((Obj_AI_Minion)args.Target).Health - 1) <= 0
-                                && ((Obj_AI_Minion)args.Target).DistanceToPlayer() < 450
-                                && ((Obj_AI_Minion)args.Target).CharData.BaseSkinName.Equals("gangplankbarrel"))
-                            {
-                                Vars.E.Cast();
-                            }
-                        }
-                    }
-
                     if (hero != null)
                     {
+                        /// <summary>
+                        ///     Block Gangplank's Barrels.
+                        /// </summary>
+                        if (hero.ChampionName.Equals("Gangplank"))
+                        {
+                            if (!(args.Target is Obj_AI_Minion))
+                            {
+                                return;
+                            }
+
+                            if (AutoAttack.IsAutoAttack(args.SData.Name) || args.SData.Name.Equals("GangplankQProceed"))
+                            {
+                                if (Math.Abs(((Obj_AI_Minion)args.Target).Health - 1) <= 0
+                                    && ((Obj_AI_Minion)args.Target).DistanceToPlayer() < 450
+                                    && ((Obj_AI_Minion)args.Target).CharData.BaseSkinName.Equals("gangplankbarrel"))
+                                {
+                                    Vars.E.Cast();
+                                    return;
+                                }
+                            }
+                        }
+
                         /// <summary>
                         ///     Check for Special On-Hit CC AutoAttacks & Melee AutoAttack Resets.
                         /// </summary>
@@ -253,14 +254,10 @@ namespace ExorAIO.Champions.Sivir
                     /// <summary>
                     ///     Block Dragon/Baron/RiftHerald's AutoAttacks.
                     /// </summary>
-                    if (Vars.Menu["spells"]["e"]["whitelist"]["minions"].GetValue<MenuBool>().Value)
+                    if (sender.CharData.BaseSkinName.Contains("SRU_Dragon")
+                        && Vars.Menu["spells"]["e"]["whitelist"]["minions"].GetValue<MenuBool>().Value)
                     {
-                        if (sender.CharData.BaseSkinName.Equals("SRU_Baron")
-                            || sender.CharData.BaseSkinName.Contains("SRU_Dragon")
-                            || sender.CharData.BaseSkinName.Equals("SRU_RiftHerald"))
-                        {
-                            Vars.E.Cast();
-                        }
+                        Vars.E.Cast();
                     }
                     break;
             }

@@ -41,21 +41,21 @@ namespace ExorAIO.Champions.Lucian
                     Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     {
+                        /// <summary>
+                        ///     Sets the Extended Q menu.
+                        /// </summary>
+                        Vars.Q2Menu = new Menu("extended", "Use Extended Q in:", true);
+                        {
+                            Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
+                            Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
+                            Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
+                            Vars.Q2Menu.Add(
+                                new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0, 99, true));
+                        }
+                        Vars.QMenu.Add(Vars.Q2Menu);
+
                         if (GameObjects.EnemyHeroes.Any())
                         {
-                            /// <summary>
-                            ///     Sets the Extended Q menu.
-                            /// </summary>
-                            Vars.Q2Menu = new Menu("extended", "Use Extended Q in:", true);
-                            {
-                                Vars.Q2Menu.Add(new MenuBool("excombo", "Combo", true));
-                                Vars.Q2Menu.Add(new MenuBool("exkillsteal", "KillSteal", true));
-                                Vars.Q2Menu.Add(new MenuSliderButton("mixed", "Mixed / if Mana >= %", 50, 0, 99, true));
-                                Vars.Q2Menu.Add(
-                                    new MenuSliderButton("exlaneclear", "LaneClear / if Mana >= %", 50, 0, 99, true));
-                            }
-                            Vars.QMenu.Add(Vars.Q2Menu);
-
                             /// <summary>
                             ///     Sets the Whitelist menu for the Extended Q.
                             /// </summary>
