@@ -31,7 +31,6 @@ namespace ExorAIO.Champions.DrMundo
                 {
                     Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / If Health >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / If Health >= x%", 50, 0, 99, true));
                 }

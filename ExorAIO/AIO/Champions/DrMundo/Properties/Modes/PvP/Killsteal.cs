@@ -34,13 +34,11 @@ namespace ExorAIO.Champions.DrMundo
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange)
+                        !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.Q.Range)
+                        && !t.IsValidTarget(Vars.AaRange)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
-                    if (
-                        !Vars.Q.GetPrediction(target)
-                             .CollisionObjects.Any(
-                                 c => Targets.Minions.Contains(c) || GameObjects.EnemyHeroes.Contains(c)))
+                    if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
                     {
                         Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
                     }

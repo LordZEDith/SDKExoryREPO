@@ -8,6 +8,7 @@ namespace ExorAIO.Champions.DrMundo
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -25,7 +26,7 @@ namespace ExorAIO.Champions.DrMundo
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -33,13 +34,13 @@ namespace ExorAIO.Champions.DrMundo
             /// <summary>
             ///     The Q Harass Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && !GameObjects.Player.IsUnderEnemyTurret()
+            if (Vars.Q.IsReady()
                 && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && GameObjects.Player.HealthPercent
-                > ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
+                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

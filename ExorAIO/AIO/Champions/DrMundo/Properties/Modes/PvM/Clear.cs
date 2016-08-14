@@ -60,7 +60,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             if (Vars.Q.IsReady()
                 && GameObjects.Player.HealthPercent
-                > ManaManager.GetNeededHealth(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
+                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
                 && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
             {
                 /// <summary>
@@ -72,7 +72,7 @@ namespace ExorAIO.Champions.DrMundo
                         Targets.Minions.Where(
                             m => Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)))
                     {
-                        if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any(c => Targets.Minions.Contains(c)))
+                        if (!Vars.Q.GetPrediction(minion).CollisionObjects.Any())
                         {
                             Vars.Q.Cast(Vars.Q.GetPrediction(minion).UnitPosition);
                         }
@@ -107,7 +107,7 @@ namespace ExorAIO.Champions.DrMundo
             /// </summary>
             if (Vars.E.IsReady()
                 && GameObjects.Player.HealthPercent
-                > ManaManager.GetNeededHealth(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
+                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
                 && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast();
