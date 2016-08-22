@@ -39,7 +39,7 @@ namespace ExorAIO.Champions.Cassiopeia
                             /// </summary>
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
-                                if ((Vars.Q.IsReady() || Vars.W.IsReady() || Vars.E.IsReady()) && !Bools.HasSheenBuff())
+                                if (!Bools.HasSheenBuff() && ((!Vars.Q.IsReady() && !Vars.W.IsReady() && !Vars.E.IsReady()) || GameObjects.Player.ManaPercent < 10)) && !Bools.HasSheenBuff())
                                 {
                                     args.Process = false;
                                 }
@@ -58,7 +58,7 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (!args.Sender.IsMelee || Invulnerable.Check(args.Sender, DamageType.Magical))
+            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
             {
                 return;
             }
@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Cassiopeia
             if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && args.Sender.IsFacing(GameObjects.Player)
                 && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
             {
-                Vars.R.Cast(args.Start);
+                Vars.R.Cast(args.End);
             }
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
                 && GameObjects.Player.Distance(args.End) > 500
@@ -83,8 +83,18 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
+            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
+            }
+
+            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
+                && GameObjects.Player.Distance(args.End) > 500
+                && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
+            {
+                Vars.W.Cast(args.Sender.ServerPosition);
+            }
             if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && args.Sender.IsFacing(GameObjects.Player)
-                && !Invulnerable.Check(args.Sender, DamageType.Magical)
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast(args.Sender.ServerPosition);
