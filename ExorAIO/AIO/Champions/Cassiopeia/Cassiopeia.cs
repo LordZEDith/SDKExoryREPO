@@ -88,12 +88,6 @@ namespace ExorAIO.Champions.Cassiopeia
                 return;
             }
 
-            if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
-                && GameObjects.Player.Distance(args.End) > 500
-                && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.W.Cast(args.Sender.ServerPosition);
-            }
             if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range) && args.Sender.IsFacing(GameObjects.Player)
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
