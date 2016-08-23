@@ -30,7 +30,6 @@ namespace ExorAIO.Champions.Cassiopeia
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
                     Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
                 }
@@ -61,8 +60,8 @@ namespace ExorAIO.Champions.Cassiopeia
                     Vars.EMenu.Add(new MenuSliderButton("lasthit", "LastHit only / if Mana < x%", 50, 1, 100, true));
                     Vars.EMenu.Add(new MenuSlider("delay", "E Delay (ms)", 0, 0, 250));
                     Vars.EMenu.Add(new MenuSeparator("options", "Poison Options"));
-                    Vars.EMenu.Add(new MenuBool("combopoison", "Combo only if target Poisoned"));
-                    Vars.EMenu.Add(new MenuBool("harasspoison", "Harass only if target Poisoned"));
+                    Vars.EMenu.Add(new MenuBool("combopoison", "Combo: only if the target is Poisoned"));
+                    Vars.EMenu.Add(new MenuBool("harasspoison", "Harass: only if the target is Poisoned"));
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
 
@@ -74,7 +73,7 @@ namespace ExorAIO.Champions.Cassiopeia
                     Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / if facing Enemies >=", 1, 1, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.RMenu.Add(new MenuBool("interrupter", "Interrupter", true));
+                    Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }
