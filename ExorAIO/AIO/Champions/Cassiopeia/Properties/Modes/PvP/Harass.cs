@@ -9,6 +9,7 @@ namespace ExorAIO.Champions.Cassiopeia
     using ExorAIO.Utilities;
 
     using LeagueSharp;
+    using LeagueSharp.Data.Enumerations;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -32,23 +33,55 @@ namespace ExorAIO.Champions.Cassiopeia
             }
 
             /// <summary>
-            ///     The E Combo Logic.
+            ///     The E Harass Logic.
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["harass"].GetValue<MenuSliderButton>().BValue
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["harass"]))
             {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
+                if (
+                    GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget(Vars.E.Range)
                         && (t.HasBuffOfType(BuffType.Poison)
                             || !Vars.Menu["spells"]["e"]["harasspoison"].GetValue<MenuBool>().Value)
                         && !Invulnerable.Check(t, DamageType.Magical)))
                 {
+                    foreach (var target in
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                            t.IsValidTarget(Vars.E.Range)
+                            && (t.HasBuffOfType(BuffType.Poison)
+                                || !Vars.Menu["spells"]["e"]["harasspoison"].GetValue<MenuBool>().Value)
+                            && !Invulnerable.Check(t, DamageType.Magical)))
+                    {
+                        DelayAction.Add(
+                            Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
+                            () => { Vars.E.CastOnUnit(target); });
+                    }
+                }
+                else
+                {
                     DelayAction.Add(
                         Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,
-                        () => { Vars.E.CastOnUnit(target); });
+                        () =>
+                            {
+                                foreach (var minion in
+                                    Targets.Minions.Where(
+                                        m =>
+                                        Vars.GetRealHealth(m)
+                                        < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)
+                                        + (m.HasBuffOfType(BuffType.Poison)
+                                               ? (float)
+                                                 GameObjects.Player.GetSpellDamage(
+                                                     m,
+                                                     SpellSlot.E,
+                                                     DamageStage.Empowered)
+                                               : 0)))
+                                {
+                                    Vars.E.CastOnUnit(minion);
+                                }
+                            });
                 }
             }
 
@@ -58,7 +91,7 @@ namespace ExorAIO.Champions.Cassiopeia
             }
 
             /// <summary>
-            ///     The Q Combo Logic.
+            ///     The Q Harass Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && GameObjects.Player.ManaPercent
@@ -70,13 +103,14 @@ namespace ExorAIO.Champions.Cassiopeia
             }
 
             /// <summary>
-            ///     The W Combo Logic.
+            ///     The W Harass Logic.
             /// </summary>
             DelayAction.Add(
                 1000,
                 () =>
                     {
                         if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
+                            && !Targets.Target.IsValidTarget(500f)
                             && GameObjects.Player.ManaPercent
                             > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["harass"])
                             && Vars.Menu["spells"]["w"]["harass"].GetValue<MenuSliderButton>().BValue)
