@@ -40,8 +40,8 @@ namespace ExorAIO.Champions.Cassiopeia
                             if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
                             {
                                 if (!Bools.HasSheenBuff()
-                                    && (Vars.Q.IsReady() || Vars.W.IsReady() || !Vars.E.IsReady()
-                                        || GameObjects.Player.Mana < Vars.E.Instance.ManaCost))
+                                    && (Vars.Q.IsReady() || Vars.W.IsReady()
+                                        || GameObjects.Player.Mana > Vars.E.Instance.ManaCost))
                                 {
                                     args.Process = false;
                                 }
