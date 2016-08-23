@@ -27,11 +27,6 @@ namespace ExorAIO.Champions.Cassiopeia
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
-            {
-                return;
-            }
-
             /// <summary>
             ///     The E Harass Logic.
             /// </summary>
