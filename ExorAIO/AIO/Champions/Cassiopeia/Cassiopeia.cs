@@ -4,6 +4,7 @@
 namespace ExorAIO.Champions.Cassiopeia
 {
     using System;
+    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -50,6 +51,27 @@ namespace ExorAIO.Champions.Cassiopeia
                     }
 
                     break;
+            }
+        }
+
+        /// <summary>
+        ///     Called upon calling a spellcast.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="SpellbookCastSpellEventArgs" /> instance containing the event data.</param>
+        public static void OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
+        {
+            if (sender.Owner.IsMe && args.Slot == SpellSlot.R
+                && Vars.Menu["miscellaneous"]["blockr"].GetValue<MenuBool>().Value)
+            {
+                if (
+                    !GameObjects.EnemyHeroes.Any(
+                        t =>
+                        t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical, false)
+                        && t.IsFacing(GameObjects.Player)))
+                {
+                    args.Process = false;
+                }
             }
         }
 

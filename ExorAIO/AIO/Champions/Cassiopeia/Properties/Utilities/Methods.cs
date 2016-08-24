@@ -17,6 +17,7 @@ namespace ExorAIO.Champions.Cassiopeia
         {
             Game.OnUpdate += Cassiopeia.OnUpdate;
             Events.OnGapCloser += Cassiopeia.OnGapCloser;
+            Spellbook.OnCastSpell += Cassiopeia.OnCastSpell;
             Events.OnInterruptableTarget += Cassiopeia.OnInterruptableTarget;
             Variables.Orbwalker.OnAction += Cassiopeia.OnAction;
         }
