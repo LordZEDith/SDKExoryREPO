@@ -42,19 +42,17 @@ namespace ExorAIO.Champions.Vayne
 
                 if (!Vars.Menu["miscellaneous"]["alwaysq"].GetValue<MenuBool>().Value)
                 {
+                    var posAfterQ = GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f);
                     if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AaRange
-                        && GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f).CountEnemyHeroesInRange(1000f)
-                        < 3
-                        && Targets.Target.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f))
-                        < Vars.AaRange)
+                        && posAfterQ.CountEnemyHeroesInRange(1000f) < 3
+                        && ((Obj_AI_Hero)args.Target).Distance(posAfterQ) < Vars.AaRange)
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }
+                    return;
                 }
-                else
-                {
-                    Vars.Q.Cast(Game.CursorPos);
-                }
+
+                Vars.Q.Cast(Game.CursorPos);
             }
         }
 

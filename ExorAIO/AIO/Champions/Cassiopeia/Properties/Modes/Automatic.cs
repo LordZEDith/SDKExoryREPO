@@ -62,6 +62,24 @@ namespace ExorAIO.Champions.Cassiopeia
                     Vars.W.Cast(target.ServerPosition);
                 }
             }
+
+            /// <summary>
+            ///     The Semi-Automatic R Logic.
+            /// </summary>
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            {
+                var target = GameObjects.EnemyHeroes.Where(
+                    t =>
+                    t.IsValidTarget(Vars.R.Range - 25f) && t.IsFacing(GameObjects.Player)
+                    && !Invulnerable.Check(t, DamageType.Magical, false)
+                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                if (target != null)
+                {
+                    Vars.R.Cast(target.ServerPosition);
+                }
+            }
         }
 
         #endregion

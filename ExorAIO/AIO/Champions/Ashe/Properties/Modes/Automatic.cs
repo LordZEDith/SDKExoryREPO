@@ -68,7 +68,7 @@ namespace ExorAIO.Champions.Ashe
             }
 
             /// <summary>
-            ///     The E -> R Combo Logics.
+            ///     The Semi-Automatic R Logic.
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
@@ -78,12 +78,18 @@ namespace ExorAIO.Champions.Ashe
                     !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
                     && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
                            .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
-                if (Vars.E.IsReady() && target != null && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                if (target != null)
                 {
-                    Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
-                }
+                    /// <summary>
+                    ///     The E->R Logic.
+                    /// </summary>
+                    if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.Cast(Vars.E.GetPrediction(target).UnitPosition);
+                    }
 
-                Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                }
             }
         }
 
