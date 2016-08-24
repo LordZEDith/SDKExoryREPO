@@ -8,10 +8,10 @@ namespace ExorAIO.Champions.Jhin
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
-    using LeagueSharp;
 
     /// <summary>
     ///     The logics class.
@@ -57,8 +57,8 @@ namespace ExorAIO.Champions.Jhin
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
+                && GameObjects.Player.HasBuff("JhinPassiveReload")
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);
             }
