@@ -52,3 +52,4 @@ C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\De
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.exe
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\obj\x86\Debug\[SDK]ExorAIO.pdb
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\bin\Debug\clipper_library.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\ExorAIO\bin\Debug\LeagueSharp.SDKEx.dll

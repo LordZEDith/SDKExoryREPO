@@ -33,7 +33,8 @@ namespace ExorAIO.Champions.Jhin
             ///     The Q Weaving Logic.
             /// </summary>
             if (Vars.Q.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget()
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value
+                && !Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit((Obj_AI_Hero)args.Target);
             }

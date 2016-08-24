@@ -39,7 +39,9 @@ namespace ExorAIO.Champions.Jhin
                 > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"])
                 && Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(t => !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range - 100f)))
+                if (
+                    GameObjects.EnemyHeroes.Any(
+                        t => !Invulnerable.Check(t, DamageType.True, false) && t.IsValidTarget(Vars.W.Range - 150f)))
                 {
                     return;
                 }
@@ -53,17 +55,15 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Clear Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
-                && (GameObjects.Player.HasBuff("JhinPassiveReload")
-                    || !Vars.Menu["spells"]["q"]["reloadclear"].GetValue<MenuBool>().Value)
-                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady())
             {
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                if (Targets.Minions.Any())
+                if (Targets.Minions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                    && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     foreach (var minion in Targets.Minions.Where(
                         m =>
@@ -77,7 +77,10 @@ namespace ExorAIO.Champions.Jhin
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any())
+                else if (Targets.JungleMinions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                         && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.CastOnUnit(Targets.JungleMinions[0]);
                 }
