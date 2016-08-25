@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Taliyah
                             GameObjects.Player.Distance(Targets.Target) * 2)
                         : GameObjects.Player.ServerPosition);
             }
-            if (Vars.W.IsReady())
+            if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 return;
             }
