@@ -72,7 +72,7 @@ namespace ExorAIO.Champions.Taliyah
                     && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     if (Taliyah.TerrainObject != null
-                        && Vars.Menu["spells"]["q"]["q2"]["laneclearfull"].GetValue<MenuBool>().Value)
+                        && Vars.Menu["spells"]["q"]["laneclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;
                     }
@@ -96,7 +96,7 @@ namespace ExorAIO.Champions.Taliyah
                          && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     if (Taliyah.TerrainObject != null
-                        && Vars.Menu["spells"]["q"]["q2"]["jungleclearfull"].GetValue<MenuBool>().Value)
+                        && Vars.Menu["spells"]["q"]["jungleclearfull"].GetValue<MenuBool>().Value)
                     {
                         return;
                     }

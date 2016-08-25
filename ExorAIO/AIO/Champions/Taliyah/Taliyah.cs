@@ -126,6 +126,23 @@ namespace ExorAIO.Champions.Taliyah
         }
 
         /// <summary>
+        ///     Called while processing spellcast operations.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The args.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            /// <summary>
+            ///     Automatically Mount on R Logic.
+            /// </summary>
+            if (Vars.R.IsReady() && sender.IsMe && args.Slot.Equals(SpellSlot.R)
+                && Vars.Menu["miscellaneous"]["mountr"].GetValue<MenuBool>().Value)
+            {
+                Vars.R.Cast();
+            }
+        }
+
+        /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>

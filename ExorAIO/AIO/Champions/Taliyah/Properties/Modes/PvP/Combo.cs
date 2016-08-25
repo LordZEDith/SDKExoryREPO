@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange) || !Targets.Target.IsValidTarget()
                 || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
@@ -38,15 +38,42 @@ namespace ExorAIO.Champions.Taliyah
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(
-                    Vars.W.GetPrediction(Targets.Target).CastPosition,
-                    Targets.Target.IsFacing(GameObjects.Player)
-                    && GameObjects.Player.Distance(Targets.Target) < Vars.AaRange / 2
-                        ? GameObjects.Player.ServerPosition.Extend(
-                            Targets.Target.ServerPosition,
-                            GameObjects.Player.Distance(Targets.Target) * 2)
-                        : GameObjects.Player.ServerPosition);
+                if (!Vars.E.IsReady() && Vars.Menu["spells"]["w"]["combofull"].GetValue<MenuBool>().Value)
+                {
+                    return;
+                }
+
+                switch (
+                    Vars.Menu["spells"]["w"]["selection"][Targets.Target.ChampionName.ToLower()].GetValue<MenuList>()
+                        .Index)
+                {
+                    case 0:
+                        Vars.W.Cast(
+                            Vars.W.GetPrediction(Targets.Target).CastPosition,
+                            GameObjects.Player.ServerPosition);
+                        break;
+                    case 1:
+                        Vars.W.Cast(
+                            Vars.W.GetPrediction(Targets.Target).CastPosition,
+                            GameObjects.Player.ServerPosition.Extend(
+                                Targets.Target.ServerPosition,
+                                GameObjects.Player.Distance(Targets.Target) * 2));
+                        break;
+                    default:
+                        Vars.W.Cast(
+                            Vars.W.GetPrediction(Targets.Target).CastPosition,
+                            Vars.GetRealHealth(Targets.Target)
+                            < (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.Q)
+                            * (Taliyah.TerrainObject != null ? 1 : 3)
+                            + (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.W)
+                                ? GameObjects.Player.ServerPosition
+                                : GameObjects.Player.ServerPosition.Extend(
+                                    Targets.Target.ServerPosition,
+                                    GameObjects.Player.Distance(Targets.Target) * 2));
+                        break;
+                }
             }
+
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 return;
@@ -68,7 +95,7 @@ namespace ExorAIO.Champions.Taliyah
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (Taliyah.TerrainObject != null
-                    && Vars.Menu["spells"]["q"]["q2"]["combofull"].GetValue<MenuBool>().Value)
+                    && Vars.Menu["spells"]["q"]["combofull"].GetValue<MenuBool>().Value)
                 {
                     return;
                 }

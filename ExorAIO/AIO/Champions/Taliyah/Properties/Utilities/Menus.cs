@@ -5,6 +5,7 @@ namespace ExorAIO.Champions.Taliyah
 {
     using ExorAIO.Utilities;
 
+    using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
 
     /// <summary>
@@ -34,19 +35,11 @@ namespace ExorAIO.Champions.Taliyah
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 75, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
-                    {
-                        /// <summary>
-                        ///     Sets the menu for the Q2.
-                        /// </summary>
-                        Vars.Q2Menu = new Menu("q2", "Threaded Volley Options:");
-                        {
-                            Vars.Q2Menu.Add(new MenuBool("combofull", "Combo: Only with full Q.", true));
-                            Vars.Q2Menu.Add(new MenuBool("harassfull", "Harass: Only with full Q."));
-                            Vars.Q2Menu.Add(new MenuBool("laneclearfull", "LaneClear: Only with full Q.", true));
-                            Vars.Q2Menu.Add(new MenuBool("jungleclearfull", "JungleClear: Only with full Q.", true));
-                        }
-                        Vars.QMenu.Add(Vars.Q2Menu);
-                    }
+                    Vars.QMenu.Add(new MenuSeparator("separator", "Threaded Volley Options:"));
+                    Vars.QMenu.Add(new MenuBool("combofull", "Combo: Only with full Q.", true));
+                    Vars.QMenu.Add(new MenuBool("harassfull", "Harass: Only with full Q."));
+                    Vars.QMenu.Add(new MenuBool("laneclearfull", "LaneClear: Only with full Q.", true));
+                    Vars.QMenu.Add(new MenuBool("jungleclearfull", "JungleClear: Only with full Q.", true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -59,7 +52,28 @@ namespace ExorAIO.Champions.Taliyah
                     Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.WMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
+                    Vars.WMenu.Add(new MenuSeparator("separator1", "Seismic Shove Options:"));
+                    Vars.WMenu.Add(new MenuBool("combofull", "Combo: Don't Cast if E not Ready", true));
+                    {
+                        /// <summary>
+                        ///     Sets the menu for the selection.
+                        /// </summary>
+                        Vars.W2Menu = new Menu("selection", "Combo: Pull / Push Selection");
+                        {
+                            foreach (var enemy in GameObjects.EnemyHeroes)
+                            {
+                                Vars.W2Menu.Add(
+                                    new MenuList<string>(
+                                        enemy.ChampionName.ToLower(),
+                                        enemy.ChampionName,
+                                        new[] { "Always Pull", "Always Push", "Only Pull if Killable else Push" }));
+                            }
+                        }
+
+                        Vars.WMenu.Add(Vars.W2Menu);
+                    }
                 }
+
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
                 /// <summary>
@@ -77,7 +91,17 @@ namespace ExorAIO.Champions.Taliyah
                 }
                 Vars.SpellsMenu.Add(Vars.EMenu);
             }
+
             Vars.Menu.Add(Vars.SpellsMenu);
+
+            /// <summary>
+            ///     Sets the miscellaneous menu.
+            /// </summary>
+            Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
+            {
+                Vars.MiscMenu.Add(new MenuBool("mountr", "Automatically Mount on R", true));
+            }
+            Vars.Menu.Add(Vars.MiscMenu);
 
             /// <summary>
             ///     Sets the menu for the drawings.

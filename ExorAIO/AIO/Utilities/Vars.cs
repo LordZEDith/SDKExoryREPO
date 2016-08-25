@@ -314,6 +314,11 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static Menu WMenu { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the W2 Spell menu.
+        /// </summary>
+        public static Menu W2Menu { get; set; }
+
         #endregion
 
         #region Public Methods and Operators

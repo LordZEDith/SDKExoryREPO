@@ -39,12 +39,15 @@ namespace ExorAIO.Champions.Taliyah
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
                 if (Taliyah.TerrainObject != null
-                    && Vars.Menu["spells"]["q"]["q2"]["harassfull"].GetValue<MenuBool>().Value)
+                    && Vars.Menu["spells"]["q"]["harassfull"].GetValue<MenuBool>().Value)
                 {
                     return;
                 }
 
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
+                }
             }
         }
 
