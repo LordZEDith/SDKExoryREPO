@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Graves
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo"));
                     Vars.WMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));

@@ -300,6 +300,11 @@ namespace ExorAIO.Utilities
         public static Spell W { get; set; }
 
         /// <summary>
+        ///     Gets or sets the W2 Spell menu.
+        /// </summary>
+        public static Menu W2Menu { get; set; }
+
+        /// <summary>
         ///     Gets or sets the second Whitelist menu.
         /// </summary>
         public static Menu WhiteList2Menu { get; set; }
@@ -313,11 +318,6 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the W Spell menu.
         /// </summary>
         public static Menu WMenu { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the W2 Spell menu.
-        /// </summary>
-        public static Menu W2Menu { get; set; }
 
         #endregion
 

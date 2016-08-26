@@ -66,23 +66,15 @@ namespace ExorAIO.Champions.Graves
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                if (
-                    !GameObjects.EnemyHeroes.Any(
-                        t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                               .GetValue<MenuBool>().Value))
+                var target = GameObjects.EnemyHeroes.Where(
+                    t =>
+                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                    && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                if (target != null)
                 {
-                    return;
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }
-
-                Vars.R.Cast(
-                    Vars.R.GetPrediction(
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
 

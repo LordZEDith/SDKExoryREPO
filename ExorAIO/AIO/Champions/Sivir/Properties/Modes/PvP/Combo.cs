@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 100f)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast(
