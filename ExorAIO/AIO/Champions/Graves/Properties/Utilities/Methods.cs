@@ -17,7 +17,6 @@ namespace ExorAIO.Champions.Graves
         {
             Game.OnUpdate += Graves.OnUpdate;
             Obj_AI_Base.OnDoCast += Graves.OnDoCast;
-            Obj_AI_Base.OnProcessSpellCast += Graves.OnProcessSpellCast;
             Events.OnGapCloser += Graves.OnGapCloser;
         }
 

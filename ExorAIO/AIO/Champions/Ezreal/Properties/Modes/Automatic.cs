@@ -33,6 +33,23 @@ namespace ExorAIO.Champions.Ezreal
             }
 
             /// <summary>
+            ///     The Automatic R Logic.
+            /// </summary>
+            if (Vars.R.IsReady()
+                && GameObjects.Player.CountEnemyHeroesInRange(Vars.AaRange) == 0
+                && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuBool>().Value)
+            {
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.IsValidTarget(2000f) && Bools.IsImmobile(t) && !Invulnerable.Check(t)
+                        && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
+                {
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                }
+            }
+
+            /// <summary>
             ///     The Q LastHit Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo
@@ -78,7 +95,7 @@ namespace ExorAIO.Champions.Ezreal
             switch (Variables.Orbwalker.ActiveMode)
             {
                 case OrbwalkingMode.Combo:
-                    if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Hero))
+                    if (!GameObjects.EnemyHeroes.Contains(Variables.Orbwalker.GetTarget()))
                     {
                         return;
                     }
@@ -95,8 +112,8 @@ namespace ExorAIO.Champions.Ezreal
                     break;
                 default:
                     if (!GameObjects.Jungle.Contains(Variables.Orbwalker.GetTarget())
+                        && !GameObjects.EnemyHeroes.Contains(Variables.Orbwalker.GetTarget())
                         && !(Variables.Orbwalker.GetTarget() is Obj_HQ)
-                        && !(Variables.Orbwalker.GetTarget() is Obj_AI_Hero)
                         && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret)
                         && !(Variables.Orbwalker.GetTarget() is Obj_BarracksDampener))
                     {
@@ -115,7 +132,8 @@ namespace ExorAIO.Champions.Ezreal
                 && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var target in
-                    GameObjects.AllyHeroes.Where(t => !t.IsMe && t.IsWindingUp && t.IsValidTarget(Vars.W.Range, false)))
+                    GameObjects.AllyHeroes.Where(
+                        t => !t.IsMe && t.Spellbook.IsAutoAttacking && t.IsValidTarget(Vars.W.Range, false)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
                 }
@@ -127,23 +145,15 @@ namespace ExorAIO.Champions.Ezreal
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                if (
-                    !GameObjects.EnemyHeroes.Any(
-                        t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                        && Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
-                               .GetValue<MenuBool>().Value))
+                var target = GameObjects.EnemyHeroes.Where(
+                    t =>
+                    !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(2000f)
+                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                if (target != null)
                 {
-                    return;
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }
-
-                Vars.R.Cast(
-                    Vars.R.GetPrediction(
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()]
-                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
             }
         }
 
