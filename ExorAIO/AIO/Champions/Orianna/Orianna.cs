@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     !GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.Distance((Vector2)BallPosition) < Vars.R.Range
+                        t.Distance((Vector2)BallPosition) < Vars.R.Range - 25
                         && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     args.Process = false;
@@ -74,7 +74,7 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
-            if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.End) < Vars.R.Width
+            if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.End) < Vars.R.Range - 25
                 && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -95,13 +95,9 @@ namespace ExorAIO.Champions.Orianna
             }
 
             if (Vars.R.IsReady() && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && ((Vector2)BallPosition).Distance(args.Sender.ServerPosition) < Vars.R.Range - 25
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                if (Vars.Q.IsReady()
-                    && ((Vector2)BallPosition).Distance(args.Sender.ServerPosition) > Vars.R.Range)
-                {
-                    Vars.Q.Cast(args.Sender.ServerPosition);
-                }
                 Vars.R.Cast();
             }
         }

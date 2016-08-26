@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Orianna
         {
             var ball =
                 ObjectManager.Get<Obj_AI_Minion>()
-                    .FirstOrDefault(m => (int)m.Health == 1 && m.CharData.BaseSkinName.Equals("oriannaball"));
+                    .FirstOrDefault(m => Math.Abs(m.Health) > 0 && m.CharData.BaseSkinName.Equals("oriannaball"));
             var ball3 =
                 GameObjects.AllyHeroes.FirstOrDefault(
                     a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
