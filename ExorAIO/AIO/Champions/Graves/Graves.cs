@@ -67,7 +67,7 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && args.Slot.Equals(SpellSlot.E))
+            if (sender != null && sender.IsMe && args.SData.Name.ToLower().Equals("gravesmove"))
             {
                 Variables.Orbwalker.ResetSwingTimer();
             }

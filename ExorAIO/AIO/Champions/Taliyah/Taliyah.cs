@@ -85,7 +85,9 @@ namespace ExorAIO.Champions.Taliyah
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(
-                    GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2));
+                    args.Sender.IsMelee
+                        ? GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2)
+                        : GameObjects.Player.ServerPosition);
             }
             if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
@@ -109,14 +111,7 @@ namespace ExorAIO.Champions.Taliyah
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(
-                    args.Sender.ServerPosition,
-                    args.Sender.IsFacing(GameObjects.Player)
-                    && GameObjects.Player.Distance(args.Sender) < Vars.AaRange / 2
-                        ? GameObjects.Player.ServerPosition.Extend(
-                            args.Sender.ServerPosition,
-                            GameObjects.Player.Distance(args.Sender) * 2)
-                        : GameObjects.Player.ServerPosition);
+                Vars.W.Cast(GameObjects.Player.ServerPosition);
             }
             if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
@@ -135,7 +130,8 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     Automatically Mount on R Logic.
             /// </summary>
-            if (Vars.R.IsReady() && sender.IsMe && args.Slot.Equals(SpellSlot.R)
+            if (Vars.R.IsReady() && sender != null && sender.IsMe && args.Slot != SpellSlot.Unknown
+                && args.Slot.Equals(SpellSlot.R)
                 && Vars.Menu["miscellaneous"]["mountr"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();

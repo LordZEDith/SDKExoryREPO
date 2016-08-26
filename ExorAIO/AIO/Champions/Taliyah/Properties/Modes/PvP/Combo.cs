@@ -36,13 +36,9 @@ namespace ExorAIO.Champions.Taliyah
             ///     The E->W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
-                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value
+                && (Vars.E.IsReady() || !Vars.Menu["spells"]["w"]["combofull"].GetValue<MenuBool>().Value))
             {
-                if (!Vars.E.IsReady() && Vars.Menu["spells"]["w"]["combofull"].GetValue<MenuBool>().Value)
-                {
-                    return;
-                }
-
                 switch (
                     Vars.Menu["spells"]["w"]["selection"][Targets.Target.ChampionName.ToLower()].GetValue<MenuList>()
                         .Index)
