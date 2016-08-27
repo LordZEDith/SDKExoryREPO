@@ -37,11 +37,11 @@ namespace ExorAIO.Champions.Taliyah
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Targets.Minions.Any() && Targets.Minions.Count(m => m.IsValidTarget(Vars.E.Range)) >= 3
+                if (Targets.Minions.Any()
                     && GameObjects.Player.ManaPercent
                     > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
                     && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue
-                    && Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 3)
+                    && Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).MinionsHit >= 4)
                 {
                     Vars.E.Cast(Vars.E.GetCircularFarmLocation(Targets.Minions, Vars.E.Width).Position);
                 }

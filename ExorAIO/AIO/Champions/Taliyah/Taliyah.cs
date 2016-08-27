@@ -86,11 +86,9 @@ namespace ExorAIO.Champions.Taliyah
             {
                 if (args.Sender.ChampionName.Equals("MasterYi"))
                 {
-                    DelayAction.Add(250,
-                        () =>
-                            {
-                                Vars.W.Cast(GameObjects.Player.ServerPosition, args.Start);
-                            });
+                    DelayAction.Add(
+                        250,
+                        () => { Vars.W.Cast(GameObjects.Player.ServerPosition, args.Start); });
                     return;
                 }
 
@@ -100,6 +98,7 @@ namespace ExorAIO.Champions.Taliyah
                         ? GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2)
                         : GameObjects.Player.ServerPosition);
             }
+
             if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
