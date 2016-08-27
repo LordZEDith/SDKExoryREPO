@@ -84,7 +84,18 @@ namespace ExorAIO.Champions.Taliyah
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
+                if (args.Sender.ChampionName.Equals("MasterYi"))
+                {
+                    DelayAction.Add(250,
+                        () =>
+                            {
+                                Vars.W.Cast(GameObjects.Player.ServerPosition, args.Start);
+                            });
+                    return;
+                }
+
                 Vars.W.Cast(
+                    args.End,
                     args.Sender.IsMelee
                         ? GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2)
                         : GameObjects.Player.ServerPosition);
@@ -103,20 +114,11 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
-            {
-                return;
-            }
-
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(GameObjects.Player.ServerPosition);
-            }
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
-                && Vars.Menu["spells"]["e"]["interrupter"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(args.Sender.ServerPosition);
+                Vars.W.Cast(args.Sender.ServerPosition, GameObjects.Player.ServerPosition);
             }
         }
 
@@ -153,6 +155,11 @@ namespace ExorAIO.Champions.Taliyah
             ///     Initializes the spells.
             /// </summary>
             Spells.Initialize();
+
+            /// <summary>
+            ///     Initializes the drawings.
+            /// </summary>
+            GroundDrawings.Initialize();
 
             /// <summary>
             ///     Initializes the Automatic actions.

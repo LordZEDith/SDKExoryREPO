@@ -27,13 +27,13 @@ namespace ExorAIO.Champions.Taliyah
         public static void Combo(EventArgs args)
         {
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange) || !Targets.Target.IsValidTarget()
-                || Invulnerable.Check(Targets.Target, DamageType.Magical))
+                || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }
 
             /// <summary>
-            ///     The E->W Combo Logic.
+            ///     The W->E Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value

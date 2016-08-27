@@ -82,10 +82,7 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.EMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.EMenu.Add(new MenuSliderButton("aoe", "AoE / if enemies >= x", 3, 1, 5, true));
                     Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
@@ -112,6 +109,7 @@ namespace ExorAIO.Champions.Taliyah
                 Vars.DrawingsMenu.Add(new MenuBool("w", "W Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("e", "E Range"));
                 Vars.DrawingsMenu.Add(new MenuBool("r", "R Range"));
+                Vars.DrawingsMenu.Add(new MenuBool("ground", "Draw Worked Ground Timers"));
             }
             Vars.Menu.Add(Vars.DrawingsMenu);
         }

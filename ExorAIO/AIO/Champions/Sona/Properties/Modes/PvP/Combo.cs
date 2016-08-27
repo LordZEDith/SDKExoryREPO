@@ -39,7 +39,9 @@ namespace ExorAIO.Champions.Sona
                 && Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
                        .Value)
             {
-                Vars.R.CastIfWillHit(Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
+                Vars.R.CastIfWillHit(
+                    Targets.Target,
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
                 return;
             }
 
