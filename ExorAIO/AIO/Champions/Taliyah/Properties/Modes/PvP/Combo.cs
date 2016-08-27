@@ -62,6 +62,7 @@ namespace ExorAIO.Champions.Taliyah
                             < (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.Q)
                             * (Taliyah.TerrainObject != null ? 1 : 3)
                             + (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.W)
+                            + (float)GameObjects.Player.GetSpellDamage(Targets.Target, SpellSlot.E)
                                 ? GameObjects.Player.ServerPosition
                                 : GameObjects.Player.ServerPosition.Extend(
                                     Targets.Target.ServerPosition,

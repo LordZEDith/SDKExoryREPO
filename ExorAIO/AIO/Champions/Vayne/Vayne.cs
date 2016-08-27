@@ -179,11 +179,6 @@ namespace ExorAIO.Champions.Vayne
             }
 
             /// <summary>
-            ///     Updates the spells.
-            /// </summary>
-            Spells.Initialize();
-
-            /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
@@ -217,6 +212,11 @@ namespace ExorAIO.Champions.Vayne
             ///     Initializes the menus.
             /// </summary>
             Menus.Initialize();
+
+            /// <summary>
+            ///     Updates the spells.
+            /// </summary>
+            Spells.Initialize();
 
             /// <summary>
             ///     Initializes the methods.

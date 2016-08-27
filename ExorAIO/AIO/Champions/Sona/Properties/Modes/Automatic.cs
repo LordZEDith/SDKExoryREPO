@@ -8,6 +8,7 @@ namespace ExorAIO.Champions.Sona
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -38,29 +39,20 @@ namespace ExorAIO.Champions.Sona
             }
 
             /// <summary>
-            ///     The AoE R Logic.
-            /// </summary>
-            if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range)
-                && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
-            {
-                Vars.R.CastIfWillHit(
-                    Targets.Target,
-                    Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue);
-            }
-
-            /// <summary>
-            ///     The Semi-Automatic R Management.
+            ///     The Semi-Automatic R Logic.
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                Vars.R.Cast(
-                    Vars.R.GetPrediction(
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()]
-                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First()).UnitPosition);
+                var target = GameObjects.EnemyHeroes.Where(
+                    t =>
+                    !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
+                    && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()]
+                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                if (target != null)
+                {
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                }
             }
         }
 

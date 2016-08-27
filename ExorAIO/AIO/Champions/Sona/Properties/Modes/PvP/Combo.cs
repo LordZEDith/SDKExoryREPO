@@ -35,11 +35,11 @@ namespace ExorAIO.Champions.Sona
             ///     The R Combo Logic.
             /// </summary>
             if (Vars.R.IsReady() && Targets.Target.IsValidTarget(Vars.R.Range)
-                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().BValue
                 && Vars.Menu["spells"]["r"]["whitelist2"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
                        .Value)
             {
-                Vars.R.Cast(Vars.R.GetPrediction(Targets.Target).UnitPosition);
+                Vars.R.CastIfWillHit(Targets.Target, Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
                 return;
             }
 

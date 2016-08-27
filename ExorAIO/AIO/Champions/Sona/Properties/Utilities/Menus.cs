@@ -84,11 +84,10 @@ namespace ExorAIO.Champions.Sona
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.RMenu.Add(new MenuSliderButton("combo", "Combo / If can hit x enemies", 3, 1, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
-                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit x enemies", 3, 1, 5, true));
                     Vars.RMenu.Add(
                         new MenuSeparator(
                             "separator",
