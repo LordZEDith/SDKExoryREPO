@@ -156,11 +156,6 @@ namespace ExorAIO.Champions.Taliyah
             Spells.Initialize();
 
             /// <summary>
-            ///     Initializes the drawings.
-            /// </summary>
-            GroundDrawings.Initialize();
-
-            /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
