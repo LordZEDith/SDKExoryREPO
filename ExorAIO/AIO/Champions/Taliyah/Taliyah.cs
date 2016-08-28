@@ -128,6 +128,10 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The args.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
+            if (sender.IsMe && args.Slot.Equals(SpellSlot.W))
+            {
+                Console.WriteLine(args.SData.Name);
+            }
             /// <summary>
             ///     Automatically Mount on R Logic.
             /// </summary>
