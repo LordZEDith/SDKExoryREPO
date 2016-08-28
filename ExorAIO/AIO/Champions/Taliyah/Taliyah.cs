@@ -81,6 +81,12 @@ namespace ExorAIO.Champions.Taliyah
                 return;
             }
 
+            if (Vars.E.IsReady() && GameObjects.Player.Distance(args.End) < Vars.E.Range - 50f
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(args.End);
+            }
+
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -97,12 +103,6 @@ namespace ExorAIO.Champions.Taliyah
                     args.Sender.IsMelee
                         ? GameObjects.Player.ServerPosition.Extend(args.End, GameObjects.Player.Distance(args.End) * 2)
                         : GameObjects.Player.ServerPosition);
-            }
-
-            if (Vars.E.IsReady() && args.Sender.IsValidTarget(Vars.E.Range)
-                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(args.End);
             }
         }
 
@@ -128,10 +128,6 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The args.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && args.Slot.Equals(SpellSlot.W))
-            {
-                Console.WriteLine(args.SData.Name);
-            }
             /// <summary>
             ///     Automatically Mount on R Logic.
             /// </summary>

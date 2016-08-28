@@ -50,6 +50,8 @@ namespace ExorAIO.Champions.Taliyah
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.WMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.WMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 75, 0, 99, true));
+                    Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.WMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                     Vars.WMenu.Add(new MenuSeparator("separator1", "Seismic Shove Options:"));

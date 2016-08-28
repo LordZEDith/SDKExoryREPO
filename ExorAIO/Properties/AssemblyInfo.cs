@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LeagueSharp")]
 [assembly: AssemblyProduct("[SDK]ExorAIO")]
-[assembly: AssemblyCopyright("Copyright © Exory 2016-2016")]
+[assembly: AssemblyCopyright("Copyright © Exory 2015-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -38,5 +38,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("6.17.0.10")]
-[assembly: AssemblyFileVersion("6.17.0.10")]
+[assembly: AssemblyVersion("6.17.0.11")]
+[assembly: AssemblyFileVersion("6.17.0.11")]

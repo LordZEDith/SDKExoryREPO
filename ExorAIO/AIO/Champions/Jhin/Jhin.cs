@@ -100,6 +100,10 @@ namespace ExorAIO.Champions.Jhin
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (Vars.R.Instance.Name.Equals("JhinRShot"))
+            {
+                return;
+            }
             if (Vars.E.IsReady() && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
@@ -148,7 +152,8 @@ namespace ExorAIO.Champions.Jhin
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-            if (GameObjects.Player.IsWindingUp)
+
+            if (GameObjects.Player.IsWindingUp || Vars.R.Instance.Name.Equals("JhinRShot"))
             {
                 return;
             }
