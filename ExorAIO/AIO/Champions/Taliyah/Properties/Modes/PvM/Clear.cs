@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Taliyah
             /// <summary>
             ///     The Clear W Logic.
             /// </summary>
-            if (Vars.W.IsReady())
+            if (Vars.W.IsReady() && Vars.E.IsReady())
             {
                 /// <summary>
                 ///     The LaneClear W Logic.

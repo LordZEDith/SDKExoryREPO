@@ -97,10 +97,7 @@ namespace ExorAIO.Champions.Taliyah
                     return;
                 }
 
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
-                {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                }
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
             }
         }
 
