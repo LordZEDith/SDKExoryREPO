@@ -134,7 +134,7 @@ namespace ExorAIO.Champions.Sivir
                                         Vars.WhiteListMenu.Add(
                                             new MenuBool(
                                                 $"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}",
-                                                $"Shield: {enemy.ChampionName}'s {spell.Slot}",
+                                                $"Shield: {enemy.ChampionName}'s {(enemy.ChampionName.Equals("TwistedFate") ? spell.MissileSpellName : spell.Slot.ToString())}",
                                                 true));
                                     }
                                 }
