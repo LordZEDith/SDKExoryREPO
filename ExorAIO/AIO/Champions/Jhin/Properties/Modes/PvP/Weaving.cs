@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Q Weaving Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget()
+            if (Vars.Q.IsReady() && ((Obj_AI_Hero)args.Target).IsValidTarget(Vars.Q.Range)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value
                 && !Vars.Menu["spells"]["q"]["reloadcombo"].GetValue<MenuBool>().Value)
             {
