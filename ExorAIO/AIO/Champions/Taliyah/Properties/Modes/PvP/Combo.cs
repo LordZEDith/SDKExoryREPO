@@ -4,7 +4,6 @@
 namespace ExorAIO.Champions.Taliyah
 {
     using System;
-    using System.Linq;
 
     using ExorAIO.Utilities;
 

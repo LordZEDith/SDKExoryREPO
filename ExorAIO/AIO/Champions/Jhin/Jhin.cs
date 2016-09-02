@@ -104,6 +104,7 @@ namespace ExorAIO.Champions.Jhin
             {
                 return;
             }
+
             if (Vars.E.IsReady() && !Invulnerable.Check(args.Sender) && args.Sender.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {

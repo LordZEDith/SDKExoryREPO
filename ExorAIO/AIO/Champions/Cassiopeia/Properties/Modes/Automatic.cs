@@ -71,7 +71,7 @@ namespace ExorAIO.Champions.Cassiopeia
             {
                 var target = GameObjects.EnemyHeroes.Where(
                     t =>
-                    t.IsValidTarget(Vars.R.Range - 25f) && t.IsFacing(GameObjects.Player)
+                    t.IsValidTarget(Vars.R.Range - 100f) && t.IsFacing(GameObjects.Player)
                     && !Invulnerable.Check(t, DamageType.Magical, false)
                     && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
                            .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
