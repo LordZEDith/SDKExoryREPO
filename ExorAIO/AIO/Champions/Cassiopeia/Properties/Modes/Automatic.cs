@@ -55,7 +55,7 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// <summary>
                 ///     The Automatic W Logic.
                 /// </summary>
-                if (Vars.W.IsReady() && target.IsValidTarget(Vars.W.Range) && !target.IsValidTarget(500)
+                if (Vars.W.IsReady() && target.IsValidTarget(Vars.W.Range) && !target.IsValidTarget(500f)
                     && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
                 {
                     Vars.W.Cast(target.ServerPosition);
