@@ -113,7 +113,8 @@ namespace ExorAIO.Champions.MissFortune
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
                 && !Invulnerable.Check(Targets.Target, DamageType.Magical, false)
-                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
+                && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value
+                && GameObjects.Player.Mana - Vars.E.Instance.ManaCost > Vars.R.Instance.ManaCost)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).CastPosition);
             }
