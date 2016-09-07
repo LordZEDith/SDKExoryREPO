@@ -68,10 +68,7 @@ namespace ExorAIO.Champions.Kalista
                                     var drawEndXPos = barPos.X + width * (unit.HealthPercent / 100);
                                     var drawStartXPos = barPos.X
                                                         + (Vars.GetRealHealth(unit)
-                                                           > (float)
-                                                             GameObjects.Player.GetSpellDamage(
-                                                                 unit,
-                                                                 SpellSlot.E)
+                                                           > (float)GameObjects.Player.GetSpellDamage(unit, SpellSlot.E)
                                                            + (float)
                                                              GameObjects.Player.GetSpellDamage(
                                                                  unit,
@@ -87,8 +84,8 @@ namespace ExorAIO.Champions.Kalista
                                                                           GameObjects.Player.GetSpellDamage(
                                                                               unit,
                                                                               SpellSlot.E,
-                                                                              DamageStage.Buff)))
-                                                                    / unit.MaxHealth * 100 / 100)
+                                                                              DamageStage.Buff))) / unit.MaxHealth * 100
+                                                                    / 100)
                                                                : 0);
                                     Drawing.DrawLine(
                                         drawStartXPos,
@@ -98,8 +95,7 @@ namespace ExorAIO.Champions.Kalista
                                         height,
                                         Vars.GetRealHealth(unit)
                                         < (float)GameObjects.Player.GetSpellDamage(unit, SpellSlot.E)
-                                        + (float)
-                                          GameObjects.Player.GetSpellDamage(unit, SpellSlot.E, DamageStage.Buff)
+                                        + (float)GameObjects.Player.GetSpellDamage(unit, SpellSlot.E, DamageStage.Buff)
                                             ? Color.Blue
                                             : Color.Orange);
                                     Drawing.DrawLine(

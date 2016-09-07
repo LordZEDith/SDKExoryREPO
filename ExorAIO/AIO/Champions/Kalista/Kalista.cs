@@ -22,6 +22,15 @@ namespace ExorAIO.Champions.Kalista
     /// </summary>
     internal class Kalista
     {
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the SoulBound.
+        /// </summary>
+        public static Obj_AI_Hero SoulBound { get; set; } = null;
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -42,8 +51,8 @@ namespace ExorAIO.Champions.Kalista
                     var bestTarget =
                         GameObjects.EnemyHeroes.Where(
                             t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
-                            .OrderByDescending(
-                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
+                            .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                            .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {

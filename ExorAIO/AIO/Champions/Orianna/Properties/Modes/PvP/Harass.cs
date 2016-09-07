@@ -62,8 +62,7 @@ namespace ExorAIO.Champions.Orianna
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Vars.E.IsReady() &&
-                    Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
                     > Vars.AaRange
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)

@@ -39,9 +39,7 @@ namespace ExorAIO.Champions.Orianna
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady()
-                && GameObjects.EnemyHeroes.Any(
-                    t =>
-                    t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
+                && GameObjects.EnemyHeroes.Any(t => t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
@@ -56,9 +54,8 @@ namespace ExorAIO.Champions.Orianna
                 > Vars.Q.Instance.ManaCost + Vars.W.Instance.ManaCost
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                foreach (
-                    var ally in
-                        GameObjects.AllyHeroes.OrderBy(o => o.Health).Where(t => t.IsValidTarget(Vars.E.Range, false)))
+                foreach (var ally in
+                    GameObjects.AllyHeroes.OrderBy(o => o.Health).Where(t => t.IsValidTarget(Vars.E.Range, false)))
                 {
                     var polygon = new Geometry.Rectangle(
                         ally.ServerPosition,
@@ -108,8 +105,7 @@ namespace ExorAIO.Champions.Orianna
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Vars.E.IsReady() &&
-                    Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
+                if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
                     > Vars.AaRange
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)

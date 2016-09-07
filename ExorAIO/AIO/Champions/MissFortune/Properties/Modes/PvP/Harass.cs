@@ -46,9 +46,7 @@ namespace ExorAIO.Champions.MissFortune
                                                         ? 0.35
                                                         : GameObjects.Player.Level < 11
                                                               ? 0.4
-                                                              : GameObjects.Player.Level < 13
-                                                                    ? 0.45
-                                                                    : 0.5;
+                                                              : GameObjects.Player.Level < 13 ? 0.45 : 0.5;
 
                 /// <summary>
                 ///     Through enemy minions.

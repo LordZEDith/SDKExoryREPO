@@ -26,8 +26,7 @@ namespace ExorAIO.Champions.Quinn
         public static void Combo(EventArgs args)
         {
             if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange)) || !Targets.Target.IsValidTarget()
-                || Targets.Target.HasBuff("quinnw")
-                || Invulnerable.Check(Targets.Target))
+                || Targets.Target.HasBuff("quinnw") || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -46,8 +45,7 @@ namespace ExorAIO.Champions.Quinn
             ///     The Combo Q Logic.
             /// </summary>
             if (Vars.Q.IsReady() && (!Vars.E.IsReady() || !Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
-                && Targets.Target.IsValidTarget(Vars.Q.Range - 100f)
-                && !Vars.R.Instance.Name.Equals("QuinnRFinale")
+                && Targets.Target.IsValidTarget(Vars.Q.Range - 100f) && !Vars.R.Instance.Name.Equals("QuinnRFinale")
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())

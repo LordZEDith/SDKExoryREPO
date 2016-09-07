@@ -47,10 +47,9 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
-                        GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"))
-                            .OrderByDescending(
-                                o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName)).FirstOrDefault();
+                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("quinnw"))
+                            .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
+                            .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {

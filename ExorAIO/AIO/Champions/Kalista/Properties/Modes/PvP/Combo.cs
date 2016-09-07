@@ -37,8 +37,7 @@ namespace ExorAIO.Champions.Kalista
                     GameObjectOrder.AttackUnit,
                     Targets.Minions.FirstOrDefault(m => m.IsValidTarget(Vars.AaRange)));
             }
-            if (Bools.HasSheenBuff() && !Targets.Target.IsValidTarget(Vars.AaRange)
-                || !Targets.Target.IsValidTarget()
+            if (Bools.HasSheenBuff() && !Targets.Target.IsValidTarget(Vars.AaRange) || !Targets.Target.IsValidTarget()
                 || Invulnerable.Check(Targets.Target))
             {
                 return;
@@ -47,14 +46,14 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any()
-                    || Vars.Q.GetPrediction(Targets.Target).CollisionObjects.All(
-                        c =>
-                        (GameObjects.EnemyHeroes.Contains(c) || Targets.Minions.Contains(c))
-                        && c.Health < (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)))
+                    || Vars.Q.GetPrediction(Targets.Target)
+                           .CollisionObjects.All(
+                               c =>
+                               (GameObjects.EnemyHeroes.Contains(c) || Targets.Minions.Contains(c))
+                               && c.Health < (float)GameObjects.Player.GetSpellDamage(c, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
                 }

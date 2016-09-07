@@ -72,8 +72,9 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
-                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).First());
+                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                        .OrderBy(o => o.Health)
+                        .First());
             }
         }
 

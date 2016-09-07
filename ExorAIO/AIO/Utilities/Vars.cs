@@ -117,16 +117,14 @@ namespace ExorAIO.Utilities
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Red",
+                                                                                                 BaseSkinName = "SRU_Red",
                                                                                                  Width = 139, Height = 4,
                                                                                                  XOffset = 12,
                                                                                                  YOffset = 24
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Blue",
+                                                                                                 BaseSkinName = "SRU_Blue",
                                                                                                  Width = 139, Height = 4,
                                                                                                  XOffset = 12,
                                                                                                  YOffset = 24
@@ -141,19 +139,15 @@ namespace ExorAIO.Utilities
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "Sru_Crab",
+                                                                                                 BaseSkinName = "Sru_Crab",
                                                                                                  Width = 61, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 5
+                                                                                                 XOffset = 1, YOffset = 5
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Krug",
+                                                                                                 BaseSkinName = "SRU_Krug",
                                                                                                  Width = 79, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 7
+                                                                                                 XOffset = 1, YOffset = 7
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
@@ -283,11 +277,6 @@ namespace ExorAIO.Utilities
         ///     Gets or sets the R Spell menu.
         /// </summary>
         public static Menu RMenu { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the Soulbound.
-        /// </summary>
-        public static Obj_AI_Hero SoulBound { get; set; }
 
         /// <summary>
         ///     Gets or sets the settings menu.

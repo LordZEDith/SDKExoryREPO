@@ -29,8 +29,7 @@ namespace ExorAIO.Champions.Sona
             /// <summary>
             ///     The Engager E Logic.
             /// </summary>
-            if (Vars.E.IsReady()
-                && GameObjects.Player.CountEnemyHeroesInRange(1500f) > 0
+            if (Vars.E.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(1500f) > 0
                 && GameObjects.Player.CountAllyHeroesInRange(Vars.E.Range)
                 >= Vars.Menu["spells"]["e"]["engager"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["engager"].GetValue<MenuSliderButton>().BValue)
@@ -44,11 +43,13 @@ namespace ExorAIO.Champions.Sona
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                var target = GameObjects.EnemyHeroes.Where(
-                    t =>
-                    !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
-                    && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()]
-                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                var target =
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist2"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                        .OrderBy(o => o.Health)
+                        .FirstOrDefault();
                 if (target != null)
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);

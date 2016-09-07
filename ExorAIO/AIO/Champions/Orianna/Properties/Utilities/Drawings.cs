@@ -39,8 +39,9 @@ namespace ExorAIO.Champions.Orianna
 
                     if (Orianna.BallPosition == null)
                     {
-                        var objGeneralParticleEmitter = ObjectManager.Get<Obj_GeneralParticleEmitter>()
-                            .FirstOrDefault(o => o.Name.Equals("Orianna_Base_Q_Ghost_mis.troy"));
+                        var objGeneralParticleEmitter =
+                            ObjectManager.Get<Obj_GeneralParticleEmitter>()
+                                .FirstOrDefault(o => o.Name.Equals("Orianna_Base_Q_Ghost_mis.troy"));
                         if (objGeneralParticleEmitter != null)
                         {
                             drawBall = objGeneralParticleEmitter.Position;

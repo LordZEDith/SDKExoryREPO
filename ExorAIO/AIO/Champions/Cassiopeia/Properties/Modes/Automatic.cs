@@ -55,8 +55,7 @@ namespace ExorAIO.Champions.Cassiopeia
                 /// <summary>
                 ///     The Automatic W Logic.
                 /// </summary>
-                if (Vars.W.IsReady() && target.IsValidTarget(Vars.W.Range)
-                    && !target.IsValidTarget(500)
+                if (Vars.W.IsReady() && target.IsValidTarget(Vars.W.Range) && !target.IsValidTarget(500)
                     && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
                 {
                     Vars.W.Cast(target.ServerPosition);
@@ -69,12 +68,14 @@ namespace ExorAIO.Champions.Cassiopeia
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                var target = GameObjects.EnemyHeroes.Where(
-                    t =>
-                    t.IsValidTarget(Vars.R.Range - 100f) && t.IsFacing(GameObjects.Player)
-                    && !Invulnerable.Check(t, DamageType.Magical, false)
-                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()]
-                           .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                var target =
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.IsValidTarget(Vars.R.Range - 100f) && t.IsFacing(GameObjects.Player)
+                        && !Invulnerable.Check(t, DamageType.Magical, false)
+                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                        .OrderBy(o => o.Health)
+                        .FirstOrDefault();
                 if (target != null)
                 {
                     Vars.R.Cast(target.ServerPosition);

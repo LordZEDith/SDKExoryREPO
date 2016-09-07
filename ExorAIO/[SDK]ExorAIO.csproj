@@ -47,9 +47,6 @@
     <Reference Include="SharpDX">
       <HintPath>C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\References\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct3D9, Version=2.6.3.0, Culture=neutral, PublicKeyToken=345b829e6e492981">
-      <HintPath>C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\References\SharpDX.Direct3D9.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

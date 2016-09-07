@@ -70,7 +70,6 @@ namespace ExorAIO.Champions.Jinx
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 2, 5, true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(
                         new MenuSeparator(

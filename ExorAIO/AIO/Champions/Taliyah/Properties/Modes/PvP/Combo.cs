@@ -90,8 +90,7 @@ namespace ExorAIO.Champions.Taliyah
             if (Vars.Q.IsReady() && !Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range - 50f)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Taliyah.TerrainObject != null
-                    && Vars.Menu["spells"]["q"]["combofull"].GetValue<MenuBool>().Value)
+                if (Taliyah.TerrainObject != null && Vars.Menu["spells"]["q"]["combofull"].GetValue<MenuBool>().Value)
                 {
                     return;
                 }
