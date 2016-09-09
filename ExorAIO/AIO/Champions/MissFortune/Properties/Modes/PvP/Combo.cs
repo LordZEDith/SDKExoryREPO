@@ -71,17 +71,17 @@ namespace ExorAIO.Champions.MissFortune
                     let target =
                         GameObjects.EnemyHeroes.FirstOrDefault(
                             t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range)
                             && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                 || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                     where target != null
                     where
                         !polygon.IsOutside((Vector2)target.ServerPosition)
-                        && !polygon.IsOutside(
+                        /*&& !polygon.IsOutside(
                             (Vector2)
                             Movement.GetPrediction(
                                 target,
-                                GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)
+                                GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
                     select minion)
                 {
                     Vars.Q.CastOnUnit(minion);

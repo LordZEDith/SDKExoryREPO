@@ -70,7 +70,7 @@ namespace ExorAIO.Champions.MissFortune
                             var target =
                                 GameObjects.EnemyHeroes.FirstOrDefault(
                                     t =>
-                                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
+                                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range)
                                     && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                         || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))));
                             if (target != null)

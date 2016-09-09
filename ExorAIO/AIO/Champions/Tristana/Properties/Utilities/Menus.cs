@@ -30,8 +30,11 @@ namespace ExorAIO.Champions.Tristana
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
-                    Vars.QMenu.Add(new MenuBool("clear", "Clear", true));
+                    Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.QMenu.Add(new MenuBool("harass", "Harass", true));
+                    Vars.QMenu.Add(new MenuBool("buildings", "Buildings", true));
+                    Vars.QMenu.Add(new MenuBool("laneclear", "LaneClear", true));
+                    Vars.QMenu.Add(new MenuBool("jungleclear", "JungleClear", true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -80,6 +83,8 @@ namespace ExorAIO.Champions.Tristana
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.RMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser"));
+                    Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels"));
                 }
                 Vars.SpellsMenu.Add(Vars.RMenu);
             }

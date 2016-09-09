@@ -32,6 +32,14 @@ namespace ExorAIO.Champions.Tristana
             }
 
             /// <summary>
+            ///     The Q BuildingClear Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuSliderButton>().BValue)
+            {
+                Vars.Q.Cast();
+            }
+
+            /// <summary>
             ///     The E BuildingClear Logic.
             /// </summary>
             if (Vars.E.IsReady()
@@ -55,13 +63,21 @@ namespace ExorAIO.Champions.Tristana
             }
 
             /// <summary>
-            ///     The Clear Q Logic.
+            ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp
-                && (Targets.Minions.Any() || Targets.JungleMinions.Any())
-                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
+            var objAiBase = Variables.Orbwalker.GetTarget() as Obj_AI_Minion;
+            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.IsAutoAttacking && objAiBase != null)
             {
-                Vars.Q.Cast();
+                /// <summary>
+                ///     The LaneClear & JungleClear Q Logics.
+                /// </summary>
+                if (Targets.Minions.Contains(objAiBase)
+                    && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuBool>().Value
+                    || Targets.JungleMinions.Contains(objAiBase)
+                    && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuBool>().Value)
+                {
+                    Vars.Q.Cast();
+                }
             }
 
             /// <summary>

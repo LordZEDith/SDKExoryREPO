@@ -51,7 +51,7 @@ namespace ExorAIO.Champions.MissFortune
                     }
                 }
 
-                var passiveMultiplier = GameObjects.Player.Level < 4
+                var minionPassiveMultiplier = GameObjects.Player.Level < 4
                                             ? 0.25
                                             : GameObjects.Player.Level < 7
                                                   ? 0.3
@@ -60,6 +60,7 @@ namespace ExorAIO.Champions.MissFortune
                                                         : GameObjects.Player.Level < 11
                                                               ? 0.4
                                                               : GameObjects.Player.Level < 13 ? 0.45 : 0.5;
+                var heroPassiveMultiplier = minionPassiveMultiplier*2;
 
                 /// <summary>
                 ///     Extended Q KillSteal Logic.
@@ -83,15 +84,15 @@ namespace ExorAIO.Champions.MissFortune
                            let target =
                                GameObjects.EnemyHeroes.FirstOrDefault(
                                    t =>
-                                   !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
+                                   !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range)
                                    && Vars.GetRealHealth(t)
                                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
-                                   + GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                   + GameObjects.Player.TotalAttackDamage * minionPassiveMultiplier
                                    + (Vars.GetRealHealth(minion)
                                       < (float)GameObjects.Player.GetSpellDamage(minion, SpellSlot.Q)
                                       + (MissFortune.PassiveTarget == null
                                          || minion.NetworkId != MissFortune.PassiveTarget?.NetworkId
-                                             ? GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                             ? GameObjects.Player.TotalAttackDamage * minionPassiveMultiplier
                                              : 0)
                                           ? (float)
                                             GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
@@ -102,11 +103,11 @@ namespace ExorAIO.Champions.MissFortune
                            where target != null
                            where
                                !polygon.IsOutside((Vector2)target.ServerPosition)
-                               && !polygon.IsOutside(
+                               /*&& !polygon.IsOutside(
                                    (Vector2)
                                    Movement.GetPrediction(
                                        target,
-                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)
+                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
                            select minion)
                     {
                         Vars.Q.CastOnUnit(minion);
@@ -129,20 +130,20 @@ namespace ExorAIO.Champions.MissFortune
                            let target2 =
                                GameObjects.EnemyHeroes.FirstOrDefault(
                                    t =>
-                                   !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range - 50f)
+                                   !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q2.Range)
                                    && Vars.GetRealHealth(t)
                                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q, DamageStage.SecondForm)
-                                   + GameObjects.Player.TotalAttackDamage * passiveMultiplier
+                                   + GameObjects.Player.TotalAttackDamage * heroPassiveMultiplier
                                    && (t.NetworkId == MissFortune.PassiveTarget?.NetworkId
                                        || Targets.Minions.All(m => polygon.IsOutside((Vector2)m.ServerPosition))))
                            where target2 != null
                            where
                                !polygon.IsOutside((Vector2)target2.ServerPosition)
-                               && !polygon.IsOutside(
+                               /*&& !polygon.IsOutside(
                                    (Vector2)
                                    Movement.GetPrediction(
                                        target2,
-                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)
+                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
                            select target)
                     {
                         Vars.Q.CastOnUnit(target);

@@ -17,6 +17,7 @@ namespace ExorAIO.Champions.Tristana
         {
             Game.OnUpdate += Tristana.OnUpdate;
             Events.OnGapCloser += Tristana.OnGapCloser;
+            Events.OnInterruptableTarget += Tristana.OnInterruptableTarget;
             Obj_AI_Base.OnBuffAdd += Tristana.OnBuffAdd;
             Variables.Orbwalker.OnAction += Tristana.OnAction;
         }

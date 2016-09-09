@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Jinx
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
                 && Targets.Target.CountEnemyHeroesInRange(Vars.E.Width)
-                >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue
+                >= Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.E.Cast(
