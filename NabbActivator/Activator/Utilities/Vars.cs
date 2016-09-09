@@ -97,16 +97,14 @@ namespace NabbActivator
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Red",
+                                                                                                 BaseSkinName = "SRU_Red",
                                                                                                  Width = 139, Height = 4,
                                                                                                  XOffset = 12,
                                                                                                  YOffset = 24
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Blue",
+                                                                                                 BaseSkinName = "SRU_Blue",
                                                                                                  Width = 139, Height = 4,
                                                                                                  XOffset = 12,
                                                                                                  YOffset = 24
@@ -121,11 +119,9 @@ namespace NabbActivator
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Krug",
+                                                                                                 BaseSkinName = "SRU_Krug",
                                                                                                  Width = 79, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 7
+                                                                                                 XOffset = 1, YOffset = 7
                                                                                              },
                                                                                          new JungleHpBarOffset
                                                                                              {

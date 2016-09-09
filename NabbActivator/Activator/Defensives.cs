@@ -43,7 +43,10 @@ namespace NabbActivator
                     return;
                 }
 
-                if (GameObjects.AllyHeroes.OrderBy(t => t.FlatCritChanceMod).First().IsValidTarget(800f, false))
+                if (
+                    GameObjects.AllyHeroes.OrderBy(t => t.FlatCritChanceMod)
+                        .First()
+                        .IsValidTarget(800f + GameObjects.Player.BoundingRadius, false))
                 {
                     Items.UseItem(3153, GameObjects.AllyHeroes.OrderBy(t => t.FlatCritChanceMod).First());
                 }
@@ -58,7 +61,9 @@ namespace NabbActivator
                 {
                     foreach (var super in
                         GameObjects.AllyMinions.Where(
-                            m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Super))
+                            m =>
+                            m.IsValidTarget(1200f + GameObjects.Player.BoundingRadius, false)
+                            && m.GetMinionType() == MinionTypes.Super))
                     {
                         Items.UseItem(3060, super);
                     }
@@ -67,7 +72,9 @@ namespace NabbActivator
                 {
                     foreach (var siege in
                         GameObjects.AllyMinions.Where(
-                            m => m.IsValidTarget(1200f, false) && m.GetMinionType() == MinionTypes.Siege))
+                            m =>
+                            m.IsValidTarget(1200f + GameObjects.Player.BoundingRadius, false)
+                            && m.GetMinionType() == MinionTypes.Siege))
                     {
                         Items.UseItem(3060, siege);
                     }
@@ -82,7 +89,7 @@ namespace NabbActivator
                 foreach (var ally in
                     GameObjects.AllyHeroes.Where(
                         a =>
-                        a.IsValidTarget(500f, false)
+                        a.IsValidTarget(500f + GameObjects.Player.BoundingRadius, false)
                         && Health.GetPrediction(a, (int)(250 + Game.Ping / 2f)) <= a.MaxHealth / 4))
                 {
                     Items.UseItem(3401, ally);
@@ -98,7 +105,7 @@ namespace NabbActivator
                 if (
                     GameObjects.AllyHeroes.Count(
                         a =>
-                        a.IsValidTarget(600f, false)
+                        a.IsValidTarget(600f + GameObjects.Player.BoundingRadius, false)
                         && Health.GetPrediction(a, (int)(250 + Game.Ping / 2f)) <= a.MaxHealth / 1.5) >= 3)
                 {
                     Items.UseItem(3190);
@@ -209,7 +216,7 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3143))
             {
-                if (GameObjects.Player.CountEnemyHeroesInRange(500f) >= 2)
+                if (GameObjects.Player.CountEnemyHeroesInRange(500f + GameObjects.Player.BoundingRadius) >= 2)
                 {
                     Items.UseItem(3143);
                 }

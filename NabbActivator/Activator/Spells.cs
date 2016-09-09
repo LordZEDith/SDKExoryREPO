@@ -131,7 +131,9 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Ignite.IsReady())
             {
-                foreach (var target in GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(600f)))
+                foreach (
+                    var target in
+                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(600f + GameObjects.Player.BoundingRadius)))
                 {
                     if (Vars.GetIgniteDamage > target.Health
                         || Health.GetPrediction(target, (int)(1000 + Game.Ping / 2f)) <= 0)
@@ -160,7 +162,7 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Heal.IsReady())
             {
-                if (GameObjects.Player.CountEnemyHeroesInRange(850f) > 0
+                if (GameObjects.Player.CountEnemyHeroesInRange(850f + GameObjects.Player.BoundingRadius) > 0
                     && Health.GetPrediction(GameObjects.Player, (int)(1000 + Game.Ping / 2f))
                     <= GameObjects.Player.MaxHealth / 6)
                 {
@@ -171,7 +173,8 @@ namespace NabbActivator
                     foreach (var ally in
                         GameObjects.AllyHeroes.Where(
                             a =>
-                            a.IsValidTarget(850f, false) && a.CountEnemyHeroesInRange(850f) > 0
+                            a.IsValidTarget(850f + GameObjects.Player.BoundingRadius, false)
+                            && a.CountEnemyHeroesInRange(850f) > 0
                             && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
                     {
                         GameObjects.Player.Spellbook.CastSpell(SpellSlots.Heal, ally);
@@ -243,13 +246,20 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Exhaust.IsReady())
             {
-                if (
-                    GameObjects.AllyHeroes.Any(
-                        a =>
-                        a.Distance(Targets.Target) <= 650f
-                        && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
+                foreach (
+                    var ally in
+                        GameObjects.AllyHeroes.Where(
+                            a =>
+                            a.CountEnemyHeroesInRange(650f) >= 1
+                            && a.Distance(GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a)).FirstOrDefault()) < 700f
+                            && GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a))
+                                   .FirstOrDefault()
+                                   .IsValidTarget(650f + GameObjects.Player.BoundingRadius)
+                            && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
                 {
-                    GameObjects.Player.Spellbook.CastSpell(SpellSlots.Exhaust, Targets.Target);
+                    GameObjects.Player.Spellbook.CastSpell(
+                        SpellSlots.Exhaust,
+                        GameObjects.EnemyHeroes.OrderBy(o => o.Distance(ally)).FirstOrDefault());
                 }
             }
         }

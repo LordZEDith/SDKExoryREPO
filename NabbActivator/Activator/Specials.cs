@@ -31,12 +31,10 @@ namespace NabbActivator
                 /// <summary>
                 ///     The Ohmwrecker logic.
                 /// </summary>
-                if (Items.CanUseItem(3056) && sender.IsValidTarget(750f))
+                if (Items.CanUseItem(3056) && sender is Obj_AI_Turret && args.Target is Obj_AI_Hero
+                    && args.Target.IsAlly && sender.IsValidTarget(750f + GameObjects.Player.BoundingRadius))
                 {
-                    if (args.Target.IsAlly && sender is Obj_AI_Turret && args.Target is Obj_AI_Hero)
-                    {
-                        Items.UseItem(3056, sender);
-                    }
+                    Items.UseItem(3056, sender);
                 }
             }
         }

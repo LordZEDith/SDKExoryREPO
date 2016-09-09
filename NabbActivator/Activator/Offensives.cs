@@ -6,7 +6,6 @@ namespace NabbActivator
     using System;
     using System.Linq;
 
-    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
 
@@ -32,7 +31,7 @@ namespace NabbActivator
             /// <summary>
             ///     The Bilgewater Cutlass Logic.
             /// </summary>
-            if (Items.CanUseItem(3144) && Targets.Target.IsValidTarget(550f))
+            if (Items.CanUseItem(3144) && Targets.Target.IsValidTarget(550f + GameObjects.Player.BoundingRadius))
             {
                 Items.UseItem(3144, Targets.Target);
             }
@@ -40,7 +39,8 @@ namespace NabbActivator
             /// <summary>
             ///     The Blade of the Ruined King Logic.
             /// </summary>
-            if (Items.CanUseItem(3153) && Targets.Target.IsValidTarget(550f) && GameObjects.Player.HealthPercent <= 90)
+            if (Items.CanUseItem(3153) && Targets.Target.IsValidTarget(550f + GameObjects.Player.BoundingRadius)
+                && GameObjects.Player.HealthPercent <= 90)
             {
                 Items.UseItem(3153, Targets.Target);
             }
@@ -72,7 +72,7 @@ namespace NabbActivator
             /// <summary>
             ///     The Hextech Gunblade Logic.
             /// </summary>
-            if (Items.CanUseItem(3146) && Targets.Target.IsValidTarget(700f))
+            if (Items.CanUseItem(3146) && Targets.Target.IsValidTarget(700f + GameObjects.Player.BoundingRadius))
             {
                 Items.UseItem(3146, Targets.Target);
             }
@@ -91,7 +91,7 @@ namespace NabbActivator
             /// <summary>
             ///     The Hextech GLP-800 Logic.
             /// </summary>
-            if (Items.CanUseItem(3030) && Targets.Target.IsValidTarget(800f))
+            if (Items.CanUseItem(3030) && Targets.Target.IsValidTarget(800f + GameObjects.Player.BoundingRadius))
             {
                 Items.UseItem(3030, Targets.Target.ServerPosition);
             }
@@ -99,11 +99,16 @@ namespace NabbActivator
             /// <summary>
             ///     The Hextech Protobelt Logic.
             /// </summary>
-            if (Items.CanUseItem(3152)
-                && Targets.Target.IsValidTarget(
-                    GameObjects.Player.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f))))
+            if (Items.CanUseItem(3152))
             {
-                Items.UseItem(3152, GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 850f));
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.IsValidTarget(850f + GameObjects.Player.BoundingRadius)
+                        && t.CountEnemyHeroesInRange(200f) >= 3))
+                {
+                    Items.UseItem(3152, target.ServerPosition);
+                }
             }
         }
 
