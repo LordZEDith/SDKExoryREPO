@@ -25,8 +25,8 @@ namespace ExorAIO.Champions.Tristana
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !(Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget()
-                || !Invulnerable.Check(Variables.Orbwalker.GetTarget() as Obj_AI_Hero))
+            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
+            if (Bools.HasSheenBuff() || target == null || !target.IsValidTarget() || !Invulnerable.Check(target))
             {
                 return;
             }
@@ -43,12 +43,11 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && (Variables.Orbwalker.GetTarget() as Obj_AI_Hero).IsValidTarget(Vars.E.Range)
+            if (Vars.E.IsReady() && target.IsValidTarget(Vars.E.Range)
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["e"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                       .Value)
+                && Vars.Menu["spells"]["e"]["whitelist"][target.ChampionName.ToLower()].GetValue<MenuBool>().Value)
             {
-                Vars.E.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Hero);
+                Vars.E.CastOnUnit(target);
             }
         }
 
