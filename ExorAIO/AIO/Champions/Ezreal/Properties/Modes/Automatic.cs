@@ -67,6 +67,26 @@ namespace ExorAIO.Champions.Ezreal
             {
                 Vars.Q.Cast(Game.CursorPos);
             }
+
+            /// <summary>
+            ///     The Semi-Automatic R Logic.
+            /// </summary>
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            {
+                var target =
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(2000f)
+                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                        .OrderBy(o => o.Health)
+                        .FirstOrDefault();
+                if (target != null)
+                {
+                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                }
+            }
+
             if (GameObjects.Player.TotalAttackDamage < GameObjects.Player.TotalMagicalDamage)
             {
                 return;
@@ -119,25 +139,6 @@ namespace ExorAIO.Champions.Ezreal
                         t => !t.IsMe && t.Spellbook.IsAutoAttacking && t.IsValidTarget(Vars.W.Range, false)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).UnitPosition);
-                }
-            }
-
-            /// <summary>
-            ///     The Semi-Automatic R Logic.
-            /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
-            {
-                var target =
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                        !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(2000f)
-                        && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
-                        .OrderBy(o => o.Health)
-                        .FirstOrDefault();
-                if (target != null)
-                {
-                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
                 }
             }
         }
