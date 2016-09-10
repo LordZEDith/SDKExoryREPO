@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Tristana
         public static void Combo(EventArgs args)
         {
             var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
-            if (Bools.HasSheenBuff() || target == null || !target.IsValidTarget() || !Invulnerable.Check(target))
+            if (Bools.HasSheenBuff() || target == null || !target.IsValidTarget() || Invulnerable.Check(target))
             {
                 return;
             }
