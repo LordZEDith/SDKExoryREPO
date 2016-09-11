@@ -27,7 +27,7 @@ namespace NabbActivator
                     /// <summary>
                     ///     Loads the Smite damage drawing.
                     /// </summary>
-                    if (Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown
+                    if (Vars.Smite.Slot != SpellSlot.Unknown
                         && Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
                     {
                         if (!Vars.Menu["smite"]["drawings"]["damage"].GetValue<MenuBool>().Value)

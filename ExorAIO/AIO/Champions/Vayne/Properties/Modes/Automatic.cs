@@ -54,8 +54,8 @@ namespace ExorAIO.Champions.Vayne
                             && (Vars.E.GetPrediction(target).UnitPosition + vector * (float)(i * 42.5)).IsWall()
                             && (Vars.E2.GetPrediction(target).UnitPosition + vector * (float)(i * 42.5)).IsWall()
                             && (target.ServerPosition + vector * (float)(i * 44.5)).IsWall()
-                            && (Vars.E.GetPrediction(target).UnitPosition + vector * (float)(i * 44.5)).IsWall()
-                            && (Vars.E2.GetPrediction(target).UnitPosition + vector * (float)(i * 44.5)).IsWall())
+                            && (Vars.E.GetPrediction(target).UnitPosition + vector * (float)(i * 45)).IsWall()
+                            && (Vars.E2.GetPrediction(target).UnitPosition + vector * (float)(i * 45)).IsWall())
                         {
                             Vars.E.CastOnUnit(target);
                         }
