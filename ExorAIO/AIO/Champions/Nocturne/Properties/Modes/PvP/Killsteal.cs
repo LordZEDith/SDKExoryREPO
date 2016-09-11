@@ -34,8 +34,7 @@ namespace ExorAIO.Champions.Nocturne
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange)
-                        && !Invulnerable.Check(t, DamageType.True, false)
+                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange) && !Invulnerable.Check(t)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);

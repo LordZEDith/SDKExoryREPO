@@ -166,11 +166,11 @@ namespace ExorAIO.Champions.Nocturne
                         /// <summary>
                         ///     Sets the whitelist menu for the R.
                         /// </summary>
-                        Vars.WhiteListMenu = new Menu("whitelist", "Ultimate: Whitelist Menu");
+                        Vars.WhiteList2Menu = new Menu("whitelist", "Ultimate: Whitelist Menu");
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteListMenu.Add(
+                                Vars.WhiteList2Menu.Add(
                                     new MenuBool(
                                         target.ChampionName.ToLower(),
                                         $"Use against: {target.ChampionName}",
@@ -178,7 +178,7 @@ namespace ExorAIO.Champions.Nocturne
                             }
                         }
 
-                        Vars.RMenu.Add(Vars.WhiteListMenu);
+                        Vars.RMenu.Add(Vars.WhiteList2Menu);
                     }
                 }
 

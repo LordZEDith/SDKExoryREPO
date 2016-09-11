@@ -27,6 +27,18 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
+            /*
+            if (sender.IsMe && (AutoAttack.IsAutoAttack(args.SData.Name) || args.Slot.Equals(SpellSlot.Q)))
+            {
+
+                if (!Vars.Q.IsReady() && GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level > 0
+                    && GameObjects.Player.Spellbook.GetSpell(SpellSlot.E).Level == 0)
+                {
+                    //Vars.E.Cast(Game.CursorPos);
+                    ObjectManager.Player.Spellbook.CastSpell(SpellSlot.E, Game.CursorPos);
+                }
+            }
+            */
             if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
                 /// <summary>
