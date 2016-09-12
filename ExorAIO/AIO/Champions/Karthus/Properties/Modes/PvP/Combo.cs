@@ -37,7 +37,7 @@ namespace ExorAIO.Champions.Karthus
             if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Targets.Target.ServerPosition);
+                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
             }
 
             /// <summary>
@@ -46,7 +46,10 @@ namespace ExorAIO.Champions.Karthus
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                if (GameObjects.Player.Distance(Vars.Q.GetPrediction(Targets.Target).CastPosition) < Vars.Q.Range)
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                }
             }
         }
 

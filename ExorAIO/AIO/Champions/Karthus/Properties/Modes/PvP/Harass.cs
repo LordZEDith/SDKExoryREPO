@@ -38,7 +38,10 @@ namespace ExorAIO.Champions.Karthus
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                if (GameObjects.Player.Distance(Vars.Q.GetPrediction(Targets.Target).CastPosition) < Vars.Q.Range)
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                }
             }
         }
 
