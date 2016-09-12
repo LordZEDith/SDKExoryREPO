@@ -58,8 +58,16 @@ namespace ExorAIO.Champions.Karthus
                     Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
-
                 Vars.SpellsMenu.Add(Vars.EMenu);
+
+                /// <summary>
+                ///     Sets the menu for the R.
+                /// </summary>
+                Vars.RMenu = new Menu("r", "R Notification Options:");
+                {
+                    Vars.RMenu.Add(new MenuBool("ping", "Local Ping on Killable Enemies", true));
+                }
+                Vars.SpellsMenu.Add(Vars.RMenu);
             }
 
             Vars.Menu.Add(Vars.SpellsMenu);
