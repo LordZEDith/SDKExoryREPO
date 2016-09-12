@@ -1,10 +1,9 @@
 
 #pragma warning disable 1587
 
-namespace ExorAIO.Champions.Karma
+namespace ExorAIO.Champions.Karthus
 {
     using System;
-    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -39,10 +38,7 @@ namespace ExorAIO.Champions.Karma
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
-                {
-                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-                }
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
             }
         }
 

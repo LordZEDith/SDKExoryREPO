@@ -1,11 +1,10 @@
 
 #pragma warning disable 1587
 
-namespace ExorAIO.Champions.Karma
+namespace ExorAIO.Champions.Karthus
 {
     using ExorAIO.Utilities;
 
-    using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
 
     /// <summary>
@@ -33,7 +32,9 @@ namespace ExorAIO.Champions.Karma
                     Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("lasthit", "LastHit / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 
@@ -43,9 +44,6 @@ namespace ExorAIO.Champions.Karma
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
                     Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
-                    Vars.WMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
-                    Vars.WMenu.Add(
-                        new MenuSliderButton("lifesaver", "Logical Lifesaver / If Health < x%", 20, 10, 100, true));
                 }
                 Vars.SpellsMenu.Add(Vars.WMenu);
 
@@ -54,38 +52,14 @@ namespace ExorAIO.Champions.Karma
                 /// </summary>
                 Vars.EMenu = new Menu("e", "Use E to:");
                 {
-                    Vars.EMenu.Add(new MenuBool("engager", "Engager"));
-                    Vars.EMenu.Add(new MenuBool("logical", "Logical", true));
-                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
-                    Vars.EMenu.Add(new MenuSliderButton("aoe", "Logical AoE / If Allies >= x", 3, 2, 6, true));
-                    {
-                        /// <summary>
-                        ///     Sets the whitelist menu for the E.
-                        /// </summary>
-                        Vars.WhiteListMenu = new Menu("whitelist", "Shield: Whitelist Menu", true);
-                        {
-                            foreach (var ally in GameObjects.AllyHeroes)
-                            {
-                                Vars.WhiteListMenu.Add(
-                                    new MenuBool(ally.ChampionName.ToLower(), $"Use for: {ally.ChampionName}", true));
-                            }
-                        }
-
-                        Vars.EMenu.Add(Vars.WhiteListMenu);
-                    }
+                    Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.EMenu.Add(new MenuBool("killsteal", "KillSteal", true));
+                    Vars.EMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
+                    Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }
 
                 Vars.SpellsMenu.Add(Vars.EMenu);
-
-                /// <summary>
-                ///     Sets the menu for the R.
-                /// </summary>
-                Vars.RMenu = new Menu("r", "Use R to:");
-                {
-                    Vars.RMenu.Add(new MenuBool("empq", "Logical Q Empower", true));
-                    Vars.RMenu.Add(new MenuBool("empe", "Logical E Empower", true));
-                }
-                Vars.SpellsMenu.Add(Vars.RMenu);
             }
 
             Vars.Menu.Add(Vars.SpellsMenu);
@@ -95,11 +69,7 @@ namespace ExorAIO.Champions.Karma
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
-                Vars.MiscMenu.Add(
-                    new MenuSeparator(
-                        "separator",
-                        "The Support mode doesn't attack or throw spells to minions if there are allies nearby."));
-                Vars.MiscMenu.Add(new MenuBool("support", "Support Mode"));
+                Vars.MiscMenu.Add(new MenuSliderButton("tear", "Stack Tear / if Mana >= x%", 80, 1, 99, true));
             }
             Vars.Menu.Add(Vars.MiscMenu);
 

@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Cassiopeia
             /// <summary>
             ///     The Tear Stacking Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Bools.HasTear(GameObjects.Player) && !GameObjects.Player.IsRecalling()
+            if (Vars.Q.IsReady() && Bools.HasTear(GameObjects.Player)
                 && Variables.Orbwalker.ActiveMode == OrbwalkingMode.None
                 && GameObjects.Player.CountEnemyHeroesInRange(1500) == 0
                 && GameObjects.Player.ManaPercent

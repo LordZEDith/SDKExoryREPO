@@ -148,7 +148,7 @@ namespace ExorAIO.Champions.Karma
         }
 
         /// <summary>
-        ///     Loads Lux.
+        ///     Loads Karma.
         /// </summary>
         public void OnLoad()
         {
