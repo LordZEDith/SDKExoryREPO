@@ -69,6 +69,7 @@ namespace ExorAIO.Champions.Karthus
             /// </summary>
             Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
             {
+                Vars.MiscMenu.Add(new MenuBool("noaacombo", "Don't AA in Combo"));
                 Vars.MiscMenu.Add(new MenuSliderButton("tear", "Stack Tear / if Mana >= x%", 80, 1, 99, true));
             }
             Vars.Menu.Add(Vars.MiscMenu);

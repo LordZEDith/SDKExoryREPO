@@ -1,6 +1,7 @@
 namespace ExorAIO.Champions.Karthus
 {
     using LeagueSharp;
+    using LeagueSharp.SDK;
 
     /// <summary>
     ///     The methods class.
@@ -15,6 +16,7 @@ namespace ExorAIO.Champions.Karthus
         public static void Initialize()
         {
             Game.OnUpdate += Karthus.OnUpdate;
+            Variables.Orbwalker.OnAction += Karthus.OnAction;
         }
 
         #endregion

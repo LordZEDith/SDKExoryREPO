@@ -9,6 +9,7 @@ namespace ExorAIO.Champions.Karthus
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.UI;
 
     /// <summary>
     ///     The champion class.
@@ -18,16 +19,42 @@ namespace ExorAIO.Champions.Karthus
         #region Public Methods and Operators
 
         /// <summary>
+        ///     Called on orbwalker action.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        {
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Combo:
+
+                            /// <summary>
+                            ///     The 'No AA in Combo' Logic.
+                            /// </summary>
+                            if (Vars.Menu["miscellaneous"]["noaacombo"].GetValue<MenuBool>().Value)
+                            {
+                                if (!Bools.HasSheenBuff() && GameObjects.Player.Mana > Vars.Q.Instance.ManaCost)
+                                {
+                                    args.Process = false;
+                                }
+                            }
+                            break;
+                    }
+
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnUpdate(EventArgs args)
         {
-            if (GameObjects.Player.IsDead)
-            {
-                return;
-            }
-
             /// <summary>
             ///     Initializes the spells.
             /// </summary>
