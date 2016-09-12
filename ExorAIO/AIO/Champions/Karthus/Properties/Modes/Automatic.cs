@@ -52,7 +52,7 @@ namespace ExorAIO.Champions.Karthus
                 /// <summary>
                 ///     If the player doesn't have the E Buff.
                 /// </summary>
-                if (!GameObjects.Player.HasBuff("AuraOfDespair"))
+                if (!GameObjects.Player.HasBuff("KarthusDefile"))
                 {
                     switch (Variables.Orbwalker.ActiveMode)
                     {
@@ -70,34 +70,21 @@ namespace ExorAIO.Champions.Karthus
                         ///     The E Clear Enable Logics.
                         /// </summary>
                         case OrbwalkingMode.LaneClear:
-
-                            /// <summary>
-                            ///     The E JungleClear Enable Logic.
-                            /// </summary>
                             if (
-                                Targets.JungleMinions.Any(
+                                (Targets.JungleMinions.Any(
                                     m =>
                                     m.IsValidTarget(Vars.E.Range)
-                                    && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
-                                && GameObjects.Player.ManaPercent
-                                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
-                                && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
-                            {
-                                Vars.E.Cast();
-                            }
-
-                            /// <summary>
-                            ///     The E LaneClear Enable Logic.
-                            /// </summary>
-                            else if (
-                                Targets.Minions.Any(
-                                    m =>
-                                    m.IsValidTarget(Vars.E.Range)
-                                    && Vars.GetRealHealth(m)
-                                    < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
-                                && GameObjects.Player.ManaPercent
-                                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
-                                && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                                    && Vars.GetRealHealth(m) > (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                 && GameObjects.Player.ManaPercent
+                                 > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
+                                 && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                                || (Targets.Minions.Any(
+                                        m =>
+                                        m.IsValidTarget(Vars.E.Range)
+                                        && Vars.GetRealHealth(m) > (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                    && GameObjects.Player.ManaPercent
+                                    > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
+                                    && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue))
                             {
                                 Vars.E.Cast();
                             }
@@ -116,22 +103,18 @@ namespace ExorAIO.Champions.Karthus
                         ///     The E Clear Disable Logic.
                         /// </summary>
                         case OrbwalkingMode.LaneClear:
-
-                            /// <summary>
-                            ///     The E JungleClear Disable Logic.
-                            /// </summary>
                             if (
                                 (!Targets.JungleMinions.Any(
                                     m =>
                                     m.IsValidTarget(Vars.E.Range)
-                                    && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                    && Vars.GetRealHealth(m) > (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
                                  || GameObjects.Player.ManaPercent
                                  < ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
                                  || !Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                                 && (!Targets.Minions.Any(
                                     m =>
                                     m.IsValidTarget(Vars.E.Range)
-                                    && Vars.GetRealHealth(m) < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
+                                    && Vars.GetRealHealth(m) > (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q))
                                     || GameObjects.Player.ManaPercent
                                     < ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
                                     || !Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue))

@@ -22,7 +22,7 @@ namespace ExorAIO.Champions.Karthus
             Vars.W = new Spell(SpellSlot.W, 1000f);
             Vars.E = new Spell(SpellSlot.E, 425f + GameObjects.Player.BoundingRadius);
             Vars.R = new Spell(SpellSlot.R);
-            Vars.Q.SetSkillshot(0.5f, 100f, float.MaxValue, false, SkillshotType.SkillshotCircle);
+            Vars.Q.SetSkillshot(1.5f, 100f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             Vars.W.SetSkillshot(
                 0f,
                 700f + 100 * GameObjects.Player.Spellbook.GetSpell(SpellSlot.W).Level,

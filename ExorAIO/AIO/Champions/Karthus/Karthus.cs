@@ -29,6 +29,11 @@ namespace ExorAIO.Champions.Karthus
             }
 
             /// <summary>
+            ///     Initializes the spells.
+            /// </summary>
+            Spells.Initialize();
+
+            /// <summary>
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
@@ -56,6 +61,9 @@ namespace ExorAIO.Champions.Karthus
                 case OrbwalkingMode.LaneClear:
                     Logics.Clear(args);
                     break;
+                case OrbwalkingMode.LastHit:
+                    Logics.LastHit(args);
+                    break;
             }
         }
 
@@ -68,11 +76,6 @@ namespace ExorAIO.Champions.Karthus
             ///     Initializes the menus.
             /// </summary>
             Menus.Initialize();
-
-            /// <summary>
-            ///     Initializes the spells.
-            /// </summary>
-            Spells.Initialize();
 
             /// <summary>
             ///     Initializes the methods.

@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Karthus
                 foreach (var minion in
                     Targets.Minions.Where(
                         m =>
-                        Vars.GetRealHealth(m)
+                        Health.GetPrediction(m, 500 + Game.Ping)
                         < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.Q)
                         * (!Targets.Minions.Any(m2 => m2.Distance(m) <= Vars.Q.Width)
                            && !GameObjects.EnemyHeroes.Any(t => t.Distance(m) <= Vars.Q.Width)
