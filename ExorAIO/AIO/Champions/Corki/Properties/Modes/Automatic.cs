@@ -55,7 +55,7 @@ namespace ExorAIO.Champions.Corki
                 && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in
-                    GameObjects.EnemyMinions.Where(m => m.IsValidTarget(Vars.R.Range) && !m.IsValidTarget(Vars.AaRange))
+                    GameObjects.EnemyMinions.Where(m => m.IsValidTarget(Vars.R.Range) && !m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                     )
                 {
                     if (Vars.GetRealHealth(minion)

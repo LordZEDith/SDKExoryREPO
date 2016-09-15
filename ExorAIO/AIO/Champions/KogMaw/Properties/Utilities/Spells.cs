@@ -5,6 +5,7 @@ namespace ExorAIO.Champions.KogMaw
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The spells class.
@@ -21,7 +22,7 @@ namespace ExorAIO.Champions.KogMaw
             Vars.Q = new Spell(SpellSlot.Q, 1175f);
             Vars.W = new Spell(
                 SpellSlot.W,
-                Vars.AaRange + (60f + 30f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                GameObjects.Player.GetRealAutoAttackRange() + (60f + 30f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.W).Level));
             Vars.E = new Spell(SpellSlot.E, 1280f);
             Vars.R = new Spell(SpellSlot.R, 900f + 300f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).Level);
             Vars.Q.SetSkillshot(0.25f, 70f, 1650f, true, SkillshotType.SkillshotLine);

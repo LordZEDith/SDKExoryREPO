@@ -38,8 +38,8 @@ namespace ExorAIO.Champions.Draven
                 > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["combo"])
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
-                    && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
+                    && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                     && Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value)
                 {
                     Vars.W.Cast();

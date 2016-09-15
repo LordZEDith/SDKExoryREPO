@@ -33,7 +33,7 @@ namespace ExorAIO.Champions.Jax
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Vars.E.IsReady() && !Targets.Target.IsUnderEnemyTurret()
-                && Targets.Target.IsValidTarget(Vars.Q.Range) && !Targets.Target.IsValidTarget(Vars.AaRange)
+                && Targets.Target.IsValidTarget(Vars.Q.Range) && !Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.CastOnUnit(Targets.Target);

@@ -16,6 +16,7 @@ namespace ExorAIO.Champions.Kalista
     using LeagueSharp.Data.Enumerations;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The champion class.
@@ -50,7 +51,7 @@ namespace ExorAIO.Champions.Kalista
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("kalistacoopstrikemarkally"))
+                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("kalistacoopstrikemarkally"))
                             .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                             .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId

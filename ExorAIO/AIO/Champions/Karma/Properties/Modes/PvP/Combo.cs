@@ -29,8 +29,8 @@ namespace ExorAIO.Champions.Karma
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
-                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
+            if (Vars.E.IsReady() && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
+                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                 && Vars.Menu["spells"]["e"]["engager"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(GameObjects.Player);

@@ -93,7 +93,7 @@ namespace ExorAIO.Champions.Orianna
                 Vars.R.Cast();
             }
 
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange) || !Targets.Target.IsValidTarget()
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) || !Targets.Target.IsValidTarget()
                 || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
@@ -107,7 +107,7 @@ namespace ExorAIO.Champions.Orianna
             {
                 if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
-                    > Vars.AaRange
+                    > GameObjects.Player.GetRealAutoAttackRange()
                     && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)
                     > ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition))
                 {

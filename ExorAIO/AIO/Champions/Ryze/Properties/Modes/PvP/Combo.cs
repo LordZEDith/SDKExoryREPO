@@ -29,7 +29,7 @@ namespace ExorAIO.Champions.Ryze
             {
                 return;
             }
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
             {
                 return;
             }

@@ -38,7 +38,7 @@ namespace ExorAIO.Champions.Tristana
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.FirstOrDefault(
-                            t => t.IsValidTarget(Vars.AaRange) && t.HasBuff("TristanaECharge"));
+                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("TristanaECharge"));
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {
@@ -79,7 +79,7 @@ namespace ExorAIO.Champions.Tristana
             ///     The Anti-Gapcloser W Logic.
             /// </summary>
             if (Vars.W.IsReady() && args.Sender.IsMelee && args.IsDirectedToPlayer
-                && GameObjects.Player.Distance(args.End) < Vars.AaRange
+                && GameObjects.Player.Distance(args.End) < GameObjects.Player.GetRealAutoAttackRange()
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -Vars.W.Range));

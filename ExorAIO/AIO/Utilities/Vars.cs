@@ -8,7 +8,6 @@ namespace ExorAIO.Utilities
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
-    using LeagueSharp.SDK.Utils;
 
     using SharpDX;
 
@@ -194,11 +193,6 @@ namespace ExorAIO.Utilities
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        ///     Gets the Player's real AutoAttack-Range.
-        /// </summary>
-        public static float AaRange => GameObjects.Player.GetRealAutoAttackRange();
 
         /// <summary>
         ///     Gets or sets the Drawings menu.

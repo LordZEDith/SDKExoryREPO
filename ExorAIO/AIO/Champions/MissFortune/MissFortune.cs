@@ -52,7 +52,7 @@ namespace ExorAIO.Champions.MissFortune
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
-                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.AaRange))
+                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                             .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                             .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != PassiveTarget?.NetworkId

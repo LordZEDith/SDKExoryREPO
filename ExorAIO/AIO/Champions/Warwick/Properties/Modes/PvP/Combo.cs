@@ -25,7 +25,7 @@ namespace ExorAIO.Champions.Warwick
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(Vars.AaRange) || Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
@@ -60,7 +60,7 @@ namespace ExorAIO.Champions.Warwick
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !t.IsUnderEnemyTurret() && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(Vars.AaRange)
+                        !t.IsUnderEnemyTurret() && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value
                         && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {

@@ -12,6 +12,7 @@ namespace ExorAIO.Champions.Sona
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
     using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The champion class.
@@ -61,7 +62,7 @@ namespace ExorAIO.Champions.Sona
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (Vars.E.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.AaRange
+            if (Vars.E.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < GameObjects.Player.GetRealAutoAttackRange()
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();

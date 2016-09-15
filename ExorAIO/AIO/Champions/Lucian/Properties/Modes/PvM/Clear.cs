@@ -172,11 +172,11 @@ namespace ExorAIO.Champions.Lucian
                 > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
                 && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue)
             {
-                if (!Targets.Minions.Any(m => m.IsValidTarget(Vars.AaRange))
+                if (!Targets.Minions.Any(m => m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                     && Targets.Minions.Any(
                         m =>
                         m.Distance(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, Vars.E.Range))
-                        < Vars.AaRange))
+                        < GameObjects.Player.GetRealAutoAttackRange()))
                 {
                     Vars.E.Cast(Game.CursorPos);
                     return;

@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Kalista
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         !Invulnerable.Check(t) && !Bools.IsPerfectRendTarget(t) && t.IsValidTarget(Vars.Q.Range)
-                        && !t.IsValidTarget(Vars.AaRange)
+                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any()

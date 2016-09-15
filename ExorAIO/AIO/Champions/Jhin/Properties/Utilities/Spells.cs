@@ -5,6 +5,7 @@ namespace ExorAIO.Champions.Jhin
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The settings class.
@@ -18,7 +19,7 @@ namespace ExorAIO.Champions.Jhin
         /// </summary>
         public static void Initialize()
         {
-            Vars.Q = new Spell(SpellSlot.Q, Vars.AaRange);
+            Vars.Q = new Spell(SpellSlot.Q, GameObjects.Player.GetRealAutoAttackRange());
             Vars.W = new Spell(SpellSlot.W, 2500f);
             Vars.E = new Spell(SpellSlot.E, 750f);
             Vars.R = new Spell(SpellSlot.R, 3500f);

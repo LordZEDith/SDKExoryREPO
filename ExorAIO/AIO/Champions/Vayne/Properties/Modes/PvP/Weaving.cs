@@ -43,9 +43,9 @@ namespace ExorAIO.Champions.Vayne
                 if (!Vars.Menu["miscellaneous"]["alwaysq"].GetValue<MenuBool>().Value)
                 {
                     var posAfterQ = GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 300f);
-                    if (GameObjects.Player.Distance(Game.CursorPos) > Vars.AaRange
+                    if (GameObjects.Player.Distance(Game.CursorPos) > GameObjects.Player.GetRealAutoAttackRange()
                         && posAfterQ.CountEnemyHeroesInRange(1000f) < 3
-                        && ((Obj_AI_Hero)args.Target).Distance(posAfterQ) < Vars.AaRange)
+                        && ((Obj_AI_Hero)args.Target).Distance(posAfterQ) < GameObjects.Player.GetRealAutoAttackRange())
                     {
                         Vars.Q.Cast(Game.CursorPos);
                     }

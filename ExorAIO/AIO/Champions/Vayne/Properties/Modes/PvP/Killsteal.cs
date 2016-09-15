@@ -11,6 +11,7 @@ namespace ExorAIO.Champions.Vayne
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The logics class.
@@ -34,7 +35,7 @@ namespace ExorAIO.Champions.Vayne
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(Vars.AaRange)
+                        t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && t.CountEnemyHeroesInRange(700f) <= 2
                         && Vars.GetRealHealth(t)
                         < GameObjects.Player.GetAutoAttackDamage(t)

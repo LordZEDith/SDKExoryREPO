@@ -5,6 +5,7 @@ namespace ExorAIO.Champions.Twitch
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
+    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The settings class.
@@ -21,7 +22,7 @@ namespace ExorAIO.Champions.Twitch
             Vars.Q = new Spell(SpellSlot.Q);
             Vars.W = new Spell(SpellSlot.W, 950f);
             Vars.E = new Spell(SpellSlot.E, 1200f);
-            Vars.R = new Spell(SpellSlot.R, Vars.AaRange + 300f);
+            Vars.R = new Spell(SpellSlot.R, GameObjects.Player.GetRealAutoAttackRange() + 300f);
             Vars.W.SetSkillshot(0.25f, 120f, 1400f, false, SkillshotType.SkillshotCircle);
         }
 
