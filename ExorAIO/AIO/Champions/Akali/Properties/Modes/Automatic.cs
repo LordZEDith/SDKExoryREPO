@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Akali
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Cassiopeia
 {
     using System.Windows.Forms;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;

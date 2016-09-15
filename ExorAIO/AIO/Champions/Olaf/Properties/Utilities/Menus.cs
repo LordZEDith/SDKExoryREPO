@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Olaf
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK.UI;
 

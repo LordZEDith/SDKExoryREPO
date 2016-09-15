@@ -3,7 +3,7 @@ namespace ExorAIO.Champions.Anivia
     using System.Collections.Generic;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

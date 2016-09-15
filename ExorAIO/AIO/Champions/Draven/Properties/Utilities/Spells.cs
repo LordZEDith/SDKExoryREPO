@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Draven
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

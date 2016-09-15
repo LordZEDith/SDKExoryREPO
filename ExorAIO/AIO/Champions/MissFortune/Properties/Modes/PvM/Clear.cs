@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.MissFortune
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.MissFortune
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.
@@ -109,11 +109,7 @@ namespace ExorAIO.Champions.MissFortune
                         where target != null
                         where
                             !polygon.IsOutside((Vector2)target.ServerPosition)
-                            /*&& !polygon.IsOutside(
-                                (Vector2)
-                                Movement.GetPrediction(
-                                    target,
-                                    GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
+                            && !polygon.IsOutside((Vector2)Vars.Q.GetPrediction(target).UnitPosition)
                         select minion)
                     {
                         Vars.Q.CastOnUnit(minion);

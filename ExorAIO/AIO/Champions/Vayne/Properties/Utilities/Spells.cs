@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Vayne
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

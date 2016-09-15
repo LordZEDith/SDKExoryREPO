@@ -2,7 +2,7 @@ namespace ExorAIO.Champions.Cassiopeia
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

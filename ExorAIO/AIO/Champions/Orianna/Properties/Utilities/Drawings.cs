@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Orianna
 {
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

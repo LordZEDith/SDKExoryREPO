@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Tristana
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Nocturne
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;

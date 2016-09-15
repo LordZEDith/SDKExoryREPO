@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Jhin
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.Jhin
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The champion class.

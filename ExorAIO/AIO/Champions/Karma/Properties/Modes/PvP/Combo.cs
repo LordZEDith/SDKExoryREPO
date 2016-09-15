@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Karma
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -35,7 +35,8 @@ namespace ExorAIO.Champions.Karma
             {
                 Vars.E.CastOnUnit(GameObjects.Player);
             }
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
+                || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }

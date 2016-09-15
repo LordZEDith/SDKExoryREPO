@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Karthus
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -63,8 +63,7 @@ namespace ExorAIO.Champions.Karthus
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget()
-                        && !Invulnerable.Check(t, DamageType.Magical, false)
+                        t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Game.ShowPing(PingCategory.Fallback, target.Position, true);

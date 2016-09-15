@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Caitlyn
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
@@ -14,7 +14,7 @@ namespace ExorAIO.Champions.Caitlyn
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.

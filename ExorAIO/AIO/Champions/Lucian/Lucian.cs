@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Lucian
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data.Enumerations;

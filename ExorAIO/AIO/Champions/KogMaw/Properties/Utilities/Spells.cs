@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.KogMaw
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

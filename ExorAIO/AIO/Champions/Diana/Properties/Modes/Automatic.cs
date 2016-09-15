@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Diana
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

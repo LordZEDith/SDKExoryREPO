@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Graves
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.Graves
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.

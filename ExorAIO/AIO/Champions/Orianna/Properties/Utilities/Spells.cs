@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Orianna
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.KogMaw
 {
     using System;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;

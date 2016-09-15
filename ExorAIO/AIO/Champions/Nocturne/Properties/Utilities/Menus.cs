@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Nocturne
     using System.Linq;
     using System.Windows.Forms;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.Data.Enumerations;
     using LeagueSharp.SDK;

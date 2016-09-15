@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.MissFortune
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data.Enumerations;
@@ -16,7 +16,7 @@ namespace ExorAIO.Champions.MissFortune
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.
@@ -52,15 +52,15 @@ namespace ExorAIO.Champions.MissFortune
                 }
 
                 var minionPassiveMultiplier = GameObjects.Player.Level < 4
-                                            ? 0.25
-                                            : GameObjects.Player.Level < 7
-                                                  ? 0.3
-                                                  : GameObjects.Player.Level < 9
-                                                        ? 0.35
-                                                        : GameObjects.Player.Level < 11
-                                                              ? 0.4
-                                                              : GameObjects.Player.Level < 13 ? 0.45 : 0.5;
-                var heroPassiveMultiplier = minionPassiveMultiplier*2;
+                                                  ? 0.25
+                                                  : GameObjects.Player.Level < 7
+                                                        ? 0.3
+                                                        : GameObjects.Player.Level < 9
+                                                              ? 0.35
+                                                              : GameObjects.Player.Level < 11
+                                                                    ? 0.4
+                                                                    : GameObjects.Player.Level < 13 ? 0.45 : 0.5;
+                var heroPassiveMultiplier = minionPassiveMultiplier * 2;
 
                 /// <summary>
                 ///     Extended Q KillSteal Logic.
@@ -103,11 +103,7 @@ namespace ExorAIO.Champions.MissFortune
                            where target != null
                            where
                                !polygon.IsOutside((Vector2)target.ServerPosition)
-                               /*&& !polygon.IsOutside(
-                                   (Vector2)
-                                   Movement.GetPrediction(
-                                       target,
-                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
+                               && !polygon.IsOutside((Vector2)Vars.Q.GetPrediction(target).UnitPosition)
                            select minion)
                     {
                         Vars.Q.CastOnUnit(minion);
@@ -139,11 +135,7 @@ namespace ExorAIO.Champions.MissFortune
                            where target2 != null
                            where
                                !polygon.IsOutside((Vector2)target2.ServerPosition)
-                               /*&& !polygon.IsOutside(
-                                   (Vector2)
-                                   Movement.GetPrediction(
-                                       target2,
-                                       GameObjects.Player.Distance(target) / Vars.Q.Speed + Vars.Q.Delay).UnitPosition)*/
+                               && !polygon.IsOutside((Vector2)Vars.Q.GetPrediction(target).UnitPosition)
                            select target)
                     {
                         Vars.Q.CastOnUnit(target);

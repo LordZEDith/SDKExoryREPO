@@ -43,7 +43,7 @@ namespace ExorAIO.Core
     using ExorAIO.Champions.Vayne;
     using ExorAIO.Champions.Veigar;
     using ExorAIO.Champions.Warwick;
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp.SDK;
 

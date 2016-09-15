@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Kalista
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -29,8 +29,7 @@ namespace ExorAIO.Champions.Kalista
             /// <summary>
             ///     Orbwalk on minions.
             /// </summary>
-            if (Items.HasItem(3085)
-                && Targets.Minions.Any(m => m.IsValidTarget(Vars.AaRange))
+            if (Items.HasItem(3085) && Targets.Minions.Any(m => m.IsValidTarget(Vars.AaRange))
                 && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.AaRange))
                 && Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
             {

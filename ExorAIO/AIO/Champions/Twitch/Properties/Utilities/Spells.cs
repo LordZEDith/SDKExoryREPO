@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Twitch
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

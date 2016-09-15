@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.MissFortune
     using System;
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -16,7 +16,7 @@ namespace ExorAIO.Champions.MissFortune
     using SharpDX;
 
     using Color = System.Drawing.Color;
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The prediction drawings class.

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Sivir
 {
     using System.Linq;
 
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -14,7 +14,7 @@ namespace ExorAIO.Champions.Sivir
 
     using SharpDX;
 
-    using Geometry = ExorAIO.Utilities.Geometry;
+    using Geometry = Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.

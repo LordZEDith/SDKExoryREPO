@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Ashe
 {
-    using ExorAIO.Utilities;
+    using Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
