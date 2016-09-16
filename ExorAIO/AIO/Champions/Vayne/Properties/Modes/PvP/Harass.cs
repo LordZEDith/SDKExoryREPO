@@ -5,13 +5,6 @@ namespace ExorAIO.Champions.Vayne
 {
     using System;
 
-    using Utilities;
-
-    using LeagueSharp;
-    using LeagueSharp.SDK;
-    using LeagueSharp.SDK.UI;
-    using LeagueSharp.SDK.Utils;
-
     /// <summary>
     ///     The logics class.
     /// </summary>
@@ -25,27 +18,6 @@ namespace ExorAIO.Champions.Vayne
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     The Q Harass Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && Targets.Target.CountEnemyHeroesInRange(700f) == 1
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
-                && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
-            {
-                if (
-                    Targets.Target.Distance(
-                        GameObjects.Player.Position.Extend(Game.CursorPos, Vars.Q.Range - GameObjects.Player.GetRealAutoAttackRange())) < GameObjects.Player.GetRealAutoAttackRange())
-                {
-                    Vars.Q.Cast(Game.CursorPos);
-                }
-            }
         }
 
         #endregion

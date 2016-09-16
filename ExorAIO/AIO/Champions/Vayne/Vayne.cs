@@ -187,20 +187,6 @@ namespace ExorAIO.Champions.Vayne
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-            if (ObjectManager.Player.IsWindingUp)
-            {
-                return;
-            }
-
-            /// <summary>
-            ///     Initializes the orbwalkingmodes.
-            /// </summary>
-            switch (Variables.Orbwalker.ActiveMode)
-            {
-                case OrbwalkingMode.Hybrid:
-                    Logics.Harass(args);
-                    break;
-            }
         }
 
         /// <summary>
