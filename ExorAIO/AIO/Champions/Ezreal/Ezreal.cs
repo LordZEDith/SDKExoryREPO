@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Ezreal
 {
     using System;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

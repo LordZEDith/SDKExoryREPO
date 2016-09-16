@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Quinn
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data;
@@ -47,7 +47,8 @@ namespace ExorAIO.Champions.Quinn
                     /// </summary>
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
-                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("quinnw"))
+                        GameObjects.EnemyHeroes.Where(
+                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("quinnw"))
                             .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                             .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId

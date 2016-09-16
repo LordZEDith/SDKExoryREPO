@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Tristana
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -38,7 +38,8 @@ namespace ExorAIO.Champions.Tristana
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.FirstOrDefault(
-                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("TristanaECharge"));
+                            t =>
+                            t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("TristanaECharge"));
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId
                         && Vars.GetRealHealth(hero) > GameObjects.Player.GetAutoAttackDamage(hero) * 3)
                     {

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Sivir
 {
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.Data.Enumerations;
     using LeagueSharp.SDK;

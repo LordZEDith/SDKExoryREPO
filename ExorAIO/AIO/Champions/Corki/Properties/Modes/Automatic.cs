@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Corki
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data.Enumerations;
@@ -55,8 +55,9 @@ namespace ExorAIO.Champions.Corki
                 && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in
-                    GameObjects.EnemyMinions.Where(m => m.IsValidTarget(Vars.R.Range) && !m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
-                    )
+                    GameObjects.EnemyMinions.Where(
+                        m =>
+                        m.IsValidTarget(Vars.R.Range) && !m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())))
                 {
                     if (Vars.GetRealHealth(minion)
                         < (float)

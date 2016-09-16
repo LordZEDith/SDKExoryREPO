@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Ryze
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

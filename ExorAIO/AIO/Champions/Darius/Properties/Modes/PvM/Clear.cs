@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Darius
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -56,14 +56,28 @@ namespace ExorAIO.Champions.Darius
             }
 
             /// <summary>
-            ///     The Clear Q Logic.
+            ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
-                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady())
             {
-                if (Targets.Minions.Count >= 3 || Targets.JungleMinions.Any())
+                /// <summary>
+                ///     The JungleClear Q Logic.
+                /// </summary>
+                if (Targets.JungleMinions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                    && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                {
+                    Vars.Q.Cast();
+                }
+
+                /// <summary>
+                ///     The LaneClear Q Logic.
+                /// </summary>
+                else if (Targets.Minions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                         && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast();
                 }

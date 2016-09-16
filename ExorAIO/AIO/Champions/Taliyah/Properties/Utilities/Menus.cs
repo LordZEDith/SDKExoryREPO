@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Taliyah
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;

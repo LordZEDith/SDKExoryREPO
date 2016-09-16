@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.MissFortune
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data.Enumerations;
@@ -16,7 +16,7 @@ namespace ExorAIO.Champions.MissFortune
 
     using SharpDX;
 
-    using Geometry = Utilities.Geometry;
+    using Geometry = ExorAIO.Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.

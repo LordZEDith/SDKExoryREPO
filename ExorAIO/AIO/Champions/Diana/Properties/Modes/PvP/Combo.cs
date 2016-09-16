@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Diana
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -39,7 +39,8 @@ namespace ExorAIO.Champions.Diana
             {
                 Vars.W.Cast();
             }
-            if (!Targets.Target.IsValidTarget() || Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+            if (!Targets.Target.IsValidTarget()
+                || Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                 || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;

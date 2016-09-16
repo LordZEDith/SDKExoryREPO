@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Quinn
 {
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK.UI;

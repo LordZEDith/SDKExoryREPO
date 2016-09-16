@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Quinn
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -34,7 +34,8 @@ namespace ExorAIO.Champions.Quinn
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.IsValidTarget(Vars.Q.Range - 100f)
+                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        && t.IsValidTarget(Vars.Q.Range - 100f)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(target).CollisionObjects.Any())
@@ -52,7 +53,8 @@ namespace ExorAIO.Champions.Quinn
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range)
+                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t)
                         < GameObjects.Player.GetAutoAttackDamage(t) * 2
                         + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))

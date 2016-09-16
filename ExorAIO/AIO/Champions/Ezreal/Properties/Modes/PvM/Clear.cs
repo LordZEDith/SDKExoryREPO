@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Ezreal
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -62,7 +62,8 @@ namespace ExorAIO.Champions.Ezreal
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any() && !Targets.JungleMinions.Any(m => m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())))
+                else if (Targets.JungleMinions.Any()
+                         && !Targets.JungleMinions.Any(m => m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())))
                 {
                     Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
                 }

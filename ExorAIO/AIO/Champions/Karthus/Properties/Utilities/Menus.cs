@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Karthus
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK.UI;
 

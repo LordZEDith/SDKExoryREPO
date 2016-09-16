@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Taliyah
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

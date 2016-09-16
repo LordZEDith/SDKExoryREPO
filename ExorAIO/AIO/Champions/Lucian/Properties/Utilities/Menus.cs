@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Lucian
     using System.Linq;
     using System.Windows.Forms;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;

@@ -8,7 +8,7 @@ namespace ExorAIO.Champions.Kalista
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data;
@@ -51,7 +51,9 @@ namespace ExorAIO.Champions.Kalista
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("kalistacoopstrikemarkally"))
+                            t =>
+                            t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                            && t.HasBuff("kalistacoopstrikemarkally"))
                             .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                             .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Lux
 {
     using System;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

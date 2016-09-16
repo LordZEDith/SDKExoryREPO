@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Sona
 {
     using System.Windows.Forms;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;

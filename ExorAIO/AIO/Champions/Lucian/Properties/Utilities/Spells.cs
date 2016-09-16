@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Lucian
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

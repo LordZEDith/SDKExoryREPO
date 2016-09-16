@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Tryndamere
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK.UI;
 

@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Corki
 {
     using System;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;

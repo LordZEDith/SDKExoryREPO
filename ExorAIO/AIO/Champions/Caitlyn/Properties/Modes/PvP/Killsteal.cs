@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Caitlyn
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -34,8 +34,8 @@ namespace ExorAIO.Champions.Caitlyn
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.IsValidTarget(Vars.Q.Range - 200f))
-                    )
+                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        && t.IsValidTarget(Vars.Q.Range - 200f)))
                 {
                     if (Vars.GetRealHealth(target)
                         < (float)GameObjects.Player.GetSpellDamage(target, SpellSlot.Q)
@@ -55,7 +55,8 @@ namespace ExorAIO.Champions.Caitlyn
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange() + 200)
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange() + 200)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.CastOnUnit(target);

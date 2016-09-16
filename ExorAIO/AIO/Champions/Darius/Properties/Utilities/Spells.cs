@@ -2,7 +2,7 @@ namespace ExorAIO.Champions.Darius
 {
     using System;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

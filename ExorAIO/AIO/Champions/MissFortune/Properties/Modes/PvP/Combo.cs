@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.MissFortune
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.MissFortune
 
     using SharpDX;
 
-    using Geometry = Utilities.Geometry;
+    using Geometry = ExorAIO.Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.
@@ -94,7 +94,9 @@ namespace ExorAIO.Champions.MissFortune
                     GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget(
-                            Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value ? Vars.R.Range : GameObjects.Player.GetRealAutoAttackRange())))
+                            Vars.Menu["spells"]["w"]["engager"].GetValue<MenuBool>().Value
+                                ? Vars.R.Range
+                                : GameObjects.Player.GetRealAutoAttackRange())))
                 {
                     Vars.W.Cast();
                 }

@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Lux
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data;
@@ -68,7 +68,9 @@ namespace ExorAIO.Champions.Lux
                     var hero = args.Target as Obj_AI_Hero;
                     var bestTarget =
                         GameObjects.EnemyHeroes.Where(
-                            t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.HasBuff("luxilluminatingfraulein"))
+                            t =>
+                            t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                            && t.HasBuff("luxilluminatingfraulein"))
                             .OrderByDescending(o => Data.Get<ChampionPriorityData>().GetPriority(o.ChampionName))
                             .FirstOrDefault();
                     if (hero != null && bestTarget?.NetworkId != hero.NetworkId

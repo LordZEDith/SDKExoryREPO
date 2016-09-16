@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Darius
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK.UI;
 
@@ -29,9 +29,15 @@ namespace ExorAIO.Champions.Darius
                 /// </summary>
                 Vars.QMenu = new Menu("q", "Use Q to:");
                 {
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
+                    Vars.QMenu.Add(
+                        new MenuList<string>(
+                            "mode",
+                            "Use Q in Combo:",
+                            new[] { "Always", "Only in Blade Range", "Never" }));
+                    Vars.QMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 3, 3, 5, true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / If Mana >= x%", 50, 0, 99, true));
-                    Vars.QMenu.Add(new MenuSliderButton("clear", "Clear / If Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / If Mana >= x%", 50, 0, 99, true));
+                    Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / If Mana >= x%", 50, 0, 99, true));
                 }
                 Vars.SpellsMenu.Add(Vars.QMenu);
 

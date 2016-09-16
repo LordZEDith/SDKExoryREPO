@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Graves
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.Data.Enumerations;
@@ -35,7 +35,8 @@ namespace ExorAIO.Champions.Graves
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)
+                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast(Vars.W.GetPrediction(target).CastPosition);
@@ -51,7 +52,8 @@ namespace ExorAIO.Champions.Graves
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
+                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);
@@ -67,7 +69,8 @@ namespace ExorAIO.Champions.Graves
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && t.IsValidTarget(Vars.R.Range + 150f)
+                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        && t.IsValidTarget(Vars.R.Range + 150f)
                         && Vars.GetRealHealth(t)
                         < (float)
                           GameObjects.Player.GetSpellDamage(

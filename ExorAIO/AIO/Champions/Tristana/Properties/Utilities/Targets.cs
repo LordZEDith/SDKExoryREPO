@@ -3,8 +3,6 @@ namespace ExorAIO.Champions.Tristana
     using System.Collections.Generic;
     using System.Linq;
 
-    using Utilities;
-
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Utils;
@@ -30,12 +28,15 @@ namespace ExorAIO.Champions.Tristana
         ///     The minions target.
         /// </summary>
         public static List<Obj_AI_Minion> Minions
-            => GameObjects.EnemyMinions.Where(m => m.IsMinion() && m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())).ToList();
+            =>
+                GameObjects.EnemyMinions.Where(
+                    m => m.IsMinion() && m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())).ToList();
 
         /// <summary>
         ///     The main hero target.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(GameObjects.Player.GetRealAutoAttackRange(), DamageType.Physical);
+        public static Obj_AI_Hero Target
+            => Variables.TargetSelector.GetTarget(GameObjects.Player.GetRealAutoAttackRange(), DamageType.Physical);
 
         #endregion
     }

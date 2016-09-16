@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Lucian
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -44,7 +44,8 @@ namespace ExorAIO.Champions.Lucian
                             Vars.E.Cast(
                                 GameObjects.Player.ServerPosition.Extend(
                                     Game.CursorPos,
-                                    GameObjects.Player.Distance(Game.CursorPos) < GameObjects.Player.GetRealAutoAttackRange()
+                                    GameObjects.Player.Distance(Game.CursorPos)
+                                    < GameObjects.Player.GetRealAutoAttackRange()
                                         ? GameObjects.Player.BoundingRadius
                                         : 475f));
                             break;

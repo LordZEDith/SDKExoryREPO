@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Sivir
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

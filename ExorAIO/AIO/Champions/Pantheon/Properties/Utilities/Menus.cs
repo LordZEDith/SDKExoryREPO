@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Pantheon
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK.UI;
 

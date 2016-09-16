@@ -3,7 +3,7 @@ namespace ExorAIO.Champions.Lucian
     using System.Collections.Generic;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

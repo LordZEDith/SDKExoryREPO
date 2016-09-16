@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Jhin
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

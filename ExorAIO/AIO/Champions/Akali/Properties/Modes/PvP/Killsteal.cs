@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Akali
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -50,7 +50,8 @@ namespace ExorAIO.Champions.Akali
                 if (
                     GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) && !Invulnerable.Check(t, DamageType.Physical)
+                        t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        && !Invulnerable.Check(t, DamageType.Physical)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.E)))
                 {
                     Vars.E.Cast();

@@ -3,7 +3,7 @@
 
 namespace ExorAIO.Champions.Ryze
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK.UI;
 

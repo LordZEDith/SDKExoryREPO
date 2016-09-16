@@ -5,7 +5,7 @@ namespace ExorAIO.Champions.Graves
 {
     using System;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;

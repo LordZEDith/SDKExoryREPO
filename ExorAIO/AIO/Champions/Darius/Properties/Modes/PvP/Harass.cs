@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Darius
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
@@ -38,7 +38,7 @@ namespace ExorAIO.Champions.Darius
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["harass"])
                 && Vars.Menu["spells"]["q"]["harass"].GetValue<MenuSliderButton>().BValue)
             {
-                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())))
+                if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.Q.Range)))
                 {
                     Vars.Q.Cast();
                 }

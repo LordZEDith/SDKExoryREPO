@@ -6,7 +6,7 @@ namespace ExorAIO.Champions.Orianna
     using System;
     using System.Linq;
 
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -15,7 +15,7 @@ namespace ExorAIO.Champions.Orianna
 
     using SharpDX;
 
-    using Geometry = Utilities.Geometry;
+    using Geometry = ExorAIO.Utilities.Geometry;
 
     /// <summary>
     ///     The logics class.
@@ -93,8 +93,8 @@ namespace ExorAIO.Champions.Orianna
                 Vars.R.Cast();
             }
 
-            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()) || !Targets.Target.IsValidTarget()
-                || Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }

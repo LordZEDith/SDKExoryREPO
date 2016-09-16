@@ -1,6 +1,6 @@
 namespace ExorAIO.Champions.Jinx
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -21,7 +21,9 @@ namespace ExorAIO.Champions.Jinx
         {
             Vars.PowPow = new Spell(
                 SpellSlot.Q,
-                !GameObjects.Player.HasBuff("JinxQ") ? GameObjects.Player.GetRealAutoAttackRange() : 525f + GameObjects.Player.BoundingRadius);
+                !GameObjects.Player.HasBuff("JinxQ")
+                    ? GameObjects.Player.GetRealAutoAttackRange()
+                    : 525f + GameObjects.Player.BoundingRadius);
             Vars.Q = new Spell(
                 SpellSlot.Q,
                 Vars.PowPow.Range + (50f + 25f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level));

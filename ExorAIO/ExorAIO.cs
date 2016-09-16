@@ -3,7 +3,7 @@
 
 namespace ExorAIO
 {
-    using Utilities;
+    using ExorAIO.Utilities;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
