@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (Orianna.BallPosition == null || Invulnerable.Check(Targets.Target))
+            if (Orianna.BallPosition == null || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
                 return;
             }
