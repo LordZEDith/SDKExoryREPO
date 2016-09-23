@@ -170,7 +170,7 @@ namespace ExorAIO.Champions.Caitlyn
                 && GameObjects.Player.HasBuff("caitlynheadshotrangecheck")
                 && ((Obj_AI_Hero)args.Target).HasBuff("caitlynyordletrapdebuff"))
             {
-                Variables.Orbwalker.ResetSwingTimer();
+                //Variables.Orbwalker.ResetSwingTimer();
             }
         }
 

@@ -63,9 +63,7 @@ namespace ExorAIO.Champions.Nocturne
             ///     The Semi-Automatic R Management.
             /// </summary>
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active
-                && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                       .Value)
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
                 var target =
                     GameObjects.EnemyHeroes.Where(
