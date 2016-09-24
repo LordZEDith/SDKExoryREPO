@@ -131,9 +131,8 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Ignite.IsReady())
             {
-                foreach (
-                    var target in
-                        GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(600f + GameObjects.Player.BoundingRadius)))
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(600f + GameObjects.Player.BoundingRadius)))
                 {
                     if (Vars.GetIgniteDamage > target.Health
                         || Health.GetPrediction(target, (int)(1000 + Game.Ping / 2f)) <= 0)
@@ -246,16 +245,15 @@ namespace NabbActivator
             /// </summary>
             if (SpellSlots.Exhaust.IsReady())
             {
-                foreach (
-                    var ally in
-                        GameObjects.AllyHeroes.Where(
-                            a =>
-                            a.CountEnemyHeroesInRange(650f) >= 1
-                            && a.Distance(GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a)).FirstOrDefault()) < 700f
-                            && GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a))
-                                   .FirstOrDefault()
-                                   .IsValidTarget(650f + GameObjects.Player.BoundingRadius)
-                            && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
+                foreach (var ally in
+                    GameObjects.AllyHeroes.Where(
+                        a =>
+                        a.CountEnemyHeroesInRange(650f) >= 1
+                        && a.Distance(GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a)).FirstOrDefault()) < 700f
+                        && GameObjects.EnemyHeroes.OrderBy(o => o.Distance(a))
+                               .FirstOrDefault()
+                               .IsValidTarget(650f + GameObjects.Player.BoundingRadius)
+                        && Health.GetPrediction(a, (int)(1000 + Game.Ping / 2f)) <= a.MaxHealth / 6))
                 {
                     GameObjects.Player.Spellbook.CastSpell(
                         SpellSlots.Exhaust,

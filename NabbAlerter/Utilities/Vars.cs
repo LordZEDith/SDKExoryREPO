@@ -25,13 +25,10 @@ namespace NabbAlerter
         /// </summary>
         public static readonly List<string> NotIncludedChampions = new List<string>
                                                                        {
-                                                                           "akali", "anivia", "swain", "jayce",
-                                                                           "nidalee",
+                                                                           "akali", "anivia", "swain", "jayce", "nidalee",
                                                                            "blitzcrank", "chogath", "corki", "darius",
-                                                                           "diana", "elise", "karma", "kassadin",
-                                                                           "khazix",
-                                                                           "kogmaw", "leblanc", "maokai", "quinn",
-                                                                           "ryze",
+                                                                           "diana", "elise", "karma", "kassadin", "khazix",
+                                                                           "kogmaw", "leblanc", "maokai", "quinn", "ryze",
                                                                            "teemo", "udyr", "yasuo"
                                                                        };
 
