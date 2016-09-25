@@ -58,18 +58,6 @@ namespace ExorAIO.Champions.Karthus
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnUpdate(EventArgs args)
         {
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["ping"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                        t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
-                        && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
-                {
-                    Game.ShowPing(PingCategory.Fallback, target.Position, true);
-                }
-            }
-
             /// <summary>
             ///     Initializes the spells.
             /// </summary>
@@ -84,6 +72,18 @@ namespace ExorAIO.Champions.Karthus
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
+            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["ping"].GetValue<MenuBool>().Value)
+            {
+                foreach (var target in
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
+                        && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
+                {
+                    Game.ShowPing(PingCategory.Fallback, target.Position, true);
+                }
+            }
+
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
