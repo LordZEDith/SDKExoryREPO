@@ -34,10 +34,10 @@ namespace ExorAIO.Champions.Orianna
                 GameObjects.AllyHeroes.FirstOrDefault(
                     a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
 
-            Orianna.BallPosition = ball?.Position
+            Orianna.BallPosition = ball?.ServerPosition
                                    ?? (GameObjects.Player.HasBuff("orianaghostself")
                                            ? GameObjects.Player.ServerPosition
-                                           : ball3?.Position);
+                                           : ball3?.ServerPosition);
 
             if (Orianna.BallPosition == null)
             {
