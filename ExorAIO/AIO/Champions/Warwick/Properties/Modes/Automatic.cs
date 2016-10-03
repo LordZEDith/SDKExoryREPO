@@ -4,7 +4,6 @@
 namespace ExorAIO.Champions.Warwick
 {
     using System;
-    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -28,21 +27,6 @@ namespace ExorAIO.Champions.Warwick
             if (GameObjects.Player.IsRecalling())
             {
                 return;
-            }
-
-            /// <summary>
-            ///     The Automatic Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Targets.Minions.Any()
-                && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.R.Range))
-                && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
-            {
-                if (GameObjects.Player.MaxHealth
-                    > GameObjects.Player.Health
-                    + (float)GameObjects.Player.GetSpellDamage(Targets.Minions.FirstOrDefault(), SpellSlot.Q) * 0.8)
-                {
-                    Vars.Q.CastOnUnit(Targets.Minions.FirstOrDefault());
-                }
             }
 
             /// <summary>

@@ -69,7 +69,7 @@ namespace ExorAIO.Champions.Graves
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
+                        !Invulnerable.Check(t)
                         && t.IsValidTarget(Vars.R.Range + 150f)
                         && Vars.GetRealHealth(t)
                         < (float)

@@ -53,15 +53,15 @@ namespace ExorAIO.Champions.Jax
             /// <summary>
             ///     The Clear E Logics.
             /// </summary>
-            if (Vars.E.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["clear"])
-                && Vars.Menu["spells"]["e"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.E.IsReady())
             {
                 /// <summary>
                 ///     The LaneClear E Logic.
                 /// </summary>
-                if (Targets.Minions.Count >= 3 && GameObjects.Player.CountEnemyHeroesInRange(2000f) == 0)
+                if (GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["laneclear"])
+                    && Vars.Menu["spells"]["e"]["laneclear"].GetValue<MenuSliderButton>().BValue
+                    && Targets.Minions.Count >= 3 && GameObjects.Player.CountEnemyHeroesInRange(2000f) == 0)
                 {
                     Vars.E.Cast();
                 }
@@ -69,7 +69,10 @@ namespace ExorAIO.Champions.Jax
                 /// <summary>
                 ///     The JungleClear E Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
+                else if (GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
+                         && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue
+                         && Targets.JungleMinions.Any(m => m.IsValidTarget(Vars.E.Range)))
                 {
                     Vars.E.Cast();
                 }

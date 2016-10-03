@@ -37,8 +37,13 @@ namespace ExorAIO.Champions.Warwick
             if (Vars.W.IsReady() && GameObjects.Player.IsWindingUp
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast();
+                if (!Vars.Menu["miscellaneous"]["keeprmana"]
+                    || GameObjects.Player.Mana > Vars.W.Instance.ManaCost + Vars.R.Instance.ManaCost)
+                {
+                    Vars.W.Cast();
+                }
             }
+
             if (GameObjects.Player.IsWindingUp)
             {
                 return;
@@ -48,9 +53,15 @@ namespace ExorAIO.Champions.Warwick
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue
+                > GameObjects.Player.HealthPercent)
             {
-                Vars.Q.CastOnUnit(Targets.Target);
+                if (!Vars.Menu["miscellaneous"]["keeprmana"]
+                    || GameObjects.Player.Mana > Vars.Q.Instance.ManaCost + Vars.R.Instance.ManaCost)
+                {
+                    Vars.Q.CastOnUnit(Targets.Target);
+                }
             }
 
             /// <summary>
