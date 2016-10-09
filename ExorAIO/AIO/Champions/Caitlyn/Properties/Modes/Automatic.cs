@@ -8,7 +8,6 @@ namespace ExorAIO.Champions.Caitlyn
 
     using ExorAIO.Utilities;
 
-    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -40,7 +39,7 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range)
-                        && !Invulnerable.Check(t, DamageType.Magical, false)))
+                        && !t.HasBuff("caitlynyordletrapinternal")))
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }

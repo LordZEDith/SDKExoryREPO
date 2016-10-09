@@ -39,7 +39,6 @@ C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\D
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\[SDK]AsunaCondemn.exe
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\[SDK]AsunaCondemn.pdb
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\LeagueSharp.Data.dll
-C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\LeagueSharp.dll
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\LeagueSharp.SDKEx.dll
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\SharpDX.dll
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\SharpDX.Direct3D9.dll
@@ -49,3 +48,4 @@ C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\D
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\obj\x86\Debug\[SDK]AsunaCondemn.csprojResolveAssemblyReference.cache
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\obj\x86\Debug\[SDK]AsunaCondemn.exe
 C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\obj\x86\Debug\[SDK]AsunaCondemn.pdb
+C:\Users\Enrico\Desktop\Cartelle varie\zSs4m8wyN\SDKExoryREPO\AsunaCondemn\bin\Debug\LeagueSharp.dll
