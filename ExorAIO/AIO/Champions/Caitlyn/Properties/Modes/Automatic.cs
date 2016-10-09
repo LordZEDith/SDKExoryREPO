@@ -38,8 +38,8 @@ namespace ExorAIO.Champions.Caitlyn
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range)
-                        && !t.HasBuff("caitlynyordletrapinternal")))
+                        Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) && !t.HasBuff("caitlynyordletrapinternal"))
+                    )
                 {
                     Vars.W.Cast(target.ServerPosition);
                 }

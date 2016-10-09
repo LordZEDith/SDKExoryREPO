@@ -38,7 +38,9 @@ namespace ExorAIO.Champions.Graves
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                        t =>
+                        Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
+                        && !Vars.AnyWall(GameObjects.Player.ServerPosition, t.ServerPosition)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                     return;

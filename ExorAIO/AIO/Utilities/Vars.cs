@@ -307,6 +307,21 @@ namespace ExorAIO.Utilities
         #region Public Methods and Operators
 
         /// <summary>
+        ///     Returns true if there is a Wall between X pos and Y pos.
+        /// </summary>
+        public static bool AnyWall(Vector3 startPos, Vector3 endPos)
+        {
+            for (var i = 0; i < startPos.Distance(endPos); i++)
+            {
+                if (NavMesh.GetCollisionFlags(startPos.Extend(endPos, i)) == CollisionFlags.Wall)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         ///     Gets the health with Blitzcrank's Shield support.
         /// </summary>
         /// <param name="target">
