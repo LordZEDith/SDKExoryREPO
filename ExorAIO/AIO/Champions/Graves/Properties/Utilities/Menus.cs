@@ -63,6 +63,7 @@ namespace ExorAIO.Champions.Graves
                 {
                     Vars.EMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.EMenu.Add(new MenuBool("engager", "Engager", true));
+                    Vars.EMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));
                     Vars.EMenu.Add(new MenuSliderButton("buildings", "Buildings / if Mana >= x%", 50, 0, 99, true));
                     Vars.EMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                 }

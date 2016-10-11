@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Jinx
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range)
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.W.Range - 100f)
                         && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {

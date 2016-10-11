@@ -130,8 +130,12 @@ namespace ExorAIO.Champions.Lux
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (GameObjects.Player.IsDead || !Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
+            }
+
             if (Vars.Q.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.Q.Range)
-                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["q"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast(args.Sender.ServerPosition);

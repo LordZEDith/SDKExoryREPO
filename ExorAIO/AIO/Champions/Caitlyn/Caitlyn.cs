@@ -107,8 +107,12 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (GameObjects.Player.IsDead || Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
+            }
+
             if (Vars.E.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.E.Range)
-                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.E.GetPrediction(args.Sender).CollisionObjects.Any())
@@ -119,7 +123,6 @@ namespace ExorAIO.Champions.Caitlyn
             }
 
             if (Vars.W.IsReady() && args.Sender.IsValidTarget(Vars.W.Range)
-                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(args.End);
@@ -133,7 +136,7 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
-            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            if (GameObjects.Player.IsDead || Invulnerable.Check(args.Sender, DamageType.Magical, false))
             {
                 return;
             }

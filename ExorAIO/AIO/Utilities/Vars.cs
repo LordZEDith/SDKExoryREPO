@@ -4,6 +4,7 @@
 namespace ExorAIO.Utilities
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
@@ -319,6 +320,24 @@ namespace ExorAIO.Utilities
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        ///     Gets the buff end time for the immobilized enemies.
+        /// </summary>
+        /// <param name="target">
+        ///     The target.
+        /// </param>
+        public static float GetImmobileBuffEndTime(Obj_AI_Base target)
+        {
+            return
+                target.Buffs.OrderByDescending(buff => buff.EndTime - Game.Time)
+                    .Where(
+                        buff =>
+                        buff.Type == BuffType.Stun || buff.Type == BuffType.Snare || buff.Type == BuffType.Charm
+                        || buff.Type == BuffType.Flee || buff.Type == BuffType.Taunt)
+                    .Select(buff => buff.EndTime)
+                    .FirstOrDefault();
         }
 
         /// <summary>

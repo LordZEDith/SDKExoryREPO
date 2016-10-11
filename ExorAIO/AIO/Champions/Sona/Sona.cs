@@ -62,11 +62,21 @@ namespace ExorAIO.Champions.Sona
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (GameObjects.Player.IsDead)
+            {
+                return;
+            }
+
             if (Vars.E.IsReady() && args.Sender.IsMelee
                 && GameObjects.Player.Distance(args.End) < GameObjects.Player.GetRealAutoAttackRange()
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast();
+            }
+
+            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
             }
             if (Vars.R.IsReady() && args.Sender.IsMelee && GameObjects.Player.Distance(args.End) < Vars.R.Range - 50f
                 && Vars.Menu["spells"]["r"]["gapcloser"].GetValue<MenuBool>().Value)
@@ -82,6 +92,11 @@ namespace ExorAIO.Champions.Sona
         /// <param name="args">The <see cref="Events.InterruptableTargetEventArgs" /> instance containing the event data.</param>
         public static void OnInterruptableTarget(object sender, Events.InterruptableTargetEventArgs args)
         {
+            if (GameObjects.Player.IsDead || !Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
+            }
+
             if (Vars.R.IsReady() && args.Sender.IsValidTarget(Vars.R.Range)
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {

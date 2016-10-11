@@ -72,6 +72,11 @@ namespace ExorAIO.Champions.Lucian
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
+            if (GameObjects.Player.IsDead || !Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            {
+                return;
+            }
+
             if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range)
                 && args.SkillType == GapcloserType.Targeted
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)

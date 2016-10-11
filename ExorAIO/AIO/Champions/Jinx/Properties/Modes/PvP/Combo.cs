@@ -25,6 +25,36 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
+            /// <summary>
+            ///     The Q Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() && GameObjects.Player.CanAttack && Targets.Target.IsValidTarget(Vars.Q.Range + 200f)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+            {
+                const float SplashRange = 160f;
+                var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
+                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue;
+                var powPowRange = Vars.PowPow.Range + (Targets.Target != null ? Targets.Target.BoundingRadius : 0f)
+                                  - 20f;
+
+                if (isUsingFishBones)
+                {
+                    if (GameObjects.Player.Distance(Targets.Target) < powPowRange
+                        && Targets.Target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
+                    {
+                        Vars.Q.Cast();
+                    }
+                }
+                else
+                {
+                    if (GameObjects.Player.Distance(Targets.Target) > powPowRange
+                        || Targets.Target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
+                    {
+                        Vars.Q.Cast();
+                    }
+                }
+            }
+
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                 || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
             {
@@ -39,21 +69,20 @@ namespace ExorAIO.Champions.Jinx
                 >= Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
-                Vars.E.Cast(
-                    GameObjects.Player.ServerPosition.Extend(
-                        Targets.Target.ServerPosition,
-                        GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
-            }
-            if (GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(Vars.PowPow.Range)))
-            {
-                return;
+                if (Targets.Target != null)
+                {
+                    Vars.E.Cast(
+                        GameObjects.Player.ServerPosition.Extend(
+                            Targets.Target.ServerPosition,
+                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
+                }
             }
 
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady() && !GameObjects.Player.IsUnderEnemyTurret()
-                && Targets.Target.IsValidTarget(Vars.W.Range)
+                && Targets.Target.IsValidTarget(Vars.W.Range - 100f)
                 && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 3
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
