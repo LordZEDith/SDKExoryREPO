@@ -118,39 +118,25 @@ namespace ExorAIO.Champions.Sivir
                                             true));
                                 }
 
-                                var cond =
+                                foreach (var spell in
                                     SpellDatabase.Get()
-                                        .Any(
+                                        .Where(
                                             s =>
                                             !s.SpellName.Equals("KatarinaE") && !s.SpellName.Equals("TalonCutthroat")
-                                            && s.ChampionName.Equals(enemy.ChampionName)
-                                            && ((enemy.IsMelee && s.CastType.Contains(CastType.Activate)
-                                                 && s.SpellType.HasFlag(SpellType.Activated)
-                                                 && AutoAttack.IsAutoAttackReset(s.SpellName))
-                                                || s.SpellType.HasFlag(SpellType.Targeted)
-                                                || s.SpellType.HasFlag(SpellType.TargetedMissile))
-                                            && s.CastType.Contains(CastType.EnemyChampions));
-
-                                if (cond)
+                                            && s.ChampionName.Equals(enemy.ChampionName)))
                                 {
-                                    foreach (var spell in
-                                        SpellDatabase.Get()
-                                            .Where(
-                                                s =>
-                                                !s.SpellName.Equals("KatarinaE")
-                                                && !s.SpellName.Equals("TalonCutthroat")
-                                                && s.ChampionName.Equals(enemy.ChampionName)
-                                                && s.CastType.Contains(CastType.EnemyChampions)
-                                                && ((enemy.IsMelee && s.CastType.Contains(CastType.Activate)
-                                                     && s.SpellType.HasFlag(SpellType.Activated)
-                                                     && AutoAttack.IsAutoAttackReset(s.SpellName))
-                                                    || s.SpellType.HasFlag(SpellType.Targeted)
-                                                    || s.SpellType.HasFlag(SpellType.TargetedMissile))))
+                                    if (enemy.IsMelee && spell.CastType != null
+                                        && spell.CastType.Contains(CastType.Activate)
+                                        && spell.SpellType.HasFlag(SpellType.Activated)
+                                        && AutoAttack.IsAutoAttackReset(spell.SpellName)
+                                        || spell.CastType != null && spell.CastType.Contains(CastType.EnemyChampions)
+                                        && (spell.SpellType.HasFlag(SpellType.Targeted)
+                                            || spell.SpellType.HasFlag(SpellType.TargetedMissile)))
                                     {
                                         Vars.WhiteListMenu.Add(
                                             new MenuBool(
                                                 $"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}",
-                                                $"Shield: {enemy.ChampionName}'s {spell.Slot}",
+                                                $"Shield: {enemy.ChampionName}'s {(enemy.ChampionName.Equals("TwistedFate") ? spell.MissileSpellName : spell.Slot.ToString())}",
                                                 true));
                                     }
                                 }
