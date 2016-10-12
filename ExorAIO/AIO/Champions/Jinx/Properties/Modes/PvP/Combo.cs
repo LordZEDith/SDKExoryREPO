@@ -28,7 +28,7 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.CanAttack && Targets.Target.IsValidTarget(Vars.Q.Range + 200f)
+            if (Vars.Q.IsReady() && GameObjects.Player.CanAttack && Targets.Target.IsValidTarget(Vars.W.Range) // :>:>:>:>:>
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 const float SplashRange = 160f;
