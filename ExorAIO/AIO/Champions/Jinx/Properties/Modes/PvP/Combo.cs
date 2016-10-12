@@ -34,13 +34,12 @@ namespace ExorAIO.Champions.Jinx
                 const float SplashRange = 160f;
                 var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
                 var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue;
-                var powPowRange = Vars.PowPow.Range + (Targets.Target != null ? Targets.Target.BoundingRadius : 0f)
-                                  - 20f;
+                var powPowRange = Vars.PowPow.Range;
 
                 if (isUsingFishBones)
                 {
                     if (GameObjects.Player.Distance(Targets.Target) < powPowRange
-                        && Targets.Target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
+                        && Targets.Target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies-1)
                     {
                         Vars.Q.Cast();
                     }
@@ -48,7 +47,7 @@ namespace ExorAIO.Champions.Jinx
                 else
                 {
                     if (GameObjects.Player.Distance(Targets.Target) > powPowRange
-                        || Targets.Target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
+                        || Targets.Target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies-1)
                     {
                         Vars.Q.Cast();
                     }

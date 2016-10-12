@@ -28,15 +28,8 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
         public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            var minionsInRange = GameObjects.EnemyMinions.Count(m => m.Distance(args.Target as Obj_AI_Minion) < 160f);
-            var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-            var canLastHit = Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue
-                             && GameObjects.Player.ManaPercent
-                             < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
-            var canLaneClear = Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue
-                               && GameObjects.Player.ManaPercent
-                               < ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
-            if (Vars.Q.IsReady() && args.Target is Obj_AI_Minion)
+            if (Variables.Orbwalker.ActiveMode != OrbwalkingMode.LastHit &&
+                Variables.Orbwalker.ActiveMode != OrbwalkingMode.LaneClear)
             {
                 return;
             }
@@ -44,20 +37,32 @@ namespace ExorAIO.Champions.Jinx
             switch (args.Type)
             {
                 case OrbwalkingType.BeforeAttack:
-                    if (isUsingFishBones)
+                    var canLastHit = Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue
+                                     && GameObjects.Player.ManaPercent
+                                     > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
+                    var canLaneClear = Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue
+                                       && GameObjects.Player.ManaPercent
+                                       > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
+
+                    if (Vars.Q.IsReady() && args.Target != null)
                     {
-                        if (minionsInRange < 3)
+                        var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
+                        var minionsInRange = GameObjects.EnemyMinions.Count(m => m.Distance(args.Target) < 160f);
+                        if (isUsingFishBones)
                         {
-                            Vars.Q.Cast();
+                            if (minionsInRange < 3)
+                            {
+                                Vars.Q.Cast();
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (minionsInRange >= 3
-                            && (Variables.Orbwalker.ActiveMode == OrbwalkingMode.LastHit && canLastHit
-                                || Variables.Orbwalker.ActiveMode == OrbwalkingMode.LaneClear && canLaneClear))
+                        else
                         {
-                            Vars.Q.Cast();
+                            if (minionsInRange >= 3
+                                && (Variables.Orbwalker.ActiveMode == OrbwalkingMode.LastHit && canLastHit
+                                    || Variables.Orbwalker.ActiveMode == OrbwalkingMode.LaneClear && canLaneClear))
+                            {
+                                Vars.Q.Cast();
+                            }
                         }
                     }
                     break;
