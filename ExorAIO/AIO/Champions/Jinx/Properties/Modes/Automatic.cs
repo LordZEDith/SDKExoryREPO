@@ -32,15 +32,6 @@ namespace ExorAIO.Champions.Jinx
             }
 
             /// <summary>
-            ///     The Automatic Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("JinxQ")
-                && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) == 0)
-            {
-                Vars.Q.Cast();
-            }
-
-            /// <summary>
             ///     The Automatic E Logic.
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
