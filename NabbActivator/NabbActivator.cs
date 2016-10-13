@@ -40,8 +40,7 @@ namespace NabbActivator
         /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
         public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            if (args.Type == OrbwalkingType.BeforeAttack &&
-                Variables.Orbwalker.ActiveMode == OrbwalkingMode.Combo)
+            if (args.Type == OrbwalkingType.BeforeAttack)
             {
                 /// <summary>
                 ///     Loads the offensives logics.

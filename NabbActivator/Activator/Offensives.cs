@@ -48,7 +48,7 @@ namespace NabbActivator
             /// <summary>
             ///     The Entropy Logic.
             /// </summary>     
-            if (Items.CanUseItem(3184) && GameObjects.Player.Spellbook.IsAutoAttacking)
+            if (Items.CanUseItem(3184))
             {
                 Items.UseItem(3184);
             }
@@ -82,10 +82,7 @@ namespace NabbActivator
             /// </summary>
             if (Items.CanUseItem(3142))
             {
-                if (GameObjects.Player.Spellbook.IsAutoAttacking || GameObjects.Player.IsCastingInterruptableSpell())
-                {
-                    Items.UseItem(3142);
-                }
+                Items.UseItem(3142);
             }
 
             /// <summary>
