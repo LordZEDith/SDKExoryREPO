@@ -8,6 +8,7 @@ namespace ExorAIO.Champions.Jinx
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -25,29 +26,30 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
+            var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
+
             /// <summary>
             ///     The Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.CanAttack && Targets.Target.IsValidTarget(Vars.W.Range) // :>:>:>:>:>
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 const float SplashRange = 160f;
                 var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue;
+                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue-1; // Excludes the main target.
                 var powPowRange = Vars.PowPow.Range;
 
                 if (isUsingFishBones)
                 {
-                    if (GameObjects.Player.Distance(Targets.Target) < powPowRange
-                        && Targets.Target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies-1)
+                    if (GameObjects.Player.Distance(target) < powPowRange
+                        && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
                     {
                         Vars.Q.Cast();
                     }
                 }
                 else
                 {
-                    if (GameObjects.Player.Distance(Targets.Target) > powPowRange
-                        || Targets.Target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies-1)
+                    if (GameObjects.Player.Distance(target) >= powPowRange
+                        || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
                     {
                         Vars.Q.Cast();
                     }
