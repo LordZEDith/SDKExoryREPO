@@ -6,6 +6,8 @@ namespace NabbActivator
     using System;
 
     using LeagueSharp;
+    using LeagueSharp.SDK;
+    using LeagueSharp.SDK.Enumerations;
 
     /// <summary>
     ///     The main class.
@@ -30,6 +32,22 @@ namespace NabbActivator
             ///     Loads the resetter-items logics.
             /// </summary>
             Activator.Resetters(sender, args);
+        }
+        /// <summary>
+        ///     Called on orbwalker action.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        {
+            if (args.Type == OrbwalkingType.BeforeAttack &&
+                Variables.Orbwalker.ActiveMode == OrbwalkingMode.Combo)
+            {
+                /// <summary>
+                ///     Loads the offensives logics.
+                /// </summary>
+                Activator.Offensives(sender, args);
+            }
         }
 
         /// <summary>
@@ -93,11 +111,6 @@ namespace NabbActivator
             ///     Loads the cleansers logics.
             /// </summary>
             Activator.Cleansers(args);
-
-            /// <summary>
-            ///     Loads the offensives logics.
-            /// </summary>
-            Activator.Offensives(args);
 
             /// <summary>
             ///     Loads the defensives logics.

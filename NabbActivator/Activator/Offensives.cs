@@ -3,7 +3,6 @@
 
 namespace NabbActivator
 {
-    using System;
     using System.Linq;
 
     using LeagueSharp.SDK;
@@ -17,12 +16,13 @@ namespace NabbActivator
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Called when the game updates itself.
+        ///     Called on orbwalker action.
         /// </summary>
-        /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
-        public static void Offensives(EventArgs args)
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void Offensives(object sender, OrbwalkingActionArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || !Vars.Menu["offensives"].GetValue<MenuBool>().Value
+            if (!Vars.Menu["offensives"].GetValue<MenuBool>().Value
                 || !Vars.Menu["keys"]["combo"].GetValue<MenuKeyBind>().Active)
             {
                 return;
