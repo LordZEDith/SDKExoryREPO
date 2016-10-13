@@ -32,7 +32,7 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The E Combo Logic.
             /// </summary>
-            if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["mode"].GetValue<MenuList>().Index != 2)
+            if (Vars.E.IsReady())
             {
                 if (!Game.CursorPos.IsUnderEnemyTurret()
                     || ((Obj_AI_Hero)args.Target).Health
