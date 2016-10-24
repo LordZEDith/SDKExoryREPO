@@ -189,14 +189,19 @@ namespace ExorAIO.Champions.Vayne
             }
 
             /// <summary>
-            ///     Initializes the Automatic actions.
-            /// </summary>
-            Logics.Automatic(args);
-
-            /// <summary>
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
+
+            /// <summary>
+            ///     Initializes the orbwalkingmodes.
+            /// </summary>
+            switch (Variables.Orbwalker.ActiveMode)
+            {
+                case OrbwalkingMode.Combo:
+                    Logics.Combo(args);
+                    break;
+            }
         }
 
         /// <summary>
