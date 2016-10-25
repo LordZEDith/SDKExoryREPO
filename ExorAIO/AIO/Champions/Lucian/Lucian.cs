@@ -119,16 +119,12 @@ namespace ExorAIO.Champions.Lucian
             ///     Initializes the Automatic actions.
             /// </summary>
             Logics.Automatic(args);
-            if (GameObjects.Player.HasBuff("LucianR") || GameObjects.Player.HasBuff("LucianPassiveBuff"))
-            {
-                return;
-            }
 
             /// <summary>
             ///     Initializes the Killsteal events.
             /// </summary>
             Logics.Killsteal(args);
-            if (GameObjects.Player.IsWindingUp)
+            if (GameObjects.Player.IsWindingUp || GameObjects.Player.HasBuff("LucianR"))
             {
                 return;
             }
