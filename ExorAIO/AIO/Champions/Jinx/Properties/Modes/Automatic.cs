@@ -47,7 +47,7 @@ namespace ExorAIO.Champions.Jinx
                         Vars.E.Cast(
                             GameObjects.Player.ServerPosition.Extend(
                                 target.ServerPosition,
-                                (float)(GameObjects.Player.Distance(target) + Vars.E.Width / 1.5)));
+                                (float)(GameObjects.Player.Distance(target) + Vars.E.Width)));
                     }
                 }
             }
