@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast();
             }
@@ -66,7 +66,7 @@ namespace ExorAIO.Champions.Tristana
             ///     The Clear Q Logics.
             /// </summary>
             var objAiBase = Variables.Orbwalker.GetTarget() as Obj_AI_Minion;
-            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.IsAutoAttacking && objAiBase != null)
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp && objAiBase != null)
             {
                 /// <summary>
                 ///     The LaneClear & JungleClear Q Logics.

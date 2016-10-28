@@ -25,8 +25,7 @@ namespace ExorAIO.Champions.Tristana
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
-            if (Bools.HasSheenBuff() || target == null || !target.IsValidTarget() || Invulnerable.Check(target))
+            if (Bools.HasSheenBuff())
             {
                 return;
             }
@@ -34,10 +33,16 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.Spellbook.IsAutoAttacking
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast();
+            }
+
+            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
+            if (target == null || !target.IsValidTarget() || Invulnerable.Check(target))
+            {
+                return;
             }
 
             /// <summary>
