@@ -56,7 +56,7 @@ namespace ExorAIO.Utilities
                    || IsValidSnare(target as Obj_AI_Hero) || target.HasBuffOfType(BuffType.Flee)
                    || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Charm)
                    || target.HasBuffOfType(BuffType.Knockup) || target.HasBuffOfType(BuffType.Suppression)
-                   || (target as Obj_AI_Hero).IsCastingInterruptableSpell();
+                   || (target as Obj_AI_Hero).IsCastingInterruptableSpell(true);
         }
 
         /// <summary>

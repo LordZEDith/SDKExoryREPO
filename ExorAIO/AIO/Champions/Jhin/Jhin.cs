@@ -155,7 +155,7 @@ namespace ExorAIO.Champions.Jhin
             /// </summary>
             Logics.Automatic(args);
 
-            if (GameObjects.Player.IsWindingUp || Vars.R.Instance.Name.Equals("JhinRShot"))
+            if (GameObjects.Player.IsWindingUp)
             {
                 return;
             }
