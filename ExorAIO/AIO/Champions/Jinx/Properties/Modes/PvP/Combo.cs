@@ -31,16 +31,15 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && target != null && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 const float SplashRange = 160f;
                 var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
                 var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue-1; // Excludes the main target.
-                var powPowRange = Vars.PowPow.Range;
 
                 if (isUsingFishBones)
                 {
-                    if (GameObjects.Player.Distance(target) < powPowRange
+                    if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
                         && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
                     {
                         Vars.Q.Cast();
@@ -48,7 +47,7 @@ namespace ExorAIO.Champions.Jinx
                 }
                 else
                 {
-                    if (GameObjects.Player.Distance(target) >= powPowRange
+                    if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
                         || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
                     {
                         Vars.Q.Cast();
@@ -70,13 +69,10 @@ namespace ExorAIO.Champions.Jinx
                 >= Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
-                if (Targets.Target != null)
-                {
-                    Vars.E.Cast(
-                        GameObjects.Player.ServerPosition.Extend(
-                            Targets.Target.ServerPosition,
-                            GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
-                }
+                Vars.E.Cast(
+                    GameObjects.Player.ServerPosition.Extend(
+                        Targets.Target.ServerPosition,
+                        GameObjects.Player.Distance(Targets.Target) + Targets.Target.BoundingRadius * 2));
             }
 
             /// <summary>
