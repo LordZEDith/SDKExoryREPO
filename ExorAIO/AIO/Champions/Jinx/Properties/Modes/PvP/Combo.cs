@@ -31,11 +31,12 @@ namespace ExorAIO.Champions.Jinx
             /// <summary>
             ///     The Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && target != null && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady() && target != null
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
                 const float SplashRange = 160f;
                 var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue-1; // Excludes the main target.
+                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue - 1;
 
                 if (isUsingFishBones)
                 {

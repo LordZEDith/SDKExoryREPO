@@ -34,7 +34,8 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && GameObjects.Player.IsWindingUp
+                && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast();
             }

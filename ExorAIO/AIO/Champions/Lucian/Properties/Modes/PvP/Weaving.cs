@@ -53,7 +53,10 @@ namespace ExorAIO.Champions.Lucian
                             Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, 475f));
                             break;
                         case 2:
-                            Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
+                            Vars.E.Cast(
+                                GameObjects.Player.ServerPosition.Extend(
+                                    Game.CursorPos,
+                                    GameObjects.Player.BoundingRadius));
                             break;
                     }
 
