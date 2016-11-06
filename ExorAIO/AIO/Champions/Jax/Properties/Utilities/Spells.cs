@@ -4,7 +4,6 @@ namespace ExorAIO.Champions.Jax
 
     using LeagueSharp;
     using LeagueSharp.SDK;
-    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The spells class.

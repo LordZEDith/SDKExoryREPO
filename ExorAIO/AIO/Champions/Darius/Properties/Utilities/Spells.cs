@@ -7,7 +7,6 @@ namespace ExorAIO.Champions.Darius
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
-    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The spell class.

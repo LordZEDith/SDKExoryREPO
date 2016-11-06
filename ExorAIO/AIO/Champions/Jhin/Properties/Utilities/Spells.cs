@@ -5,7 +5,6 @@ namespace ExorAIO.Champions.Jhin
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
-    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The settings class.
