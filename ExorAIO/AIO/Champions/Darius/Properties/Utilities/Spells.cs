@@ -22,7 +22,7 @@ namespace ExorAIO.Champions.Darius
         public static void Initialize()
         {
             Vars.Q = new Spell(SpellSlot.Q, 425f);
-            Vars.W = new Spell(SpellSlot.W, GameObjects.Player.GetRealAutoAttackRange() + 25f);
+            Vars.W = new Spell(SpellSlot.W);
             Vars.E = new Spell(SpellSlot.E, 550f);
             Vars.R = new Spell(SpellSlot.R, 460f);
             Vars.E.SetSkillshot(0.25f, (float)(80f * Math.PI / 180), float.MaxValue, false, SkillshotType.SkillshotCone);
