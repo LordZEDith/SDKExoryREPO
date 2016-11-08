@@ -17,7 +17,6 @@ namespace NabbActivator
         {
             Game.OnUpdate += Index.OnUpdate;
             Obj_AI_Base.OnDoCast += Index.OnDoCast;
-            Variables.Orbwalker.OnAction += Index.OnAction;
         }
 
         #endregion
