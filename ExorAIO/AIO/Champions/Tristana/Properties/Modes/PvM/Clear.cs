@@ -34,7 +34,8 @@ namespace ExorAIO.Champions.Tristana
             /// <summary>
             ///     The Q BuildingClear Logic.
             /// </summary>
-            if (Vars.Q.IsReady() && GameObjects.EnemyTurrets.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
+            if (Vars.Q.IsReady()
+                && GameObjects.EnemyTurrets.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                 && Vars.Menu["spells"]["q"]["buildings"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast();
