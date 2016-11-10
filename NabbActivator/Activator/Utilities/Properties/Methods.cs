@@ -1,7 +1,6 @@
 namespace NabbActivator
 {
     using LeagueSharp;
-    using LeagueSharp.SDK;
 
     /// <summary>
     ///     The methods class.
