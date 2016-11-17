@@ -8,7 +8,6 @@ namespace ExorAIO.Champions.Evelynn
 
     using ExorAIO.Utilities;
 
-    using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
 
     /// <summary>
@@ -30,14 +29,23 @@ namespace ExorAIO.Champions.Evelynn
             }
 
             /// <summary>
-            ///     The Q Clear Logic.
+            ///     The Q Clear Logics.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
-                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady())
             {
-                if (Targets.Minions.Any() || Targets.JungleMinions.Any())
+                /// <summary>
+                ///     The Q LaneClear Logic.
+                /// </summary>
+                if (Targets.Minions.Any() && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuBool>().Value)
+                {
+                    Vars.Q.Cast();
+                }
+
+                /// <summary>
+                ///     The Q JungleClear Logic.
+                /// </summary>
+                else if (Targets.JungleMinions.Any()
+                         && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuBool>().Value)
                 {
                     Vars.Q.Cast();
                 }
@@ -47,9 +55,7 @@ namespace ExorAIO.Champions.Evelynn
             ///     The E JungleClear Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.JungleMinions.Any()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.E.Slot, Vars.Menu["spells"]["e"]["jungleclear"])
-                && Vars.Menu["spells"]["e"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
+                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(Targets.JungleMinions[0]);
             }

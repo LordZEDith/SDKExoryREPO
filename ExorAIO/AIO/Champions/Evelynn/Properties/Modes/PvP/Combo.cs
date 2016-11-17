@@ -7,6 +7,7 @@ namespace ExorAIO.Champions.Evelynn
 
     using ExorAIO.Utilities;
 
+    using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
@@ -24,7 +25,8 @@ namespace ExorAIO.Champions.Evelynn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget()
+                || Invulnerable.Check(Targets.Target, DamageType.Magical))
             {
                 return;
             }
@@ -36,6 +38,7 @@ namespace ExorAIO.Champions.Evelynn
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast();
+                return;
             }
 
             /// <summary>
@@ -46,6 +49,7 @@ namespace ExorAIO.Champions.Evelynn
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
+                return;
             }
 
             /// <summary>
@@ -55,6 +59,7 @@ namespace ExorAIO.Champions.Evelynn
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.CastOnUnit(Targets.Target);
+                return;
             }
 
             /// <summary>
@@ -64,7 +69,7 @@ namespace ExorAIO.Champions.Evelynn
             {
                 Vars.R.CastIfWillHit(
                     Targets.Target,
-                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue);
+                    Vars.Menu["spells"]["r"]["combo"].GetValue<MenuSliderButton>().SValue - 1);
             }
         }
 

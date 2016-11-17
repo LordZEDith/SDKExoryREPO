@@ -22,6 +22,42 @@ namespace ExorAIO.Champions.Caitlyn
         #region Public Methods and Operators
 
         /// <summary>
+        ///     Called on orbwalker action.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        {
+            switch (args.Type)
+            {
+                case OrbwalkingType.BeforeAttack:
+
+                    /// <summary>
+                    ///     The Target Forcing Logic.
+                    /// </summary>
+                    if (
+                        GameObjects.EnemyHeroes.Any(
+                            t => Vars.GetRealHealth(t) < GameObjects.Player.GetAutoAttackDamage(t)))
+                    {
+                        return;
+                    }
+
+                    var target =
+                        GameObjects.EnemyHeroes.FirstOrDefault(
+                            t =>
+                            t.InAutoAttackRange() && !Invulnerable.Check(t) && t.HasBuff("caitlynyordletrapinternal"));
+                    if (target != null)
+                    {
+                        Variables.Orbwalker.ForceTarget = target;
+                        return;
+                    }
+
+                    Variables.Orbwalker.ForceTarget = null;
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     Fired on spell cast.
         /// </summary>
         /// <param name="spellbook">The spellbook.</param>
@@ -87,10 +123,12 @@ namespace ExorAIO.Champions.Caitlyn
                             case "CaitlynEntrapmentMissile":
                                 if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
                                 {
-                                    Vars.W.Cast(
-                                        GameObjects.Player.ServerPosition.Extend(
-                                            args.End,
-                                            GameObjects.Player.Distance(args.End) + Vars.W.Width));
+                                    foreach (var target in
+                                        GameObjects.EnemyHeroes.Where(
+                                            t => t.IsValidTarget(Vars.W.Range) && !Invulnerable.Check(t)))
+                                    {
+                                        Vars.W.Cast(target.ServerPosition);
+                                    }
                                 }
                                 break;
                         }
@@ -155,25 +193,6 @@ namespace ExorAIO.Champions.Caitlyn
                 && Vars.Menu["spells"]["w"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(Vars.W.GetPrediction(args.Sender).CastPosition);
-            }
-        }
-
-        /// <summary>
-        ///     Called on spellcast process.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
-        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            /// <summary>
-            ///     The Trap AA-Reset.
-            /// </summary>
-            if (sender.IsMe && (args.Target as Obj_AI_Hero).IsValidTarget()
-                && args.SData.Name.Equals("CaitlynHeadshotMissile")
-                && GameObjects.Player.HasBuff("caitlynheadshotrangecheck")
-                && ((Obj_AI_Hero)args.Target).HasBuff("caitlynyordletrapdebuff"))
-            {
-                //Variables.Orbwalker.ResetSwingTimer();
             }
         }
 

@@ -38,6 +38,7 @@ namespace ExorAIO.Champions.Darius
                 && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(Vars.E.GetPrediction(Targets.Target).UnitPosition);
+                return;
             }
 
             /// <summary>

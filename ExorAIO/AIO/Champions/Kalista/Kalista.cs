@@ -1,8 +1,6 @@
 
 #pragma warning disable 1587
 
-// ReSharper disable once CheckNamespace
-
 namespace ExorAIO.Champions.Kalista
 {
     using System;

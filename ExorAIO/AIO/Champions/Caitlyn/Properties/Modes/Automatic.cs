@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Caitlyn
                         Vars.W.Cast(
                             ((Vector2)GameObjects.Player.ServerPosition).Extend(
                                 (Vector2)target.ServerPosition,
-                                (float)(GameObjects.Player.Distance(target) + Vars.W.Width / 1.5)));
+                                GameObjects.Player.Distance(target) + Vars.W.Width));
                     }
                 }
             }
@@ -77,13 +77,17 @@ namespace ExorAIO.Champions.Caitlyn
             if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                Vars.R.CastOnUnit(
+                var target =
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t != null && !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
                         && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
                         .OrderBy(o => o.Health)
-                        .First());
+                        .FirstOrDefault();
+                if (target != null)
+                {
+                    Vars.R.CastOnUnit(target);
+                }
             }
         }
 
