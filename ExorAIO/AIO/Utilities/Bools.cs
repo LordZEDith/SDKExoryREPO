@@ -14,16 +14,6 @@ namespace ExorAIO.Utilities
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Defines whether the player has a deadly mark.
-        /// </summary>
-        public static bool HasDeadlyMark()
-            =>
-                !Invulnerable.Check(GameObjects.Player, DamageType.True, false)
-                && GameObjects.Player.HasBuff("zedrtargetmark") || GameObjects.Player.HasBuff("summonerexhaust")
-                || GameObjects.Player.HasBuff("fizzmarinerdoombomb") || GameObjects.Player.HasBuff("vladimirhemoplague")
-                || GameObjects.Player.HasBuff("mordekaiserchildrenofthegrave");
-
-        /// <summary>
         ///     Gets a value indicating whether the player has a sheen-like buff.
         /// </summary>
         public static bool HasSheenBuff()
@@ -65,12 +55,8 @@ namespace ExorAIO.Utilities
         public static bool IsPerfectRendTarget(Obj_AI_Base target)
         {
             var hero = target as Obj_AI_Hero;
-            if (hero != null && Invulnerable.Check(hero))
-            {
-                return false;
-            }
-
-            return target.IsValidTarget(Vars.E.Range) && target.HasBuff("kalistaexpungemarker");
+            return (hero == null || !Invulnerable.Check(hero)) && target.IsValidTarget(Vars.E.Range)
+                   && target.HasBuff("kalistaexpungemarker");
         }
 
         /// <summary>
@@ -78,10 +64,13 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static bool IsValidSnare(Obj_AI_Hero target)
         {
-            return
-                target.Buffs.Any(
-                    b =>
-                    b.Type == BuffType.Snare && !Vars.InvalidSnareCasters.Contains(((Obj_AI_Hero)b.Caster).ChampionName));
+            return target.Buffs.Any(
+                b =>
+                    {
+                        var objAiHero = b.Caster as Obj_AI_Hero;
+                        return objAiHero != null && b.Type == BuffType.Snare
+                               && !Vars.InvalidSnareCasters.Contains(objAiHero.ChampionName);
+                    });
         }
 
         /// <summary>
@@ -89,10 +78,13 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static bool IsValidStun(Obj_AI_Hero target)
         {
-            return
-                target.Buffs.Any(
-                    b =>
-                    b.Type == BuffType.Stun && !Vars.InvalidStunCasters.Contains(((Obj_AI_Hero)b.Caster).ChampionName));
+            return target.Buffs.Any(
+                b =>
+                    {
+                        var objAiHero = b.Caster as Obj_AI_Hero;
+                        return objAiHero != null && b.Type == BuffType.Stun
+                               && !Vars.InvalidStunCasters.Contains(objAiHero.ChampionName);
+                    });
         }
 
         /// <summary>

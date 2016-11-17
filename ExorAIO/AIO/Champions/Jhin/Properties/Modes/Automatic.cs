@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Jhin
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
-            if (GameObjects.Player.IsRecalling())
+            if (GameObjects.Player.IsRecalling() || Vars.R.Instance.Name.Equals("JhinRShot"))
             {
                 return;
             }
@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Jhin
             /// <summary>
             ///     The Automatic Q LastHit Logic.
             /// </summary>
-            /*if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("JhinPassiveReload")
+            if (Vars.Q.IsReady() && GameObjects.Player.HasBuff("JhinPassiveReload")
                 && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo
                 && GameObjects.Player.ManaPercent
                 > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["lasthit"])
@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Jhin
                 {
                     Vars.Q.CastOnUnit(minion);
                 }
-            }*/
+            }
 
             /// <summary>
             ///     The Automatic E Logic.
