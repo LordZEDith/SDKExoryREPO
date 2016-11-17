@@ -26,32 +26,36 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero ?? Targets.Target;
-
-            /// <summary>
-            ///     The Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && target != null
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+            if (Variables.Orbwalker.GetTarget().Type == GameObjectType.obj_AI_Hero)
             {
-                const float SplashRange = 160f;
-                var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue - 1;
+                var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
 
-                if (isUsingFishBones)
+                /// <summary>
+                ///     The Q Logic.
+                /// </summary>
+                if (Vars.Q.IsReady() && target != null
+                    && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
                 {
-                    if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
-                        && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
+                    const float SplashRange = 160f;
+                    var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
+                    var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue
+                                                - 1;
+
+                    if (isUsingFishBones)
                     {
-                        Vars.Q.Cast();
+                        if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
+                            && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
+                        {
+                            Vars.Q.Cast();
+                        }
                     }
-                }
-                else
-                {
-                    if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
-                        || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
+                    else
                     {
-                        Vars.Q.Cast();
+                        if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
+                            || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
+                        {
+                            Vars.Q.Cast();
+                        }
                     }
                 }
             }
