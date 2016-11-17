@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
+            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero ?? Targets.Target;
 
             /// <summary>
             ///     The Q Logic.
