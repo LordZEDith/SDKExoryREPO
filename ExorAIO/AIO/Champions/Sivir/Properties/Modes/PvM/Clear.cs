@@ -63,25 +63,32 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Clear W Logic.
             /// </summary>
-            if (Vars.W.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["clear"])
-                && Vars.Menu["spells"]["w"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.W.IsReady())
             {
                 /// <summary>
-                ///     The LaneClear W Logic.
+                ///     The JungleClear W Logic.
                 /// </summary>
-                if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
+                if (Targets.JungleMinions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["jungleclear"])
+                    && Vars.Menu["spells"]["w"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.W.Cast();
                 }
 
                 /// <summary>
-                ///     The JungleClear W Logic.
+                ///     The LaneClear W Logic.
                 /// </summary>
-                else if (Targets.JungleMinions.Any())
+                /// 
+                else if (Targets.Minions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["w"]["laneclear"])
+                         && Vars.Menu["spells"]["w"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
-                    Vars.W.Cast();
+                    if (Vars.Q.GetLineFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3)
+                    {
+                        Vars.W.Cast();
+                    }
                 }
                 return;
             }
@@ -89,15 +96,15 @@ namespace ExorAIO.Champions.Sivir
             /// <summary>
             ///     The Clear Q Logics.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["clear"])
-                && Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue)
+            if (Vars.Q.IsReady())
             {
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                if (Targets.JungleMinions.Any())
+                if (Targets.JungleMinions.Any()
+                    && GameObjects.Player.ManaPercent
+                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
+                    && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);
                 }
@@ -105,7 +112,10 @@ namespace ExorAIO.Champions.Sivir
                 /// <summary>
                 ///     The LaneClear Q Logics.
                 /// </summary>
-                else
+                else if (Targets.Minions.Any()
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                         && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     /// <summary>
                     ///     The Aggressive LaneClear Q Logic.

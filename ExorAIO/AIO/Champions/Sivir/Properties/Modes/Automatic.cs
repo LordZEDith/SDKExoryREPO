@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Sivir
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
+                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range - 50f)))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }
@@ -122,10 +122,12 @@ namespace ExorAIO.Champions.Sivir
                         var spellMenu =
                             Vars.Menu["spells"]["e"]["whitelist"][
                                 $"{hero.ChampionName.ToLower()}.{args.SData.Name.ToLower()}"];
-                        var resetMenu =
-                            Vars.Menu["spells"]["e"]["whitelist"][
-                                $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
-                                ];
+
+                        var resetMenu = hero.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name))
+                                            ? Vars.Menu["spells"]["e"]["whitelist"][
+                                                $"{hero.ChampionName.ToLower()}.{hero.Buffs.First(b => AutoAttack.IsAutoAttackReset(b.Name)).Name.ToLower()}"
+                                                  ]
+                                            : null;
 
                         /// <summary>
                         ///     Check for Special On-Hit CC AutoAttacks & Melee AutoAttack Resets.
