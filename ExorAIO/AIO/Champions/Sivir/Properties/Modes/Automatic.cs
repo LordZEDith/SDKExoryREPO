@@ -226,7 +226,7 @@ namespace ExorAIO.Champions.Sivir
 
                     break;
                 case GameObjectType.obj_AI_Minion:
-                    if (!args.Target.IsMe)
+                    if (args.Target == null || !args.Target.IsMe)
                     {
                         return;
                     }

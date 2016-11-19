@@ -13,8 +13,6 @@ namespace ExorAIO.Champions.Caitlyn
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
-    using SharpDX;
-
     /// <summary>
     ///     The logics class.
     /// </summary>
@@ -46,10 +44,9 @@ namespace ExorAIO.Champions.Caitlyn
                 {
                     if (Vars.GetImmobileBuffEndTime(target) >= Vars.W.Delay + Game.Ping)
                     {
-                        Vars.W.Cast(
-                            ((Vector2)GameObjects.Player.ServerPosition).Extend(
-                                (Vector2)target.ServerPosition,
-                                GameObjects.Player.Distance(target) + Vars.W.Width));
+                        Vars.W.Cast(GameObjects.Player.ServerPosition.Extend(
+                                target.ServerPosition,
+                                (float)(GameObjects.Player.Distance(target) + Vars.W.Width*1.5)));
                     }
                 }
             }
