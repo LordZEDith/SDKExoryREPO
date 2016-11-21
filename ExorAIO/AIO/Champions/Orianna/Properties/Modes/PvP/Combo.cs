@@ -13,6 +13,8 @@ namespace ExorAIO.Champions.Orianna
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
+    using NLog.Targets;
+
     using SharpDX;
 
     using Geometry = ExorAIO.Utilities.Geometry;
@@ -91,6 +93,7 @@ namespace ExorAIO.Champions.Orianna
                 && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();
+                Console.WriteLine("[SDK]ExorAIO: Orianna - R used for Combo.");
             }
 
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())

@@ -54,24 +54,7 @@ namespace ExorAIO.Champions.Orianna
                 && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.Cast();
-            }
-
-            /// <summary>
-            ///     The Automatic E Logic.
-            /// </summary>
-            if (Vars.E.IsReady())
-            {
-                foreach (var ally in
-                    GameObjects.AllyHeroes.Where(
-                        a =>
-                        a.IsValidTarget(Vars.E.Range, false)
-                        && a.CountEnemyHeroesInRange(Vars.R.Range)
-                        >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue
-                        && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
-                        && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue))
-                {
-                    Vars.E.CastOnUnit(ally);
-                }
+                Console.WriteLine("[SDK]ExorAIO: Orianna - R used for AoE Logic.");
             }
         }
 

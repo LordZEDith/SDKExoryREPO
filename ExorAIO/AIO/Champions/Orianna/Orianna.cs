@@ -94,6 +94,7 @@ namespace ExorAIO.Champions.Orianna
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();
+                Console.WriteLine("[SDK]ExorAIO: Orianna - R used for Spell Interruption.");
             }
         }
 

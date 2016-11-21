@@ -79,6 +79,7 @@ namespace ExorAIO.Champions.Orianna
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {
                     Vars.R.Cast();
+                    Console.WriteLine("[SDK]ExorAIO: Orianna - R used for KillSteal.");
                 }
             }
         }

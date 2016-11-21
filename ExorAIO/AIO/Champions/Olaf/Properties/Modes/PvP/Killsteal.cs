@@ -35,7 +35,6 @@ namespace ExorAIO.Champions.Olaf
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
-                        && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(
