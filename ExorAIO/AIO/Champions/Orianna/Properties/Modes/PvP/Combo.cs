@@ -13,8 +13,6 @@ namespace ExorAIO.Champions.Orianna
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
-    using NLog.Targets;
-
     using SharpDX;
 
     using Geometry = ExorAIO.Utilities.Geometry;
@@ -41,7 +39,7 @@ namespace ExorAIO.Champions.Orianna
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady()
-                && GameObjects.EnemyHeroes.Any(t => t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
+                && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
@@ -77,23 +75,6 @@ namespace ExorAIO.Champions.Orianna
                         return;
                     }
                 }
-            }
-
-            /// <summary>
-            ///     The Combo R Logic.
-            /// </summary>
-            if (Vars.R.IsReady()
-                && GameObjects.EnemyHeroes.Any(
-                    t =>
-                    t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 25f
-                    && Vars.GetRealHealth(t)
-                    < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)
-                    + (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q) * 2
-                    && Vars.Menu["spells"]["r"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value)
-                && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.R.Cast();
-                Console.WriteLine("[SDK]ExorAIO: Orianna - R used for Combo.");
             }
 
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())

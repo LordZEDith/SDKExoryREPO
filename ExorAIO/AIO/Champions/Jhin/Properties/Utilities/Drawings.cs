@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Jhin
                         && Vars.Menu["drawings"]["rc"].GetValue<MenuBool>().Value)
                     {
                         Jhin.Cone.Draw(
-                            GameObjects.EnemyHeroes.Any(t => !Jhin.Cone.IsOutside((Vector2)t.ServerPosition))
+                            GameObjects.EnemyHeroes.Any(t => t.IsValidTarget() && !Jhin.Cone.IsOutside((Vector2)t.ServerPosition))
                                 ? Color.Green
                                 : Color.Red);
                     }

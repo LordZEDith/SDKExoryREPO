@@ -83,7 +83,6 @@ namespace ExorAIO.Champions.Orianna
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo", "Combo"));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal"));
                     Vars.RMenu.Add(new MenuBool("interrupter", "Interrupt Enemy Channels", true));
                     Vars.RMenu.Add(new MenuSliderButton("aoe", "AoE / If can hit >= x enemies", 2, 1, 5, true));
