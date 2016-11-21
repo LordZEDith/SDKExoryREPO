@@ -54,7 +54,6 @@ namespace ExorAIO.Champions.Orianna
                 && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
                 Vars.R.Cast();
-                Console.WriteLine("[SDK]ExorAIO: Orianna - R used for AoE Logic.");
             }
         }
 
