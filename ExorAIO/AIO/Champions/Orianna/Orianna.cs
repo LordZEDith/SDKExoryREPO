@@ -50,7 +50,7 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     !GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.Distance((Vector2)BallPosition) < Vars.R.Range - 25
+                        t.IsValidTarget() && t.Distance((Vector2)BallPosition) < Vars.R.Range - 25
                         && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     args.Process = false;

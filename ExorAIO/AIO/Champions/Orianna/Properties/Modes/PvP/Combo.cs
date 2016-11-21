@@ -39,7 +39,8 @@ namespace ExorAIO.Champions.Orianna
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady()
-                && GameObjects.EnemyHeroes.Any(t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
+                && GameObjects.EnemyHeroes.Any(
+                    t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();

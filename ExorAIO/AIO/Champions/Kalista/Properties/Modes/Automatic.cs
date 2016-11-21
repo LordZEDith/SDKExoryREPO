@@ -127,7 +127,9 @@ namespace ExorAIO.Champions.Kalista
                         else if (objAiHeroes.Count == 1)
                         {
                             var hero = objAiHeroes.FirstOrDefault();
-                            if (hero != null && !Vars.Menu["spells"]["e"]["whitelist"][hero.ChampionName.ToLower()].GetValue<MenuBool>().Value)
+                            if (hero != null
+                                && !Vars.Menu["spells"]["e"]["whitelist"][hero.ChampionName.ToLower()]
+                                        .GetValue<MenuBool>().Value)
                             {
                                 return;
                             }
