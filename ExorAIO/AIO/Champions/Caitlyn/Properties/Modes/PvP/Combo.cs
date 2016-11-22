@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Caitlyn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Bools.HasSheenBuff() || GameObjects.Player.Mana < Vars.E.Instance.ManaCost + Vars.Q.Instance.ManaCost)
+            if (Bools.HasSheenBuff())
             {
                 return;
             }

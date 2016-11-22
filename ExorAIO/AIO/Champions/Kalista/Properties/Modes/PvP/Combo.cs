@@ -38,8 +38,9 @@ namespace ExorAIO.Champions.Kalista
                     GameObjectOrder.AttackUnit,
                     Targets.Minions.FirstOrDefault(m => m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())));
             }
+
             if (Bools.HasSheenBuff() && !Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target) || GameObjects.Player.Mana < Vars.E.Instance.ManaCost + Vars.Q.Instance.ManaCost)
             {
                 return;
             }
