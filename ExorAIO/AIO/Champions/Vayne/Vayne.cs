@@ -127,7 +127,8 @@ namespace ExorAIO.Champions.Vayne
                 /// <summary>
                 ///     The Anti-GapCloser E Logic.
                 /// </summary>
-                if (args.Sender.IsMelee && args.IsDirectedToPlayer && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+                if (args.Sender.IsMelee && args.IsDirectedToPlayer
+                    && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
                 {
                     Vars.E.CastOnUnit(args.Sender);
                 }
