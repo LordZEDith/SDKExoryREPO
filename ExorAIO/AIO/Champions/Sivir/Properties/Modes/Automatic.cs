@@ -50,7 +50,8 @@ namespace ExorAIO.Champions.Sivir
                 var buff = target.GetBuff("jaxcounterstrike") ?? target.GetBuff("kogmawicathiansurprise");
                 if (buff != null)
                 {
-                    if (target.DistanceToPlayer() < 355 + GameObjects.Player.BoundingRadius && buff.EndTime - Game.Time <= 750
+                    if (target.DistanceToPlayer() < 355 + GameObjects.Player.BoundingRadius
+                        && buff.EndTime - Game.Time <= 750
                         && shieldMenu[$"{target.ChampionName.ToLower()}.{buff.Name}"].GetValue<MenuBool>().Value)
                     {
                         Vars.E.Cast();
@@ -142,7 +143,8 @@ namespace ExorAIO.Champions.Sivir
                                 /// <summary>
                                 ///     Check for Melee AutoAttack Resets.
                                 /// </summary>
-                                if (resetMenu != null && resetMenu.GetValue<MenuBool>().Value && hero.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
+                                if (resetMenu != null && resetMenu.GetValue<MenuBool>().Value
+                                    && hero.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
                                 {
                                     Vars.E.Cast();
                                     return;
@@ -151,7 +153,8 @@ namespace ExorAIO.Champions.Sivir
                                 /// <summary>
                                 ///     Check for Braum Passive.
                                 /// </summary>
-                                if (braumMenu != null && braumMenu.GetValue<MenuBool>().Value && GameObjects.Player.GetBuffCount("BraumMark") == 3)
+                                if (braumMenu != null && braumMenu.GetValue<MenuBool>().Value
+                                    && GameObjects.Player.GetBuffCount("BraumMark") == 3)
                                 {
                                     Vars.E.Cast();
                                     return;
@@ -162,7 +165,8 @@ namespace ExorAIO.Champions.Sivir
                         /// <summary>
                         ///     Shield all the Targetted Spells.
                         /// </summary>
-                        if (spellMenu != null && spellMenu.GetValue<MenuBool>().Value && SpellDatabase.GetByName(args.SData.Name) != null)
+                        if (spellMenu != null && spellMenu.GetValue<MenuBool>().Value
+                            && SpellDatabase.GetByName(args.SData.Name) != null)
                         {
                             switch (SpellDatabase.GetByName(args.SData.Name).SpellType)
                             {

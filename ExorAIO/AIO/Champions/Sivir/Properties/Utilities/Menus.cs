@@ -144,7 +144,8 @@ namespace ExorAIO.Champions.Sivir
                                             Vars.WhiteListMenu.Add(
                                                 new MenuBool(
                                                     $"{enemy.ChampionName.ToLower()}.{spell.SpellName.ToLower()}",
-                                                    $"Shield: {enemy.ChampionName}'s {spell.SpellName} ({spell.Slot})" + (assassinList.Contains(enemy.ChampionName) ? "[May not work]" : ""),
+                                                    $"Shield: {enemy.ChampionName}'s {spell.SpellName} ({spell.Slot})"
+                                                    + (assassinList.Contains(enemy.ChampionName) ? "[May not work]" : ""),
                                                     true));
                                         }
                                     }
