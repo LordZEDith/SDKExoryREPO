@@ -111,7 +111,7 @@ namespace ExorAIO.Champions.Vayne
                             && (prediction + vector * (i * 42)).IsWall() && (prediction + vector * (i * 45)).IsWall()
                             && (prediction2 + vector * (i * 42)).IsWall() && (prediction2 + vector * (i * 45)).IsWall())
                         {
-                            Vars.E.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Minion);
+                            Vars.E.CastOnUnit(target);
                             return;
                         }
                     }
