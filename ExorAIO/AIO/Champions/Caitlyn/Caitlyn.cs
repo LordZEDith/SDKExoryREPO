@@ -121,7 +121,8 @@ namespace ExorAIO.Champions.Caitlyn
                         {
                             case "CaitlynEntrapment":
                             case "CaitlynEntrapmentMissile":
-                                if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["triplecombo"].GetValue<MenuBool>().Value)
+                                if (Vars.W.IsReady()
+                                    && Vars.Menu["spells"]["w"]["triplecombo"].GetValue<MenuBool>().Value)
                                 {
                                     foreach (var target in
                                         GameObjects.EnemyHeroes.Where(

@@ -76,9 +76,9 @@ namespace ExorAIO.Champions.Corki
                 ///     The LaneClear Q Logic.
                 /// </summary>
                 else if (Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width).MinionsHit >= 3
-                    && GameObjects.Player.ManaPercent
-                    > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
-                    && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
+                         && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast(Vars.Q.GetCircularFarmLocation(Targets.Minions, Vars.Q.Width).Position);
                 }
@@ -103,9 +103,9 @@ namespace ExorAIO.Champions.Corki
                 ///     The LaneClear R Logic.
                 /// </summary>
                 else if (Vars.R.GetLineFarmLocation(Targets.Minions, Vars.R.Width).MinionsHit >= 2
-                    && GameObjects.Player.ManaPercent
-                    > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["laneclear"])
-                    && Vars.Menu["spells"]["r"]["laneclear"].GetValue<MenuSliderButton>().BValue)
+                         && GameObjects.Player.ManaPercent
+                         > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["laneclear"])
+                         && Vars.Menu["spells"]["r"]["laneclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.R.Cast(Vars.R.GetLineFarmLocation(Targets.Minions, Vars.R.Width).Position);
                 }

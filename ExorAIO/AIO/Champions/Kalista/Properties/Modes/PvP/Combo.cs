@@ -40,7 +40,8 @@ namespace ExorAIO.Champions.Kalista
             }
 
             if (Bools.HasSheenBuff() && !Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target) || GameObjects.Player.Mana < Vars.E.Instance.ManaCost + Vars.Q.Instance.ManaCost)
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target)
+                || GameObjects.Player.Mana < Vars.E.Instance.ManaCost + Vars.Q.Instance.ManaCost)
             {
                 return;
             }

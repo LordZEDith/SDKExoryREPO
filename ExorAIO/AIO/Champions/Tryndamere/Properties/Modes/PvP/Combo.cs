@@ -24,7 +24,8 @@ namespace ExorAIO.Champions.Tryndamere
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())) || !Targets.Target.IsValidTarget())
+            if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
+                || !Targets.Target.IsValidTarget())
             {
                 return;
             }
