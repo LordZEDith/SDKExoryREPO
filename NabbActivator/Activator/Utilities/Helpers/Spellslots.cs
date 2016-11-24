@@ -15,32 +15,32 @@ namespace NabbActivator
         /// <summary>
         ///     Gets the Barrier SpellSlot.
         /// </summary>
-        public static SpellSlot Barrier => ObjectManager.Player.GetSpellSlot("SummonerBarrier");
+        public static SpellSlot Barrier => GameObjects.Player.GetSpellSlot("SummonerBarrier");
 
         /// <summary>
         ///     Gets the Clarity SpellSlot.
         /// </summary>
-        public static SpellSlot Clarity => ObjectManager.Player.GetSpellSlot("SummonerMana");
+        public static SpellSlot Clarity => GameObjects.Player.GetSpellSlot("SummonerMana");
 
         /// <summary>
         ///     Gets the Cleanse SpellSlot.
         /// </summary>
-        public static SpellSlot Cleanse => ObjectManager.Player.GetSpellSlot("SummonerBoost");
+        public static SpellSlot Cleanse => GameObjects.Player.GetSpellSlot("SummonerBoost");
 
         /// <summary>
         ///     Gets the Exhaust SpellSlot.
         /// </summary>
-        public static SpellSlot Exhaust => ObjectManager.Player.GetSpellSlot("SummonerExhaust");
+        public static SpellSlot Exhaust => GameObjects.Player.GetSpellSlot("SummonerExhaust");
 
         /// <summary>
         ///     Gets the Heal SpellSlot.
         /// </summary>
-        public static SpellSlot Heal => ObjectManager.Player.GetSpellSlot("SummonerHeal");
+        public static SpellSlot Heal => GameObjects.Player.GetSpellSlot("SummonerHeal");
 
         /// <summary>
         ///     Gets the Ignite SpellSlot.
         /// </summary>
-        public static SpellSlot Ignite => ObjectManager.Player.GetSpellSlot("SummonerDot");
+        public static SpellSlot Ignite => GameObjects.Player.GetSpellSlot("SummonerDot");
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace NabbActivator
         /// </summary>
         public static SpellSlot GetSmiteSlot()
         {
-            foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(s => s.Name.ToLower().Contains("smite")))
+            foreach (var spell in GameObjects.Player.Spellbook.Spells.Where(s => s.Name.ToLower().Contains("smite")))
             {
                 return spell.Slot;
             }

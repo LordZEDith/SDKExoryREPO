@@ -2,7 +2,7 @@ namespace NabbActivator
 {
     using System.Linq;
 
-    using LeagueSharp;
+    using LeagueSharp.SDK;
     using LeagueSharp.SDK.Utils;
 
     /// <summary>
@@ -17,7 +17,7 @@ namespace NabbActivator
         /// </summary>
         public static void Initialize()
         {
-            if (ObjectManager.Player.Spellbook.Spells.Any(s => AutoAttack.IsAutoAttackReset(s.Name.ToLower())))
+            if (GameObjects.Player.Spellbook.Spells.Any(s => AutoAttack.IsAutoAttackReset(s.Name.ToLower())))
             {
                 Vars.HasAnyReset = true;
             }

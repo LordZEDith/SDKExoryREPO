@@ -40,7 +40,7 @@ namespace NabbActivator
             if (sender.IsMe)
             {
                 if (!Vars.HasAnyReset && AutoAttack.IsAutoAttack(args.SData.Name)
-                    || ObjectManager.Player.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
+                    || GameObjects.Player.Buffs.Any(b => AutoAttack.IsAutoAttackReset(b.Name)))
                 {
                     /// <summary>
                     ///     The Tiamat Melee Only logic.
