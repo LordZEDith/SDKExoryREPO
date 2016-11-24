@@ -26,7 +26,7 @@ namespace AsunaCondemn
         /// </summary>
         public static void Initialize()
         {
-            if (ObjectManager.Player.IsDead)
+            if (GameObjects.Player.IsDead)
             {
                 return;
             }
@@ -45,17 +45,17 @@ namespace AsunaCondemn
                             ///     The Position Line.
                             /// </summary>
                             Drawing.DrawLine(
-                                Drawing.WorldToScreen(ObjectManager.Player.Position).X,
-                                Drawing.WorldToScreen(ObjectManager.Player.Position).Y,
+                                Drawing.WorldToScreen(GameObjects.Player.Position).X,
+                                Drawing.WorldToScreen(GameObjects.Player.Position).Y,
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).X,
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).Y,
                                 1,
                                 (target.Position
-                                 + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).IsWall()
+                                 + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).IsWall()
                                     ? Color.Green
                                     : Color.Red);
 
@@ -65,19 +65,19 @@ namespace AsunaCondemn
                             Drawing.DrawLine(
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).X,
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).Y,
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).X,
                                 Drawing.WorldToScreen(
                                     target.Position
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).Y,
                                 1,
                                 (target.Position
-                                 + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).IsWall()
+                                 + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).IsWall()
                                     ? Color.Green
                                     : Color.Red);
 
@@ -85,17 +85,17 @@ namespace AsunaCondemn
                             ///     The Prediction Line.
                             /// </summary>
                             Drawing.DrawLine(
-                                Drawing.WorldToScreen(ObjectManager.Player.Position).X,
-                                Drawing.WorldToScreen(ObjectManager.Player.Position).Y,
+                                Drawing.WorldToScreen(GameObjects.Player.Position).X,
+                                Drawing.WorldToScreen(GameObjects.Player.Position).Y,
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).X,
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).Y,
                                 1,
                                 (Vars.E.GetPrediction(target).UnitPosition
-                                 + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).IsWall()
+                                 + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).IsWall()
                                     ? Color.Green
                                     : Color.Red);
 
@@ -105,19 +105,19 @@ namespace AsunaCondemn
                             Drawing.DrawLine(
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).X,
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 420).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 420).Y,
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).X,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).X,
                                 Drawing.WorldToScreen(
                                     Vars.E.GetPrediction(target).UnitPosition
-                                    + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).Y,
+                                    + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).Y,
                                 1,
                                 (Vars.E.GetPrediction(target).UnitPosition
-                                 + Vector3.Normalize(target.Position - ObjectManager.Player.Position) * 440).IsWall()
+                                 + Vector3.Normalize(target.Position - GameObjects.Player.Position) * 440).IsWall()
                                     ? Color.Green
                                     : Color.Red);
 
@@ -125,13 +125,13 @@ namespace AsunaCondemn
                             ///     The Flash Position.
                             /// </summary>
                             Render.Circle.DrawCircle(
-                                ObjectManager.Player.Position.Extend(target.Position, Vars.Flash.Range),
+                                GameObjects.Player.Position.Extend(target.Position, Vars.Flash.Range),
                                 50,
                                 target.IsValidTarget(Vars.E.Range)
-                                && !target.IsValidTarget(ObjectManager.Player.BoundingRadius)
-                                && ObjectManager.Player.Distance(
-                                    ObjectManager.Player.ServerPosition.Extend(target.ServerPosition, Vars.Flash.Range))
-                                > ObjectManager.Player.Distance(target) + target.BoundingRadius
+                                && !target.IsValidTarget(GameObjects.Player.BoundingRadius)
+                                && GameObjects.Player.Distance(
+                                    GameObjects.Player.ServerPosition.Extend(target.ServerPosition, Vars.Flash.Range))
+                                > GameObjects.Player.Distance(target) + target.BoundingRadius
                                     ? Color.Green
                                     : Color.Red,
                                 1);

@@ -90,11 +90,7 @@ namespace AsunaCondemn
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void OnUpdate(EventArgs args)
         {
-            if (ObjectManager.Player.IsDead)
-            {
-                return;
-            }
-            if (!Vars.Menu["enable"].GetValue<MenuBool>().Value || !Vars.Menu["keybind"].GetValue<MenuKeyBind>().Active)
+            if (GameObjects.Player.IsDead || !Vars.Menu["enable"].GetValue<MenuBool>().Value || !Vars.Menu["keybind"].GetValue<MenuKeyBind>().Active)
             {
                 return;
             }
