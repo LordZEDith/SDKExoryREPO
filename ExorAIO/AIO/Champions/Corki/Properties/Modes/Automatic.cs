@@ -34,25 +34,12 @@ namespace ExorAIO.Champions.Corki
             }
 
             /// <summary>
-            ///     The Automatic Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t => Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)))
-                {
-                    Vars.Q.Cast(target.ServerPosition);
-                }
-            }
-
-            /// <summary>
             ///     The Automatic R LastHit Logics.
             /// </summary>
             if (Vars.R.IsReady() && Variables.Orbwalker.ActiveMode != OrbwalkingMode.Combo
                 && GameObjects.Player.ManaPercent
-                > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["logical"])
-                && Vars.Menu["spells"]["r"]["logical"].GetValue<MenuSliderButton>().BValue)
+                > ManaManager.GetNeededMana(Vars.R.Slot, Vars.Menu["spells"]["r"]["farmhelper"])
+                && Vars.Menu["spells"]["r"]["farmhelper"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var minion in
                     GameObjects.EnemyMinions.Where(
