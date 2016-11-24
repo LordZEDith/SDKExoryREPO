@@ -64,7 +64,7 @@ namespace ExorAIO.Champions.Corki
                           GameObjects.Player.GetSpellDamage(
                               minion,
                               SpellSlot.R,
-                              ObjectManager.Player.HasBuff("corkimissilebarragecounterbig")
+                              GameObjects.Player.HasBuff("corkimissilebarragecounterbig")
                                   ? DamageStage.Empowered
                                   : DamageStage.Default))
                     {

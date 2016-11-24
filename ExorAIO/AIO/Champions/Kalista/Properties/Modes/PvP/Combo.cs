@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Kalista
                 && !GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                 && Vars.Menu["miscellaneous"]["minionsorbwalk"].GetValue<MenuBool>().Value)
             {
-                ObjectManager.Player.IssueOrder(
+                GameObjects.Player.IssueOrder(
                     GameObjectOrder.AttackUnit,
                     Targets.Minions.FirstOrDefault(m => m.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())));
             }
