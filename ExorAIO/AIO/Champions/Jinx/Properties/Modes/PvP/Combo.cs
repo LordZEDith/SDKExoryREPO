@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
+            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero ?? Targets.Target;
 
             /// <summary>
             ///     The Q Logic.
@@ -40,15 +40,7 @@ namespace ExorAIO.Champions.Jinx
 
                 //CountEnemiesInRange takes into account the main target too,
                 //so if there is another enemy champion near the main target, xd.CountEnemiesInRange(near_pos) will return 2 (xd + the other enemy) and not 1 (the other enemy only).
-                if (isUsingFishBones)
-                {
-                    if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
-                        && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
-                    {
-                        Vars.Q.Cast();
-                    }
-                }
-                else
+                if (!isUsingFishBones)
                 {
                     if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
                         || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
