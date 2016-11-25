@@ -51,20 +51,20 @@ namespace ExorAIO.Champions.Jinx
                                                    Vars.W.Slot,
                                                    Vars.Menu["spells"]["q"]["lasthit"]);
 
-                            if (Vars.Q.IsReady())
+                            if (Vars.Q.IsReady() && minionTarget != null)
                             {
                                 var minionsInRange =
                                     GameObjects.EnemyMinions.Count(m => m.Distance(minionTarget) < SplashRange);
                                 if (isUsingFishBones)
                                 {
-                                    if (!minionTarget.IsValidTarget() || minionsInRange < 3)
+                                    if (minionsInRange < 3)
                                     {
                                         Vars.Q.Cast();
                                     }
                                 }
                                 else
                                 {
-                                    if (minionsInRange >= 3 && minionTarget.IsValidTarget()
+                                    if (minionsInRange >= 3
                                         && (Variables.Orbwalker.ActiveMode == OrbwalkingMode.LastHit && canLastHit
                                             || Variables.Orbwalker.ActiveMode == OrbwalkingMode.LaneClear
                                             && canLaneClear))
