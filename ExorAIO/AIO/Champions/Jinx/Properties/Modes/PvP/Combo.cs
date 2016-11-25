@@ -26,42 +26,40 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Variables.Orbwalker.GetTarget().Type == GameObjectType.obj_AI_Hero)
+            var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
+
+            /// <summary>
+            ///     The Q Logic.
+            /// </summary>
+            if (Vars.Q.IsReady() && target != null
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
             {
-                var target = (Obj_AI_Hero)Variables.Orbwalker.GetTarget() ?? Targets.Target;
+                const float SplashRange = 160f;
+                var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
+                var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue;
 
-                /// <summary>
-                ///     The Q Logic.
-                /// </summary>
-                if (Vars.Q.IsReady() && target != null
-                    && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().BValue)
+                //CountEnemiesInRange takes into account the main target too,
+                //so if there is another enemy champion near the main target, xd.CountEnemiesInRange(near_pos) will return 2 (xd + the other enemy) and not 1 (the other enemy only).
+                if (isUsingFishBones)
                 {
-                    const float SplashRange = 160f;
-                    var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-                    var minSplashRangeEnemies = Vars.Menu["spells"]["q"]["combo"].GetValue<MenuSliderButton>().SValue
-                                                - 1;
-
-                    if (isUsingFishBones)
+                    if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
+                        && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
                     {
-                        if (GameObjects.Player.Distance(target) < Vars.PowPow.Range
-                            && target.CountEnemyHeroesInRange(SplashRange) < minSplashRangeEnemies)
-                        {
-                            Vars.Q.Cast();
-                        }
+                        Vars.Q.Cast();
                     }
-                    else
+                }
+                else
+                {
+                    if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
+                        || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
                     {
-                        if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
-                            || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
-                        {
-                            Vars.Q.Cast();
-                        }
+                        Vars.Q.Cast();
                     }
                 }
             }
 
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target))
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }

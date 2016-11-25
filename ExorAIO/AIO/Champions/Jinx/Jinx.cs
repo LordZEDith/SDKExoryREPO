@@ -37,17 +37,20 @@ namespace ExorAIO.Champions.Jinx
             switch (args.Type)
             {
                 case OrbwalkingType.BeforeAttack:
+				    const float SplashRange = 160f;
+                    var target = args.Target as Obj_AI_Minion;
                     var canLastHit = Vars.Menu["spells"]["q"]["lasthit"].GetValue<MenuSliderButton>().BValue
                                      && GameObjects.Player.ManaPercent
                                      > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
+
                     var canLaneClear = Vars.Menu["spells"]["q"]["clear"].GetValue<MenuSliderButton>().BValue
                                        && GameObjects.Player.ManaPercent
                                        > ManaManager.GetNeededMana(Vars.W.Slot, Vars.Menu["spells"]["q"]["lasthit"]);
 
-                    if (Vars.Q.IsReady() && args.Target != null)
+                    if (Vars.Q.IsReady() && target.IsValidTarget())
                     {
                         var isUsingFishBones = GameObjects.Player.HasBuff("JinxQ");
-                        var minionsInRange = GameObjects.EnemyMinions.Count(m => m.Distance(args.Target) < 160f);
+                        var minionsInRange = GameObjects.EnemyMinions.Count(m => m.Distance(target) < SplashRange);
                         if (isUsingFishBones)
                         {
                             if (minionsInRange < 3)
@@ -76,7 +79,7 @@ namespace ExorAIO.Champions.Jinx
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (GameObjects.Player.IsDead || !Invulnerable.Check(args.Sender, DamageType.Magical, false))
+            if (GameObjects.Player.IsDead || Invulnerable.Check(args.Sender, DamageType.Magical, false))
             {
                 return;
             }
