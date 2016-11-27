@@ -94,7 +94,6 @@ namespace NabbActivator
             /// </summary>
             if (Bools.ShouldCleanse(GameObjects.Player))
             {
-                Console.WriteLine("lol");
                 /// <summary>
                 ///     The Remove Scurvy Logic.
                 /// </summary>
@@ -109,7 +108,6 @@ namespace NabbActivator
                 }
                 else if (SpellSlots.Cleanse.IsReady())
                 {
-                    Console.WriteLine("lol2?");
                     DelayAction.Add(
                         Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
                         () => { GameObjects.Player.Spellbook.CastSpell(SpellSlots.Cleanse); });
