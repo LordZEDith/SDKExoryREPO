@@ -28,7 +28,7 @@ namespace NabbActivator
                     /// <summary>
                     ///     The Smite Logics.
                     /// </summary>
-                    if (Vars.Smite != null && Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown)
+                    if (Vars.Smite.IsReady() && Vars.Smite.Slot != SpellSlot.Unknown)
                     {
                         if (!Vars.Menu["keys"]["smite"].GetValue<MenuKeyBind>().Active)
                         {
@@ -90,25 +90,26 @@ namespace NabbActivator
             }
 
             /// <summary>
-            ///     The Remove Scurvy Logic.
-            /// </summary>
-            if (GameObjects.Player.ChampionName.Equals("Gangplank"))
-            {
-                if (Vars.W != null && Vars.W.IsReady() && Bools.ShouldCleanse(GameObjects.Player))
-                {
-                    DelayAction.Add(
-                        Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
-                        () => { Vars.W.Cast(); });
-                }
-            }
-
-            /// <summary>
             ///     The Cleanse Logic.
             /// </summary>
-            if (SpellSlots.Cleanse.IsReady())
+            if (Bools.ShouldCleanse(GameObjects.Player))
             {
-                if (Bools.ShouldCleanse(GameObjects.Player))
+                Console.WriteLine("lol");
+                /// <summary>
+                ///     The Remove Scurvy Logic.
+                /// </summary>
+                if (GameObjects.Player.ChampionName.Equals("Gangplank"))
                 {
+                    if (Vars.W != null && Vars.W.IsReady())
+                    {
+                        DelayAction.Add(
+                            Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
+                            () => { Vars.W.Cast(); });
+                    }
+                }
+                else if (SpellSlots.Cleanse.IsReady())
+                {
+                    Console.WriteLine("lol2?");
                     DelayAction.Add(
                         Vars.Menu["cleansers"].GetValue<MenuSliderButton>().SValue,
                         () => { GameObjects.Player.Spellbook.CastSpell(SpellSlots.Cleanse); });
@@ -196,9 +197,10 @@ namespace NabbActivator
                 /// </summary>
                 if (Vars.Menu["smite"]["misc"]["combo"].GetValue<MenuBool>().Value)
                 {
-                    if (Variables.Orbwalker.GetTarget() is Obj_AI_Hero)
+                    var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
+                    if (target != null)
                     {
-                        Vars.Smite.CastOnUnit(Variables.Orbwalker.GetTarget() as Obj_AI_Hero);
+                        Vars.Smite.CastOnUnit(target);
                     }
                 }
 
@@ -220,7 +222,7 @@ namespace NabbActivator
 
                         foreach (var target in GameObjects.EnemyHeroes.Where(t => t.IsValidTarget(Vars.Smite.Range)))
                         {
-                            if (Vars.GetChallengingSmiteDamage > target.Health
+                            if (Vars.GetChillingSmiteDamage > target.Health
                                 && GameObjects.Player.HasBuff("smitedamagetrackerstalker"))
                             {
                                 Vars.Smite.CastOnUnit(target);

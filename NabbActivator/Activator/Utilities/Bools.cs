@@ -42,12 +42,7 @@ namespace NabbActivator
         public static bool IsValidSnare()
         {
             return GameObjects.Player.Buffs.Any(
-                b =>
-                    {
-                        var objAiHero = b.Caster as Obj_AI_Hero;
-                        return objAiHero != null && b.Type == BuffType.Snare
-                               && !Vars.InvalidSnareCasters.Contains(objAiHero.ChampionName);
-                    });
+                b => b.Type == BuffType.Snare && !Vars.InvalidSnareCasters.Contains(((Obj_AI_Hero)b.Caster).ChampionName));
         }
 
         /// <summary>
@@ -56,12 +51,7 @@ namespace NabbActivator
         public static bool IsValidStun()
         {
             return GameObjects.Player.Buffs.Any(
-                b =>
-                    {
-                        var objAiHero = b.Caster as Obj_AI_Hero;
-                        return objAiHero != null && b.Type == BuffType.Stun
-                               && !Vars.InvalidStunCasters.Contains(objAiHero.ChampionName);
-                    });
+                b => b.Type == BuffType.Stun && !Vars.InvalidStunCasters.Contains(((Obj_AI_Hero)b.Caster).ChampionName));
         }
 
         /// <summary>
