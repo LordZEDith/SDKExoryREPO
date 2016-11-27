@@ -26,34 +26,11 @@ namespace ExorAIO.Champions.Graves
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe)
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
-                /// <summary>
-                ///     The Burst R Combo.
-                /// </summary>
-                if (args.SData.Name.Equals("GravesMove"))
-                {
-                    var target =
-                        GameObjects.EnemyHeroes.Where(
-                            t =>
-                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
-                            && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
-                    if (Vars.R.IsReady() && target != null
-                        && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
-                        && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
-                    {
-                        Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                    }
-                }
-
-                if (!AutoAttack.IsAutoAttack(args.SData.Name))
-                {
-                    return;
-                }
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
                 /// </summary>
@@ -95,6 +72,51 @@ namespace ExorAIO.Champions.Graves
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -475f));
+            }
+        }
+
+        /// <summary>
+        ///     Called on do-cast.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (sender.IsMe)
+            {
+                var target =
+                    GameObjects.EnemyHeroes.Where(
+                        t =>
+                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
+                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+
+                /// <summary>
+                ///     The Burst Combo.
+                /// </summary>
+                if (target != null && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
+                {
+                    Console.WriteLine("lol" + args.SData.Name);
+                    if (args.SData.Name.Equals("GravesMove"))
+                    {
+                        Console.WriteLine("lol2");
+                        if (Vars.R.IsReady())
+                        {
+                            Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                            return;
+                        }
+
+                        Variables.Orbwalker.ResetSwingTimer();
+                        GameObjects.Player.IssueOrder(GameObjectOrder.AttackUnit, target);
+                    }
+                    else if (args.SData.Name.Equals("GravesChargeShot"))
+                    {
+                        if (Vars.E.IsReady())
+                        {
+                            Vars.E.Cast(target.ServerPosition);
+                        }
+                    }
+                }
             }
         }
 
