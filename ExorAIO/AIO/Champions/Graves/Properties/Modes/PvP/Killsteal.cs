@@ -79,6 +79,12 @@ namespace ExorAIO.Champions.Graves
                               t.IsValidTarget(Vars.R.Range) ? DamageStage.Default : DamageStage.Detonation)))
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+
+                    if (Vars.E.IsReady() && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.Cast(
+                            GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
+                    }
                 }
             }
         }

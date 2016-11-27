@@ -74,20 +74,6 @@ namespace ExorAIO.Champions.Graves
         }
 
         /// <summary>
-        ///     Called on do-cast.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
-        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            if (sender.IsMe && Vars.E.IsReady() && args.SData.Name.Equals("GravesChargeShot")
-                && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
-            {
-                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
-            }
-        }
-
-        /// <summary>
         ///     Fired when the game is updated.
         /// </summary>
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>

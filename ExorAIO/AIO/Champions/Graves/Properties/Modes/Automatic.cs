@@ -61,6 +61,12 @@ namespace ExorAIO.Champions.Graves
                 if (target != null)
                 {
                     Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+
+                    if (Vars.E.IsReady() && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.Cast(
+                            GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
+                    }
                 }
             }
         }
