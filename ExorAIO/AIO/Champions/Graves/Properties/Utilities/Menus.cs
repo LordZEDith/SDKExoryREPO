@@ -37,7 +37,6 @@ namespace ExorAIO.Champions.Graves
                 {
                     Vars.QMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.QMenu.Add(new MenuBool("killsteal", "KillSteal", true));
-                    Vars.QMenu.Add(new MenuBool("logical", "Logical", true));
                     Vars.QMenu.Add(new MenuSliderButton("laneclear", "LaneClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("jungleclear", "JungleClear / if Mana >= x%", 50, 0, 99, true));
                     Vars.QMenu.Add(new MenuSliderButton("harass", "Harass / if Mana >= x%", 50, 0, 99, true));
@@ -74,20 +73,23 @@ namespace ExorAIO.Champions.Graves
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
+                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(
-                        new MenuSeparator("separator", "The Burst Combo will Perform the E-> R Cancel combo."));
-                    Vars.RMenu.Add(new MenuBool("bool", "Enable Burst Key", true));
+                        new MenuSeparator(
+                            "separator",
+                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
+                    Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
                         /// <summary>
                         ///     Sets the menu for the R Whitelist.
                         /// </summary>
-                        Vars.WhiteList2Menu = new Menu("whitelist", "Ultimate: Whitelist Menu");
+                        Vars.WhiteListMenu = new Menu("whitelist", "Ultimate: Whitelist Menu");
                         {
                             foreach (var target in GameObjects.EnemyHeroes)
                             {
-                                Vars.WhiteList2Menu.Add(
+                                Vars.WhiteListMenu.Add(
                                     new MenuBool(
                                         target.ChampionName.ToLower(),
                                         $"Use against: {target.ChampionName}",
@@ -95,7 +97,7 @@ namespace ExorAIO.Champions.Graves
                             }
                         }
 
-                        Vars.RMenu.Add(Vars.WhiteList2Menu);
+                        Vars.RMenu.Add(Vars.WhiteListMenu);
                     }
                 }
 
@@ -103,6 +105,15 @@ namespace ExorAIO.Champions.Graves
             }
 
             Vars.Menu.Add(Vars.SpellsMenu);
+
+            /// <summary>
+            ///     Sets the miscellaneous menu.
+            /// </summary>
+            Vars.MiscMenu = new Menu("miscellaneous", "Miscellaneous");
+            {
+                Vars.MiscMenu.Add(new MenuBool("cancel", "Perform R Knockback cancel with E", true));
+            }
+            Vars.Menu.Add(Vars.MiscMenu);
 
             /// <summary>
             ///     Sets the drawings menu.

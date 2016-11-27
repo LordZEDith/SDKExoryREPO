@@ -32,33 +32,6 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
-            ///     The Automatic R Orbwalking.
-            /// </summary>
-            if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
-                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
-            {
-                DelayAction.Add(
-                    (int)(100 + Game.Ping / 2f),
-                    () => { GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos); });
-            }
-
-            /// <summary>
-            ///     The Automatic Q Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
-            {
-                foreach (var target in
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                        Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
-                        && !Vars.AnyWall(GameObjects.Player.ServerPosition, t.ServerPosition)))
-                {
-                    Vars.Q.Cast(target.ServerPosition);
-                    return;
-                }
-            }
-
-            /// <summary>
             ///     The Automatic W Logic.
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuBool>().Value)
@@ -74,19 +47,10 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
-            ///     The Burst R Combo.
+            ///     The Semi-Automatic R Management.
             /// </summary>
-            var target2 =
-                GameObjects.EnemyHeroes.Where(
-                    t =>
-                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
-                    && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
-                           .Value).OrderBy(o => o.Health).FirstOrDefault();
-
-            if (Vars.E.IsReady() && target2 != null && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                Vars.E.Cast(target2.ServerPosition);
             }
         }
 

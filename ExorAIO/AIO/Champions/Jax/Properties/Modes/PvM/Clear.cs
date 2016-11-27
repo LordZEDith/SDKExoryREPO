@@ -23,7 +23,7 @@ namespace ExorAIO.Champions.Jax
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!(Variables.Orbwalker.GetTarget() is Obj_HQ) && !(Variables.Orbwalker.GetTarget() is Obj_AI_Turret)
@@ -94,7 +94,7 @@ namespace ExorAIO.Champions.Jax
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The args.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void Clear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion)
