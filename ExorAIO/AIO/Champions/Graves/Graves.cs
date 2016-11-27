@@ -23,27 +23,26 @@ namespace ExorAIO.Champions.Graves
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Called on do-cast.
+        ///     Called on orbwalker action.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
-        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        /// <param name="sender">The object.</param>
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void OnAction(object sender, OrbwalkingActionArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            switch (args.Type)
             {
-                /// <summary>
-                ///     Initializes the orbwalkingmodes.
-                /// </summary>
-                switch (Variables.Orbwalker.ActiveMode)
-                {
-                    case OrbwalkingMode.Combo:
-                        Logics.Weaving(sender, args);
-                        break;
-                    case OrbwalkingMode.LaneClear:
-                        Logics.JungleClear(sender, args);
-                        Logics.BuildingClear(sender, args);
-                        break;
-                }
+                case OrbwalkingType.OnAttack:
+                    switch (Variables.Orbwalker.ActiveMode)
+                    {
+                        case OrbwalkingMode.Combo:
+                            Logics.Weaving(sender, args);
+                            break;
+                        case OrbwalkingMode.LaneClear:
+                            Logics.JungleClear(sender, args);
+                            Logics.BuildingClear(sender, args);
+                            break;
+                    }
+                    break;
             }
         }
 
@@ -96,10 +95,8 @@ namespace ExorAIO.Champions.Graves
                 /// </summary>
                 if (target != null && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
                 {
-                    Console.WriteLine("lol" + args.SData.Name);
                     if (args.SData.Name.Equals("GravesMove"))
                     {
-                        Console.WriteLine("lol2");
                         if (Vars.R.IsReady())
                         {
                             Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
@@ -107,7 +104,6 @@ namespace ExorAIO.Champions.Graves
                         }
 
                         Variables.Orbwalker.ResetSwingTimer();
-                        GameObjects.Player.IssueOrder(GameObjectOrder.AttackUnit, target);
                     }
                     else if (args.SData.Name.Equals("GravesChargeShot"))
                     {

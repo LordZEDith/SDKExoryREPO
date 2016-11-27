@@ -21,10 +21,10 @@ namespace ExorAIO.Champions.Graves
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
-        public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
+        public static void Weaving(object sender, OrbwalkingActionArgs args)
         {
-            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
+            var target = args.Target as Obj_AI_Hero;
             if (target == null || Invulnerable.Check(target))
             {
                 return;
@@ -44,7 +44,7 @@ namespace ExorAIO.Champions.Graves
             /// </summary>
             if (Vars.W.IsReady() && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.W.Cast(Vars.W.GetPrediction(Targets.Target).CastPosition);
+                Vars.W.Cast(Vars.W.GetPrediction(target).CastPosition);
             }
         }
 
