@@ -4,7 +4,6 @@
 namespace ExorAIO.Champions.Graves
 {
     using System;
-    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -31,7 +30,7 @@ namespace ExorAIO.Champions.Graves
         {
             switch (args.Type)
             {
-                case OrbwalkingType.OnAttack:
+                case OrbwalkingType.AfterAttack:
                     switch (Variables.Orbwalker.ActiveMode)
                     {
                         case OrbwalkingMode.Combo:
@@ -71,7 +70,6 @@ namespace ExorAIO.Champions.Graves
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -475f));
-                DelayAction.Add(0, () => Variables.Orbwalker.ResetSwingTimer()); // ??
             }
         }
 
@@ -82,35 +80,10 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe)
+            if (sender.IsMe && Vars.E.IsReady() && args.SData.Name.Equals("GravesChargeShot")
+                && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
             {
-                var target =
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
-                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
-
-                /// <summary>
-                ///     The Burst Combo.
-                /// </summary>
-                if (target != null && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
-                {
-                    if (args.SData.Name.Equals("GravesMove"))
-                    {
-                        if (Vars.R.IsReady())
-                        {
-                            Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                        }
-                    }
-                    else if (args.SData.Name.Equals("GravesChargeShot"))
-                    {
-                        if (Vars.E.IsReady())
-                        {
-                            Vars.E.Cast(target.ServerPosition);
-                        }
-                    }
-                }
+                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
             }
         }
 

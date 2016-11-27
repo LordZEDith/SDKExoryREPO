@@ -42,7 +42,8 @@ namespace ExorAIO.Champions.Lux
                 }
             }
 
-            if (Bools.HasSheenBuff() || !Targets.Target.IsValidTarget())
+            if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
+                || !Targets.Target.IsValidTarget())
             {
                 return;
             }

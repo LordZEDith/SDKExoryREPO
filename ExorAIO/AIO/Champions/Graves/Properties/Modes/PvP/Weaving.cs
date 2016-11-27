@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Graves
             /// </summary>
             if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.E.Cast(Game.CursorPos);
+                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
                 return;
             }
 

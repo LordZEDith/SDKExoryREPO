@@ -35,7 +35,8 @@ namespace ExorAIO.Champions.Graves
         /// <summary>
         ///     The main hero target.
         /// </summary>
-        public static Obj_AI_Hero Target => Variables.TargetSelector.GetTarget(Vars.R.Range, DamageType.Physical);
+        public static Obj_AI_Hero Target
+            => Variables.TargetSelector.GetTarget(Vars.E.Range + Vars.R.Range, DamageType.Physical);
 
         #endregion
     }
