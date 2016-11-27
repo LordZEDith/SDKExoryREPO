@@ -90,7 +90,7 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
-            if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.Sender.ServerPosition) < Vars.R.Range - 25
+            if (Vars.R.IsReady() && ((Vector2)BallPosition).Distance(args.Sender.ServerPosition) < Vars.R.Range
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();

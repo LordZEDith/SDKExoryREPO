@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Orianna
             /// </summary>
             if (Vars.R.IsReady()
                 && GameObjects.EnemyHeroes.Count(
-                    t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 25f)
+                    t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 60f)
                 >= Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["r"]["aoe"].GetValue<MenuSliderButton>().BValue)
             {
