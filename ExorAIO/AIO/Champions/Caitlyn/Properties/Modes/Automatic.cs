@@ -56,7 +56,7 @@ namespace ExorAIO.Champions.Caitlyn
             ///     The Automatic Q Logic.
             /// </summary>
             if (Vars.Q.IsReady()
-                && GameObjects.Player.CountEnemyHeroesInRange(GameObjects.Player.GetRealAutoAttackRange()) < 3
+                && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 4
                 && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
