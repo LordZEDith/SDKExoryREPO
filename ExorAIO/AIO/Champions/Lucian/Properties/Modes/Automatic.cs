@@ -34,7 +34,8 @@ namespace ExorAIO.Champions.Lucian
             /// <summary>
             ///     The Automatic R Orbwalking.
             /// </summary>
-            if (GameObjects.Player.HasBuff("LucianR"))
+            if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
                 DelayAction.Add(
                     (int)(100 + Game.Ping / 2f),

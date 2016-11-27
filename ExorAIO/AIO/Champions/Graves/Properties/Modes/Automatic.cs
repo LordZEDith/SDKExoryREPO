@@ -32,6 +32,17 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
+            ///     The Automatic R Orbwalking.
+            /// </summary>
+            if (Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+            {
+                DelayAction.Add(
+                    (int)(100 + Game.Ping / 2f),
+                    () => { GameObjects.Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos); });
+            }
+
+            /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
@@ -63,21 +74,19 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
-            ///     The Semi-Automatic R Management.
+            ///     The Burst R Combo.
             /// </summary>
-            if (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+            var target2 =
+                GameObjects.EnemyHeroes.Where(
+                    t =>
+                    !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
+                    && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()].GetValue<MenuBool>()
+                           .Value).OrderBy(o => o.Health).FirstOrDefault();
+
+            if (Vars.E.IsReady() && target2 != null && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
                 && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
             {
-                var target =
-                    GameObjects.EnemyHeroes.Where(
-                        t =>
-                        !Invulnerable.Check(t) && t.IsValidTarget(Vars.R.Range)
-                        && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
-                               .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
-                if (target != null)
-                {
-                    Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                }
+                Vars.E.Cast(target2.ServerPosition);
             }
         }
 

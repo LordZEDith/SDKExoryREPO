@@ -6,6 +6,7 @@ namespace ExorAIO.Champions.Graves
     using ExorAIO.Utilities;
 
     using LeagueSharp;
+    using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
     using LeagueSharp.SDK.Utils;
 
@@ -23,7 +24,8 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero)args.Target))
+            var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero;
+            if (target == null || Invulnerable.Check(target))
             {
                 return;
             }

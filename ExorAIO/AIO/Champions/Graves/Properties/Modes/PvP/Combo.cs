@@ -31,16 +31,6 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
-            ///     The Q Combo Logic.
-            /// </summary>
-            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && !Vars.AnyWall(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(Targets.Target).UnitPosition)
-                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
-            {
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
-            }
-
-            /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
@@ -62,11 +52,13 @@ namespace ExorAIO.Champions.Graves
             }
 
             /// <summary>
-            ///     The R Combo Logic.
+            ///     The Q Combo Logic.
             /// </summary>
-            if (Vars.R.IsReady() && !Vars.Q.IsReady() && Vars.Menu["spells"]["r"]["combo"].GetValue<MenuBool>().Value)
+            if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
+                && !Vars.AnyWall(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(Targets.Target).UnitPosition)
+                && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                Vars.R.CastIfWillHit(Targets.Target, 2);
+                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);
             }
         }
 

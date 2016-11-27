@@ -74,13 +74,10 @@ namespace ExorAIO.Champions.Graves
                 /// </summary>
                 Vars.RMenu = new Menu("r", "Use R to:");
                 {
-                    Vars.RMenu.Add(new MenuBool("combo", "Combo", true));
                     Vars.RMenu.Add(new MenuBool("killsteal", "KillSteal", true));
                     Vars.RMenu.Add(
-                        new MenuSeparator(
-                            "separator",
-                            "The Semi-Automatic R will automatically ult the lowest on health non-invulnerable enemy in range."));
-                    Vars.RMenu.Add(new MenuBool("bool", "Semi-Automatic R", true));
+                        new MenuSeparator("separator", "The Burst Combo will Perform the E-> R Cancel combo."));
+                    Vars.RMenu.Add(new MenuBool("bool", "Enable Burst Key", true));
                     Vars.RMenu.Add(new MenuKeyBind("key", "Key:", Keys.T, KeyBindType.Press));
                     {
                         /// <summary>

@@ -4,6 +4,7 @@
 namespace ExorAIO.Champions.Graves
 {
     using System;
+    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -28,8 +29,31 @@ namespace ExorAIO.Champions.Graves
         /// <param name="args">The args.</param>
         public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
+            if (sender.IsMe)
             {
+                /// <summary>
+                ///     The Burst R Combo.
+                /// </summary>
+                if (args.SData.Name.Equals("GravesMove"))
+                {
+                    var target =
+                        GameObjects.EnemyHeroes.Where(
+                            t =>
+                            !Invulnerable.Check(t) && t.IsValidTarget(Vars.E.Range + Vars.R.Range)
+                            && Vars.Menu["spells"]["r"]["whitelist"][Targets.Target.ChampionName.ToLower()]
+                                   .GetValue<MenuBool>().Value).OrderBy(o => o.Health).FirstOrDefault();
+                    if (Vars.R.IsReady() && target != null
+                        && Vars.Menu["spells"]["r"]["bool"].GetValue<MenuBool>().Value
+                        && Vars.Menu["spells"]["r"]["key"].GetValue<MenuKeyBind>().Active)
+                    {
+                        Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
+                    }
+                }
+
+                if (!AutoAttack.IsAutoAttack(args.SData.Name))
+                {
+                    return;
+                }
                 /// <summary>
                 ///     Initializes the orbwalkingmodes.
                 /// </summary>
@@ -58,25 +82,19 @@ namespace ExorAIO.Champions.Graves
                 return;
             }
 
-            if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range)
-                && args.SkillType == GapcloserType.Targeted
-                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
-            {
-                if (args.Target.IsMe)
-                {
-                    Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -475f));
-                }
-            }
-
-            if (Invulnerable.Check(args.Sender, DamageType.Magical, false))
-            {
-                return;
-            }
-
-            if (Vars.W.IsReady() && args.IsDirectedToPlayer && args.Sender.IsValidTarget(Vars.W.Range)
+            if (Vars.W.IsReady() && args.IsDirectedToPlayer
+                && !Invulnerable.Check(args.Sender, DamageType.Magical, false)
+                && args.Sender.IsValidTarget(Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast(args.End);
+            }
+
+            if (Vars.E.IsReady() && args.Sender.IsMelee && args.Sender.IsValidTarget(Vars.E.Range)
+                && args.SkillType == GapcloserType.Targeted && args.Target.IsMe
+                && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
+            {
+                Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -475f));
             }
         }
 
