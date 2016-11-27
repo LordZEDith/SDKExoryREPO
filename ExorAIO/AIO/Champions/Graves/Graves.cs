@@ -71,6 +71,7 @@ namespace ExorAIO.Champions.Graves
                 && Vars.Menu["spells"]["e"]["gapcloser"].GetValue<MenuBool>().Value)
             {
                 Vars.E.Cast(GameObjects.Player.ServerPosition.Extend(args.Sender.ServerPosition, -475f));
+                DelayAction.Add(0, () => Variables.Orbwalker.ResetSwingTimer()); // ??
             }
         }
 
@@ -100,10 +101,7 @@ namespace ExorAIO.Champions.Graves
                         if (Vars.R.IsReady())
                         {
                             Vars.R.Cast(Vars.R.GetPrediction(target).UnitPosition);
-                            return;
                         }
-
-                        Variables.Orbwalker.ResetSwingTimer();
                     }
                     else if (args.SData.Name.Equals("GravesChargeShot"))
                     {
