@@ -54,7 +54,7 @@ namespace ExorAIO.Champions.Graves
                         t =>
                         !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
                         && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                        && !Vars.AnyWall(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(t).UnitPosition)
+                        && !Vars.AnyWallInBetween(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(t).UnitPosition)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.Cast(Vars.Q.GetPrediction(target).UnitPosition);

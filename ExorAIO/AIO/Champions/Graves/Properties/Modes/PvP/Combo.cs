@@ -56,7 +56,7 @@ namespace ExorAIO.Champions.Graves
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && !Vars.AnyWall(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(Targets.Target).UnitPosition)
+                && !Vars.AnyWallInBetween(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(Targets.Target).UnitPosition)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).UnitPosition);

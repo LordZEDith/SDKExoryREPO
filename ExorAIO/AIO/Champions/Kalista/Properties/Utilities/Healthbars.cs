@@ -42,6 +42,21 @@ namespace ExorAIO.Champions.Kalista
         #region Static Fields
 
         /// <summary>
+        ///     A list of the names of the champions who have a different healthbar type.
+        /// </summary>
+        public static readonly List<string> SpecialChampions = new List<string> { "Annie", "Jhin" };
+
+        /// <summary>
+        ///     The default enemy HP bar height offset.
+        /// </summary>
+        public static int SHeight = 8;
+
+        /// <summary>
+        ///     The default enemy HP bar width offset.
+        /// </summary>
+        public static int SWidth = 103;
+
+        /// <summary>
         ///     The jungle HP bar offset list.
         /// </summary>
         internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
@@ -188,17 +203,17 @@ namespace ExorAIO.Champions.Kalista
                                             x => x.BaseSkinName.Equals(unit.CharData.BaseSkinName));
 
                                     var width = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                    ? mobOffset?.Width ?? Vars.SWidth
-                                                    : Vars.SWidth;
+                                                    ? mobOffset?.Width ?? SWidth
+                                                    : SWidth;
                                     var height = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                     ? mobOffset?.Height ?? Vars.SHeight
-                                                     : Vars.SHeight;
+                                                     ? mobOffset?.Height ?? SHeight
+                                                     : SHeight;
                                     var xOffset = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                      ? mobOffset?.XOffset ?? Vars.SxOffset((Obj_AI_Hero)unit)
-                                                      : Vars.SxOffset((Obj_AI_Hero)unit);
+                                                      ? mobOffset?.XOffset ?? SxOffset((Obj_AI_Hero)unit)
+                                                      : SxOffset((Obj_AI_Hero)unit);
                                     var yOffset = Vars.JungleList.Contains(unit.CharData.BaseSkinName)
-                                                      ? mobOffset?.YOffset ?? Vars.SyOffset((Obj_AI_Hero)unit)
-                                                      : Vars.SyOffset((Obj_AI_Hero)unit);
+                                                      ? mobOffset?.YOffset ?? SyOffset((Obj_AI_Hero)unit)
+                                                      : SyOffset((Obj_AI_Hero)unit);
                                     var barPos = unit.HPBarPosition;
                                     {
                                         barPos.X += xOffset;
@@ -246,6 +261,22 @@ namespace ExorAIO.Champions.Kalista
                                         Color.Lime);
                                 });
                 };
+        }
+
+        /// <summary>
+        ///     The default enemy HP bar x offset.
+        /// </summary>
+        public static int SxOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 1 : 10;
+        }
+
+        /// <summary>
+        ///     The default enemy HP bar y offset.
+        /// </summary>
+        public static int SyOffset(Obj_AI_Hero target)
+        {
+            return SpecialChampions.Contains(target.ChampionName) ? 3 : 20;
         }
 
         #endregion
