@@ -67,7 +67,9 @@ namespace ExorAIO.Champions.Graves
                 if (Targets.JungleMinions.Any()
                     && GameObjects.Player.ManaPercent
                     > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
-                    && !Vars.AnyWallInBetween(GameObjects.Player.ServerPosition, Targets.JungleMinions[0].ServerPosition)
+                    && !Vars.AnyWallInBetween(
+                        GameObjects.Player.ServerPosition,
+                        Targets.JungleMinions[0].ServerPosition)
                     && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
                 {
                     Vars.Q.Cast(Targets.JungleMinions[0].ServerPosition);

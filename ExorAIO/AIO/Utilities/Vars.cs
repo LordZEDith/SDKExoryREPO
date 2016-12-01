@@ -4,12 +4,12 @@
 namespace ExorAIO.Utilities
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.UI;
+    using LeagueSharp.SDK.Utils;
 
     using SharpDX;
 
@@ -155,7 +155,7 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     Returns true if there is a Wall between X pos and Y pos.
         /// </summary>
-        public static bool AnyWall(Vector3 startPos, Vector3 endPos)
+        public static bool AnyWallInBetween(Vector3 startPos, Vector3 endPos)
         {
             for (var i = 0; i < startPos.Distance(endPos); i++)
             {
@@ -193,6 +193,18 @@ namespace ExorAIO.Utilities
             }
             return target.Health + target.PhysicalShield + target.HPRegenRate + debuffer;
         }
+
+        /// <summary>
+        ///     Gets a value indicating whether BuffType is worth cleansing.
+        /// </summary>
+        public static bool ShouldCleanse(Obj_AI_Hero target)
+            =>
+                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f))
+                && !Invulnerable.Check(GameObjects.Player, DamageType.True, false)
+                && (target.HasBuffOfType(BuffType.Flee) || target.HasBuffOfType(BuffType.Charm)
+                    || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Knockup)
+                    || target.HasBuffOfType(BuffType.Knockback) || target.HasBuffOfType(BuffType.Polymorph)
+                    || target.HasBuffOfType(BuffType.Suppression) || target.HasBuffOfType(BuffType.Stun));
 
         #endregion
 

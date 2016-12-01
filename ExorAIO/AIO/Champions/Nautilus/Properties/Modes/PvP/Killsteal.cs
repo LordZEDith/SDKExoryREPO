@@ -36,7 +36,9 @@ namespace ExorAIO.Champions.Nautilus
                         t =>
                         t.IsValidTarget(Vars.Q.Range) && !t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
                         && !Invulnerable.Check(t, DamageType.Magical, false)
-                        && !Vars.AnyWallInBetween(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(t).UnitPosition)
+                        && !Vars.AnyWallInBetween(
+                            GameObjects.Player.ServerPosition,
+                            Vars.Q.GetPrediction(t).UnitPosition)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())

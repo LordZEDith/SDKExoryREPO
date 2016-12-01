@@ -48,7 +48,9 @@ namespace ExorAIO.Champions.Nautilus
             ///     The Q Combo Logic.
             /// </summary>
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
-                && !Vars.AnyWallInBetween(GameObjects.Player.ServerPosition, Vars.Q.GetPrediction(Targets.Target).UnitPosition)
+                && !Vars.AnyWallInBetween(
+                    GameObjects.Player.ServerPosition,
+                    Vars.Q.GetPrediction(Targets.Target).UnitPosition)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (!Vars.Q.GetPrediction(Targets.Target).CollisionObjects.Any())
