@@ -200,7 +200,7 @@ namespace ExorAIO.Utilities
         public static bool ShouldCleanse(Obj_AI_Hero target)
             =>
                 GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f))
-                && !Invulnerable.Check(GameObjects.Player, DamageType.True, false)
+                && !Invulnerable.Check(GameObjects.Player, DamageType.Magical, false)
                 && (target.HasBuffOfType(BuffType.Flee) || target.HasBuffOfType(BuffType.Charm)
                     || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Knockup)
                     || target.HasBuffOfType(BuffType.Knockback) || target.HasBuffOfType(BuffType.Polymorph)

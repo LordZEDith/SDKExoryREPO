@@ -95,7 +95,7 @@ namespace ExorAIO.Champions.Nocturne
             switch (sender.Type)
             {
                 case GameObjectType.obj_AI_Hero:
-                    if (Invulnerable.Check(GameObjects.Player, DamageType.True, false))
+                    if (Invulnerable.Check(GameObjects.Player, DamageType.Magical, false))
                     {
                         return;
                     }

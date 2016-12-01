@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Jhin
             {
                 if (
                     GameObjects.EnemyHeroes.Any(
-                        t => !Invulnerable.Check(t, DamageType.True, false) && t.IsValidTarget(Vars.W.Range - 150f)))
+                        t => !Invulnerable.Check(t, DamageType.Magical, false) && t.IsValidTarget(Vars.W.Range - 150f)))
                 {
                     return;
                 }

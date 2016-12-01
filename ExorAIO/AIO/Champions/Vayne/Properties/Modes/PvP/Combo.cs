@@ -38,7 +38,7 @@ namespace ExorAIO.Champions.Vayne
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         !t.IsDashing() && t.IsValidTarget(Vars.E.Range)
-                        && !Invulnerable.Check(t, DamageType.True, false)
+                        && !Invulnerable.Check(t, DamageType.Magical, false)
                         && !t.IsValidTarget(GameObjects.Player.BoundingRadius)
                         && Vars.Menu["spells"]["e"]["whitelist"][t.ChampionName.ToLower()].GetValue<MenuBool>().Value))
                 {
