@@ -3,6 +3,7 @@
 
 namespace ExorAIO.Utilities
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -18,20 +19,6 @@ namespace ExorAIO.Utilities
     internal class Vars
     {
         #region Static Fields
-
-        /// <summary>
-        ///     A list of the names of the champions who cast Invalid Snares.
-        /// </summary>
-        public static readonly List<string> InvalidSnareCasters = new List<string> { "Leona", "Zyra", "Lissandra" };
-
-        /// <summary>
-        ///     A list of the names of the champions who cast Invalid Stuns.
-        /// </summary>
-        public static readonly List<string> InvalidStunCasters = new List<string>
-                                                                     {
-                                                                         "Amumu", "LeeSin", "Alistar", "Hecarim",
-                                                                         "Blitzcrank"
-                                                                     };
 
         /// <summary>
         ///     A list of the names of the champions who have a different healthbar type.
@@ -56,120 +43,6 @@ namespace ExorAIO.Utilities
         /// <summary>
         ///     The jungle HP bar offset list.
         /// </summary>
-        internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
-                                                                                     {
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Dragon_Air",
-                                                                                                 Width = 140, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Dragon_Fire",
-                                                                                                 Width = 140, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Dragon_Water",
-                                                                                                 Width = 140, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Dragon_Earth",
-                                                                                                 Width = 140, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Dragon_Elder",
-                                                                                                 Width = 140, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Baron",
-                                                                                                 Width = 190,
-                                                                                                 Height = 10,
-                                                                                                 XOffset = 16,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_RiftHerald",
-                                                                                                 Width = 139, Height = 6,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 22
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName = "SRU_Red",
-                                                                                                 Width = 139, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName = "SRU_Blue",
-                                                                                                 Width = 139, Height = 4,
-                                                                                                 XOffset = 12,
-                                                                                                 YOffset = 24
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Gromp",
-                                                                                                 Width = 86, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 7
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName = "Sru_Crab",
-                                                                                                 Width = 61, Height = 2,
-                                                                                                 XOffset = 1, YOffset = 5
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName = "SRU_Krug",
-                                                                                                 Width = 79, Height = 2,
-                                                                                                 XOffset = 1, YOffset = 7
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Razorbeak",
-                                                                                                 Width = 74, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 7
-                                                                                             },
-                                                                                         new JungleHpBarOffset
-                                                                                             {
-                                                                                                 BaseSkinName =
-                                                                                                     "SRU_Murkwolf",
-                                                                                                 Width = 74, Height = 2,
-                                                                                                 XOffset = 1,
-                                                                                                 YOffset = 7
-                                                                                             }
-                                                                                     };
-
-        /// <summary>
-        ///     The jungle HP bar offset list.
-        /// </summary>
         internal static readonly string[] JungleList =
             {
                 "SRU_Dragon_Air", "SRU_Dragon_Fire", "SRU_Dragon_Water",
@@ -177,19 +50,6 @@ namespace ExorAIO.Utilities
                 "SRU_RiftHerald", "SRU_Red", "SRU_Blue", "SRU_Gromp",
                 "Sru_Crab", "SRU_Krug", "SRU_Razorbeak", "SRU_Murkwolf"
             };
-
-        /// <summary>
-        ///     Gets all the important jungle locations.
-        /// </summary>
-        internal static readonly List<Vector3> Locations = new List<Vector3>
-                                                               {
-                                                                   new Vector3(9827.56f, 4426.136f, -71.2406f),
-                                                                   new Vector3(4951.126f, 10394.05f, -71.2406f),
-                                                                   new Vector3(10998.14f, 6954.169f, 51.72351f),
-                                                                   new Vector3(7082.083f, 10838.25f, 56.2041f),
-                                                                   new Vector3(3804.958f, 7875.456f, 52.11121f),
-                                                                   new Vector3(7811.249f, 4034.486f, 53.81299f)
-                                                               };
 
         #endregion
 
@@ -323,24 +183,6 @@ namespace ExorAIO.Utilities
         }
 
         /// <summary>
-        ///     Gets the buff end time for the immobilized enemies.
-        /// </summary>
-        /// <param name="target">
-        ///     The target.
-        /// </param>
-        public static float GetImmobileBuffEndTime(Obj_AI_Base target)
-        {
-            return
-                target.Buffs.OrderByDescending(buff => buff.EndTime - Game.Time)
-                    .Where(
-                        buff =>
-                        buff.Type == BuffType.Stun || buff.Type == BuffType.Snare || buff.Type == BuffType.Charm
-                        || buff.Type == BuffType.Flee || buff.Type == BuffType.Taunt)
-                    .Select(buff => buff.EndTime)
-                    .FirstOrDefault();
-        }
-
-        /// <summary>
         ///     Gets the health with Blitzcrank's Shield support.
         /// </summary>
         /// <param name="target">
@@ -385,24 +227,25 @@ namespace ExorAIO.Utilities
 
         #endregion
 
+        #region Methods
+
         /// <summary>
-        ///     The jungle HP bar offset.
+        ///     Gets the time the unit is immobile untill.
         /// </summary>
-        internal class JungleHpBarOffset
+        /// <param name="unit">The unit.</param>
+        /// <returns>System.Double.</returns>
+        internal static double UnitIsImmobileUntil(Obj_AI_Base unit)
         {
-            #region Fields
-
-            internal string BaseSkinName;
-
-            internal int Height;
-
-            internal int Width;
-
-            internal int XOffset;
-
-            internal int YOffset;
-
-            #endregion
+            var result =
+                unit.Buffs.Where(
+                    buff =>
+                    buff.IsActive && Game.Time <= buff.EndTime
+                    && (buff.Type == BuffType.Charm || buff.Type == BuffType.Knockup || buff.Type == BuffType.Stun
+                        || buff.Type == BuffType.Suppression || buff.Type == BuffType.Snare))
+                    .Aggregate(0d, (current, buff) => Math.Max(current, buff.EndTime));
+            return (result - Game.Time);
         }
+
+        #endregion
     }
 }

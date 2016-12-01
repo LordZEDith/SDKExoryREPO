@@ -4,7 +4,6 @@ namespace ExorAIO.Utilities
 
     using LeagueSharp;
     using LeagueSharp.SDK;
-    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The Bools class.
@@ -39,65 +38,16 @@ namespace ExorAIO.Utilities
         /// </summary>
         public static bool IsImmobile(Obj_AI_Base target)
         {
-            return target.MoveSpeed < 150 || target.HasBuff("rebirth") || target.HasBuff("chronorevive")
-                   || target.HasBuff("lissandrarself") || target.HasBuff("teleport_target")
-                   || target.HasBuff("woogletswitchcap") || target.HasBuff("zhonyasringshield")
-                   || target.HasBuff("aatroxpassivedeath") || IsValidStun(target as Obj_AI_Hero)
-                   || IsValidSnare(target as Obj_AI_Hero) || target.HasBuffOfType(BuffType.Flee)
-                   || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Charm)
-                   || target.HasBuffOfType(BuffType.Knockup) || target.HasBuffOfType(BuffType.Suppression)
+            return !target.IsDashing() && !target.IsMoving && target.MoveSpeed < 150 || target.HasBuff("rebirth")
+                   || target.HasBuff("chronorevive") || target.HasBuff("lissandrarself")
+                   || target.HasBuff("teleport_target") || target.HasBuff("woogletswitchcap")
+                   || target.HasBuff("zhonyasringshield") || target.HasBuff("aatroxpassivedeath")
+                   || target.HasBuffOfType(BuffType.Stun) || target.HasBuffOfType(BuffType.Snare)
+                   || target.HasBuffOfType(BuffType.Flee) || target.HasBuffOfType(BuffType.Taunt)
+                   || target.HasBuffOfType(BuffType.Charm) || target.HasBuffOfType(BuffType.Knockup)
+                   || target.HasBuffOfType(BuffType.Suppression)
                    || (target as Obj_AI_Hero).IsCastingInterruptableSpell(true);
         }
-
-        /// <summary>
-        ///     Returns true if the target is a perfectly valid rend target.
-        /// </summary>
-        public static bool IsPerfectRendTarget(Obj_AI_Base target)
-        {
-            var hero = target as Obj_AI_Hero;
-            return (hero == null || !Invulnerable.Check(hero)) && target.IsValidTarget(Vars.E.Range)
-                   && target.HasBuff("kalistaexpungemarker");
-        }
-
-        /// <summary>
-        ///     Gets a value indicating whether a determined root is worth cleansing.
-        /// </summary>
-        public static bool IsValidSnare(Obj_AI_Hero target)
-        {
-            return target.Buffs.Any(
-                b =>
-                    {
-                        var objAiHero = b.Caster as Obj_AI_Hero;
-                        return objAiHero != null && b.Type == BuffType.Snare
-                               && !Vars.InvalidSnareCasters.Contains(objAiHero.ChampionName);
-                    });
-        }
-
-        /// <summary>
-        ///     Gets a value indicating whether a determined stun is worth cleansing.
-        /// </summary>
-        public static bool IsValidStun(Obj_AI_Hero target)
-        {
-            return target.Buffs.Any(
-                b =>
-                    {
-                        var objAiHero = b.Caster as Obj_AI_Hero;
-                        return objAiHero != null && b.Type == BuffType.Stun
-                               && !Vars.InvalidStunCasters.Contains(objAiHero.ChampionName);
-                    });
-        }
-
-        /// <summary>
-        ///     Gets a value indicating whether BuffType is worth cleansing.
-        /// </summary>
-        public static bool ShouldCleanse(Obj_AI_Hero target)
-            =>
-                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f))
-                && !Invulnerable.Check(GameObjects.Player, DamageType.True, false)
-                && (target.HasBuffOfType(BuffType.Flee) || target.HasBuffOfType(BuffType.Charm)
-                    || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Knockup)
-                    || target.HasBuffOfType(BuffType.Knockback) || target.HasBuffOfType(BuffType.Polymorph)
-                    || target.HasBuffOfType(BuffType.Suppression));
 
         #endregion
     }

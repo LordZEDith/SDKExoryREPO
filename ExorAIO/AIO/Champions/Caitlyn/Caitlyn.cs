@@ -45,14 +45,13 @@ namespace ExorAIO.Champions.Caitlyn
                     var target =
                         GameObjects.EnemyHeroes.FirstOrDefault(
                             t =>
-                            t.InAutoAttackRange() && !Invulnerable.Check(t) && t.HasBuff("caitlynyordletrapinternal"));
+                            t.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange(t) + 650f)
+                            && !Invulnerable.Check(t) && t.HasBuff("caitlynyordletrapinternal"));
                     if (target != null)
                     {
-                        Variables.Orbwalker.ForceTarget = target;
-                        return;
+                        args.Process = false;
+                        Variables.Orbwalker.Attack(target);
                     }
-
-                    Variables.Orbwalker.ForceTarget = null;
                     break;
             }
         }
@@ -156,8 +155,7 @@ namespace ExorAIO.Champions.Caitlyn
             {
                 if (!Vars.E.GetPrediction(args.Sender).CollisionObjects.Any())
                 {
-                    //Vars.E.Cast(args.Sender.ServerPosition);
-                    Vars.E.Cast(args.End);
+                    Vars.E.Cast(args.Sender.ServerPosition);
                 }
             }
 

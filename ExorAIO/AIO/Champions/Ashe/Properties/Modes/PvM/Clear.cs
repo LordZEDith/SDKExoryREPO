@@ -60,11 +60,10 @@ namespace ExorAIO.Champions.Ashe
             /// </summary>
             if (Vars.Q.IsReady() && Items.HasItem(3085) && GameObjects.Player.HasBuff("AsheQCastReady"))
             {
-                var target = (Obj_AI_Minion)Variables.Orbwalker.GetTarget();
                 /// <summary>
                 ///     The JungleClear Q Logic.
                 /// </summary>
-                if (Targets.JungleMinions.Contains(target)
+                if (Targets.JungleMinions.Any()
                     && GameObjects.Player.ManaPercent
                     > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["jungleclear"])
                     && Vars.Menu["spells"]["q"]["jungleclear"].GetValue<MenuSliderButton>().BValue)
@@ -75,7 +74,7 @@ namespace ExorAIO.Champions.Ashe
                 /// <summary>
                 ///     The LaneClear Q Logic.
                 /// </summary>
-                else if (Targets.Minions.Contains(target)
+                else if (Targets.Minions.Any()
                          && GameObjects.Player.ManaPercent
                          > ManaManager.GetNeededMana(Vars.Q.Slot, Vars.Menu["spells"]["q"]["laneclear"])
                          && Vars.Menu["spells"]["q"]["laneclear"].GetValue<MenuSliderButton>().BValue)

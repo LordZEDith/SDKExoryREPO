@@ -75,7 +75,7 @@ namespace ExorAIO.Champions.Kalista
                 if (
                     Targets.Minions.Count(
                         m =>
-                        Bools.IsPerfectRendTarget(m)
+                        Kalista.IsPerfectRendTarget(m)
                         && Vars.GetRealHealth(m)
                         < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)
                         + (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)) >= 2)

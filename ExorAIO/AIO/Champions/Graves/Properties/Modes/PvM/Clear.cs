@@ -25,8 +25,8 @@ namespace ExorAIO.Champions.Graves
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void BuildingClear(object sender, OrbwalkingActionArgs args)
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void BuildingClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!(args.Target is Obj_HQ) && !(args.Target is Obj_AI_Turret) && !(args.Target is Obj_BarracksDampener))
             {
@@ -93,10 +93,11 @@ namespace ExorAIO.Champions.Graves
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void JungleClear(object sender, OrbwalkingActionArgs args)
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void JungleClear(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!Targets.JungleMinions.Contains((Obj_AI_Minion)args.Target))
+            if (!(Variables.Orbwalker.GetTarget() is Obj_AI_Minion)
+                || !Targets.JungleMinions.Contains(Variables.Orbwalker.GetTarget() as Obj_AI_Minion))
             {
                 return;
             }

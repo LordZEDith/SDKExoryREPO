@@ -16,8 +16,8 @@ namespace ExorAIO.Champions.Graves
         public static void Initialize()
         {
             Game.OnUpdate += Graves.OnUpdate;
+            Obj_AI_Base.OnDoCast += Graves.OnDoCast;
             Events.OnGapCloser += Graves.OnGapCloser;
-            Variables.Orbwalker.OnAction += Graves.OnAction;
         }
 
         #endregion

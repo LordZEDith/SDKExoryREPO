@@ -132,9 +132,6 @@ namespace ExorAIO.Champions.Quinn
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            /// <summary>
-            ///     The E Reset.
-            /// </summary>
             if (sender.IsMe && args.Slot == SpellSlot.E)
             {
                 Variables.Orbwalker.ResetSwingTimer();

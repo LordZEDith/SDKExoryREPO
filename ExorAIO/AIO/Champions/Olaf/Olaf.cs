@@ -4,6 +4,7 @@
 namespace ExorAIO.Champions.Olaf
 {
     using System;
+    using System.Linq;
 
     using ExorAIO.Utilities;
 
@@ -85,6 +86,18 @@ namespace ExorAIO.Champions.Olaf
                     break;
             }
         }
+
+        /// <summary>
+        ///     Gets a value indicating whether BuffType is worth cleansing.
+        /// </summary>
+        public static bool ShouldCleanse(Obj_AI_Hero target)
+            =>
+                GameObjects.EnemyHeroes.Any(t => t.IsValidTarget(1500f))
+                && !Invulnerable.Check(GameObjects.Player, DamageType.True, false)
+                && (target.HasBuffOfType(BuffType.Flee) || target.HasBuffOfType(BuffType.Charm)
+                    || target.HasBuffOfType(BuffType.Taunt) || target.HasBuffOfType(BuffType.Knockup)
+                    || target.HasBuffOfType(BuffType.Knockback) || target.HasBuffOfType(BuffType.Polymorph)
+                    || target.HasBuffOfType(BuffType.Suppression) || target.HasBuffOfType(BuffType.Stun));
 
         /// <summary>
         ///     Loads Olaf.

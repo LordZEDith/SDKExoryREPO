@@ -42,7 +42,7 @@ namespace ExorAIO.Champions.Jinx
                         Bools.IsImmobile(t) && t.IsValidTarget(Vars.E.Range)
                         && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
-                    if (Vars.GetImmobileBuffEndTime(target) >= Vars.E.Delay + Game.Ping)
+                    if (Vars.UnitIsImmobileUntil(target) > Vars.E.Delay + Game.Ping)
                     {
                         Vars.E.Cast(
                             GameObjects.Player.ServerPosition.Extend(

@@ -3,6 +3,7 @@
 
 namespace ExorAIO.Champions.Kalista
 {
+    using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
 
@@ -14,10 +15,148 @@ namespace ExorAIO.Champions.Kalista
     using LeagueSharp.SDK.UI;
 
     /// <summary>
+    ///     The jungle HP bar offset.
+    /// </summary>
+    internal class JungleHpBarOffset
+    {
+        #region Fields
+
+        internal string BaseSkinName;
+
+        internal int Height;
+
+        internal int Width;
+
+        internal int XOffset;
+
+        internal int YOffset;
+
+        #endregion
+    }
+
+    /// <summary>
     ///     The drawings class.
     /// </summary>
     internal class Healthbars
     {
+        #region Static Fields
+
+        /// <summary>
+        ///     The jungle HP bar offset list.
+        /// </summary>
+        internal static readonly List<JungleHpBarOffset> JungleHpBarOffsetList = new List<JungleHpBarOffset>
+                                                                                     {
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Dragon_Air",
+                                                                                                 Width = 140, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Dragon_Fire",
+                                                                                                 Width = 140, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Dragon_Water",
+                                                                                                 Width = 140, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Dragon_Earth",
+                                                                                                 Width = 140, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Dragon_Elder",
+                                                                                                 Width = 140, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Baron",
+                                                                                                 Width = 190,
+                                                                                                 Height = 10,
+                                                                                                 XOffset = 16,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_RiftHerald",
+                                                                                                 Width = 139, Height = 6,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 22
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName = "SRU_Red",
+                                                                                                 Width = 139, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName = "SRU_Blue",
+                                                                                                 Width = 139, Height = 4,
+                                                                                                 XOffset = 12,
+                                                                                                 YOffset = 24
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Gromp",
+                                                                                                 Width = 86, Height = 2,
+                                                                                                 XOffset = 1,
+                                                                                                 YOffset = 7
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName = "Sru_Crab",
+                                                                                                 Width = 61, Height = 2,
+                                                                                                 XOffset = 1, YOffset = 5
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName = "SRU_Krug",
+                                                                                                 Width = 79, Height = 2,
+                                                                                                 XOffset = 1, YOffset = 7
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Razorbeak",
+                                                                                                 Width = 74, Height = 2,
+                                                                                                 XOffset = 1,
+                                                                                                 YOffset = 7
+                                                                                             },
+                                                                                         new JungleHpBarOffset
+                                                                                             {
+                                                                                                 BaseSkinName =
+                                                                                                     "SRU_Murkwolf",
+                                                                                                 Width = 74, Height = 2,
+                                                                                                 XOffset = 1,
+                                                                                                 YOffset = 7
+                                                                                             }
+                                                                                     };
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -35,7 +174,7 @@ namespace ExorAIO.Champions.Kalista
                     ObjectManager.Get<Obj_AI_Base>()
                         .Where(
                             h =>
-                            h.IsValidTarget() && Bools.IsPerfectRendTarget(h)
+                            h.IsValidTarget() && Kalista.IsPerfectRendTarget(h)
                             && (h is Obj_AI_Hero || Vars.JungleList.Contains(h.CharData.BaseSkinName)))
                         .ToList()
                         .ForEach(
@@ -45,7 +184,7 @@ namespace ExorAIO.Champions.Kalista
                                     ///     Defines what HPBar Offsets it should display.
                                     /// </summary>
                                     var mobOffset =
-                                        Vars.JungleHpBarOffsetList.FirstOrDefault(
+                                        JungleHpBarOffsetList.FirstOrDefault(
                                             x => x.BaseSkinName.Equals(unit.CharData.BaseSkinName));
 
                                     var width = Vars.JungleList.Contains(unit.CharData.BaseSkinName)

@@ -21,8 +21,8 @@ namespace ExorAIO.Champions.Graves
         ///     Called on do-cast.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void Weaving(object sender, OrbwalkingActionArgs args)
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             var target = args.Target as Obj_AI_Hero;
             if (target == null || Invulnerable.Check(target))

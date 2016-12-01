@@ -63,7 +63,7 @@ namespace ExorAIO.Champions.Kalista
                 && Vars.Menu["spells"]["w"]["logical"].GetValue<MenuSliderButton>().BValue)
             {
                 foreach (var loc in
-                    Vars.Locations.Where(
+                    Kalista.Locations.Where(
                         l =>
                         GameObjects.Player.Distance(l) < Vars.W.Range
                         && !ObjectManager.Get<Obj_AI_Minion>()
@@ -90,12 +90,12 @@ namespace ExorAIO.Champions.Kalista
                 var validMinions =
                     Targets.Minions.Where(
                         m =>
-                        Bools.IsPerfectRendTarget(m)
+                        Kalista.IsPerfectRendTarget(m)
                         && Vars.GetRealHealth(m)
                         < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)
                         + (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff));
 
-                var validTargets = GameObjects.EnemyHeroes.Where(Bools.IsPerfectRendTarget);
+                var validTargets = GameObjects.EnemyHeroes.Where(Kalista.IsPerfectRendTarget);
 
                 var objAiMinions = validMinions as IList<Obj_AI_Minion> ?? validMinions.ToList();
                 var objAiHeroes = validTargets as IList<Obj_AI_Hero> ?? validTargets.ToList();
@@ -146,7 +146,7 @@ namespace ExorAIO.Champions.Kalista
                     if (
                         Targets.JungleMinions.Any(
                             m =>
-                            Bools.IsPerfectRendTarget(m)
+                            Kalista.IsPerfectRendTarget(m)
                             && m.Health
                             < (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E)
                             + (float)GameObjects.Player.GetSpellDamage(m, SpellSlot.E, DamageStage.Buff)))

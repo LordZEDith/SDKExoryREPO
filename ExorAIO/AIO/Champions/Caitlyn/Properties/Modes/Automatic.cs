@@ -42,7 +42,7 @@ namespace ExorAIO.Champions.Caitlyn
                         Bools.IsImmobile(t) && t.IsValidTarget(Vars.W.Range) && !t.HasBuff("caitlynyordletrapinternal"))
                     )
                 {
-                    if (Vars.GetImmobileBuffEndTime(target) >= Vars.W.Delay + Game.Ping)
+                    if (Vars.UnitIsImmobileUntil(target) > Vars.W.Delay + Game.Ping)
                     {
                         Vars.W.Cast(
                             GameObjects.Player.ServerPosition.Extend(
@@ -55,15 +55,15 @@ namespace ExorAIO.Champions.Caitlyn
             /// <summary>
             ///     The Automatic Q Logic.
             /// </summary>
-            if (Vars.Q.IsReady()
-                && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 4
+            if (Vars.Q.IsReady() && GameObjects.Player.CountEnemyHeroesInRange(Vars.Q.Range) < 4
                 && Vars.Menu["spells"]["q"]["logical"].GetValue<MenuBool>().Value)
             {
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
-                        && t.HasBuff("caitlynyordletrapsight")))
+                        && t.HasBuff("caitlynyordletrapsight")
+                        && Vars.UnitIsImmobileUntil(t) > Vars.Q.Delay + Game.Ping * 2))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }

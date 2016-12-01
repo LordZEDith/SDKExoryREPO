@@ -22,26 +22,24 @@ namespace ExorAIO.Champions.Graves
         #region Public Methods and Operators
 
         /// <summary>
-        ///     Called on orbwalker action.
+        ///     Called on do-cast.
         /// </summary>
-        /// <param name="sender">The object.</param>
-        /// <param name="args">The <see cref="OrbwalkingActionArgs" /> instance containing the event data.</param>
-        public static void OnAction(object sender, OrbwalkingActionArgs args)
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
+        public static void OnDoCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            switch (args.Type)
+            if (sender.IsMe && AutoAttack.IsAutoAttack(args.SData.Name))
             {
-                case OrbwalkingType.AfterAttack:
-                    switch (Variables.Orbwalker.ActiveMode)
-                    {
-                        case OrbwalkingMode.Combo:
-                            Logics.Weaving(sender, args);
-                            break;
-                        case OrbwalkingMode.LaneClear:
-                            Logics.JungleClear(sender, args);
-                            Logics.BuildingClear(sender, args);
-                            break;
-                    }
-                    break;
+                switch (Variables.Orbwalker.ActiveMode)
+                {
+                    case OrbwalkingMode.Combo:
+                        Logics.Weaving(sender, args);
+                        break;
+                    case OrbwalkingMode.LaneClear:
+                        Logics.JungleClear(sender, args);
+                        Logics.BuildingClear(sender, args);
+                        break;
+                }
             }
         }
 

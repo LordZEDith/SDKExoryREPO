@@ -19,7 +19,7 @@ namespace ExorAIO.Champions.Kalista
         /// <summary>
         ///     The valid harassable heroes.
         /// </summary>
-        public static List<Obj_AI_Hero> Harass => GameObjects.EnemyHeroes.ToList().FindAll(Bools.IsPerfectRendTarget);
+        public static List<Obj_AI_Hero> Harass => GameObjects.EnemyHeroes.ToList().FindAll(Kalista.IsPerfectRendTarget);
 
         /// <summary>
         ///     The jungle minion targets.
