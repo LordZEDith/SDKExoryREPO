@@ -167,7 +167,7 @@ namespace ExorAIO.Utilities
                     {
                         if (Vars.Menu["drawings"]["q"] != null && Vars.Menu["drawings"]["q"].GetValue<MenuBool>().Value)
                         {
-                            Render.Circle.DrawCircle(GameObjects.Player.Position, Vars.Q.Range, Color.LightGreen, 2);
+                            Render.Circle.DrawCircle(GameObjects.Player.Position, GameObjects.Player.ChampionName.Equals("Jinx") && GameObjects.Player.HasBuff("JinxQ") ? Vars.PowPow.Range : Vars.Q.Range, Color.LightGreen, 2);
                         }
                         if (Vars.Menu["drawings"]["qe"] != null
                             && Vars.Menu["drawings"]["qe"].GetValue<MenuBool>().Value)

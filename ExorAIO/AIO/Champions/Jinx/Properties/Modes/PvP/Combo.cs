@@ -27,7 +27,6 @@ namespace ExorAIO.Champions.Jinx
         public static void Combo(EventArgs args)
         {
             var target = Variables.Orbwalker.GetTarget() as Obj_AI_Hero ?? Targets.Target;
-
             /// <summary>
             ///     The Q Logic.
             /// </summary>
@@ -42,7 +41,7 @@ namespace ExorAIO.Champions.Jinx
                 //so if there is another enemy champion near the main target, xd.CountEnemiesInRange(near_pos) will return 2 (xd + the other enemy) and not 1 (the other enemy only).
                 if (!isUsingFishBones)
                 {
-                    if (GameObjects.Player.Distance(target) >= Vars.PowPow.Range
+                    if (GameObjects.Player.Distance(target) > Vars.PowPow.Range
                         || target.CountEnemyHeroesInRange(SplashRange) >= minSplashRangeEnemies)
                     {
                         Vars.Q.Cast();
@@ -51,7 +50,7 @@ namespace ExorAIO.Champions.Jinx
             }
 
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
+                || !Targets.Target.IsValidTarget())
             {
                 return;
             }
@@ -60,6 +59,7 @@ namespace ExorAIO.Champions.Jinx
             ///     The E AoE Logic.
             /// </summary>
             if (Vars.E.IsReady() && Targets.Target.IsValidTarget(Vars.E.Range)
+                && !Invulnerable.Check(Targets.Target, DamageType.Magical, false)
                 && Targets.Target.CountEnemyHeroesInRange(Vars.E.Width)
                 >= Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["e"]["aoe"].GetValue<MenuSliderButton>().BValue)

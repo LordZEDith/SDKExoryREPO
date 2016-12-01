@@ -5,7 +5,6 @@ namespace ExorAIO.Champions.Jinx
     using LeagueSharp;
     using LeagueSharp.SDK;
     using LeagueSharp.SDK.Enumerations;
-    using LeagueSharp.SDK.Utils;
 
     /// <summary>
     ///     The spells class.
@@ -19,14 +18,10 @@ namespace ExorAIO.Champions.Jinx
         /// </summary>
         public static void Initialize()
         {
-            Vars.PowPow = new Spell(
-                SpellSlot.Q,
-                !GameObjects.Player.HasBuff("JinxQ")
-                    ? GameObjects.Player.GetRealAutoAttackRange()
-                    : 525f + GameObjects.Player.BoundingRadius);
+            Vars.PowPow = new Spell(SpellSlot.Q, 525f + GameObjects.Player.BoundingRadius * 2);
             Vars.Q = new Spell(
                 SpellSlot.Q,
-                Vars.PowPow.Range + (50f + 25f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level));
+                Vars.PowPow.Range + 50f + 25f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level);
             Vars.W = new Spell(SpellSlot.W, 1450f);
             Vars.E = new Spell(SpellSlot.E, 900f);
             Vars.R = new Spell(SpellSlot.R, 1500f);
