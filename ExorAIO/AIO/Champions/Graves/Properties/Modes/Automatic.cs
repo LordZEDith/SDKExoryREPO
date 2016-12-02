@@ -64,8 +64,7 @@ namespace ExorAIO.Champions.Graves
 
                     if (Vars.E.IsReady() && Vars.Menu["miscellaneous"]["cancel"].GetValue<MenuBool>().Value)
                     {
-                        Vars.E.Cast(
-                            GameObjects.Player.ServerPosition.Extend(Game.CursorPos, GameObjects.Player.BoundingRadius));
+                        Vars.E.Cast(Game.CursorPos);
                     }
                 }
             }

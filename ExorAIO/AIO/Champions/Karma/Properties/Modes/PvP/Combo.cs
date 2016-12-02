@@ -27,6 +27,27 @@ namespace ExorAIO.Champions.Karma
         public static void Combo(EventArgs args)
         {
             /// <summary>
+            ///     The W Combo Logic.
+            /// </summary>
+            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
+                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
+            {
+                if (Vars.R.IsReady() && GameObjects.Player.HealthPercent
+                    <= Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
+                    && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue)
+                {
+                    Vars.R.Cast();
+                }
+                Vars.W.CastOnUnit(Targets.Target);
+            }
+
+            if (GameObjects.Player.HasBuff("KarmaMantra") && GameObjects.Player.HealthPercent
+                <= Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
+                && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue)
+            {
+                return;
+            }
+            /// <summary>
             ///     The E Combo Logic.
             /// </summary>
             if (Vars.E.IsReady()
@@ -36,25 +57,11 @@ namespace ExorAIO.Champions.Karma
             {
                 Vars.E.CastOnUnit(GameObjects.Player);
             }
+
             if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
                 || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
-            }
-
-            /// <summary>
-            ///     The W Combo Logic.
-            /// </summary>
-            if (Vars.W.IsReady() && Targets.Target.IsValidTarget(Vars.W.Range)
-                && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
-            {
-                if (Vars.R.IsReady() && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue
-                    && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
-                    > GameObjects.Player.HealthPercent)
-                {
-                    Vars.R.Cast();
-                }
-                Vars.W.CastOnUnit(Targets.Target);
             }
 
             /// <summary>

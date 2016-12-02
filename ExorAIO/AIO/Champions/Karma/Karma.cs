@@ -61,7 +61,9 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="Events.GapCloserEventArgs" /> instance containing the event data.</param>
         public static void OnGapCloser(object sender, Events.GapCloserEventArgs args)
         {
-            if (GameObjects.Player.IsDead)
+            if (GameObjects.Player.IsDead || GameObjects.Player.HasBuff("KarmaMantra") && GameObjects.Player.HealthPercent
+                <= Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
+                && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue)
             {
                 return;
             }
@@ -85,6 +87,13 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="AttackableUnitDamageEventArgs" /> instance containing the event data.</param>
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
+            if (GameObjects.Player.HasBuff("KarmaMantra") && GameObjects.Player.HealthPercent
+                <= Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
+                && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue)
+            {
+                return;
+            }
+
             if (sender is Obj_AI_Hero || sender is Obj_AI_Turret
                 || GameObjects.Jungle.Any(
                     m =>
