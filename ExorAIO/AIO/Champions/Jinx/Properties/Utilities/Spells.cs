@@ -18,7 +18,7 @@ namespace ExorAIO.Champions.Jinx
         /// </summary>
         public static void Initialize()
         {
-            Vars.PowPow = new Spell(SpellSlot.Q, 525f + GameObjects.Player.BoundingRadius * 2);
+            Vars.PowPow = new Spell(SpellSlot.Q, 525f + GameObjects.Player.BoundingRadius);
             Vars.Q = new Spell(
                 SpellSlot.Q,
                 Vars.PowPow.Range + 50f + 25f * GameObjects.Player.Spellbook.GetSpell(SpellSlot.Q).Level);
