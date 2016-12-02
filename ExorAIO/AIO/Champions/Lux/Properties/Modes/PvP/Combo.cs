@@ -36,7 +36,7 @@ namespace ExorAIO.Champions.Lux
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         Bools.IsImmobile(t) && t.IsValidTarget(Vars.R.Range) && t.HasBuff("luxilluminatingfraulein")
-                        && !Invulnerable.Check(t, DamageType.Magical)))
+                        && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     Vars.R.Cast(target.ServerPosition);
                 }

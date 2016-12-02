@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Lux
         public static void Harass(EventArgs args)
         {
             if (!Targets.Target.IsValidTarget() || Targets.Target.HasBuff("luxilluminatingfraulein")
-                || Invulnerable.Check(Targets.Target, DamageType.Magical))
+                || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }

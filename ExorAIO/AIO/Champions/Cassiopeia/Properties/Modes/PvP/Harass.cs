@@ -40,7 +40,7 @@ namespace ExorAIO.Champions.Cassiopeia
                         t.IsValidTarget(Vars.E.Range)
                         && (t.HasBuffOfType(BuffType.Poison)
                             || !Vars.Menu["spells"]["e"]["harasspoison"].GetValue<MenuBool>().Value)
-                        && !Invulnerable.Check(t, DamageType.Magical)))
+                        && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     foreach (var target in
                         GameObjects.EnemyHeroes.Where(
@@ -48,7 +48,7 @@ namespace ExorAIO.Champions.Cassiopeia
                             t.IsValidTarget(Vars.E.Range)
                             && (t.HasBuffOfType(BuffType.Poison)
                                 || !Vars.Menu["spells"]["e"]["harasspoison"].GetValue<MenuBool>().Value)
-                            && !Invulnerable.Check(t, DamageType.Magical)))
+                            && !Invulnerable.Check(t, DamageType.Magical, false)))
                     {
                         DelayAction.Add(
                             Vars.Menu["spells"]["e"]["delay"].GetValue<MenuSlider>().Value,

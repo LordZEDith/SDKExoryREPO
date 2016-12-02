@@ -24,7 +24,7 @@ namespace ExorAIO.Champions.Diana
         /// <param name="args">The <see cref="GameObjectProcessSpellCastEventArgs" /> instance containing the event data.</param>
         public static void Weaving(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero)args.Target, DamageType.Magical))
+            if (!(args.Target is Obj_AI_Hero) || Invulnerable.Check((Obj_AI_Hero)args.Target, DamageType.Magical, false))
             {
                 return;
             }

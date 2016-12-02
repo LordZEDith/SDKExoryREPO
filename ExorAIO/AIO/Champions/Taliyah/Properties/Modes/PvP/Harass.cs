@@ -26,7 +26,7 @@ namespace ExorAIO.Champions.Taliyah
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Harass(EventArgs args)
         {
-            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
+            if (!Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }

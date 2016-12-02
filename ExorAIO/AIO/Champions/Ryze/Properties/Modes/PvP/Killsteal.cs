@@ -41,7 +41,7 @@ namespace ExorAIO.Champions.Ryze
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical)
+                        t.IsValidTarget(Vars.Q.Range - 50f) && !Invulnerable.Check(t, DamageType.Magical, false)
                         && Vars.GetRealHealth(t)
                         < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
                         * (1

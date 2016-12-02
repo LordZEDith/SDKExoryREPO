@@ -35,30 +35,23 @@ namespace ExorAIO.Champions.Orianna
 
             Drawing.OnDraw += delegate
                 {
-                    var drawBall = Orianna.BallPosition;
+                    var ballPos = Orianna.GetBallPosition();
 
-                    if (Orianna.BallPosition == null)
+                    if (ballPos == Vector3.Zero)
                     {
                         var objGeneralParticleEmitter =
                             ObjectManager.Get<Obj_GeneralParticleEmitter>()
                                 .FirstOrDefault(o => o.Name.Equals("Orianna_Base_Q_Ghost_mis.troy"));
                         if (objGeneralParticleEmitter != null)
                         {
-                            drawBall = objGeneralParticleEmitter.Position;
+                            ballPos = objGeneralParticleEmitter.Position;
                         }
-                    }
-
-                    if (drawBall == null)
-                    {
-                        return;
                     }
 
                     if (Vars.Menu["drawings"]["ball"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(
-                            drawBall == GameObjects.Player.ServerPosition
-                                ? GameObjects.Player.Position
-                                : (Vector3)drawBall,
+                            ballPos == GameObjects.Player.ServerPosition ? GameObjects.Player.Position : ballPos,
                             100f,
                             Color.Blue,
                             4);
@@ -66,18 +59,14 @@ namespace ExorAIO.Champions.Orianna
                     if (Vars.W.IsReady() && Vars.Menu["drawings"]["ballw"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(
-                            drawBall == GameObjects.Player.ServerPosition
-                                ? GameObjects.Player.Position
-                                : (Vector3)drawBall,
+                            ballPos == GameObjects.Player.ServerPosition ? GameObjects.Player.Position : ballPos,
                             Vars.W.Range,
                             Color.Purple);
                     }
                     if (Vars.R.IsReady() && Vars.Menu["drawings"]["ballr"].GetValue<MenuBool>().Value)
                     {
                         Render.Circle.DrawCircle(
-                            drawBall == GameObjects.Player.ServerPosition
-                                ? GameObjects.Player.Position
-                                : (Vector3)drawBall,
+                            ballPos == GameObjects.Player.ServerPosition ? GameObjects.Player.Position : ballPos,
                             Vars.R.Range,
                             Color.Red);
                     }

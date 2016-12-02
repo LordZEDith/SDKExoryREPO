@@ -44,11 +44,6 @@ namespace ExorAIO.Champions.Orianna
                 }
             }
 
-            if (Orianna.BallPosition == null)
-            {
-                return;
-            }
-
             /// <summary>
             ///     The KillSteal W Logic.
             /// </summary>
@@ -58,7 +53,7 @@ namespace ExorAIO.Champions.Orianna
                     GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
-                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range
+                        && t.Distance((Vector2)Orianna.GetBallPosition()) < Vars.W.Range
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W)))
                 {
                     Vars.W.Cast();
@@ -74,7 +69,7 @@ namespace ExorAIO.Champions.Orianna
                     GameObjects.EnemyHeroes.Any(
                         t =>
                         t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
-                        && t.Distance((Vector2)Orianna.BallPosition) < Vars.R.Range - 60f
+                        && t.Distance((Vector2)Orianna.GetBallPosition()) < Vars.R.Range - 60f
                         && Vars.GetRealHealth(t) > (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.W) * 2
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R)))
                 {

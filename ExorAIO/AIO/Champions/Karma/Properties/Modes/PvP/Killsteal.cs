@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Karma
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range - 100f) && !Invulnerable.Check(t, DamageType.Magical)
+                        t.IsValidTarget(Vars.Q.Range - 100f) && !Invulnerable.Check(t, DamageType.Magical, false)
                         && Vars.GetRealHealth(t)
                         < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)
                         + (Vars.R.IsReady() && Vars.Menu["spells"]["r"]["empq"].GetValue<MenuBool>().Value

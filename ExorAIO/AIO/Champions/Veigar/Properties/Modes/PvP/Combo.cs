@@ -27,7 +27,7 @@ namespace ExorAIO.Champions.Veigar
         public static void Combo(EventArgs args)
         {
             if ((Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange()))
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }

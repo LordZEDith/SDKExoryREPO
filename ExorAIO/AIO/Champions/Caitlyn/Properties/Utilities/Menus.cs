@@ -49,7 +49,7 @@ namespace ExorAIO.Champions.Caitlyn
                 /// </summary>
                 Vars.WMenu = new Menu("w", "Use W to:");
                 {
-                    Vars.WMenu.Add(new MenuBool("combo", "Combo", true));
+                    Vars.WMenu.Add(new MenuBool("combo", "Combo (Predict Enemy Movement)"));
                     Vars.WMenu.Add(new MenuBool("triplecombo", "Try Double/Triple HeadShot Combo", true));
                     Vars.WMenu.Add(new MenuBool("logical", "Logical (On CC'd Enemies)", true));
                     Vars.WMenu.Add(new MenuBool("gapcloser", "Anti-Gapcloser", true));

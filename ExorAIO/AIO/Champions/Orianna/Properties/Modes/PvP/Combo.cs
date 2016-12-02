@@ -30,21 +30,15 @@ namespace ExorAIO.Champions.Orianna
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Combo(EventArgs args)
         {
-            if (Orianna.BallPosition == null)
-            {
-                return;
-            }
-
             /// <summary>
             ///     The W Combo Logic.
             /// </summary>
             if (Vars.W.IsReady()
                 && GameObjects.EnemyHeroes.Any(
-                    t => t.IsValidTarget() && t.Distance((Vector2)Orianna.BallPosition) < Vars.W.Range)
+                    t => t.IsValidTarget() && t.Distance((Vector2)Orianna.GetBallPosition()) < Vars.W.Range)
                 && Vars.Menu["spells"]["w"]["combo"].GetValue<MenuBool>().Value)
             {
                 Vars.W.Cast();
-                return;
             }
 
             /// <summary>
@@ -61,25 +55,23 @@ namespace ExorAIO.Champions.Orianna
                     var polygon = new Geometry.Rectangle(
                         ally.ServerPosition,
                         ally.ServerPosition.Extend(
-                            (Vector2)Orianna.BallPosition,
-                            ally.Distance((Vector2)Orianna.BallPosition)),
-                        Vars.Q.Width);
+                            (Vector2)Orianna.GetBallPosition(),
+                            ally.Distance((Vector2)Orianna.GetBallPosition())),
+                        Vars.E.Width);
 
-                    var objAiHero =
-                        GameObjects.EnemyHeroes.FirstOrDefault(
+                    if (
+                        GameObjects.EnemyHeroes.Any(
                             t =>
-                            t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical)
-                            && !polygon.IsOutside((Vector2)t.ServerPosition));
-                    if (objAiHero != null)
+                            t.IsValidTarget() && !Invulnerable.Check(t, DamageType.Magical, false)
+                            && !polygon.IsOutside((Vector2)t.ServerPosition)))
                     {
                         Vars.E.CastOnUnit(ally);
-                        return;
                     }
                 }
             }
 
             if (Bools.HasSheenBuff() && Targets.Target.IsValidTarget(GameObjects.Player.GetRealAutoAttackRange())
-                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical))
+                || !Targets.Target.IsValidTarget() || Invulnerable.Check(Targets.Target, DamageType.Magical, false))
             {
                 return;
             }
@@ -91,14 +83,15 @@ namespace ExorAIO.Champions.Orianna
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
                 if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
-                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition)
-                    > GameObjects.Player.GetRealAutoAttackRange()
-                    && ((Vector2)Orianna.BallPosition).Distance((Vector2)Targets.Target.ServerPosition)
-                    > ((Vector2)Orianna.BallPosition).Distance((Vector2)GameObjects.Player.ServerPosition))
+                    && ((Vector2)Orianna.GetBallPosition()).Distance((Vector2)Targets.Target.ServerPosition)
+                    > ((Vector2)Orianna.GetBallPosition()).Distance((Vector2)GameObjects.Player.ServerPosition))
                 {
                     Vars.E.Cast(GameObjects.Player);
                 }
-                Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                else
+                {
+                    Vars.Q.Cast(Vars.Q.GetPrediction(Targets.Target).CastPosition);
+                }
             }
         }
 

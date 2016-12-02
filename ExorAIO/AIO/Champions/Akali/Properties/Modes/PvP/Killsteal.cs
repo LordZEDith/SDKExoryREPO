@@ -34,7 +34,7 @@ namespace ExorAIO.Champions.Akali
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical)
+                        t.IsValidTarget(Vars.R.Range) && !Invulnerable.Check(t, DamageType.Magical, false)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.R) * 2))
                 {
                     Vars.R.CastOnUnit(target);
@@ -67,7 +67,7 @@ namespace ExorAIO.Champions.Akali
                 foreach (var target in
                     GameObjects.EnemyHeroes.Where(
                         t =>
-                        t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical)
+                        t.IsValidTarget(Vars.Q.Range) && !Invulnerable.Check(t, DamageType.Magical, false)
                         && Vars.GetRealHealth(t) < (float)GameObjects.Player.GetSpellDamage(t, SpellSlot.Q)))
                 {
                     Vars.Q.CastOnUnit(target);
