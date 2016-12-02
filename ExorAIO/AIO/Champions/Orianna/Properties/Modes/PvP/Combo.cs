@@ -82,11 +82,13 @@ namespace ExorAIO.Champions.Orianna
             if (Vars.Q.IsReady() && Targets.Target.IsValidTarget(Vars.Q.Range)
                 && Vars.Menu["spells"]["q"]["combo"].GetValue<MenuBool>().Value)
             {
-                if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value
-                    && ((Vector2)Orianna.GetBallPosition()).Distance((Vector2)Targets.Target.ServerPosition)
+                if (((Vector2)Orianna.GetBallPosition()).Distance((Vector2)Targets.Target.ServerPosition)
                     > ((Vector2)Orianna.GetBallPosition()).Distance((Vector2)GameObjects.Player.ServerPosition))
                 {
-                    Vars.E.Cast(GameObjects.Player);
+                    if (Vars.E.IsReady() && Vars.Menu["spells"]["e"]["logical"].GetValue<MenuBool>().Value)
+                    {
+                        Vars.E.Cast(GameObjects.Player);
+                    }
                 }
                 else
                 {
