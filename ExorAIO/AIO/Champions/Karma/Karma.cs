@@ -30,6 +30,7 @@ namespace ExorAIO.Champions.Karma
             switch (args.Type)
             {
                 case OrbwalkingType.BeforeAttack:
+                    args.Process = !GameObjects.EnemyHeroes.Any(h => h.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("KarmaSpiritBind")));
 
                     /// <summary>
                     ///     The 'Support Mode' Logic.

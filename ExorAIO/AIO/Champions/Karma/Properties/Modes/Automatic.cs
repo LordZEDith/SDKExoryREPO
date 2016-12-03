@@ -24,8 +24,6 @@ namespace ExorAIO.Champions.Karma
         /// <param name="args">The <see cref="EventArgs" /> instance containing the event data.</param>
         public static void Automatic(EventArgs args)
         {
-            Variables.Orbwalker.SetAttackState(!GameObjects.EnemyHeroes.Any(h => h.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("KarmaSpiritBind"))));
-
             if (GameObjects.Player.IsRecalling() || GameObjects.Player.HasBuff("KarmaMantra") && GameObjects.Player.HealthPercent
                 <= Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().SValue
                 && Vars.Menu["spells"]["w"]["lifesaver"].GetValue<MenuSliderButton>().BValue)
