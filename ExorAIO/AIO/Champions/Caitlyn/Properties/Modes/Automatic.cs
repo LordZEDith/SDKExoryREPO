@@ -62,8 +62,7 @@ namespace ExorAIO.Champions.Caitlyn
                     GameObjects.EnemyHeroes.Where(
                         t =>
                         Bools.IsImmobile(t) && !Invulnerable.Check(t) && t.IsValidTarget(Vars.Q.Range)
-                        && t.HasBuff("caitlynyordletrapsight")
-                        && Vars.UnitIsImmobileUntil(t) > Vars.Q.Delay + Game.Ping * 2))
+                        && t.HasBuff("caitlynyordletrapsight")))
                 {
                     Vars.Q.Cast(target.ServerPosition);
                 }

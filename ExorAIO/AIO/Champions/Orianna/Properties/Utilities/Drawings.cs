@@ -35,7 +35,7 @@ namespace ExorAIO.Champions.Orianna
 
             Drawing.OnDraw += delegate
                 {
-                    var ballPos = Orianna.GetBallPosition();
+                    var ballPos = Orianna.GetBallPosition;
 
                     if (ballPos == Vector3.Zero)
                     {

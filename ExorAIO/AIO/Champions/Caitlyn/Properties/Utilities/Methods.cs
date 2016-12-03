@@ -20,7 +20,6 @@ namespace ExorAIO.Champions.Caitlyn
             Events.OnGapCloser += Caitlyn.OnGapCloser;
             Events.OnInterruptableTarget += Caitlyn.OnInterruptableTarget;
             Obj_AI_Base.OnDoCast += Caitlyn.OnDoCast;
-            Variables.Orbwalker.OnAction += Caitlyn.OnAction;
         }
 
         #endregion

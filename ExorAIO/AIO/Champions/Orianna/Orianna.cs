@@ -25,34 +25,7 @@ namespace ExorAIO.Champions.Orianna
     {
         #region Public Methods and Operators
 
-        /// <summary>
-        ///     Gets or sets the position of the Ball.
-        /// </summary>
-        public static Vector3 GetBallPosition()
-        {
-            var position = Vector3.Zero;
-            var possiblePosition1 =
-                ObjectManager.Get<Obj_AI_Minion>()
-                    .FirstOrDefault(m => Math.Abs(m.Health) > 0 && m.CharData.BaseSkinName.Equals("oriannaball"));
-            var possiblePosition2 =
-                GameObjects.AllyHeroes.FirstOrDefault(
-                    a => a.Buffs.Any(b => b.Caster.IsMe && b.Name.Equals("orianaghost")));
-
-            if (possiblePosition1 != null)
-            {
-                position = possiblePosition1.ServerPosition;
-            }
-            else if (GameObjects.Player.HasBuff("orianaghostself"))
-            {
-                position = GameObjects.Player.ServerPosition;
-            }
-            else if (possiblePosition2 != null)
-            {
-                position = possiblePosition2.ServerPosition;
-            }
-
-            return position;
-        }
+        public static Vector3 GetBallPosition = Vector3.Zero;
 
         /// <summary>
         ///     Called upon calling a spellcast.
@@ -67,7 +40,7 @@ namespace ExorAIO.Champions.Orianna
                 if (
                     !GameObjects.EnemyHeroes.Any(
                         t =>
-                        t.IsValidTarget() && t.Distance((Vector2)GetBallPosition()) < Vars.R.Range - 25
+                        t.IsValidTarget() && t.Distance((Vector2)GetBallPosition) < Vars.R.Range - 25
                         && !Invulnerable.Check(t, DamageType.Magical, false)))
                 {
                     args.Process = false;
@@ -106,7 +79,7 @@ namespace ExorAIO.Champions.Orianna
                 return;
             }
 
-            if (Vars.R.IsReady() && ((Vector2)GetBallPosition()).Distance(args.Sender.ServerPosition) < Vars.R.Range
+            if (Vars.R.IsReady() && ((Vector2)GetBallPosition).Distance(args.Sender.ServerPosition) < Vars.R.Range
                 && Vars.Menu["spells"]["r"]["interrupter"].GetValue<MenuBool>().Value)
             {
                 Vars.R.Cast();
